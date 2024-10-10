@@ -1,13 +1,15 @@
-import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import React, { useState } from "react";
 import AccountabilityHeatmap from "../../../components/accountability/AccountabilityHeatmap";
 import { Button } from "../../../components/ui/Button";
 import Dropdown from "../../../components/ui/Dropdown";
+import LoadingComponent from "../../../components/ui/loader";
+import { GET_ACCOUNTABILITY_TASKS_BY_USER } from "../../../graphql/studentPortal/accountability/fetchAccountabilityTasks";
 import { INSERT_ACCOUNTABILITY_MUTATION } from "../../../graphql/studentPortal/accountability/insertAccountabilityTask";
 import { useAuth } from "../../../lib/authContext";
 
-// Accountability menu data
-const accountabilityMenuData = {
+// Accountability Menu Data
+const accountabilityMenuData: Record<string, string[]> = {
   "Building Software": [
     "Architectural/System Design",
     "Bug Fixing",
@@ -27,94 +29,89 @@ const accountabilityMenuData = {
   ],
 };
 
-interface Entry {
-  creationDate: string;
-  isCompleted: boolean | null;
+// Types
+interface AccountabilityTask {
+  user_id: string;
+  topic: string;
+  subfield: string;
+  description: string;
+  validator: string;
 }
 
-const mockEntries: Entry[] = [
-  { creationDate: "2024-01-01T12:00:00Z", isCompleted: true },
-  { creationDate: "2024-02-05T12:00:00Z", isCompleted: false },
-  { creationDate: "2024-03-10T12:00:00Z", isCompleted: true },
-  { creationDate: "2024-04-15T12:00:00Z", isCompleted: false },
-  { creationDate: "2024-05-20T12:00:00Z", isCompleted: true },
-  { creationDate: "2024-06-25T12:00:00Z", isCompleted: false },
-  { creationDate: "2024-07-30T12:00:00Z", isCompleted: true },
-  { creationDate: "2024-08-05T12:00:00Z", isCompleted: false },
-  { creationDate: "2024-09-10T12:00:00Z", isCompleted: true },
-  { creationDate: "2024-10-15T12:00:00Z", isCompleted: false },
-  { creationDate: "2024-11-20T12:00:00Z", isCompleted: true },
-  { creationDate: "2024-12-25T12:00:00Z", isCompleted: false },
-];
-
-const initialAccountabilityTaskState = (user) => ({
-  user_id: user.uid,
+// Initial State
+const getInitialAccountabilityTaskState = (
+  userId: string
+): AccountabilityTask => ({
+  user_id: userId,
   topic: "",
   subfield: "",
   description: "",
-  validator: "", // TODO: Auto-fill this later if needed
+  validator: "", // TODO: Slack Integration will cover this.
 });
 
-const AccountabilityDashboard = () => {
+const AccountabilityDashboard: React.FC = () => {
   const { user } = useAuth();
-  const [accountabilityTask, setAccountabilityTask] = useState(
-    initialAccountabilityTaskState(user)
-  );
+  const userId = user?.uid ?? "";
 
-  const [insertAccountabilityTask, { loading, error }] = useMutation(
+  const [accountabilityTask, setAccountabilityTask] =
+    useState<AccountabilityTask>(getInitialAccountabilityTaskState(userId));
+
+  const { topic, subfield, description } = accountabilityTask;
+
+  // Fetch user accountability data
+  const {
+    data,
+    loading: accountabilityLoading,
+    error: accountabilityError,
+  } = useQuery(GET_ACCOUNTABILITY_TASKS_BY_USER, {
+    variables: { userId },
+    skip: !userId,
+  });
+
+  // Mutation for inserting accountability task
+  const [insertAccountabilityTask, { loading: inserting }] = useMutation(
     INSERT_ACCOUNTABILITY_MUTATION
   );
 
-  const { user_id, topic, subfield, description } = accountabilityTask;
-
-  const handleChange = (name, value) => {
-    setAccountabilityTask((prevTask) => {
-      if (name === "topic") {
-        // If topic changes, reset subfield
-        return { ...prevTask, topic: value, subfield: "" };
-      } else {
-        // For other changes (including subfield), just update the specified field
-        return { ...prevTask, [name]: value };
-      }
-    });
+  // Handlers
+  const handleChange = (name: keyof AccountabilityTask, value: string) => {
+    setAccountabilityTask((prevTask) => ({
+      ...prevTask,
+      [name]: value,
+      ...(name === "topic" && { subfield: "" }), // Reset subfield if topic changes
+    }));
   };
 
-  // Handle form submission
+  const validateForm = (): boolean => {
+    return Boolean(topic && subfield && description);
+  };
+
   const handleSubmit = async () => {
-    const variables = { user_id, topic, subfield, description };
+    if (!validateForm()) {
+      alert("Please fill in all fields before submitting."); // Seems effective, but might not be the best UX Decision
+      return;
+    }
 
     try {
-      const { data } = await insertAccountabilityTask({ variables });
-      console.log("Task inserted:", data.insert_accountability_one);
-      resetTaskState(user, setAccountabilityTask);
+      const variables = { user_id: userId, topic, subfield, description };
+      const response = await insertAccountabilityTask({ variables });
+      resetTaskState();
     } catch (error) {
-      handleError(error);
+      console.error("An error occurred while submitting the task:", error);
     }
   };
 
-  // Utility function to reset the task state
-  const resetTaskState = (user, setTaskState) => {
-    setTimeout(() => {
-      setTaskState(initialAccountabilityTaskState(user));
-    }, 1000);
-  };
-
-  // Centralized error handling
-  const handleError = (error) => {
-    if (error.graphQLErrors) {
-      console.error("GraphQL Errors:", error.graphQLErrors);
-    }
-    if (error.networkError) {
-      console.error("Network Error:", error.networkError);
-    }
+  const resetTaskState = () => {
+    setAccountabilityTask(getInitialAccountabilityTaskState(userId));
   };
 
   return (
     <div className="flex flex-col min-h-screen my-4 mx-4">
       <h2 className="text-2xl font-bold mb-4 text-center">
-        {user.displayName}'s Accountability Task:
+        {user?.displayName}'s Accountability Task:
       </h2>
 
+      {/* Form */}
       <div className="mb-4">
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex-1">
@@ -134,6 +131,7 @@ const AccountabilityDashboard = () => {
         </div>
       </div>
 
+      {/* Task Description */}
       <div className="mb-4">
         <label className="block mb-2">Task Description:</label>
         <textarea
@@ -145,17 +143,21 @@ const AccountabilityDashboard = () => {
         />
       </div>
 
+      {/* Submit Button */}
       <div className="flex justify-end">
-        <Button label="Submit" onClick={handleSubmit} disabled={loading} />
+        <Button label="Submit" onClick={handleSubmit} disabled={inserting} />
       </div>
 
+      {/* Accountability Heatmap */}
       <div className="flex justify-center">
-        <AccountabilityHeatmap entries={mockEntries} />
+        {accountabilityLoading ? (
+          <LoadingComponent />
+        ) : accountabilityError ? (
+          <p>An error occurred while fetching data.</p>
+        ) : (
+          <AccountabilityHeatmap entries={data?.accountability} />
+        )}
       </div>
-
-      {error && (
-        <div className="text-red-500">An error occurred. Please try again.</div>
-      )}
     </div>
   );
 };
