@@ -156,6 +156,49 @@ export default function Sidebar({ closeSidebar }) {
     },
   ];
 
+  const premiumCourses: SidebarItemProps[] = [
+    {
+      name: "Coding Basics",
+      link: "/studentPortal",
+      page: "coding_basics",
+      icon: <JSIcon />,
+      isDisabled: false,
+      isPremium: false,
+    },
+    {
+      name: "Web Development",
+      link: "/studentPortal/web",
+      page: "react",
+      icon: <ReactIcon />,
+      isDisabled: false,
+      isPremium: true,
+    },
+    {
+      name: "Interview Prep 1",
+      link: "/studentPortal/courses/interviewPrep",
+      page: "interviewPrep",
+      icon: <LightBulbIcon className="w-6 h-6 mr-4" />,
+      isDisabled: false,
+      isPremium: true,
+    },
+    {
+      name: "Interview Prep 2",
+      link: "/studentPortal/courses/interviewPrep2",
+      page: "interviewPrep2",
+      icon: <LightBulbIcon className="w-6 h-6 mr-4" />,
+      isDisabled: false,
+      isPremium: true,
+    },
+    {
+      name: "Financial Literacy",
+      link: "/studentPortal/",
+      page: "financialLiteracy",
+      icon: <CashIcon className="w-6 h-6 mr-4" />,
+      isDisabled: false,
+      isPremium: true,
+    },
+  ];
+
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full overflow-auto bg-backgroundPrimary text-textPrimary">
@@ -217,53 +260,52 @@ export default function Sidebar({ closeSidebar }) {
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
           </div>
-          <div className="h-64 overflow-auto">
-            <Link href="/studentPortal">
-              <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-                <JSIcon />
-                <p className="ml-3">Coding Basics</p>
-              </div>
-            </Link>
-            <Link href="/studentPortal/web">
-              <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-                <ReactIcon />
-                <p className="ml-3">Web Development</p>
-              </div>
-            </Link>
-            {userRole && userRole !== "freemium" ? (
-              <Link href="/studentPortal/courses/interviewPrep">
-                <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-                  <LightBulbIcon className="w-6 h-6" />
-                  <p className="ml-4">Interview Prep</p>
-                </div>
-              </Link>
-            ) : (
-              <FreemiumSidebarItem
-                name={"Interview Prep"}
-                link={""}
-                page={"dashboard"}
-                icon={<LightBulbIcon className="w-6 h-6 mr-4" />}
-                isDisabled={true}
-                closeSidebar={closeSidebar}
-              />
-            )}
-            {userRole && userRole !== "freemium" ? (
-              <Link href="/resources/interviewPrep">
-                <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-                  <LightBulbIcon className="w-6 h-6" />
-                  <p className="ml-4">Financial Literacy</p>
-                </div>
-              </Link>
-            ) : (
-              <FreemiumSidebarItem
-                name={"Financial Literacy"}
-                link={""}
-                page={"dashboard"}
-                icon={<CashIcon className="w-6 h-6 mr-4" />}
-                isDisabled={true}
-                closeSidebar={closeSidebar}
-              />
-            )}
+          <div className="">
+            {premiumCourses.map((course) => {
+              if (!course.isPremium) {
+                return (
+                  <SidebarItem
+                    key={course.name}
+                    name={course.name}
+                    notifications={course.notifications}
+                    link={course.link}
+                    page={course.page}
+                    icon={course.icon}
+                    isDisabled={course.isDisabled}
+                  />
+                );
+              } else {
+                if (
+                  userRole &&
+                  (userRole === "paid" || userRole === "freemium")
+                ) {
+                  return (
+                    <FreemiumSidebarItem
+                      key={course.name}
+                      name={course.name}
+                      notifications={course.notifications}
+                      link={course.link}
+                      page={course.page}
+                      icon={course.icon}
+                      isDisabled={course.isDisabled}
+                      closeSidebar={closeSidebar}
+                    />
+                  );
+                } else {
+                  return (
+                    <SidebarItem
+                      key={course.name}
+                      name={course.name}
+                      notifications={course.notifications}
+                      link={course.link}
+                      page={course.page}
+                      icon={course.icon}
+                      isDisabled={course.isDisabled}
+                    />
+                  );
+                }
+              }
+            })}
           </div>
 
           {userRole === "student" || userRole === "coach" ? (
