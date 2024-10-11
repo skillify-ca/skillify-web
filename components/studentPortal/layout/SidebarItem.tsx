@@ -2,7 +2,7 @@ import React from "react";
 import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
 import PaidSidebarItem, { PaidSidebarItemProps } from "./PaidSidebarItem";
 
-type SidebarItemProps = {
+export type SidebarItemProps = {
   userRole: string;
   it: PaidSidebarItemProps;
   closeSidebar: () => void;

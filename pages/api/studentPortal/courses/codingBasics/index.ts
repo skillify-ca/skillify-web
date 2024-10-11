@@ -70,4 +70,7 @@ export function getLessonForBasicsCourse(lessonId: string) {
   } else if (lessonId.toLocaleLowerCase() === "js-portfolio-assignment") {
     return getPortfolioAssignment();
   }
+
+  console.log("lessonId", lessonId);
+  throw new Error(`Could not find lessons for ${lessonId}`);
 }

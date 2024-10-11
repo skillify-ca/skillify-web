@@ -36,5 +36,5 @@ export function getLessonForReactCourse(lessonId: string) {
   }
 
   console.log("lessonId", lessonId);
-  // throw new Error(`Could not find lessons for ${lessonId}`);
+  throw new Error(`Could not find lessons for ${lessonId}`);
 }

@@ -48,6 +48,7 @@ export type LessonComponentData =
     }
   | {
       component: "resource-list";
+      title?: string;
       resources: Resource[];
     }
   | { component: "quiz"; data: QuizData }
@@ -148,7 +149,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   if (data.component === "resource-list") {
     return (
       <>
-        <h1 className="font-bold">Resources</h1>
+        <h1 className="font-bold">{data.title ?? "Resources"}</h1>
         <div className="flex flex-col gap-8">
           {data.resources.map((it, index) => (
             <ResourceRow

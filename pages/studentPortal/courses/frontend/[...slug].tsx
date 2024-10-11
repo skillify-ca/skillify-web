@@ -67,7 +67,6 @@ const LessonPage = ({
 
 export async function getServerSideProps({ params }) {
   const slug = params.slug.join("/");
-  console.log("SLUG IS: ", slug);
   return {
     props: getLessonForReactCourse(slug),
   };
