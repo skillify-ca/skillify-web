@@ -92,12 +92,14 @@ export default function Sidebar({ closeSidebar }) {
   }, [user]);
 
   useEffect(() => {
-    Mixpanel.identify(user?.uid);
-    Mixpanel.people.set({
-      $name: user.displayName,
-      $email: user?.email,
-      plan: userRole,
-    });
+    if (user) {
+      Mixpanel.identify(user?.uid);
+      Mixpanel.people.set({
+        $name: user.displayName,
+        $email: user?.email,
+        plan: userRole,
+      });
+    }
   }, [user]);
 
   return (

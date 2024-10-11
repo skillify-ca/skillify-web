@@ -81,81 +81,79 @@ export default function InternalProfile({
     }
   }, [userRole]);
 
-  if (userId) {
-    useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
-      variables: {
-        userId: userId,
-      },
-      onCompleted: async (data) => {
-        if (data.users.length > 0) {
-          const profileImage = await fetchProfilePicture(data.users[0].id);
-          dispatch(
-            setUserProfile({
-              createdAt: data.users[0].created_at,
-              email: data.users[0].email,
-              id: data.users[0].id,
-              lastSeen: data.users[0].last_seen,
-              name: data.users[0].name,
-              profileImage: profileImage,
-            })
-          );
-        }
-      },
-    });
-
-    useQuery<FetchUserGoalsDataResponse>(FETCH_USER_GOALS, {
-      variables: {
-        userId: userId,
-      },
-      onCompleted: (data: FetchUserGoalsDataResponse) => {
-        dispatch(setUserGoals(data.user_goals));
-      },
-    });
-
-    useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
-      variables: {
-        userId: userId,
-      },
-      onCompleted: (data) => {
+  useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
+    variables: {
+      userId: userId,
+    },
+    onCompleted: async (data) => {
+      if (data.users.length > 0) {
+        const profileImage = await fetchProfilePicture(data.users[0].id);
         dispatch(
-          setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
+          setUserProfile({
+            createdAt: data.users[0].created_at,
+            email: data.users[0].email,
+            id: data.users[0].id,
+            lastSeen: data.users[0].last_seen,
+            name: data.users[0].name,
+            profileImage: profileImage,
+          })
         );
-      },
-    });
+      }
+    },
+  });
 
-    useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
-      variables: {
-        userId: userId,
-      },
-      onCompleted: (data) => {
-        if (data.user_coding_badges_aggregate.aggregate.count) {
-          dispatch(
-            setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count)
-          );
-        }
-      },
-    });
+  useQuery<FetchUserGoalsDataResponse>(FETCH_USER_GOALS, {
+    variables: {
+      userId: userId,
+    },
+    onCompleted: (data: FetchUserGoalsDataResponse) => {
+      dispatch(setUserGoals(data.user_goals));
+    },
+  });
 
-    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
-      onCompleted: (data) => {
-        if (data.coding_badges_aggregate) {
-          dispatch(
-            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
-          );
-        }
-      },
-    });
+  useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
+    variables: {
+      userId: userId,
+    },
+    onCompleted: (data) => {
+      dispatch(
+        setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
+      );
+    },
+  });
 
-    useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
-      variables: {
-        userId: userId,
-      },
+  useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
+    variables: {
+      userId: userId,
+    },
+    onCompleted: (data) => {
+      if (data.user_coding_badges_aggregate.aggregate.count) {
+        dispatch(
+          setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count)
+        );
+      }
+    },
+  });
 
-      onCompleted: (data: FetchUserProjectsDataResponse) => {
-        setUserProjects(data.user_projects);
-      },
-    });
-  }
+  useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+    onCompleted: (data) => {
+      if (data.coding_badges_aggregate) {
+        dispatch(
+          setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
+        );
+      }
+    },
+  });
+
+  useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
+    variables: {
+      userId: userId,
+    },
+
+    onCompleted: (data: FetchUserProjectsDataResponse) => {
+      setUserProjects(data.user_projects);
+    },
+  });
 
   const sections = [
     {

@@ -42,7 +42,7 @@ export default function StudentPortalPage() {
         />
         <div className="grid grid-cols-1 gap-4">
           {units.map((it, i) => (
-            <UnitView key={i} data={it} />
+            <UnitView key={i} data={it} course="codingBasics" />
           ))}
         </div>
       </div>
