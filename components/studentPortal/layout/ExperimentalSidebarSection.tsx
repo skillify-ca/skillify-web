@@ -10,6 +10,11 @@ import {
   StarIcon,
 } from "@heroicons/react/outline";
 import React from "react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../../ui/Collapsible";
 import SkillifyCommandPalette from "./CommandPalette";
 import { PaidSidebarItemProps } from "./PaidSidebarItem";
 import SidebarItem from "./SidebarItem";
@@ -71,7 +76,6 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     link: "/studentPortal/",
     page: "financialLiteracy",
     icon: <LockClosedIcon className="w-6 h-6 mr-4" />,
-    isDisabled: true,
     isPremium: true,
   },
   {
@@ -88,24 +92,50 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     icon: <LightningBoltIcon className="w-6 h-6 mr-4" />,
     isPremium: true,
   },
+  {
+    name: "Skillify AI",
+    link: "/studentPortal/skillifyAI",
+    page: "skillifyAI",
+    icon: <CogIcon className="w-6 h-6 mr-4" />,
+    isPremium: true,
+  },
+  {
+    name: "Virtual Hangout",
+    link: "/studentPortal/virtualHangout",
+    page: "virtualHangout",
+    icon: <CameraIcon className="w-6 h-6 mr-4" />,
+    isPremium: true,
+  },
 ];
 
 function ExperimentalSidebarSection({ userRole }) {
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
-      <div className="flex items-center justify-between p-4 ">
-        <p className="font-bold">Experimental</p>
-      </div>
-      <SkillifyCommandPalette />
+      <Collapsible className="group">
+        <CollapsibleTrigger>
+          <div className="flex items-center justify-between p-4 ">
+            <span
+              className={`group-data-[state=open]:rotate-180 transition-all rotate-90 mr-2`}
+            >
+              ▲
+            </span>
+            <p className="font-bold">Experimental</p>
+          </div>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <SkillifyCommandPalette />
 
-      {experimentalSidebarItems.map((item) => (
-        <SidebarItem
-          key={item.name}
-          it={item}
-          userRole={userRole}
-          closeSidebar={undefined}
-        />
-      ))}
+          {experimentalSidebarItems.map((item) => (
+            <SidebarItem
+              key={item.name}
+              it={item}
+              userRole={userRole}
+              closeSidebar={undefined}
+            />
+          ))}
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 }
