@@ -8,7 +8,7 @@ const actions = {
   identify: (id: any) => {
     try {
       if ((window as any).mixpanel) {
-        console.log("Mixpanel user identified", id);
+        // console.log("Mixpanel user identified", id);
 
         (window as any).mixpanel.identify(id);
       }
@@ -32,7 +32,7 @@ const actions = {
     set: (props: any) => {
       try {
         if ((window as any).mixpanel) {
-          console.log("Mixpanel people set", props);
+          //   console.log("Mixpanel people set", props);
 
           (window as any).mixpanel.people.set(props);
         }
