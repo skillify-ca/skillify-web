@@ -5,7 +5,6 @@ import {
   DocumentSearchIcon,
   LightBulbIcon,
   LightningBoltIcon,
-  LockClosedIcon,
   PlayIcon,
   StarIcon,
 } from "@heroicons/react/outline";
@@ -72,9 +71,9 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
   },
   {
     name: "Financial Literacy",
-    link: "/studentPortal/",
+    link: "/studentPortal/courses/personalFinance",
     page: "financialLiteracy",
-    icon: <LockClosedIcon className="w-6 h-6 mr-4" />,
+    icon: <CashIcon className="w-6 h-6 mr-4" />,
     isPremium: true,
   },
   {

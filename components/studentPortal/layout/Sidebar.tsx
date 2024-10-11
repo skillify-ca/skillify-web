@@ -76,6 +76,7 @@ export default function Sidebar({ closeSidebar }) {
     } else {
       dispatch(setActivePage("dashboard"));
     }
+    closeSidebar();
   }, [router.pathname]);
 
   useEffect(() => {
