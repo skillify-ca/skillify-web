@@ -5,7 +5,7 @@ import PageHeader from "../../../../components/ui/PageHeader";
 import { useAuth } from "../../../../lib/authContext";
 import { cryptoUnits } from "../../../api/studentPortal/courses/crypto";
 import { Unit } from "../../../api/studentPortal/units";
-export default function StudentPortalPage() {
+export default function CryptoCoursePage() {
   const { user } = useAuth();
   const [units, setUnits] = useState<Unit[]>([]);
 
@@ -29,4 +29,5 @@ export default function StudentPortalPage() {
   );
 }
 
-StudentPortalPage.auth = true;
+CryptoCoursePage.auth = true;
+CryptoCoursePage.premium = true;

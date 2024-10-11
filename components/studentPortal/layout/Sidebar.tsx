@@ -127,9 +127,10 @@ export default function Sidebar({ closeSidebar }) {
             })}
           </div>
 
-          {userRole === "student" || userRole === "coach" ? (
-            <ExperimentalSidebarSection userRole={userRole} />
-          ) : null}
+          <ExperimentalSidebarSection
+            userRole={userRole}
+            closeSidebar={closeSidebar}
+          />
         </div>
         <div
           className="flex flex-wrap p-4 mb-16 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"

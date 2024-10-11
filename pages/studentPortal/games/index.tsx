@@ -25,3 +25,5 @@ export default function GamePage() {
     </div>
   );
 }
+
+GamePage.premium = true;

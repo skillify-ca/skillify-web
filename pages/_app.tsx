@@ -55,7 +55,9 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   }
 
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
+  const getLayout =
+    Component.getLayout ||
+    ((page) => <Layout isPremiumPage={Component.premium}>{page}</Layout>);
 
   // TODO remove setting Component.Auth
   return (

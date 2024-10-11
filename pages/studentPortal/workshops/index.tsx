@@ -62,3 +62,4 @@ const WorkshopsPage = () => {
 export default WorkshopsPage;
 
 WorkshopsPage.auth = true;
+WorkshopsPage.premium = true;

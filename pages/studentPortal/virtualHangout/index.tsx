@@ -15,3 +15,5 @@ const index = () => {
 };
 
 export default index;
+
+index.premium = true;

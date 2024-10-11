@@ -2,25 +2,31 @@ import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { UserProfileData } from "../graphql/studentPortal/profile/fetchUserProfile";
 import { RootState } from "./rootReducer";
 
+export enum UserRole {
+  STUDENT = "student",
+  COACH = "coach",
+  FREEMIUM = "freemium",
+}
+
 export type ProfileState = {
   userProfileData: UserProfileData;
   userBadgeCount: number;
   totalBadgeCount: number;
-  userRole: "student" | "coach"|"freemium"|"paid";
+  userRole: UserRole;
   createdAt: Date;
 };
 
 const initialState: ProfileState = {
   userProfileData: {
+    id: "",
     createdAt: new Date(),
     email: "",
     lastSeen: new Date(),
     name: "",
-    profileImage: "",
   },
   totalBadgeCount: 0,
   userBadgeCount: 0,
-  userRole: "freemium",
+  userRole: UserRole.FREEMIUM,
   createdAt: new Date(),
 };
 
@@ -61,10 +67,7 @@ export const profileSlice: Slice = createSlice({
       }
     },
 
-    setUserRole: (
-      state: ProfileState,
-      action: PayloadAction<"coach" | "student"|"freemium">
-    ) => {
+    setUserRole: (state: ProfileState, action: PayloadAction<UserRole>) => {
       if (action.type == "profile/setUserRole") {
         return {
           ...state,
@@ -73,10 +76,7 @@ export const profileSlice: Slice = createSlice({
       }
     },
 
-    setCreatedAt: (
-      state: ProfileState,
-      action: PayloadAction<Date>
-    ) => {
+    setCreatedAt: (state: ProfileState, action: PayloadAction<Date>) => {
       if (action.type == "profile/setCreatedAt") {
         return {
           ...state,

@@ -27,3 +27,5 @@ export default function Coding() {
     </div>
   );
 }
+
+Coding.premium = true;

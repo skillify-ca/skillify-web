@@ -1,9 +1,10 @@
 import React from "react";
+import { UserRole } from "../../../redux/profileSlice";
 import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
 import PaidSidebarItem, { PaidSidebarItemProps } from "./PaidSidebarItem";
 
 export type SidebarItemProps = {
-  userRole: string;
+  userRole: UserRole;
   it: PaidSidebarItemProps;
   closeSidebar: () => void;
 };
@@ -21,11 +22,7 @@ export default function SidebarItem({
       </div>
     );
   }
-  if (
-    it.isPremium &&
-    userRole &&
-    (userRole === "paid" || userRole === "freemium")
-  ) {
+  if (it.isPremium && userRole && userRole === UserRole.FREEMIUM) {
     return (
       <FreemiumSidebarItem
         key={it.name}
@@ -34,7 +31,7 @@ export default function SidebarItem({
         link={it.link}
         page={it.page}
         icon={it.icon}
-        isDisabled={it.isDisabled}
+        isDisabled={true}
         closeSidebar={closeSidebar}
       />
     );

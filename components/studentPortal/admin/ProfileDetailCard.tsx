@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CodingBadge } from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
+import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
 import BadgesDisplayedComponent from "../profile/BadgesDisplayedComponent";
 import JoinedDateComponent from "../profile/JoinedDateComponent";
 
 type ProfileDetailCard = {
-  avatar: string;
+  userId: string;
   name: string;
   link: string;
   joinDate: Date;
@@ -16,7 +17,7 @@ type ProfileDetailCard = {
 };
 
 function ProfileDetailCard({
-  avatar,
+  userId,
   name,
   joinDate,
   badges,
@@ -25,6 +26,22 @@ function ProfileDetailCard({
   completedGoal,
   completedDate,
 }: ProfileDetailCard) {
+  const [avatar, setAvatar] = useState("../../images/logo-2.png");
+
+  useEffect(() => {
+    fetchProfilePicture(userId)
+      .then((url) => {
+        if (url) {
+          setAvatar(url);
+        } else {
+          setAvatar("../../images/logo-2.png");
+        }
+      })
+      .catch((_) => {
+        setAvatar("../../images/logo-2.png");
+      });
+  }, [userId]);
+
   return (
     <div className="grid w-full h-full grid-cols-4 text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100 ">
       <div className="flex col-span-4 m-4 place-items-center">

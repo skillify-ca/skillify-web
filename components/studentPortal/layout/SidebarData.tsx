@@ -88,6 +88,6 @@ export const premiumCourses: PaidSidebarItemProps[] = [
     page: "frontend_development",
     icon: <ReactIcon />,
     isDisabled: false,
-    isPremium: true,
+    isPremium: false,
   },
 ];

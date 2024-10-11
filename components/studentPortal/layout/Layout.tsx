@@ -8,7 +8,7 @@ import {
   FetchGoalCountResponse,
 } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
-import { profileSelector } from "../../../redux/profileSlice";
+import { UserRole, profileSelector } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import { Theme, setTheme, themeSelector } from "../../../redux/themeSlice";
 import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
@@ -17,10 +17,15 @@ import { FreemiumHeader } from "../freemium/FreemiumHeader";
 import Sidebar from "./Sidebar";
 import { useLastSeenModal } from "./useLastSeenModal";
 
-export const Layout: React.FC = ({ children }) => {
+type LayoutProps = {
+  children: React.ReactNode;
+  isPremiumPage?: boolean;
+};
+
+export const Layout: React.FC<LayoutProps> = ({ children, isPremiumPage }) => {
   const [active, setActive] = useState(false);
   const { currentTheme } = useSelector(themeSelector);
-  const { userRole, createdAt, email } = useSelector(profileSelector);
+  const { userRole, createdAt } = useSelector(profileSelector);
   const { user } = useAuth();
   const dispatch = useDispatch();
 
@@ -59,7 +64,7 @@ export const Layout: React.FC = ({ children }) => {
       `}</style>
 
       <div className="fixed z-20 w-full">
-        {userRole === "freemium" ? (
+        {userRole === UserRole.FREEMIUM ? (
           <FreemiumHeader
             handleMenuIconClick={() => setActive(!active)}
             handleToggleClick={() =>
@@ -95,7 +100,16 @@ export const Layout: React.FC = ({ children }) => {
           className={`overflow-auto pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-backgroundPrimary text-textPrimary`}
         >
           <div className="min-h-screen">
-            <div>{children}</div>
+            {isPremiumPage && userRole === UserRole.FREEMIUM ? (
+              <div className="p-4">
+                <p>
+                  You are not allowed to view this page. Please contact the
+                  website admin to upgrade your account.
+                </p>
+              </div>
+            ) : (
+              <div>{children}</div>
+            )}
           </div>
         </div>
       </div>

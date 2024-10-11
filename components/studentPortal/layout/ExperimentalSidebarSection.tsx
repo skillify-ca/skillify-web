@@ -25,42 +25,41 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     link: "/studentPortal/games",
     page: "games",
     icon: <PlayIcon className="w-6 mr-4" />,
-    isPremium: false,
+    isPremium: true,
   },
   {
     name: "Challenges",
     page: "challenges",
     link: "/studentPortal/challenges",
     icon: <StarIcon className="w-6 mr-4" />,
-    isPremium: false,
+    isPremium: true,
   },
   {
     name: "Workshops",
     page: "workshops",
     link: "/studentPortal/workshops",
     icon: <CameraIcon className="w-6 mr-4" />,
-    isPremium: false,
+    isPremium: true,
   },
   {
     name: "Mock Interview Bot",
     page: "",
     link: "/resources/mockInterview",
     icon: <CogIcon className="w-6 mr-4" />,
-    isPremium: false,
+    isPremium: true,
   },
   {
     name: "Job Explorer",
     page: "",
     link: "/resources/jobExplorer/jobList",
     icon: <DocumentSearchIcon className="w-6 mr-4" />,
-    isPremium: false,
+    isPremium: true,
   },
   {
     name: "Interview Prep 1",
     link: "/studentPortal/courses/interviewPrep",
     page: "interviewPrep1",
     icon: <LightBulbIcon className="w-6 h-6 mr-4" />,
-    isDisabled: false,
     isPremium: true,
   },
   {
@@ -108,8 +107,7 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
   },
 ];
 
-function ExperimentalSidebarSection({ userRole }) {
-  const [isOpen, setIsOpen] = React.useState(false);
+function ExperimentalSidebarSection({ userRole, closeSidebar }) {
   return (
     <div>
       <Collapsible className="group">
@@ -131,7 +129,7 @@ function ExperimentalSidebarSection({ userRole }) {
               key={item.name}
               it={item}
               userRole={userRole}
-              closeSidebar={undefined}
+              closeSidebar={closeSidebar}
             />
           ))}
         </CollapsibleContent>

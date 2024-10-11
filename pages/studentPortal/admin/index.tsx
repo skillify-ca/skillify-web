@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../../../components/studentPortal/admin/ProfileDetailCard";
 import { Button } from "../../../components/ui/Button";
+import Dropdown from "../../../components/ui/Dropdown";
 import {
   FETCH_TOTAL_USER_BADGES_COUNT,
   FetchTotalBadgesCountResponse,
@@ -23,8 +24,10 @@ import {
 import { FETCH_USER_ROLE } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import {
+  UserRole,
   profileSelector,
   setTotalBadgeCount,
+  setUserRole,
 } from "../../../redux/profileSlice";
 
 const coachingDashboard = () => {
@@ -33,6 +36,7 @@ const coachingDashboard = () => {
 
   const dispatch = useDispatch();
   const [userList, setUserList] = useState<Users[]>([]);
+  const [userRoleState, setUserRoleState] = useState<UserRole>();
   const [goalsList, setGoalsList] = useState<AllUserGoalsData[]>();
   const [completedGoalsList, setCompletedGoalsList] = useState([]);
   const [goalCompletionDateList, setGoalCompletionDateList] = useState([]);
@@ -57,8 +61,14 @@ const coachingDashboard = () => {
       if (roleData.users[0].userRole !== "coach") {
         router.replace("/studentPortal");
       }
+      setUserRoleState(roleData.users[0].userRole);
     },
   });
+
+  const handleChangeUserRole = (value: string) => {
+    setUserRoleState(value as UserRole);
+    dispatch(setUserRole(value as UserRole));
+  };
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
@@ -110,17 +120,27 @@ const coachingDashboard = () => {
   return (
     <div className="flex flex-col p-4 m-4 ">
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
-      <div className="flex gap-4 mb-4">
-        <Link href="/studentPortal/admin/badges/create">
-          <Button label="New Badge" />
-        </Link>
-        <Link href="/studentPortal/admin/badges/assign">
-          <Button
-            label="Assign Badge"
-            backgroundColor="white"
-            textColor="primary"
+      <div className="flex justify-between">
+        <div className="flex gap-4 mb-4">
+          <Link href="/studentPortal/admin/badges/create">
+            <Button label="New Badge" />
+          </Link>
+          <Link href="/studentPortal/admin/badges/assign">
+            <Button
+              label="Assign"
+              backgroundColor="white"
+              textColor="primary"
+            />
+          </Link>
+        </div>
+        <div>
+          {/* dropdown */}
+          <Dropdown
+            label={userRoleState || "Select User Role"}
+            options={[UserRole.COACH, UserRole.STUDENT, UserRole.FREEMIUM]}
+            onSelect={(value) => handleChangeUserRole(value)}
           />
-        </Link>
+        </div>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList
@@ -137,11 +157,7 @@ const coachingDashboard = () => {
               <Link href={"/profile/" + it.id} key={index}>
                 <div className="container">
                   <ProfileDetailCard
-                    avatar={
-                      it.profile_image == null
-                        ? "../../images/logo-2.png"
-                        : it.profile_image
-                    }
+                    userId={it.id}
                     name={it.name}
                     joinDate={new Date(it.created_at)}
                     badges={it.user_coding_badges_aggregate.aggregate.count}
@@ -181,3 +197,5 @@ const coachingDashboard = () => {
 };
 
 export default coachingDashboard;
+
+coachingDashboard.premium = true;
