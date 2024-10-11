@@ -8,6 +8,7 @@ import PageHeader from "../../components/ui/PageHeader";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../lib/authContext";
 
+import mixpanel from "mixpanel-browser";
 import React from "react";
 import GoalsFeed from "../../components/studentPortal/goals/feed/GoalsFeed";
 import { Unit, codingBasicsCourse } from "../api/studentPortal/units";
@@ -32,6 +33,10 @@ export default function StudentPortalPage() {
       },
     });
   }, [user]);
+
+  useEffect(() => {
+    mixpanel.track("View Dashboard", {});
+  }, []);
 
   return (
     <div className="grid w-full grid-cols-12 ">

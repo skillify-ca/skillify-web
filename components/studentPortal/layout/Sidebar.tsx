@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client/react";
+import mixpanel from "mixpanel-browser";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,6 +88,16 @@ export default function Sidebar({ closeSidebar }) {
       });
     }
   }, [user]);
+
+  useEffect(() => {
+    mixpanel.identify(user.uid);
+
+    mixpanel.people.set({
+      $name: user.displayName,
+      $email: user.email,
+      plan: userRole,
+    });
+  }, [user, userRole]);
 
   return (
     //Full width then restrict in page

@@ -55,6 +55,7 @@
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",
     "magic-sdk": "^8.1.1",
+    "mixpanel-browser": "^2.55.1",
     "moment": "^2.29.1",
     "next": "^12.1.4",
     "next-auth": "^4.24.4",

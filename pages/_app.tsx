@@ -16,6 +16,9 @@ import * as ga from "../lib/googleAnalytics";
 import store from "../redux/store";
 import "../styles/globals.css";
 
+//Import Mixpanel SDK
+import mixpanel from "mixpanel-browser";
+
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
 
@@ -23,6 +26,13 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   const siteId = 3063697;
   const hotjarVersion = 6;
   // Hotjar.init(siteId, hotjarVersion);
+
+  // Near entry of your product, init Mixpanel
+  mixpanel.init(process.env.MIXPANEL_TOKEN, {
+    debug: true,
+    track_pageview: true,
+    persistence: "localStorage",
+  });
 
   const handleRouteChange = (url) => {
     if (window.gtag) {
