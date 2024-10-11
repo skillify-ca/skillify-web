@@ -1,6 +1,10 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
+import ExpandableContainer from "../../ui/ExpandableContainer";
 import WebhookInputBox from "../../ui/WebhookInputBox";
+import { Hint } from "../assignments/AssignmentComponent";
+import HintRow from "../assignments/HintRow";
+import TemplateInputBox from "../assignments/TemplateInputBox";
 import Quiz from "../quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 
@@ -33,6 +37,10 @@ export type LessonComponentData =
   | {
       component: "description";
       text: string;
+    }
+  | {
+      component: "image";
+      url: string;
     }
   | {
       component: "caption";
@@ -79,6 +87,19 @@ export type LessonComponentData =
   | {
       component: "youtube";
       url: string;
+    }
+  | {
+      component: "template";
+      templateLink: string;
+    }
+  | {
+      component: "hint-list";
+      hintRow: Hint[];
+    }
+  | {
+      component: "prompt";
+      header: string;
+      bullets: string[];
     };
 
 export type LessonComponentProps = {
@@ -94,6 +115,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   }
   if (data.component === "caption") {
     return <p className="italic whitespace-pre-line">{data.text}</p>;
+  }
+  if (data.component === "image") {
+    return <img src={data.url} />;
   }
   if (data.component === "custom") {
     return <p className="whitespace-pre-line">{data.children}</p>;
@@ -196,5 +220,39 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       </div>
     );
   }
+  if (data.component === "hint-list") {
+    return (
+      <ExpandableContainer open={false} title="Hints">
+        <div className="flex flex-col mx-4 space-y-4 text-lg">
+          <p>Click below to reveal hints</p>
+          {data.hintRow.map((it, index) => (
+            <HintRow key={index} description={it.description} link={it.link} />
+          ))}
+        </div>
+      </ExpandableContainer>
+    );
+  }
+  if (data.component === "template") {
+    return (
+      <ExpandableContainer open={true} title="Assignment Template">
+        <TemplateInputBox templateLink={data.templateLink} />
+      </ExpandableContainer>
+    );
+  }
+  if (data.component === "prompt") {
+    return (
+      <ExpandableContainer open={true} title="Directions">
+        <div className="flex flex-col mx-4">
+          <p className="text-lg">{data.header}</p>
+          <ul className="ml-10 space-y-2 list-disc list-outside text-md">
+            {data.bullets.map((item, index) => {
+              return <li key={index}>{item}</li>;
+            })}
+          </ul>
+        </div>
+      </ExpandableContainer>
+    );
+  }
+
   return null;
 }

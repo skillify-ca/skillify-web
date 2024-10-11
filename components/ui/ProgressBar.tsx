@@ -1,11 +1,14 @@
+import Link from "next/link";
 import React from "react";
 
 export type ProgressBarProps = {
   completed: number;
+  exitLink: string;
 };
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
   completed,
+  exitLink,
 }: ProgressBarProps) => {
   const fillerStyles = {
     height: "100%",
@@ -14,9 +17,14 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   };
   return (
     <div className="flex flex-row items-center">
-      <a href="/studentPortal">
-        <img src="/images/studentPortal/exitButton.svg" className="pb-8 mr-4" />
-      </a>
+      <Link href={exitLink}>
+        <a>
+          <img
+            src="/images/studentPortal/exitButton.svg"
+            className="pb-8 mr-4"
+          />
+        </a>
+      </Link>
 
       <div className="w-full h-8 mb-8 bg-gray-300 border rounded-full">
         <div

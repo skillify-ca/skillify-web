@@ -8,9 +8,13 @@ import UnitNodeView from "./UnitNodeView";
 
 export type UnitViewProps = {
   data: Unit;
+  course: string;
 };
 
-export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
+export const UnitView: React.FC<UnitViewProps> = ({
+  data,
+  course,
+}: UnitViewProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -48,7 +52,10 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
           } else {
             if (!it.locked) {
               return (
-                <Link key={it.title} href={"/studentPortal/" + it.link}>
+                <Link
+                  key={it.title}
+                  href={"/studentPortal/courses/" + course + "/" + it.link}
+                >
                   <a>
                     <UnitNodeView
                       hiddenLine={index === data.nodes.length - 1}
@@ -64,6 +71,7 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
             } else {
               return (
                 <UnitNodeView
+                  key={it.title}
                   hiddenLine={index === data.nodes.length - 1}
                   completed={it.completed}
                   locked={it.locked}

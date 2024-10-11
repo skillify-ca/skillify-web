@@ -10,7 +10,7 @@ export type SidebarPage =
   | "goals"
   | "admin"
   | "coding_basics"
-  | "web_development"
+  | "frontend_development"
   | "interviewPrep1"
   | "interviewPrep2"
   | "crypto"

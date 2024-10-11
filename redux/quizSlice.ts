@@ -37,6 +37,7 @@ export const quizSlice: Slice = createSlice({
     setQuizQuestions: (state: QuizState, action: PayloadAction<Question[]>) => {
       if (action.type == "quiz/setQuizQuestions") {
         state.questions = action.payload;
+        state.showSessionEnd = false;
       }
     },
     selectOptionRequested: (state, action: PayloadAction<string>) => {

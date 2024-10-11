@@ -84,9 +84,9 @@ export const premiumCourses: PaidSidebarItemProps[] = [
     isPremium: false,
   },
   {
-    name: "Web Development",
-    link: "/studentPortal/web",
-    page: "web_development",
+    name: "Frontend Development",
+    link: "/studentPortal/courses/frontend",
+    page: "frontend_development",
     icon: <ReactIcon />,
     isDisabled: false,
     isPremium: true,

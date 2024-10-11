@@ -63,8 +63,8 @@ export default function Sidebar({ closeSidebar }) {
       dispatch(setActivePage("goals"));
     } else if (router.pathname.startsWith("/studentPortal/workshops")) {
       dispatch(setActivePage("workshops"));
-    } else if (router.pathname.startsWith("/studentPortal/web")) {
-      dispatch(setActivePage("web"));
+    } else if (router.pathname.startsWith("/studentPortal/courses/frontend")) {
+      dispatch(setActivePage("frontend_development"));
     } else if (
       router.pathname.startsWith("/studentPortal/courses/codingBasics")
     ) {
