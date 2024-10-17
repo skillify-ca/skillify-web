@@ -7,8 +7,10 @@ import {
   Trigger,
 } from "@radix-ui/react-dialog";
 import React from "react";
+import { useSelector } from "react-redux";
 import { FETCH_BADGE } from "../../../../graphql/studentPortal/achievements/fetchBadge";
 import { UserCodingBadge } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
+import { themeSelector } from "../../../../redux/themeSlice";
 
 type CodingBadgeProps = {
   badge: UserCodingBadge;
@@ -24,14 +26,16 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
     },
   });
 
+  const { currentTheme } = useSelector(themeSelector);
+
   return (
     <Root>
       <Trigger asChild>
         {
-          <div className="flex items-center justify-center p-4 cursor-pointer group">
+          <div className="flex items-center justify-center p-4 shadow cursor-pointer bg-backgroundPrimary rounded-xl">
             <img
               src={badge.coding_badge.image}
-              className="w-40 h-40 transition-all border rounded-full shadow group-hover:scale-110 group-hover:shadow-lg"
+              className="w-16 h-16 transition-all border rounded-full shadow lg:w-24 lg:h-24 hover:scale-110 hover:shadow-lg"
             />
           </div>
         }
@@ -40,9 +44,9 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
       <Portal>
         <Overlay className="bg-opacity-90 bg-gray-500 data-[state=open]:animate-overlayShow fixed inset-0" />
 
-        <Content className={`theme-default`}>
+        <Content className={`${currentTheme}`}>
           <div
-            className={`fixed h-[450px] w-[300px] md:h-[550px] md:w-[900px] md:p-10 px-4 transform -translate-x-1/2 md:-translate-y-1/2 -translate-y-1/2 ${"bg-white"} rounded-lg left-1/2 top-1/2 md:top-1/2`}
+            className={`fixed h-[600px] w-[300px] md:h-[600px] md:w-[300px] p-4 transform -translate-x-1/2 md:-translate-y-1/2 -translate-y-1/2 ${"bg-backgroundPrimary"} rounded-lg left-1/2 top-1/2 md:top-1/2`}
           >
             <CodingBadgeCardContent badge={badge} />
           </div>
@@ -63,17 +67,23 @@ export function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
     return `${da}-${mo}-${ye}`;
   }
   return (
-    <div className="grid h-full grid-cols-2 gap-4 p-4">
+    <div className="flex flex-col justify-center h-full gap-4 p-4 bg-backgroundPrimary text-textPrimary">
+      <p className="text-xs text-end">{formatDate(badge.created_at)}</p>
+      <p className="text-lg font-bold ">{badge.coding_badge.title}</p>
+
       {badge.coding_badge.image ? (
-        <img src={badge.coding_badge.image} className="w-full border shadow" />
+        <img
+          src={badge.coding_badge.image}
+          className="w-64 h-64 border shadow"
+        />
       ) : (
         <div className="w-36 h-36 bg-slate-400" />
       )}
 
-      <div className="h-full px-2 ">
-        <p className="text-lg font-bold ">{badge.coding_badge.title}</p>
-        <p className="text-xs">{formatDate(badge.created_at)}</p>
-        <p className="mt-4">{badge.coding_badge.description}</p>
+      <div className="h-full ">
+        <p className="h-40 p-4 mt-4 bg-backgroundSecondary">
+          {badge.coding_badge.description}
+        </p>
       </div>
     </div>
   );

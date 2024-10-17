@@ -25,7 +25,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
     <div className="grid grid-cols-12 h-36">
       <div
         className={`
-        col-span-12 grid grid-cols-12 h-20
+        col-span-12 grid grid-cols-12 h-28
         ${
           locked
             ? ""

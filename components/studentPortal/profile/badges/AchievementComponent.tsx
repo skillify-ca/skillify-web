@@ -30,7 +30,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   return (
     <div className="p-4 rounded-xl bg-backgroundSecondary">
       {userBadges && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid grid-cols-3 gap-4 lg:flex lg:flex-wrap">
           {emptyArray
             .concat(userBadges)
             .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
@@ -42,14 +42,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
               }
             })
             .map((badge, index) => {
-              return (
-                <div
-                  className="shadow bg-backgroundPrimary rounded-xl"
-                  key={index}
-                >
-                  <CodingBadgeCard badge={badge} />
-                </div>
-              );
+              return <CodingBadgeCard badge={badge} key={index} />;
             })}
         </div>
       )}
