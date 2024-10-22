@@ -1,6 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { upsertUserQuery } from "../graphql/studentPortal/users/initializeUser";
 
 export interface User {
@@ -28,8 +29,8 @@ export const AuthProvider = ({ children }) => {
   const { status, data: session } = useSession();
 
   const userSync = async (user) => {
-    const userId = user.uid;
-    const nickname = user.displayName;
+    const userId = uuidv4();
+    const nickname = user.displayName ?? "";
     const email = user.email;
     const url = "https://talented-duckling-40.hasura.app/v1/graphql";
 
