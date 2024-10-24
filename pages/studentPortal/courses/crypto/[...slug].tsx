@@ -1,9 +1,14 @@
+import dynamic from "next/dynamic";
 import React from "react";
-import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
+// import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { ResponseData } from "../../../api/studentPortal/courses/codingBasics/introduction";
 import { getLessonForCryptoCourse } from "../../../api/studentPortal/courses/crypto";
 
+const LessonComponent = dynamic(
+  () => import("../../../../components/studentPortal/lessons/LessonComponent"),
+  { ssr: false }
+);
 const LessonPage = ({ lessonComponents }: ResponseData) => {
   return (
     <div className="grid max-w-5xl grid-cols-1 gap-8 p-4 pb-16 mx-auto md:p-8 lg:p-12">
