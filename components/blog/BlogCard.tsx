@@ -15,7 +15,7 @@ const BlogCard = ({ date, title, image, description, link, color }) => {
   };
 
   return (
-    <Link href={link}>
+    (<Link href={link} legacyBehavior>
       <div
         className={`flex flex-col h-80 group border-t-8 hover:bg-backgroundHover transform transition-all text-textPrimary bg-backgroundPrimary shadow cursor-pointer overflow-hidden ${getBorderColour()}`}
       >
@@ -30,7 +30,7 @@ const BlogCard = ({ date, title, image, description, link, color }) => {
           <p>{description}</p>
         </div>
       </div>
-    </Link>
+    </Link>)
   );
 };
 export default BlogCard;

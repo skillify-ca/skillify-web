@@ -5,9 +5,8 @@ import StoryCard from "../../components/successStories/StoryCard";
 
 export default function SuccessStories() {
   return (
-    <div>
+    (<div>
       <LandingNavbar />
-
       <div className="w-full mx-auto max-w-7xl bg-slate-50">
         <div className="sm:p-8 ">
           <h1 className="p-8 text-4xl font-bold text-center text-white sm:text-5xl bg-murkrow ">
@@ -37,7 +36,7 @@ export default function SuccessStories() {
         <h1 className="pb-8 text-3xl font-bold text-white">
           Ready to become the next success story?
         </h1>
-        <Link href={"/plans"}>
+        <Link href={"/plans"} legacyBehavior>
           <button
             type="button"
             className="px-8 py-3 font-bold text-white rounded-lg cursor-pointer bg-charmander hover:bg-pikachu-500"
@@ -46,7 +45,7 @@ export default function SuccessStories() {
           </button>
         </Link>
       </div>
-    </div>
+    </div>)
   );
 }
 

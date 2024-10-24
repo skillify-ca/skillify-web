@@ -30,11 +30,22 @@ const FreemiumSidebarItem = ({
     : undefined;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return (
-    <>
-      <div>
-        {isDisabled ? (
-          <div onClick={onClick}>
+  return (<>
+    <div>
+      {isDisabled ? (
+        <div onClick={onClick}>
+          <CoachLinkContent
+            activePage={activePage}
+            page={page}
+            isDisabled={isDisabled}
+            notifications={notifications}
+            icon={icon}
+            name={name}
+          />
+        </div>
+      ) : (
+        <Link href={link} legacyBehavior>
+          <div onClick={closeSidebar}>
             <CoachLinkContent
               activePage={activePage}
               page={page}
@@ -44,29 +55,16 @@ const FreemiumSidebarItem = ({
               name={name}
             />
           </div>
-        ) : (
-          <Link href={link}>
-            <div onClick={closeSidebar}>
-              <CoachLinkContent
-                activePage={activePage}
-                page={page}
-                isDisabled={isDisabled}
-                notifications={notifications}
-                icon={icon}
-                name={name}
-              />
-            </div>
-          </Link>
-        )}
-        {isModalOpen && (
-          <FreemiumDialogComponent
-            trigger={false}
-            onClose={() => setIsModalOpen(false)}
-          />
-        )}
-      </div>
-    </>
-  );
+        </Link>
+      )}
+      {isModalOpen && (
+        <FreemiumDialogComponent
+          trigger={false}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+    </div>
+  </>);
 };
 
 function CoachLinkContent({

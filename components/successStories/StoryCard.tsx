@@ -3,7 +3,7 @@ import React from "react";
 
 const StoryCard = ({ title, image, description, link }) => {
   return (
-    <Link href={link}>
+    (<Link href={link} legacyBehavior>
       <div
         className={`flex flex-col text-textPrimary bg-white shadow-lg cursor-pointer group overflow-clip`}
       >
@@ -19,7 +19,7 @@ const StoryCard = ({ title, image, description, link }) => {
           <p>{description}</p>
         </div>
       </div>
-    </Link>
+    </Link>)
   );
 };
 export default StoryCard;

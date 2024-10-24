@@ -12,7 +12,7 @@ export default function UserProfileSection({
   const { user } = useAuth();
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full border-b-2 bg-backgroundPrimary text-textPrimary">
+    (<div className="flex flex-col w-full border-b-2 bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         {user && (
           <div className="flex flex-col items-center w-full gap-4 p-4">
@@ -29,6 +29,6 @@ export default function UserProfileSection({
           </div>
         )}
       </div>
-    </div>
+    </div>)
   );
 }

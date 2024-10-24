@@ -105,7 +105,7 @@ export default function Sidebar({ closeSidebar }) {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full overflow-auto bg-backgroundPrimary text-textPrimary">
+    (<div className="flex flex-col w-full overflow-auto bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         {user && userRole === "freemium" ? (
           <FreemiumSidebarHeader createdAt={createdAt} />
@@ -163,6 +163,6 @@ export default function Sidebar({ closeSidebar }) {
           Logout
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

@@ -407,16 +407,16 @@ const DictionaryContent = () => {
   };
 
   return (
-    <div>
+    (<div>
       <div className="max-w-3xl mx-auto mt-8"></div>
       <div className="flex items-center justify-between mb-6">
-        <Link href="./lesson3">
+        <Link href="./lesson3" legacyBehavior>
           <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
             Back
           </button>
         </Link>
         <h1 className="text-3xl font-bold">Software Dictionary</h1>
-        <Link href="./assign1">
+        <Link href="./assign1" legacyBehavior>
           <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
             Next
           </button>
@@ -534,6 +534,6 @@ const DictionaryContent = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div>)
   );
 };

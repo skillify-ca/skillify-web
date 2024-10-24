@@ -11,7 +11,7 @@ export default function ProjectsSection({
   userProjects,
 }: ProjectsSectionProps) {
   return (
-    <div className="bg-backgroundSecondary">
+    (<div className="bg-backgroundSecondary">
       {userProjects.length === 0 ? (
         <div className="col-span-3 p-8 text-center shadow-md">
           No Active Projects
@@ -47,11 +47,11 @@ export default function ProjectsSection({
         </div>
       )}
       {/* this should be displayed only if the user is on their own profile page */}
-      <Link href={"/profile/sideProjectHub/addProject"}>
+      <Link href={"/profile/sideProjectHub/addProject"} legacyBehavior>
         <div className="absolute flex items-center justify-center w-8 h-8 text-3xl text-center text-white rounded-full shadow cursor-pointer top-1 right-1 bg-brandPrimary hover:bg-pikachu-500">
           +
         </div>
       </Link>
-    </div>
+    </div>)
   );
 }

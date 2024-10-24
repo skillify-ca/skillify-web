@@ -12,11 +12,11 @@ function Lesson1Page() {
 
 const Lesson1Content = () => {
   return (
-    <div className="p-4">
+    (<div className="p-4">
       <div className="mb-4">
         <div className="flex justify-between">
           <div>
-            <Link href="./">
+            <Link href="./" legacyBehavior>
               <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
                 Back
               </button>
@@ -26,7 +26,7 @@ const Lesson1Content = () => {
             Importance of Interview Preparation
           </h1>
           <div>
-            <Link href="./lesson2">
+            <Link href="./lesson2" legacyBehavior>
               <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
                 Next
               </button>
@@ -157,7 +157,6 @@ const Lesson1Content = () => {
           </p>
         </div>
       </div>
-
       {/* Additional Notes for Next Steps */}
       <div className="my-4 border-b"></div>
       <div className="prose">
@@ -166,6 +165,6 @@ const Lesson1Content = () => {
           <textarea className="w-full" />
         </div>
       </div>
-    </div>
+    </div>)
   );
 };

@@ -26,7 +26,7 @@ const LanguageResults = ({
   const { body, src, alt, language } = resultData;
 
   return (
-    <div className="flex flex-col w-full text-center">
+    (<div className="flex flex-col w-full text-center">
       <SkillifyNavbar onBackClick={onBackClick} hidden={false} />
       <div className="mt-4 text-2xl font-bold text-black-600">YOUR RESULTS</div>
       <div className="text-lg font-semibolds px-3">{body}</div>
@@ -36,10 +36,10 @@ const LanguageResults = ({
         Start learning to code with a Skillify coach today!
       </div>
       <div className="flex flex-col items-center py-4 space-y-2 rounded-full">
-        <Link href="https://www.joinskillify.com/call">
+        <Link href="https://www.joinskillify.com/call" legacyBehavior>
           <Button label="Book a call" backgroundColor="yellow" />
         </Link>
-        <Link href="https://skillify.ca/">
+        <Link href="https://skillify.ca/" legacyBehavior>
           <Button label="Learn more" backgroundColor="blue" />
         </Link>
       </div>
@@ -48,7 +48,7 @@ const LanguageResults = ({
         in tech. Book a free call with one of our expert coaches to discuss the
         best strategy plan for you.
       </div>
-    </div>
+    </div>)
   );
 };
 

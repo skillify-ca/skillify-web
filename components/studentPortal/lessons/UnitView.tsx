@@ -18,7 +18,7 @@ export const UnitView: React.FC<UnitViewProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    (<div className="grid grid-cols-1 gap-4">
       <p className="w-48 p-4 text-center text-white bg-blue-900 rounded-full">
         {data.title}
       </p>
@@ -52,21 +52,21 @@ export const UnitView: React.FC<UnitViewProps> = ({
           } else {
             if (!it.locked) {
               return (
-                <Link
+                (<Link
                   key={it.title}
                   href={"/studentPortal/courses/" + course + "/" + it.link}
                 >
-                  <a>
-                    <UnitNodeView
-                      hiddenLine={index === data.nodes.length - 1}
-                      completed={it.completed}
-                      locked={it.locked}
-                      title={it.title}
-                      description={it.description}
-                      type={it.type}
-                    />
-                  </a>
-                </Link>
+
+                  <UnitNodeView
+                    hiddenLine={index === data.nodes.length - 1}
+                    completed={it.completed}
+                    locked={it.locked}
+                    title={it.title}
+                    description={it.description}
+                    type={it.type}
+                  />
+
+                </Link>)
               );
             } else {
               return (
@@ -84,7 +84,7 @@ export const UnitView: React.FC<UnitViewProps> = ({
           }
         })}
       </div>
-    </div>
+    </div>)
   );
 };
 

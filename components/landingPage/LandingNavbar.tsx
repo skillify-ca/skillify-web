@@ -17,7 +17,7 @@ export default function LandingNavbar({
     setActive(!active);
   };
   return (
-    <div className="w-full bg-white border-b-2">
+    (<div className="w-full bg-white border-b-2">
       <div className=" md:hidden">
         <div className="z-20 grid w-full h-16 grid-cols-3 p-4 md:hidden ">
           <div
@@ -34,7 +34,7 @@ export default function LandingNavbar({
             </svg>
           </div>
           <div className="cursor-pointer">
-            <Link href={"/"}>
+            <Link href={"/"} legacyBehavior>
               {theme === Theme.DEFAULT ? (
                 <img className="h-8 w-28 " src="/images/logo.svg" />
               ) : theme === Theme.DRACULA ? (
@@ -51,24 +51,24 @@ export default function LandingNavbar({
           } duration-500 ease-in-out md:hidden`}
         >
           <div className="flex flex-col gap-4">
-            <Link href={"/blog"}>
+            <Link href={"/blog"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Blog</p>
               </div>
             </Link>
 
-            <Link href={"/quiz"}>
+            <Link href={"/quiz"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Quiz</p>
               </div>
             </Link>
 
-            <Link href={"/resources"}>
+            <Link href={"/resources"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Resources</p>
               </div>
             </Link>
-            <Link href={"/successStories"}>
+            <Link href={"/successStories"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Success Stories</p>
               </div>
@@ -110,31 +110,31 @@ export default function LandingNavbar({
       </div>
       <div className="hidden w-full md:flex md:flex-col">
         <div className="grid items-center justify-between w-full grid-cols-1 px-4 bg-white border-b-2 md:flex place-items-center text-murkrow">
-          <Link href={"/"}>
+          <Link href={"/"} legacyBehavior>
             <img
               src="/images/logo.svg"
               className="mt-4 cursor-pointer md:mt-0 md:p-4 w-28 sm:w-40"
             />
           </Link>
           <div className="flex gap-4">
-            <Link href={"/blog"}>
+            <Link href={"/blog"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Blog</p>
               </div>
             </Link>
 
-            <Link href={"/quiz"}>
+            <Link href={"/quiz"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Quiz</p>
               </div>
             </Link>
 
-            <Link href={"/resources"}>
+            <Link href={"/resources"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Resources</p>
               </div>
             </Link>
-            <Link href={"/successStories"}>
+            <Link href={"/successStories"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Success Stories</p>
               </div>
@@ -175,6 +175,6 @@ export default function LandingNavbar({
         </div>
         {showTimer && <CountdownTimer />}
       </div>
-    </div>
+    </div>)
   );
 }

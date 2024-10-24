@@ -55,14 +55,13 @@ export default function AssignmentsSection() {
     );
   console.log("userAssignments profile redux", userAssignments);
   return (
-    <div>
+    (<div>
       {userAssignments.length > 0 && (
         <div className="grid grid-cols-9 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
           <p className="col-span-4 md:col-span-6">Assignment</p>
           <p className="col-span-3 font-semibold md:col-span-2">Status</p>
         </div>
       )}
-
       {userAssignmentsLoading ? (
         <div>Loading...</div>
       ) : userAssignments.length === 0 ? (
@@ -72,7 +71,7 @@ export default function AssignmentsSection() {
       ) : (
         userAssignments.map((assignment, index) => {
           return (
-            <div
+            (<div
               key={assignment.id}
               className={`grid grid-cols-7 my-2 text-sm text-left md:grid-cols-12 md:text-lg md:place-items-center  ${assignment}`}
             >
@@ -98,14 +97,14 @@ export default function AssignmentsSection() {
                 )}
               </p>
               <div className="col-span-1">
-                <Link href={assignment.coding_assignment.assignment_link}>
+                <Link href={assignment.coding_assignment.assignment_link} legacyBehavior>
                   <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
                 </Link>
               </div>
-            </div>
+            </div>)
           );
         })
       )}
-    </div>
+    </div>)
   );
 }

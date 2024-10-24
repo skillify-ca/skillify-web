@@ -13,9 +13,8 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
   const preferredArray = quizViewState && ComputeResult(quizViewState);
   const quizResult = preferredArray && quizResultsData[preferredArray[0]];
   return (
-    <div className="  w-full mx-auto ">
+    (<div className="  w-full mx-auto ">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
-
       <div className="grid text-center justify-items-center">
         <div className="font-bold mt-4 text-2xl ">YOUR RESULTS</div>
         <div className=" text-lg font-semibolds ">
@@ -30,10 +29,10 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
           Start your career with a Skillify coach today!
         </div>
         <div className="flex flex-col items-center space-y-4 py-4">
-          <Link href="https://www.joinskillify.com/call">
+          <Link href="https://www.joinskillify.com/call" legacyBehavior>
             <Button label="Book a call" backgroundColor="yellow" />
           </Link>
-          <Link href="https://www.skillify.ca">
+          <Link href="https://www.skillify.ca" legacyBehavior>
             <Button label="Learn more" backgroundColor="blue" />
           </Link>
         </div>
@@ -43,7 +42,7 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
           the best strategy plan for you.
         </div>
       </div>
-    </div>
+    </div>)
   );
 };
 CareerResults.getLayout = function getLayout(page) {

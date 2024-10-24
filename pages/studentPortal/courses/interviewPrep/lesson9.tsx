@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function WrapUpPage() {
   return (
-    <div className="theme-default">
+    (<div className="theme-default">
       <div className="max-w-3xl mx-auto mt-8">
         <div className="flex items-center justify-between mb-6">
-          <Link href="./assign2">
+          <Link href="./assign2" legacyBehavior>
             <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
               Back
             </button>
@@ -13,7 +13,7 @@ export default function WrapUpPage() {
           <h1 className="text-3xl font-bold">
             Wrap Up: Are You Interview Ready?
           </h1>
-          <Link href="./">
+          <Link href="./" legacyBehavior>
             <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Next
             </button>
@@ -105,7 +105,6 @@ export default function WrapUpPage() {
           </p>
         </div>
       </div>
-
       {/* Additional Notes for Next Steps */}
       <div className="my-4 border-b"></div>
       <div className="prose">
@@ -114,6 +113,6 @@ export default function WrapUpPage() {
           <p>Video format recommended add-on</p>
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

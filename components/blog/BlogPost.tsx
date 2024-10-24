@@ -15,7 +15,7 @@ const BlogPost = ({ date, title, image, description, link, color }) => {
   };
 
   return (
-    <Link href={link}>
+    (<Link href={link} legacyBehavior>
       <div
         className={`flex flex-col-reverse sm:flex-row group p-2 justify-between items-center border-t-0 hover:bg-backgroundHover transition-all transform text-textPrimary bg-backgroundPrimary shadow cursor-pointer overflow-hidden ${getBorderColour()}`}
       >
@@ -30,7 +30,7 @@ const BlogPost = ({ date, title, image, description, link, color }) => {
           className="object-cover w-32 h-32 transition-all transform border-2 "
         />
       </div>
-    </Link>
+    </Link>)
   );
 };
 export default BlogPost;

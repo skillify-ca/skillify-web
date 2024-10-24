@@ -9,10 +9,10 @@ export type QuestionAnswerPair = {
 
 export default function GamePage() {
   return (
-    <div className="p-4 bg-backgroundSecondary">
+    (<div className="p-4 bg-backgroundSecondary">
       <h1 className="mb-4 text-5xl font-bold">Games</h1>
       <div className="grid grid-cols-3">
-        <Link href="/studentPortal/games/matching">
+        <Link href="/studentPortal/games/matching" legacyBehavior>
           <div className="cursor-pointer">
             <Card size={"medium"}>
               <h1 className="mb-4 text-2xl font-bold text-center">
@@ -22,7 +22,7 @@ export default function GamePage() {
           </div>
         </Link>
       </div>
-    </div>
+    </div>)
   );
 }
 

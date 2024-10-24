@@ -18,20 +18,20 @@ export default function Header404() {
   });
 
   return (
-    <section>
+    (<section>
       <div className={`section-contain margintop-lg`}>
         <h1 className={""}>404</h1>
         <h2 className={""}>Lost in space?</h2>
         <Link href="/">
-          <a>
-            <button className="btn btnprimary">Go back home</button>
-          </a>
+
+          <button className="btn btnprimary">Go back home</button>
+
         </Link>
         <br />
       </div>
       <div className={`hover `}>
         <FloatingAstronaut />
       </div>
-    </section>
+    </section>)
   );
 }

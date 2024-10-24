@@ -15,9 +15,9 @@ export default function UserProfileSection({
   isEditable,
 }: UserProfileSectionProps) {
   return (
-    <div className="flex items-center p-4 bg-backgroundSecondary rounded-xl ">
+    (<div className="flex items-center p-4 bg-backgroundSecondary rounded-xl ">
       {isEditable ? (
-        <Link href="/studentPortal/profile/edit">
+        <Link href="/studentPortal/profile/edit" legacyBehavior>
           <Avatar className="w-16 h-16 border-2 bg-slate-300">
             <AvatarImage src={userProfileData.profileImage} />
             <AvatarFallback>{userProfileData.name.charAt(0)}</AvatarFallback>
@@ -47,6 +47,6 @@ export default function UserProfileSection({
           />
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

@@ -29,15 +29,15 @@ function Lesson3Page() {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto mt-8">
+    (<div className="max-w-3xl mx-auto mt-8">
       <div className="flex items-center justify-between mb-6">
-        <Link href="./lesson2">
+        <Link href="./lesson2" legacyBehavior>
           <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
             Back
           </button>
         </Link>
         <h1 className="mx-4 text-3xl font-bold">{`Employer's Expectations`}</h1>
-        <Link href="./tools">
+        <Link href="./tools" legacyBehavior>
           <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
             Next
           </button>
@@ -69,7 +69,6 @@ function Lesson3Page() {
           ))}
         </tbody>
       </table>
-
       {/* Explanation of the differences between grades */}
       {rubricData.map((row, index) => (
         <div key={index} className="mt-8">
@@ -94,7 +93,6 @@ function Lesson3Page() {
           </ul>
         </div>
       ))}
-
       {/* Additional Notes for Next Steps */}
       <div className="my-4 border-b"></div>
       <div className="prose">
@@ -103,6 +101,6 @@ function Lesson3Page() {
           <textarea className="w-full" />
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

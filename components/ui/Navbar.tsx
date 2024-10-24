@@ -12,7 +12,7 @@ export default function Navbar({
 
   return (
     // <!-- This example requires Tailwind CSS v2.0+ -->
-    <nav className="w-full h-full p-4 bg-white border-b-2 border-gray-200 dark:bg-gray-900">
+    (<nav className="w-full h-full p-4 bg-white border-b-2 border-gray-200 dark:bg-gray-900">
       <div className="flex items-center justify-center h-full px-2 mx-auto lg:px-8 ">
         <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
           {/* <!-- Mobile menu button--> */}
@@ -67,7 +67,7 @@ export default function Navbar({
           </button>
         </div>
         <div className="flex items-center justify-center flex-1 lg:items-stretch lg:justify-center">
-          <Link href="/">
+          <Link href="/" legacyBehavior>
             <div className="flex items-center flex-shrink-0">
               <img
                 className="block w-auto h-8 lg:hidden"
@@ -83,6 +83,6 @@ export default function Navbar({
           </Link>
         </div>
       </div>
-    </nav>
+    </nav>)
   );
 }

@@ -172,7 +172,7 @@ export default function InternalProfile({
         <>
           {isEditable && (
             <div className="p-4">
-              <Link href="/studentPortal/projects/create">
+              <Link href="/studentPortal/projects/create" legacyBehavior>
                 <Button label="Create" />
               </Link>
             </div>

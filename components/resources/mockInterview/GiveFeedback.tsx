@@ -19,9 +19,9 @@ export default function GiveFeedback() {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen bg-gray-200">
+    (<div className="relative flex flex-col items-center justify-center h-screen bg-gray-200">
       {stage === 1 ? ( // Render Stage 1 content
-        <div className="flex items-center">
+        (<div className="flex items-center">
           {/* Red shape fixed to the left */}
           <iframe
             width="360"
@@ -37,7 +37,6 @@ export default function GiveFeedback() {
           >
             Video
           </div> */}
-
           {videoUrl ? (
             <div className="flex flex-col items-center ml-4 h-80">
               <video controls width="400" height="100%" className="mb-4">
@@ -69,19 +68,18 @@ export default function GiveFeedback() {
               />
             </div>
           )}
-
           <button
             className="fixed right-28 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             onClick={handleNextStage}
           >
             Submit Feedback
           </button>
-        </div>
+        </div>)
       ) : (
         <div>
           <h1>Thank you for providing your feedback to the student!</h1>
         </div>
       )}
-    </div>
+    </div>)
   );
 }

@@ -118,14 +118,14 @@ const coachingDashboard = () => {
     return <div className="flex place-content-center">"Loading..."</div>;
   }
   return (
-    <div className="flex flex-col p-4 m-4 ">
+    (<div className="flex flex-col p-4 m-4 ">
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
       <div className="flex justify-between">
         <div className="flex gap-4 mb-4">
-          <Link href="/studentPortal/admin/badges/create">
+          <Link href="/studentPortal/admin/badges/create" legacyBehavior>
             <Button label="New Badge" />
           </Link>
-          <Link href="/studentPortal/admin/badges/assign">
+          <Link href="/studentPortal/admin/badges/assign" legacyBehavior>
             <Button
               label="Assign"
               backgroundColor="white"
@@ -154,7 +154,7 @@ const coachingDashboard = () => {
             const completionDate = goalCompletionDateList[index];
             const completedGoal = completedGoalsList[index];
             return (
-              <Link href={"/profile/" + it.id} key={index}>
+              (<Link href={"/profile/" + it.id} key={index} legacyBehavior>
                 <div className="container">
                   <ProfileDetailCard
                     userId={it.id}
@@ -188,11 +188,11 @@ const coachingDashboard = () => {
                     }
                   />
                 </div>
-              </Link>
+              </Link>)
             );
           })}
       </div>
-    </div>
+    </div>)
   );
 };
 

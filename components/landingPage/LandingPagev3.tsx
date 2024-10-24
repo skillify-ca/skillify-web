@@ -6,13 +6,13 @@ import { Button } from "../../ui/Button";
 
 const LandingPagev3 = ({ curriculumLink, title, description, images }) => {
   return (
-    <div className="grid grid-cols-1 bg-white ">
+    (<div className="grid grid-cols-1 bg-white ">
       <Navbar />
       <div className="flex flex-col w-full p-4 space-y-4">
         <HeroHome title={title} description={description} />
         <div className="flex flex-col items-center justify-center">
           <p className="mb-4 text-xl font-bold">What will you learn?</p>
-          <Link href={curriculumLink}>
+          <Link href={curriculumLink} legacyBehavior>
             <Button label="See the curriculum" backgroundColor="blue" />
           </Link>
         </div>
@@ -32,7 +32,7 @@ const LandingPagev3 = ({ curriculumLink, title, description, images }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>)
   );
 };
 

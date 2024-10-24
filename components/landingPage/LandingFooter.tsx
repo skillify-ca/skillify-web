@@ -4,10 +4,10 @@ import CountdownTimer from "./CountdownTimer";
 
 export default function LandingFooter(props) {
   return (
-    <div>
+    (<div>
       {/* <CountdownTimer /> */}
       <div className="flex items-center justify-between w-full px-4 py-2 bg-white border-b-2 text-murkrow">
-        <Link href={"/"}>
+        <Link href={"/"} legacyBehavior>
           <img src="/images/logo.svg" className="cursor-pointer w-28 sm:w-40" />
         </Link>
         <div className="flex items-center gap-4">
@@ -23,6 +23,6 @@ export default function LandingFooter(props) {
           </button>
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

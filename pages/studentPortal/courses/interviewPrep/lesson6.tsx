@@ -67,12 +67,12 @@ export default function Try1Page() {
   };
 
   return (
-    <div className="theme-default">
+    (<div className="theme-default">
       <div className="max-w-3xl mx-auto mt-8">
         <div className="mb-6">
           <div className="flex justify-between">
             <div>
-              <Link href="./lesson4">
+              <Link href="./lesson4" legacyBehavior>
                 <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
                   Back
                 </button>
@@ -80,7 +80,7 @@ export default function Try1Page() {
             </div>
             <h1 className="text-3xl font-bold">Behavioral Questions</h1>
             <div>
-              <Link href="./try2">
+              <Link href="./try2" legacyBehavior>
                 <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
                   Next
                 </button>
@@ -178,7 +178,6 @@ export default function Try1Page() {
           </div>
         </div>
       </div>
-
       {/* Additional Notes for Next Steps */}
       <div className="my-4 border-b"></div>
       <div className="prose">
@@ -192,6 +191,6 @@ export default function Try1Page() {
           </p>
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

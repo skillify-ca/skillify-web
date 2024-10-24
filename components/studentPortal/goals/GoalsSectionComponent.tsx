@@ -46,7 +46,7 @@ export default function GoalsSection({
 
       {userGoals.map((goal, index) => {
         return (
-          <div
+          (<div
             key={index}
             className={`text-textPrimary grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(
               goal
@@ -71,10 +71,10 @@ export default function GoalsSection({
                 )}
               </p>
             )}
-            <Link href={"/studentPortal/goals/" + goal.id}>
+            <Link href={"/studentPortal/goals/" + goal.id} legacyBehavior>
               <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             </Link>
-          </div>
+          </div>)
         );
       })}
     </div>

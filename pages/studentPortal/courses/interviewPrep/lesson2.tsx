@@ -11,10 +11,10 @@ function Lesson2Page() {
 
 const Lesson2Content = () => {
   return (
-    <div className="max-w-3xl p-8 mx-auto">
+    (<div className="max-w-3xl p-8 mx-auto">
       <div className="flex justify-between mb-6">
         <div>
-          <Link href="./lesson1">
+          <Link href="./lesson1" legacyBehavior>
             <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
               Back
             </button>
@@ -22,14 +22,13 @@ const Lesson2Content = () => {
         </div>
         <h1 className="text-3xl font-bold">Stages of an Interview</h1>
         <div>
-          <Link href="./lesson3">
+          <Link href="./lesson3" legacyBehavior>
             <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Next
             </button>
           </Link>
         </div>
       </div>
-
       <div className="my-4 border-b"></div>
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="mb-2 text-xl font-semibold">1. Greetings</h2>
@@ -42,7 +41,6 @@ const Lesson2Content = () => {
           enthusiasm for the opportunity to interview.
         </p>
       </div>
-
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="mb-2 text-xl font-semibold">
           2. Tell me about yourself
@@ -57,7 +55,6 @@ const Lesson2Content = () => {
           skills.
         </p>
       </div>
-
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="mb-2 text-xl font-semibold">3. Company Description</h2>
         <p>
@@ -69,7 +66,6 @@ const Lesson2Content = () => {
           curiosity about the company, ask thoughtful questions.
         </p>
       </div>
-
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="mb-2 text-xl font-semibold">4. Behavioral Questions</h2>
         <p>
@@ -81,7 +77,6 @@ const Lesson2Content = () => {
           approach, collaboration skills, and ethical decision-making.
         </p>
       </div>
-
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="mb-2 text-xl font-semibold">5. Technical Questions</h2>
         <p>
@@ -93,7 +88,6 @@ const Lesson2Content = () => {
           skills for the role, discuss experiences with relevant technologies.
         </p>
       </div>
-
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="mb-2 text-xl font-semibold">6. Coding Questions</h2>
         <p>
@@ -105,7 +99,6 @@ const Lesson2Content = () => {
           proficiency, problem-solving approach, and attention to detail.
         </p>
       </div>
-
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="mb-2 text-xl font-semibold">
           7. Questions for the Company
@@ -119,7 +112,6 @@ const Lesson2Content = () => {
           showcase genuine interest in joining the company.
         </p>
       </div>
-
       {/* Additional Notes for Next Steps */}
       <div className="my-4 border-b"></div>
       <div className="prose">
@@ -128,6 +120,6 @@ const Lesson2Content = () => {
           <textarea className="w-full mb-6"></textarea>
         </div>
       </div>
-    </div>
+    </div>)
   );
 };

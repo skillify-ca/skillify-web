@@ -12,9 +12,8 @@ const HireabilityQuiz = ({
   quizViewState,
 }: HireabilityQuizProps) => {
   return (
-    <div className="  w-full mx-auto ">
+    (<div className="  w-full mx-auto ">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
-
       <div className="grid text-center justify-items-center">
         <div className="font-bold mt-4 text-2xl ">HIREABILITY SCORE</div>
         <div className="text-lg font-semibolds flex">
@@ -39,10 +38,10 @@ const HireabilityQuiz = ({
         </div>
 
         <div className="flex flex-col items-center space-y-4 py-4">
-          <Link href="https://www.joinskillify.com/call">
+          <Link href="https://www.joinskillify.com/call" legacyBehavior>
             <Button label="Book a call" backgroundColor="yellow" />
           </Link>
-          <Link href="https://www.skillify.ca">
+          <Link href="https://www.skillify.ca" legacyBehavior>
             <Button label="Learn more" backgroundColor="blue" />
           </Link>
         </div>
@@ -52,7 +51,7 @@ const HireabilityQuiz = ({
           personalized mentorship that will accelerate your growth by 10x!
         </div>
       </div>
-    </div>
+    </div>)
   );
 };
 HireabilityQuiz.getLayout = function getLayout(page) {

@@ -5,9 +5,9 @@ import ActiveCampaignEmailCapture from "./ActiveCampaignEmailCapture";
 
 const LeadMagnets = () => {
   return (
-    <div>
+    (<div>
       <div className="grid h-full grid-cols-1 bg-no-repeat sm:p-16 sm:grid-cols-3 bg-email-capture bg-charmander bg-blend-multiply">
-        <Link href="/guide">
+        <Link href="/guide" legacyBehavior>
           <div className="flex flex-col justify-between p-4 m-4 bg-white sm:p-8">
             <h1 className="mb-4 font-extrabold tracking-tight text-gray-900">
               <p className="text-2xl text-gray-900">
@@ -22,7 +22,7 @@ const LeadMagnets = () => {
             <Button label={"Learn More"} />
           </div>
         </Link>
-        <Link href="/quiz">
+        <Link href="/quiz" legacyBehavior>
           <div className="flex flex-col justify-between p-4 m-4 bg-white sm:p-8">
             <h1 className="mb-4 font-extrabold tracking-tight text-gray-900">
               <p className="text-2xl text-gray-900">
@@ -51,7 +51,7 @@ const LeadMagnets = () => {
           </div>
         </a>
       </div>
-    </div>
+    </div>)
   );
 };
 

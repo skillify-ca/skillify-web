@@ -13,18 +13,18 @@ export default function Coding() {
     { name: "Reverse Linked List", link: "reverseLinkedList" },
   ];
   return (
-    <div>
+    (<div>
       {lessons.map((lesson) => (
         <Link
           key={lesson.link}
           href={`/studentPortal/challenges/${lesson.link}`}
-        >
+          legacyBehavior>
           <div className="p-4 border cursor-pointer hover:bg-sky-300">
             {lesson.name}
           </div>
         </Link>
       ))}
-    </div>
+    </div>)
   );
 }
 

@@ -4,7 +4,7 @@ import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
 export default function AjevanSuccessStory() {
   return (
-    <div className=" flex flex-col items-center justify-center">
+    (<div className=" flex flex-col items-center justify-center">
       <LandingNavbar />
       <div className="bg-[#18124D] w-full grid grid-cols-2">
         <div className="col-span-1">
@@ -143,7 +143,7 @@ export default function AjevanSuccessStory() {
         <h1 className="text-white text-3xl font-bold pb-8">
           Ready to become the next success story?
         </h1>
-        <Link href={"/plans"}>
+        <Link href={"/plans"} legacyBehavior>
           <button
             type="button"
             className="py-3 bg-charmander hover:bg-pikachu-500 text-white px-8 font-bold rounded-lg cursor-pointer"
@@ -152,7 +152,7 @@ export default function AjevanSuccessStory() {
           </button>
         </Link>
       </div>
-    </div>
+    </div>)
   );
 }
 
