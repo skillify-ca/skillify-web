@@ -77,7 +77,7 @@ export async function getServerSideProps() {
       planName: "premium",
       title: "Premium",
       description: "Contact us to learn more. Limited scholarships available.",
-      price: "$6000 / semester",
+      price: "$2000 / month",
       buttonLabel: "Book a Call",
       planCardRow: [
         {
