@@ -1,5 +1,5 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 import ExpandableContainer from "../../ui/ExpandableContainer";
 import AssignmentInputBox from "./AssignmentInputBox";
