@@ -10,14 +10,12 @@ const JobGroup = ({ subheading, jobs }) => (
         <div
           key={job.title}
           className={`flex flex-col items-center rounded-lg p-6 shadow-md ${
-            (job.title.includes("Game Developer") ||
-              job.title.includes("Cyber Security Analyst") ||
+            ( job.title.includes("Cyber Security Analyst") ||
               job.title.includes("Product Manager") ||
               job.title.includes("Digital Marketer")) &&
             "bg-gray-300 text-black"
           } ${
-            !(job.title.includes("Game Developer") ||
-              job.title.includes("Cyber Security Analyst") ||
+            !(job.title.includes("Cyber Security Analyst") ||
               job.title.includes("Product Manager") ||
               job.title.includes("Digital Marketer")) &&
             "bg-orange-500 text-white hover:bg-orange-600 hover:scale-105"
@@ -28,7 +26,7 @@ const JobGroup = ({ subheading, jobs }) => (
               {job.title}
             </a>
           </h2>
-          <div className="w-32 h-32 overflow-hidden rounded-full">
+          <div className="w-32 h-32 overflow-hidden">
             <div className="object-cover w-full h-full rounded-full">
               <Image
                 src={job.image}
@@ -36,6 +34,7 @@ const JobGroup = ({ subheading, jobs }) => (
                 width={job.width}
                 height={job.height}
                 layout="responsive"
+                objectFit="cover"
               />
             </div>
           </div>
@@ -50,84 +49,84 @@ const JobListComponent = () => {
   const jobs = [
     {
       title: "Front End Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/FrontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
       title: "Back End Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/web-1668931_640.jpg",
       width: 100,
       height: 100,
       link: "././backEndDev",
     },
     {
       title: "Fullstack Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/computer-4796017_640.jpg",
       width: 100,
       height: 100,
       link: "././fullstackDev",
     },
     {
       title: "AI Engineer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/technology-3389904_640.jpg",
       width: 100,
       height: 100,
       link: "././aiEngineer",
     },
     {
       title: "Data Scientist",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/datasciecne.png",
       width: 100,
       height: 100,
       link: "././dataScientist",
     },
     {
       title: "DevOps Engineer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/devops.png",
       width: 100,
       height: 100,
       link: "././devOpsEngineer",
     },
     {
       title: "Cyber Security Analyst",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/cyber-security-2296269_640.jpg",
       width: 100,
       height: 100,
       link: "",
     },
     {
       title: "Mobile App Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/internet-3592056_640.jpg",
       width: 100,
       height: 100,
       link: "././mobileAppDev",
     },
     {
       title: "Game Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/game-play-4622800_640.jpg",
       width: 100,
       height: 100,
-      link: "",
+      link: ""
     },
     {
       title: "UX Designer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/log-in-3938432_640.jpg",
       width: 100,
       height: 100,
       link: "././uxDesigner",
     },
     {
       title: "Product Manager",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/project-management-7440746_640.jpg",
       width: 100,
       height: 100,
       link: "",
     },
     {
       title: "Digital Marketer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/digitalmarketing.jpg",
       width: 100,
       height: 100,
       link: "",
