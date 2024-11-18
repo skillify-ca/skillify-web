@@ -108,7 +108,7 @@ const JobListComponent = () => {
       image: "/images/resources/jobExplorer/game-play-4622800_640.jpg",
       width: 100,
       height: 100,
-      link: ""
+      link: "././gameDev"
     },
     {
       title: "UX Designer",
