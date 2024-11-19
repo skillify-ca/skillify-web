@@ -70,7 +70,44 @@ export const mandatorySkills = [
 ];
 
 export const additionalSkills = [
+  {
+    name: "Shader Programming",
+    link: "https://learnopengl.com/",
+  },
+  {
+    name: "Networking",
+    link: "https://gamedev.net/",
+  },
+  {
+    name: "Backend Development  ",
+    link: "https://www.boot.dev/",
+  },
+  {
+    name: "Java",
+    link: "https://www.w3schools.com/java/java_intro.asp",
+  },
   
+  {
+    name: "Javascript",
+    link: "https://www.w3schools.com/js/js_intro.asp",
+  },
+  {
+    name: "Gaming AI",
+    link: "https://www.codingame.com/start/",
+  },
+  {
+    name: "Augmented and Virtual reality",
+    link: "https://gamedevacademy.org/category/vr-ar-tutorials/",
+  },
+  {
+    name: "Game art design",
+    link: "https://www.hyperpad.com/blog/free-art-tools-for-game-design",
+  },
+  {
+    name: "GDScript",
+    link: "https://www.gdquest.com/tutorial/godot/gdscript/intro/",
+  },
+ 
 ];
 
 export const project = {
