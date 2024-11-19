@@ -1,6 +1,12 @@
 import Image from "next/legacy/image";
 import React from "react";
 
+const disabledJobs = [
+  "Cyber Security Analyst",
+  "Product Manager",
+  "Digital Marketer",
+];
+
 
 const JobGroup = ({ subheading, jobs }) => (
   <div className="mb-12">
