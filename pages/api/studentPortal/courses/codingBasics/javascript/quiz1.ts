@@ -77,7 +77,7 @@ export function getLessonComponentsForJSQuiz1Data() {
     lessonComponents,
     currentNode: 40,
     nextNode: 41,
-    nextSlug: "javascript/lesson4",
+    nextSlug: "js-arrays",
   };
 
   return data;

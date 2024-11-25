@@ -63,7 +63,7 @@ export function getDataForJSLesson6() {
     lessonComponents: lessonComponents,
     currentNode: 43,
     nextNode: 44,
-    nextSlug: "javascript/lesson7",
+    nextSlug: "js-iterators",
   };
   return data;
 }

@@ -30,7 +30,7 @@ export function getLessonComponentsForHTMLQuizData(): ResponseData {
     lessonComponents,
     currentNode: 3,
     nextNode: 4,
-    nextSlug: "html/assignment",
+    nextSlug: "html-assignment-1",
   };
 
   return data;

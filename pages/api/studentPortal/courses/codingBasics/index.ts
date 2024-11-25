@@ -71,6 +71,5 @@ export function getLessonForBasicsCourse(lessonId: string) {
     return getPortfolioAssignment();
   }
 
-  console.log("lessonId", lessonId);
   throw new Error(`Could not find lessons for ${lessonId}`);
 }

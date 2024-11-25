@@ -49,7 +49,7 @@ export function getDataForLesson2Flexbox() {
     ],
     currentNode: 49,
     nextNode: 51,
-    nextSlug: "css/quiz1",
+    nextSlug: "css-assignment",
   };
   return data;
 }
