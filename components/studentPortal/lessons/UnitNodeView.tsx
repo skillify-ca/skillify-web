@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Button } from "../../ui/Button";
 import NodeIcon from "../../ui/NodeIcon";
@@ -9,6 +10,8 @@ export type UnitNodeViewProps = {
   locked: boolean;
   hiddenLine: boolean;
   type: "lesson" | "quiz" | "assignment";
+  course: string;
+  link: string;
 };
 
 export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
@@ -18,6 +21,8 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   title,
   description,
   type,
+  link,
+  course,
 }: UnitNodeViewProps) => {
   const active = !completed && !locked;
 
@@ -39,13 +44,15 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
           <p className="">{title}</p>
           <p className="">{description}</p>
         </div>
-        <div
-          className={`${
-            active ? "" : "hidden"
-          } flex flex-col col-span-5 justify-center p-4`}
-        >
-          <Button label="Continue" />
-        </div>
+        <Link href={"/studentPortal/courses/" + course + "/" + link}>
+          <div
+            className={`${
+              active ? "" : "hidden"
+            } flex flex-col col-span-5 justify-center p-4`}
+          >
+            <Button label="Continue" />
+          </div>
+        </Link>
       </div>
       <div
         className={`${
