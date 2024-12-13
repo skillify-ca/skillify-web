@@ -44,15 +44,15 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
           <p className="">{title}</p>
           <p className="">{description}</p>
         </div>
-        <Link href={"/studentPortal/courses/" + course + "/" + link}>
-          <div
-            className={`${
-              active ? "" : "hidden"
-            } flex flex-col col-span-5 justify-center p-4`}
-          >
+        <div
+          className={`${
+            active ? "" : "hidden"
+          } flex flex-col col-span-5 justify-center p-4`}
+        >
+          <Link href={"/studentPortal/courses/" + course + "/" + link}>
             <Button label="Continue" />
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
       <div
         className={`${
