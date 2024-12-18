@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { getDataForCSSAssignment } from "./css/assignment1";
 import { getDataForCSSLesson1 } from "./css/lesson1";
 import { getDataForLesson2Flexbox } from "./css/lesson2-Flexbox";
@@ -6,7 +7,7 @@ import { getLessonComponentsForCSSQuizData } from "./css/quiz1";
 import { getDataForHTMLAssignment } from "./html/assignment1";
 import { getLessonComponentsForHTML1Data } from "./html/lesson1";
 import { getLessonComponentsForHTMLQuizData } from "./html/quiz1";
-import { getDataForIntroductionLesson } from "./introduction";
+import { getDataForIntroductionLesson, ResponseData } from "./introduction";
 import { getDataForJSIntroduction } from "./javascript/introduction";
 import { getDataForJSLesson1 } from "./javascript/lesson1";
 import { getDataForJSLesson2 } from "./javascript/lesson2";
@@ -71,6 +72,15 @@ export function getLessonForBasicsCourse(lessonId: string) {
     return getPortfolioAssignment();
   }
 
-  console.log("lessonId", lessonId);
   throw new Error(`Could not find lessons for ${lessonId}`);
+}
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
+  const slug = (req.query.slug as string) || "introduction";
+  const data = getLessonForBasicsCourse(slug);
+
+  res.status(200).json(data);
 }

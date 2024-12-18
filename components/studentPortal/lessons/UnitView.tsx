@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { useState } from "react";
 import { Unit } from "../../../pages/api/studentPortal/units";
 import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
@@ -18,7 +17,7 @@ export const UnitView: React.FC<UnitViewProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    (<div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 gap-4">
       <p className="w-48 p-4 text-center text-white bg-blue-900 rounded-full">
         {data.title}
       </p>
@@ -50,41 +49,23 @@ export const UnitView: React.FC<UnitViewProps> = ({
               </div>
             );
           } else {
-            if (!it.locked) {
-              return (
-                (<Link
-                  key={it.title}
-                  href={"/studentPortal/courses/" + course + "/" + it.link}
-                >
-
-                  <UnitNodeView
-                    hiddenLine={index === data.nodes.length - 1}
-                    completed={it.completed}
-                    locked={it.locked}
-                    title={it.title}
-                    description={it.description}
-                    type={it.type}
-                  />
-
-                </Link>)
-              );
-            } else {
-              return (
-                <UnitNodeView
-                  key={it.title}
-                  hiddenLine={index === data.nodes.length - 1}
-                  completed={it.completed}
-                  locked={it.locked}
-                  title={it.title}
-                  description={it.description}
-                  type={it.type}
-                />
-              );
-            }
+            return (
+              <UnitNodeView
+                key={it.title}
+                hiddenLine={index === data.nodes.length - 1}
+                completed={false}
+                locked={false}
+                title={it.title}
+                description={it.description}
+                type={it.type}
+                link={it.link ?? "undefined"}
+                course={course}
+              />
+            );
           }
         })}
       </div>
-    </div>)
+    </div>
   );
 };
 

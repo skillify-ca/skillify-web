@@ -36,7 +36,7 @@ export function getDataForJSLesson5() {
     ],
     currentNode: 42,
     nextNode: 43,
-    nextSlug: "javascript/lesson6",
+    nextSlug: "js-objects",
   };
   return data;
 }

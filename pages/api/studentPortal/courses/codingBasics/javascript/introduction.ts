@@ -43,7 +43,7 @@ export function getDataForJSIntroduction() {
     ],
     currentNode: 7,
     nextNode: 8,
-    nextSlug: "javascript/lesson1",
+    nextSlug: "js-variables",
   };
   return data;
 }

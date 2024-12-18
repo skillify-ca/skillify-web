@@ -52,7 +52,7 @@ export function getDataForIntroductionLesson() {
     ],
     currentNode: 1,
     nextNode: 2,
-    nextSlug: "html/lesson1",
+    nextSlug: "html-1",
   };
 
   return data;

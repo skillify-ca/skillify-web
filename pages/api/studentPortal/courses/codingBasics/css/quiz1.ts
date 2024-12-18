@@ -81,7 +81,7 @@ export function getLessonComponentsForCSSQuizData() {
     lessonComponents,
     currentNode: 51,
     nextNode: 52,
-    nextSlug: "css/assignment",
+    nextSlug: "css=assignment",
   };
   return data;
 }

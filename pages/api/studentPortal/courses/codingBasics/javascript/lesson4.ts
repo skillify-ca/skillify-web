@@ -29,7 +29,7 @@ export function getDataForJSLesson4() {
     ],
     currentNode: 41,
     nextNode: 42,
-    nextSlug: "javascript/lesson5",
+    nextSlug: "js-loops",
   };
   return data;
 }

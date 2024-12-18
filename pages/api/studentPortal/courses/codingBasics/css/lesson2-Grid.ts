@@ -47,7 +47,7 @@ export function getDataForLesson2Grid() {
     ],
     currentNode: 48,
     nextNode: 49,
-    nextSlug: "css/lesson2-Flexbox",
+    nextSlug: "css-flexbox",
   };
   return data;
 }
