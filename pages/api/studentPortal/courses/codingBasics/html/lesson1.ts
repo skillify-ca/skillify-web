@@ -16,7 +16,7 @@ export function getLessonComponentsForHTML1Data(): ResponseData {
     lessonComponents,
     currentNode: 2,
     nextNode: 3,
-    nextSlug: "html/quiz1",
+    nextSlug: "html-quiz-1",
   };
 
   return data;

@@ -45,7 +45,7 @@ export function getDataForJSLesson2() {
     ],
     currentNode: 38,
     nextNode: 39,
-    nextSlug: "javascript/lesson3",
+    nextSlug: "js-conditionals",
   };
   return data;
 }

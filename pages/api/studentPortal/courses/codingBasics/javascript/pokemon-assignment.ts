@@ -175,7 +175,12 @@ export function getJSPokemonAssignment(): ResponseData {
       ],
     },
   ];
-  return { lessonComponents, currentNode: 0, nextNode: 0, nextSlug: "" };
+  return {
+    lessonComponents,
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "js-nba-assignment",
+  };
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

@@ -43,7 +43,7 @@ export function getDataForCSSLesson1() {
     ],
     currentNode: 5,
     nextNode: 48,
-    nextSlug: "css/lesson2-Grid",
+    nextSlug: "css-grid",
   };
   return data;
 }

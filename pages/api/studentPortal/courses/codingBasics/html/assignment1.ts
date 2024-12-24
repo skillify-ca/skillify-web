@@ -102,7 +102,7 @@ export function getDataForHTMLAssignment() {
     ],
     currentNode: 4,
     nextNode: 5,
-    nextSlug: "css/lesson1",
+    nextSlug: "css-introduction",
   };
 
   return data;

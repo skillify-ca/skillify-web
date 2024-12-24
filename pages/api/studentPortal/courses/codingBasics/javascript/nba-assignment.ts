@@ -139,7 +139,12 @@ export function getJSNBAAssignment(): ResponseData {
       text: "Write a function that returns the top 10 players projected to have the highest PER. Make sure you only include players projected to play at least one minute.",
     },
   ];
-  return { lessonComponents, currentNode: 0, nextNode: 0, nextSlug: "" };
+  return {
+    lessonComponents,
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "js-summary",
+  };
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

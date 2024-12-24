@@ -49,7 +49,12 @@ export function getJavaScriptSummary(): ResponseData {
       resources,
     },
   ];
-  return { lessonComponents, currentNode: 0, nextNode: 0, nextSlug: "" };
+  return {
+    lessonComponents,
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "js-portfolio-assignment",
+  };
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

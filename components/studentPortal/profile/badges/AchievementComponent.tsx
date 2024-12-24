@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import Link from "next/link";
 import React, { useState } from "react";
 import {
   FETCH_CODING_BADGES,
@@ -14,7 +15,6 @@ export type AchievementComponentProps = {
 
 const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   const [userBadges, setUserBadges] = useState<UserCodingBadge[]>([]);
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
@@ -30,16 +30,12 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   return (
     <div className="p-4 rounded-xl bg-backgroundSecondary">
       {userBadges && (
-        <div className="grid grid-cols-3 gap-4 lg:flex lg:flex-wrap">
+        <div className="grid w-full grid-cols-3 gap-4 overflow-x-scroll lg:flex ">
           {emptyArray
             .concat(userBadges)
             .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
             .filter((badge, index) => {
-              if (isCollapsed) {
-                return index < 5;
-              } else {
-                return true;
-              }
+              return index < 5;
             })
             .map((badge, index) => {
               return <CodingBadgeCard badge={badge} key={index} />;
@@ -47,10 +43,9 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
         </div>
       )}
       <div className="mt-4">
-        <Button
-          label={isCollapsed ? "Show More" : "Show Less"}
-          onClick={() => setIsCollapsed(!isCollapsed)}
-        ></Button>
+        <Link href="/studentPortal/badges">
+          <Button label={"Show More"}></Button>
+        </Link>
       </div>
     </div>
   );

@@ -71,7 +71,7 @@ export function getDataForJSLesson3() {
     ],
     currentNode: 39,
     nextNode: 40,
-    nextSlug: "javascript/quiz1",
+    nextSlug: "js-quiz-1",
   };
   return data;
 }
