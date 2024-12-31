@@ -1,133 +1,136 @@
 import Image from "next/legacy/image";
 import React from "react";
 
+const disabledJobs = [
+  "Cyber Security Analyst",
+  "Product Manager",
+  "Digital Marketer",
+];
 
 const JobGroup = ({ subheading, jobs }) => (
   <div className="mb-12">
     <h2 className="text-2xl font-bold mb-4">{subheading}</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      {jobs.map((job) => (
-        <div
-          key={job.title}
-          className={`flex flex-col items-center rounded-lg p-6 shadow-md ${
-            (job.title.includes("Game Developer") ||
-              job.title.includes("Cyber Security Analyst") ||
-              job.title.includes("Product Manager") ||
-              job.title.includes("Digital Marketer")) &&
-            "bg-gray-300 text-black"
-          } ${
-            !(job.title.includes("Game Developer") ||
-              job.title.includes("Cyber Security Analyst") ||
-              job.title.includes("Product Manager") ||
-              job.title.includes("Digital Marketer")) &&
-            "bg-orange-500 text-white hover:bg-orange-600 hover:scale-105"
-          } cursor-pointer transition duration-300`}
-        >
-          <h2 className="text-lg font-semibold mb-4">
-            <a href={job.link} className="text-black hover:underline">
-              {job.title}
-            </a>
-          </h2>
-          <div className="w-32 h-32 overflow-hidden rounded-full">
-            <div className="object-cover w-full h-full rounded-full">
-              <Image
-                src={job.image}
-                alt={job.title}
-                width={job.width}
-                height={job.height}
-                layout="responsive"
-              />
+      {jobs.map((job) => {
+        const isDisabled = disabledJobs.includes(job.title); // Check if job.title exists in disabledJobs array
+
+        return (
+          <div
+            key={job.title}
+            className={`flex flex-col items-center rounded-lg p-6 shadow-md ${
+              isDisabled
+                ? "bg-gray-300 text-black"
+                : "bg-orange-500 text-white hover:bg-orange-600 hover:scale-105"
+            } cursor-pointer transition duration-300`}
+          >
+            <h2 className="text-lg font-semibold mb-4">
+              <a href={job.link} className="text-black hover:underline">
+                {job.title}
+              </a>
+            </h2>
+            <div className="w-32 h-32 overflow-hidden">
+              <div className="object-cover w-full h-full rounded-full">
+                <Image
+                  src={job.image}
+                  alt={job.title}
+                  width={job.width}
+                  height={job.height}
+                  layout="responsive"
+                  objectFit="cover"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 );
+
 
 
 const JobListComponent = () => {
   const jobs = [
     {
       title: "Front End Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/FrontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
       title: "Back End Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/BackEndDev.jpg",
       width: 100,
       height: 100,
       link: "././backEndDev",
     },
     {
       title: "Fullstack Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/FullstackDev.jpg",
       width: 100,
       height: 100,
       link: "././fullstackDev",
     },
     {
       title: "AI Engineer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/AiDev.jpg",
       width: 100,
       height: 100,
       link: "././aiEngineer",
     },
     {
       title: "Data Scientist",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/DataScience.png",
       width: 100,
       height: 100,
       link: "././dataScientist",
     },
     {
       title: "DevOps Engineer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/DevOps.png",
       width: 100,
       height: 100,
       link: "././devOpsEngineer",
     },
     {
       title: "Cyber Security Analyst",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/CyberSecurityAnalyst.jpg",
       width: 100,
       height: 100,
       link: "",
     },
     {
-      title: "Mobile App Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      title: "Mobile Developer",
+      image: "/images/resources/jobExplorer/MobileDev.jpg",
       width: 100,
       height: 100,
       link: "././mobileAppDev",
     },
     {
       title: "Game Developer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/GameDev.jpg",
       width: 100,
       height: 100,
-      link: "",
+      link: "././gameDev"
     },
     {
       title: "UX Designer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/UXDesigner.jpg",
       width: 100,
       height: 100,
       link: "././uxDesigner",
     },
     {
       title: "Product Manager",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/ProductManager.jpg",
       width: 100,
       height: 100,
       link: "",
     },
     {
       title: "Digital Marketer",
-      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      image: "/images/resources/jobExplorer/DigitalMarketer.jpg",
       width: 100,
       height: 100,
       link: "",
@@ -135,7 +138,7 @@ const JobListComponent = () => {
   ];
 
   const beginnerJobs = jobs.filter((job) => job.title.includes("Front End Developer") || job.title.includes("Back End Developer") || job.title.includes("Data Scientist"));
-  const intermediateJobs = jobs.filter((job) => job.title.includes("Fullstack Developer") || job.title.includes("Mobile App Developer") || job.title.includes("Game Developer"));
+  const intermediateJobs = jobs.filter((job) => job.title.includes("Fullstack Developer") || job.title.includes("Mobile Developer") || job.title.includes("Game Developer"));
   const advancedJobs = jobs.filter((job) => job.title.includes("AI Engineer") || job.title.includes("Cyber Security Analyst") || job.title.includes("DevOps Engineer"));
   const nonTechnicalJobs = jobs.filter((job) => job.title.includes("UX Designer") || job.title.includes("Product Manager") || job.title.includes("Digital Marketer"));
 
