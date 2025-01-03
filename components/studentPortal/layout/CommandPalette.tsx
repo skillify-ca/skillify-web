@@ -5,6 +5,7 @@ import {
   UserIcon,
 } from "@heroicons/react/outline";
 import { DashboardIcon } from "@radix-ui/react-icons";
+import { BackpackIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import CommandPalette from "react-command-palette";
@@ -40,6 +41,13 @@ export default function SkillifyCommandPalette() {
       command() {
         router.push("/coaches");
       },
+    },
+    {
+      name: "Job Board",
+      icon: <BackpackIcon className="w-4 h-3 mr-2" />,
+      command(){
+        router.push("/studentPortal/jobs")
+      }
     },
     {
       name: "Course: Coding Basics",
