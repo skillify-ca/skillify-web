@@ -127,7 +127,7 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.robinhood.com/",
       "Location": "Toronto",
       "Role": "Android Developer",
-      "Time Spent": "Upcoming Interview",
+      "Time Spent": "December 2024",
       "timeSpentHours": 0,
       "Result": "Failed Final Technical Round",
       "Base": 115000,
