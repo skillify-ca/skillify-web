@@ -5,7 +5,7 @@ export const LuckyInterviewData: Offer[]=[
     {
       "Company": "Robinhood",
       "companyUrl": "https://www.robinhood.com/",
-      "Location": "Remote",
+      "Location": "Toronto",
       "Role": "Mobile Developer",
       "Time Spent": "March 2024",
       "timeSpentHours": 10,
@@ -89,7 +89,7 @@ export const LuckyInterviewData: Offer[]=[
     {
       "Company": "Shopify",
       "companyUrl": "https://www.shopify.com/",
-      "Location": "Remote",
+      "Location": "Toronto",
       "Role": "Android Developer",
       "Time Spent": "September 2024",
       "timeSpentHours": 20,
@@ -101,7 +101,7 @@ export const LuckyInterviewData: Offer[]=[
     {
       "Company": "Instacart",
       "companyUrl": "https://www.instacart.com/",
-      "Location": "Remote",
+      "Location": "Toronto",
       "Role": "Android Developer",
       "Time Spent": "September 2024",
       "timeSpentHours": 15,
@@ -125,26 +125,15 @@ export const LuckyInterviewData: Offer[]=[
     {
       "Company": "Robinhood R2",
       "companyUrl": "https://www.robinhood.com/",
-      "Location": "Remote",
+      "Location": "Toronto",
       "Role": "Android Developer",
       "Time Spent": "Upcoming Interview",
       "timeSpentHours": 0,
-      "Result": "Upcoming Interview",
+      "Result": "Failed Final Technical Round",
       "Base": 0,
-      "opportunitySource": "Financial Instrument, Tic Tac Toe, Android Studio",
+      "opportunitySource": "Financial Instrument, 4 Stage Final Round",
       "industry": "Finance"
     },
-    {
-      "Company": "Other",
-      "companyUrl": "https://www.example.com/",
-      "Location": "Remote",
-      "Role": "Various Roles",
-      "Time Spent": "Ongoing",
-      "timeSpentHours": 50,
-      "Result": "Failed Multiple Technical Rounds",
-      "Base": 0,
-      "opportunitySource": "LeetCode and Blockchain Practice",
-      "industry": "Tech"
-    }
+   
   ]
   
