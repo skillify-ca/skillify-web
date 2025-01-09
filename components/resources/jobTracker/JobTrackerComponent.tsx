@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/Select";
-type Offer = {
+export type Offer = {
   Company: string;
   companyUrl: string;
   Location: string;
@@ -140,7 +140,7 @@ export default function JobTrackerComponent() {
       </div>
       {showData ? (
         <div className="w-full px-4 mb-4 overflow-x-auto">
-          <OfferTable isCAD={isCAD} year={year} />
+          <OfferTable isCAD={isCAD} year={year} data={null} />
         </div>
       ) : (
         <div className="p-4 m-4 border-2 shadow-xl rounded-xl">
@@ -151,7 +151,7 @@ export default function JobTrackerComponent() {
   );
 }
 
-export  function OfferTable({ isCAD, year, setOffer}) {
+export  function OfferTable({ isCAD, year, data}) {
 
 
   const USD_TO_CAD_EXCHANGE_RATE = 1.37;
@@ -582,7 +582,9 @@ export  function OfferTable({ isCAD, year, setOffer}) {
     },
   ];
 
-  const offers = year === 2023 ? offers2023 : offers2024;
+  // If no data is supplied, use 2023 or 2024 data below
+  // Otherwise use the supplied data for the profile
+  const offers = data || (year === 2023 ? offers2023 : offers2024);
 
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
