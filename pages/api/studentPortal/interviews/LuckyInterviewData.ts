@@ -10,7 +10,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "March 2024",
       "timeSpentHours": 10,
       "Result": "Failed First Technical Round",
-      "Base": 0,
+      "Base": 115000,
       "opportunitySource": "Livecoding - List of instruments with filtering",
       "industry": "Finance"
     },
@@ -22,7 +22,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "March 2024",
       "timeSpentHours": 20,
       "Result": "Failed Final Technical Round",
-      "Base": 0,
+      "Base": 100000,
       "opportunitySource": "Takehome and Livecoding - Tic Tac Toe App",
       "industry": "Finance"
     },
@@ -34,7 +34,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "June/July 2024",
       "timeSpentHours": 15,
       "Result": "Failed Final Technical Round",
-      "Base": 0,
+      "Base": 85000,
       "opportunitySource": "In-Person Interview and Takehome Challenge",
       "industry": "Tech"
     },
@@ -46,7 +46,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "June/July 2024",
       "timeSpentHours": 18,
       "Result": "Passed Final Round, No Offer (Recruitment Paused)",
-      "Base": 0,
+      "Base": 80000,
       "opportunitySource": "Completed Takehome and Livecoding",
       "industry": "Tech Consulting"
     },
@@ -58,7 +58,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "June/July 2024",
       "timeSpentHours": 10,
       "Result": "Failed Takehome",
-      "Base": 0,
+      "Base": 85000,
       "opportunitySource": "Takehome - Fruity Selector App",
       "industry": "Finance"
     },
@@ -82,7 +82,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "September 2024",
       "timeSpentHours": 15,
       "Result": "Failed Final Technical Round",
-      "Base": 0,
+      "Base": 85000,
       "opportunitySource": "Livecoding and In-Person Interviews",
       "industry": "Tech"
     },
@@ -94,7 +94,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "September 2024",
       "timeSpentHours": 20,
       "Result": "Failed First Technical Round",
-      "Base": 0,
+      "Base": 100000,
       "opportunitySource": "Prescreen, Livecoding, and Assignment",
       "industry": "E-Commerce"
     },
@@ -106,7 +106,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "September 2024",
       "timeSpentHours": 15,
       "Result": "Failed First Technical Round",
-      "Base": 0,
+      "Base": 100000,
       "opportunitySource": "Prescreen, Livecoding, and Algorithm Challenges",
       "industry": "Tech"
     },
@@ -118,7 +118,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "September 2024",
       "timeSpentHours": 10,
       "Result": "Failed First Technical Round",
-      "Base": 0,
+      "Base": 85000,
       "opportunitySource": "TDD and Java Data Structure Practice",
       "industry": "Tech"
     },
@@ -130,7 +130,7 @@ export const LuckyInterviewData: Offer[]=[
       "Time Spent": "Upcoming Interview",
       "timeSpentHours": 0,
       "Result": "Failed Final Technical Round",
-      "Base": 0,
+      "Base": 115000,
       "opportunitySource": "Financial Instrument, 4 Stage Final Round",
       "industry": "Finance"
     },

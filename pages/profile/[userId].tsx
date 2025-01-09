@@ -234,7 +234,7 @@ export default function InternalProfile({
       ),
     },
     {
-      shouldShow: true,
+      shouldShow:  userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
       title: `Interview Tracking`,
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
