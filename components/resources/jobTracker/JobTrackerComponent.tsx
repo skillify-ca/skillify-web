@@ -26,7 +26,7 @@ export default function JobTrackerComponent() {
   const [isCAD, setIsCAD] = useState(true);
   const [showData, setShowData] = useState(false);
   const [year, setYear] = useState(2023);
-  // add offerData state variables
+  // add offerData state variable
   const [offers, setOffer] = useState<Offer>()
   return (
     <div className="p-4">
