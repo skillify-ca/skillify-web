@@ -50,6 +50,7 @@ import {
 } from "../../redux/skillRatingsSlice";
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
+import { LuckyInterviewData } from "../api/studentPortal/interviews/LuckyInterviewData";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 
 type InternalProfileProps = {
@@ -238,7 +239,7 @@ export default function InternalProfile({
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
       component: typeof userId == "string" && (
-        <OfferTable  isCAD={isCAD} year={year}/>
+        <OfferTable  isCAD={isCAD} year={year} data={LuckyInterviewData}/>
       ),
     },
   ];
