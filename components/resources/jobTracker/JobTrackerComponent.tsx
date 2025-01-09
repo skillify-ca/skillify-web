@@ -10,12 +10,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/Select";
-
+type Offer = {
+  Company: string;
+  companyUrl: string;
+  Location: string;
+  Role: string;
+  "Time Spent": string;
+  timeSpentHours: number;
+  Result: string;
+  Base: number;
+  opportunitySource: string;
+  industry: string;
+};
 export default function JobTrackerComponent() {
   const [isCAD, setIsCAD] = useState(true);
   const [showData, setShowData] = useState(false);
   const [year, setYear] = useState(2023);
-
+  const [offers, setOffer] = useState<Offer>()
   return (
     <div className="p-4">
       <h2 className="mb-4 text-3xl font-bold text-center">Tech Job Tracker</h2>
@@ -140,19 +151,8 @@ export default function JobTrackerComponent() {
   );
 }
 
-function OfferTable({ isCAD, year }) {
-  type Offer = {
-    Company: string;
-    companyUrl: string;
-    Location: string;
-    Role: string;
-    "Time Spent": string;
-    timeSpentHours: number;
-    Result: string;
-    Base: number;
-    opportunitySource: string;
-    industry: string;
-  };
+export  function OfferTable({ isCAD, year, setOffer}) {
+
 
   const USD_TO_CAD_EXCHANGE_RATE = 1.37;
 
