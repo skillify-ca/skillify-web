@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { OfferTable } from "../../components/resources/jobTracker/JobTrackerComponent";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileGoalBadge from "../../components/studentPortal/profile/ProfileGoalBadge";
 import ProfileHeaderComponent from "../../components/studentPortal/profile/ProfileHeaderComponent";
@@ -74,7 +75,8 @@ export default function InternalProfile({
     useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
-
+  const [isCAD, setIsCAD] = useState(true);
+  const [year, setYear] = useState(2023);
   useEffect(() => {
     if (userRole === "coach" && !isExternal) {
       setIsEditable(true);
@@ -228,6 +230,15 @@ export default function InternalProfile({
       value: (userBadgeCount * 100) / totalBadgeCount,
       component: typeof userId == "string" && (
         <AchievementComponent userId={userId} />
+      ),
+    },
+    {
+      shouldShow: true,
+      title: `Interview Tracking`,
+      hasProgress: true,
+      value: (userBadgeCount * 100) / totalBadgeCount,
+      component: typeof userId == "string" && (
+        <OfferTable  isCAD={isCAD} year={year}/>
       ),
     },
   ];
