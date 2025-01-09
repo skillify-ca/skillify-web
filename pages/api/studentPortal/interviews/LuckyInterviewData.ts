@@ -1,6 +1,5 @@
 import { Offer } from "../../../../components/resources/jobTracker/JobTrackerComponent";
-
-// dummyInterviewData.json
+// Lucky H Interview Data 
 export const LuckyInterviewData: Offer[]=[
     {
       "Company": "Robinhood",
