@@ -43,7 +43,7 @@ export function getDataForJSQuiz2() {
     ],
     currentNode: 45,
     nextNode: 46,
-    nextSlug: "javascript/assignment1",
+    nextSlug: "js-pokemon-assignment",
   };
   return data;
 }

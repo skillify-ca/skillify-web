@@ -115,7 +115,7 @@ export function getDataForCSSAssignment() {
     ],
     currentNode: 52,
     nextNode: 7,
-    nextSlug: "javascript/lesson1",
+    nextSlug: "js-introduction",
   };
   return data;
 }

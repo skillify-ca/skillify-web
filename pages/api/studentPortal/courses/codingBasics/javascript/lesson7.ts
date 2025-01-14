@@ -56,7 +56,7 @@ export function getDataForJSLesson7() {
     lessonComponents: lessonComponents,
     currentNode: 44,
     nextNode: 45,
-    nextSlug: "javascript/quiz2",
+    nextSlug: "js-quiz-2",
   };
   return data;
 }

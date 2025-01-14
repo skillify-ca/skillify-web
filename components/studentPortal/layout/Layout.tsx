@@ -97,7 +97,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, isPremiumPage }) => {
           <Sidebar closeSidebar={() => setActive(false)} />
         </div>
         <div
-          className={`overflow-auto pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-backgroundPrimary text-textPrimary`}
+          className={`pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-backgroundPrimary text-textPrimary`}
         >
           <div className="min-h-screen">
             {isPremiumPage && userRole === UserRole.FREEMIUM ? (
