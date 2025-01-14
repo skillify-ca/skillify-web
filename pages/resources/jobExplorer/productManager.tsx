@@ -1,6 +1,6 @@
 import React from "react";
-import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
-import ProductManagerComponent from "../../../../components/resources/jobExplorer/productManager/ProductManagerComponent";
+import LandingNavbar from "../../../components/landingPage/LandingNavbar";
+import ProductManagerComponent from "../../../components/resources/jobExplorer/productManager/ProductManagerComponent";
 export default function ProductManagerPage() {
   return (
     <div>
