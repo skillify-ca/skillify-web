@@ -1,9 +1,12 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Offer, OfferTable } from "../../components/resources/jobTracker/JobTrackerComponent";
+import {
+  Offer,
+  OfferTable,
+} from "../../components/resources/jobTracker/JobTrackerComponent";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileGoalBadge from "../../components/studentPortal/profile/ProfileGoalBadge";
 import ProfileHeaderComponent from "../../components/studentPortal/profile/ProfileHeaderComponent";
@@ -80,10 +83,16 @@ export default function InternalProfile({
   const [isCAD, setIsCAD] = useState(true);
   const [year, setYear] = useState(2023);
   const [interviewData, setInterviewData] = useState<Offer[]>([]);
+
   useEffect(() => {
-    if (user?.uid) {
-      // Fetch interview data only if user.uid exists
-      setInterviewData(getInterviewData(user?.uid));
+    if (userId) {
+      // check if userId is an array
+      if (Array.isArray(userId)) {
+        setInterviewData(getInterviewData(userId[0]));
+      } else {
+        // set userId to string
+        setInterviewData(getInterviewData(userId));
+      }
     }
   }, [user?.uid]);
   useEffect(() => {
@@ -242,12 +251,12 @@ export default function InternalProfile({
       ),
     },
     {
-      shouldShow:  userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
-      title: `Interview Tracking`,
+      shouldShow: userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
+      title: `Interview Tracking (${interviewData.length})`,
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
       component: typeof userId == "string" && (
-        <OfferTable  isCAD={isCAD} year={year} data={interviewData} />
+        <OfferTable isCAD={isCAD} year={year} data={interviewData} />
       ),
     },
   ];
