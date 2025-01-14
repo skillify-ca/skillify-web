@@ -1,6 +1,8 @@
 import { ExternalLinkIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAuth } from "../../../lib/authContext";
 import { logToSlack } from "../../../pages/api/slack/slackLogger";
+import { getInterviewData } from "../../../pages/api/studentPortal/interviews/LuckyInterviewData";
 import { Button } from "../../ui/Button";
 import { Input } from "../../ui/Input";
 import {
@@ -15,19 +17,21 @@ export type Offer = {
   companyUrl: string;
   Location: string;
   Role: string;
-  "Time Spent": string;
+  "Time Spent"?: string;
   timeSpentHours: number;
   Result: string;
   Base: number;
-  opportunitySource: string;
+  opportunitySource?: string;
   industry: string;
+  askedTask?: string;
+  timeline?: string;
 };
 export default function JobTrackerComponent() {
   const [isCAD, setIsCAD] = useState(true);
   const [showData, setShowData] = useState(false);
   const [year, setYear] = useState(2023);
   // add offerData state variable
-  const [offers, setOffer] = useState<Offer>()
+ 
   return (
     <div className="p-4">
       <h2 className="mb-4 text-3xl font-bold text-center">Tech Job Tracker</h2>
@@ -141,7 +145,7 @@ export default function JobTrackerComponent() {
       </div>
       {showData ? (
         <div className="w-full px-4 mb-4 overflow-x-auto">
-          <OfferTable isCAD={isCAD} year={year} data={null} />
+          <OfferTable isCAD={isCAD} year={year}  />
         </div>
       ) : (
         <div className="p-4 m-4 border-2 shadow-xl rounded-xl">
@@ -152,9 +156,10 @@ export default function JobTrackerComponent() {
   );
 }
 
-export  function OfferTable({ isCAD, year, data}) {
+export  function OfferTable({ isCAD, year}) {
 
-
+  const { user } = useAuth();
+  const interviewData = getInterviewData(user.uid);
   const USD_TO_CAD_EXCHANGE_RATE = 1.37;
 
   const offers2023: Offer[] = [
@@ -585,7 +590,7 @@ export  function OfferTable({ isCAD, year, data}) {
 
   // If no data is supplied, use 2023 or 2024 data below
   // Otherwise use the supplied data for the profile
-  const offers = data || (year === 2023 ? offers2023 : offers2024);
+  const offers = interviewData || (year === 2023 ? offers2023 : offers2024);
 
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
@@ -715,9 +720,11 @@ export  function OfferTable({ isCAD, year, data}) {
             <td className="p-4">{offer.industry}</td>
             <td className="p-4">{formatCurrency(offer.Base)}</td>
             <td className="p-4">{offer.Role}</td>
-            <td className="p-4">{offer["Time Spent"]}</td>
+            {offer["Time Spent"] && <td className="p-4">{offer["Time Spent"]}</td>}
             <td className="p-4">{offer.Result}</td>
-            <td className="p-4">{offer.opportunitySource}</td>
+            {offer.askedTask && <td className="p-4">{offer.askedTask || "N/A"}</td>}
+            {offer.timeline && <td className="p-4">{offer.timeline || "N/A"}</td>}
+            {offer.opportunitySource && <td className="p-4">{offer.opportunitySource}</td>}
           </tr>
         ))}
       </tbody>
