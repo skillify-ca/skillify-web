@@ -1,8 +1,5 @@
-import { ExternalLinkIcon } from "@heroicons/react/outline";
-import { useState } from "react";
-import { useAuth } from "../../../lib/authContext";
+import React, { useState } from "react";
 import { logToSlack } from "../../../pages/api/slack/slackLogger";
-import { getInterviewData } from "../../../pages/api/studentPortal/interviews/LuckyInterviewData";
 import { Button } from "../../ui/Button";
 import { Input } from "../../ui/Input";
 import {
@@ -145,7 +142,7 @@ export default function JobTrackerComponent() {
       </div>
       {showData ? (
         <div className="w-full px-4 mb-4 overflow-x-auto">
-          <OfferTable isCAD={isCAD} year={year}  />
+          <OfferTable isCAD={isCAD} year={year} data={null} />
         </div>
       ) : (
         <div className="p-4 m-4 border-2 shadow-xl rounded-xl">
@@ -156,10 +153,9 @@ export default function JobTrackerComponent() {
   );
 }
 
-export  function OfferTable({ isCAD, year}) {
+export  function OfferTable({ isCAD, year, data}) {
 
-  const { user } = useAuth();
-  const interviewData = getInterviewData(user.uid);
+
   const USD_TO_CAD_EXCHANGE_RATE = 1.37;
 
   const offers2023: Offer[] = [
@@ -590,7 +586,7 @@ export  function OfferTable({ isCAD, year}) {
 
   // If no data is supplied, use 2023 or 2024 data below
   // Otherwise use the supplied data for the profile
-  const offers = interviewData || (year === 2023 ? offers2023 : offers2024);
+  const offers = data || (year === 2023 ? offers2023 : offers2024);
 
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
@@ -643,92 +639,104 @@ export  function OfferTable({ isCAD, year}) {
 
   return (
     <table className="min-w-full bg-white border-2 table-auto rounded-xl">
-      <thead>
-        <tr className="border-b-2 bg-slate-100">
-          <th className="p-4"></th>
+    <thead>
+      <tr className="border-b-2 bg-slate-100">
+        <th className="p-4"></th>
+        <th
+          onClick={() => sortData("Company")}
+          className="p-4 cursor-pointer hover:bg-slate-200"
+        >
+          Company
+        </th>
+        <th
+          onClick={() => sortData("Location")}
+          className="p-4 cursor-pointer hover:bg-slate-200"
+        >
+          Location
+        </th>
+        <th
+          onClick={() => sortData("industry")}
+          className="p-4 cursor-pointer hover:bg-slate-200"
+        >
+          Industry
+        </th>
+        <th
+          onClick={() => sortData("Base")}
+          className="p-4 cursor-pointer hover:bg-slate-200"
+        >
+          Base Salary
+        </th>
+        <th
+          onClick={() => sortData("Role")}
+          className="p-4 cursor-pointer hover:bg-slate-200"
+        >
+          Role
+        </th>
+        {offers.some((offer) => offer["Time Spent"]) && (
           <th
-            onClick={() => sortData("Company")}
-            className="p-4 cursor-pointer hover:bg-slate-200"
-          >
-            Company
-          </th>
-          <th
-            onClick={() => sortData("Location")}
-            className="p-4 cursor-pointer hover:bg-slate-200"
-          >
-            Location
-          </th>
-          <th
-            onClick={() => sortData("industry")}
-            className="p-4 cursor-pointer hover:bg-slate-200"
-          >
-            Industry
-          </th>
-          <th
-            onClick={() => sortData("Base")}
-            className="p-4 cursor-pointer hover:bg-slate-200"
-          >
-            Base Salary
-          </th>
-          <th
-            onClick={() => sortData("Role")}
-            className="p-4 cursor-pointer hover:bg-slate-200"
-          >
-            Role
-          </th>
-          <th
-            onClick={() => sortData("timeSpentHours")}
+            onClick={() => sortData("Time Spent")}
             className="p-4 cursor-pointer hover:bg-slate-200"
           >
             Time Spent Interviewing
           </th>
-          <th
-            onClick={() => sortData("Result")}
-            className="p-4 cursor-pointer hover:bg-slate-200"
-          >
-            Result
-          </th>
+        )}
+        <th
+          onClick={() => sortData("Result")}
+          className="p-4 cursor-pointer hover:bg-slate-200"
+        >
+          Result
+        </th>
+        {offers.some((offer) => offer.opportunitySource) && (
           <th
             onClick={() => sortData("opportunitySource")}
             className="p-4 cursor-pointer hover:bg-slate-200"
           >
             Opportunity Source
           </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {sortedData.map((offer, index) => (
-          <tr
-            key={offer.Company}
-            className="text-center hover:bg-slate-300 group"
+        )}
+        {offers.some((offer) => offer.askedTask) && (
+          <th
+            onClick={() => sortData("askedTask")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
           >
-            <td className="p-4">{index + 1}</td>
-
-            <td className="p-4 hover:underline hover:text-blue-800">
-              <a
-                href={offer.companyUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex justify-between gap-2 group-hover:underline group-hover:text-blue-800"
-              >
-                <p className="text-left">{offer.Company}</p>
-                <ExternalLinkIcon className="w-4" />
-              </a>
-            </td>
-            <td className="p-4">{offer.Location}</td>
-            <td className="p-4">{offer.industry}</td>
-            <td className="p-4">{formatCurrency(offer.Base)}</td>
-            <td className="p-4">{offer.Role}</td>
-            {offer["Time Spent"] && <td className="p-4">{offer["Time Spent"]}</td>}
-            <td className="p-4">{offer.Result}</td>
-            {offer.askedTask && <td className="p-4">{offer.askedTask || "N/A"}</td>}
-            {offer.timeline && <td className="p-4">{offer.timeline || "N/A"}</td>}
-            {offer.opportunitySource && <td className="p-4">{offer.opportunitySource}</td>}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+            Asked Task
+          </th>
+        )}
+        {offers.some((offer) => offer.timeline) && (
+          <th
+            onClick={() => sortData("timeline")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Timeline
+          </th>
+        )}
+      </tr>
+    </thead>
+    <tbody>
+      {offers.map((offer, index) => (
+        <tr key={index} className="hover:bg-slate-200">
+          <td className="p-4">{index + 1}</td>
+          <td className="p-4 hover:underline hover:text-blue-800">
+            <a href={offer.companyUrl} target="_blank" rel="noopener noreferrer">
+              {offer.Company}
+            </a>
+          </td>
+          <td className="p-4">{offer.Location}</td>
+          <td className="p-4">{offer.industry}</td>
+          <td className="p-4">{formatCurrency(offer.Base)}</td>
+          <td className="p-4">{offer.Role}</td>
+          {offer["Time Spent"] && <td className="p-4">{offer["Time Spent"]}</td>}
+          <td className="p-4">{offer.Result}</td>
+          {offer.opportunitySource && (
+            <td className="p-4">{offer.opportunitySource}</td>
+          )}
+          {offer.askedTask && <td className="p-4">{offer.askedTask}</td>}
+          {offer.timeline && <td className="p-4">{offer.timeline}</td>}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  
   );
 }
 

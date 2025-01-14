@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { OfferTable } from "../../components/resources/jobTracker/JobTrackerComponent";
+import { Offer, OfferTable } from "../../components/resources/jobTracker/JobTrackerComponent";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileGoalBadge from "../../components/studentPortal/profile/ProfileGoalBadge";
 import ProfileHeaderComponent from "../../components/studentPortal/profile/ProfileHeaderComponent";
@@ -38,6 +38,7 @@ import {
   FETCH_SKILLS_AND_RATINGS,
   FetchSkillsAndRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
+import { useAuth } from "../../lib/authContext";
 import {
   profileSelector,
   setTotalBadgeCount,
@@ -50,6 +51,7 @@ import {
 } from "../../redux/skillRatingsSlice";
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
+import { getInterviewData } from "../api/studentPortal/interviews/LuckyInterviewData";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 
 type InternalProfileProps = {
@@ -68,7 +70,7 @@ export default function InternalProfile({
 
   // set userId to prop if navigating from /profile/x/[linkName], otherwise set as url parameter
   const userId = userIdFromLink ? userIdFromLink : router.query.userId;
-
+  const { user } = useAuth();
   const { userGoals } = useSelector(userGoalsSelector);
   const { skillRatings } = useSelector(skillRatingsSelector);
   const { userProfileData, userBadgeCount, totalBadgeCount } =
@@ -77,6 +79,13 @@ export default function InternalProfile({
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
   const [isCAD, setIsCAD] = useState(true);
   const [year, setYear] = useState(2023);
+  const [interviewData, setInterviewData] = useState<Offer[]>([]);
+  useEffect(() => {
+    if (user?.uid) {
+      // Fetch interview data only if user.uid exists
+      setInterviewData(getInterviewData(user?.uid));
+    }
+  }, [user?.uid]);
   useEffect(() => {
     if (userRole === "coach" && !isExternal) {
       setIsEditable(true);
@@ -238,7 +247,7 @@ export default function InternalProfile({
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
       component: typeof userId == "string" && (
-        <OfferTable  isCAD={isCAD} year={year} />
+        <OfferTable  isCAD={isCAD} year={year} data={interviewData} />
       ),
     },
   ];
