@@ -6,11 +6,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.robinhood.com/",
       "Location": "Toronto",
       "Role": "Mobile Developer",
-      "Time Spent": "March 2024",
+      "timeline": "March 2024",
       "timeSpentHours": 10,
       "Result": "Failed First Technical Round",
       "Base": 115000,
-      "opportunitySource": "Livecoding - List of instruments with filtering",
+      "askedTask": "Livecoding - List of instruments with filtering",
       "industry": "Finance"
     },
     {
@@ -18,11 +18,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.ramp.com/",
       "Location": "Remote",
       "Role": "Mobile Developer",
-      "Time Spent": "March 2024",
+      "timeline": "March 2024",
       "timeSpentHours": 20,
       "Result": "Failed Final Technical Round",
       "Base": 100000,
-      "opportunitySource": "Takehome and Livecoding - Tic Tac Toe App",
+      "askedTask": "Takehome and Livecoding - Tic Tac Toe App",
       "industry": "Finance"
     },
     {
@@ -30,11 +30,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.konrad.com/",
       "Location": "Toronto",
       "Role": "Android Developer",
-      "Time Spent": "June/July 2024",
+      "timeline": "June/July 2024",
       "timeSpentHours": 15,
       "Result": "Failed Final Technical Round",
       "Base": 85000,
-      "opportunitySource": "In-Person Interview and Takehome Challenge",
+      "askedTask": "In-Person Interview and Takehome Challenge",
       "industry": "Tech"
     },
     {
@@ -42,11 +42,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.netguru.com/",
       "Location": "Remote",
       "Role": "Mobile Developer",
-      "Time Spent": "June/July 2024",
+      "timeline": "June/July 2024",
       "timeSpentHours": 18,
       "Result": "Passed Final Round, No Offer (Recruitment Paused)",
       "Base": 80000,
-      "opportunitySource": "Completed Takehome and Livecoding",
+      "askedTask": "Completed Takehome and Livecoding",
       "industry": "Tech Consulting"
     },
     {
@@ -54,11 +54,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.finofo.com/",
       "Location": "Remote",
       "Role": "Mobile Developer",
-      "Time Spent": "June/July 2024",
+      "timeline": "June/July 2024",
       "timeSpentHours": 10,
       "Result": "Failed Takehome",
       "Base": 85000,
-      "opportunitySource": "Takehome - Fruity Selector App",
+      "askedTask": "Takehome - Fruity Selector App",
       "industry": "Finance"
     },
     {
@@ -66,11 +66,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.ndax.io/",
       "Location": "Remote",
       "Role": "Mobile Developer",
-      "Time Spent": "June/July 2024",
+      "timeline": "June/July 2024",
       "timeSpentHours": 8,
       "Result": "Failed First Technical Round",
       "Base": 0,
-      "opportunitySource": "Technical Interview with HR Misalignment",
+      "askedTask": "Technical Interview with HR Misalignment",
       "industry": "Crypto"
     },
     {
@@ -78,11 +78,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://pos.toasttab.com/",
       "Location": "Remote",
       "Role": "Mobile Developer",
-      "Time Spent": "September 2024",
+      "timeline": "September 2024",
       "timeSpentHours": 15,
       "Result": "Failed Final Technical Round",
       "Base": 85000,
-      "opportunitySource": "Livecoding and In-Person Interviews",
+      "askedTask": "Livecoding and In-Person Interviews",
       "industry": "Tech"
     },
     {
@@ -90,11 +90,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.shopify.com/",
       "Location": "Toronto",
       "Role": "Android Developer",
-      "Time Spent": "September 2024",
+      "timeline": "September 2024",
       "timeSpentHours": 20,
       "Result": "Failed First Technical Round",
       "Base": 100000,
-      "opportunitySource": "Prescreen, Livecoding, and Assignment",
+      "askedTask": "Prescreen, Livecoding, and Assignment",
       "industry": "E-Commerce"
     },
     {
@@ -102,11 +102,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.instacart.com/",
       "Location": "Toronto",
       "Role": "Android Developer",
-      "Time Spent": "September 2024",
+      "timeline": "September 2024",
       "timeSpentHours": 15,
       "Result": "Failed First Technical Round",
       "Base": 100000,
-      "opportunitySource": "Prescreen, Livecoding, and Algorithm Challenges",
+      "askedTask": "Prescreen, Livecoding, and Algorithm Challenges",
       "industry": "Tech"
     },
     {
@@ -114,11 +114,11 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.bethinklabs.com/",
       "Location": "Remote",
       "Role": "Java Developer",
-      "Time Spent": "September 2024",
+      "timeline": "September 2024",
       "timeSpentHours": 10,
       "Result": "Failed First Technical Round",
       "Base": 85000,
-      "opportunitySource": "TDD and Java Data Structure Practice",
+      "askedTask": "TDD and Java Data Structure Practice",
       "industry": "Tech"
     },
     {
@@ -126,13 +126,16 @@ export const LuckyInterviewData: Offer[]=[
       "companyUrl": "https://www.robinhood.com/",
       "Location": "Toronto",
       "Role": "Android Developer",
-      "Time Spent": "December 2024",
+      "timeline": "December 2024",
       "timeSpentHours": 0,
       "Result": "Failed Final Technical Round",
       "Base": 115000,
-      "opportunitySource": "Financial Instrument, 4 Stage Final Round",
+      "askedTask": "Financial Instrument, 4 Stage Final Round",
       "industry": "Finance"
     },
    
   ]
-  
+  export function getInterviewData(userId: string | null): Offer[] | null {
+    const allowedUserId = "R7nzMKiRewgJuLm54eQ1KdHV3g82"; // Replace with your expected userId
+    return userId === allowedUserId ? LuckyInterviewData : null;
+  }
