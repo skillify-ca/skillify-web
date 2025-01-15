@@ -114,6 +114,7 @@ export default function InternalProfile({
             lastSeen: data.users[0].last_seen,
             name: data.users[0].name,
             profileImage: profileImage,
+            currentFocus: data.users[0].current_focus,
           })
         );
       }
