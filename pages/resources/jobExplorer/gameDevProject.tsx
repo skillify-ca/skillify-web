@@ -1,6 +1,6 @@
 import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
-import GameDevProject from "../../../components/resources/jobExplorer/gameDev/GameProject";
+import GameDevProject from "../../../components/resources/jobExplorer/gameDev/GameDevProject";
 
 export default function GameDevProjectPage() {
   return (
