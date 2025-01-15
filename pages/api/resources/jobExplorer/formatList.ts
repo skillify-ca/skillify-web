@@ -1,3 +1,4 @@
+// Take a list of strings and format them as a comma-separated list with an "and" before the last item.
 export function formatList(strings: string[]): string {
   if (strings.length === 0) {
     return "";
