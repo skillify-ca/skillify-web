@@ -1,10 +1,21 @@
-import React from 'react'
-import ProductManagerProject from '../../../components/resources/jobExplorer/productManager/ProductManagerProject'
+import React from 'react';
+import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import ProductManagerProject from '../../../components/resources/jobExplorer/productManager/ProductManagerProject';
 
-const ProductManagerProjectPage = () => {
+export default function ProductManagerProjectPage() {
   return (
+    <div>
     <ProductManagerProject/>
+
+    </div>
   )
 }
 
-export default ProductManagerProjectPage
+ProductManagerProjectPage.getLayout = function getLayout(page) {
+  return (
+    <div className="theme-default">
+      <LandingNavbar />
+      {page}
+    </div>
+  );
+};
