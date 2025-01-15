@@ -23,7 +23,7 @@ export type FetchUserSkillsRatings = {
 
 export type UserSkillsRatings = {
   id: string;
-  studentRating: string;
+  studentRating: number;
   intro_course_skill: SkillDescription;
 };
 

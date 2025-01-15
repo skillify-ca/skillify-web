@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateSkillRatings } from "../../../redux/skillRatingsSlice";
 
 export interface EmojiSliderProps {
   userSkillId: string;
@@ -17,7 +16,6 @@ const EmojiSlider = ({
 
   function handleChange(e) {
     const newStudentRating = Number(e.target.value) || 0;
-    dispatch(updateSkillRatings({ newStudentRating, userSkillId }));
   }
 
   return (
