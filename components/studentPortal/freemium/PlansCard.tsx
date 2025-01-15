@@ -18,7 +18,7 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
 
   const handleSignUp = (planName: string) => {
     if (planName === "premium") {
-      router.push("https://www.joinskillify.com/call");
+      router.push("https://calendly.com/vithushan-skillify/30min");
     } else {
       signIn();
     }
