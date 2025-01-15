@@ -266,7 +266,7 @@ export default function InternalProfile({
     },
     {
       shouldShow: userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
-      title: `Interview Tracking (${interviewData.length} / 50)`,
+      title: `Interview Tracking (${interviewData?.length} / 50)`,
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
       component: typeof userId == "string" && (
