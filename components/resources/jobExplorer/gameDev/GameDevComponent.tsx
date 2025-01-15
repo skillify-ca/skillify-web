@@ -54,7 +54,7 @@ const GameDevComponent = () => {
             <a href={project.link} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
               Project: {project.name}
             </a>
-          </h2> {/* Add project name to the title */}
+          </h2> 
         </div>
       </div>
     </div>
