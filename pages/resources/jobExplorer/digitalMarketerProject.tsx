@@ -1,6 +1,6 @@
 import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
-import DigitalMarketerProject from "../digitalMarketer/DigitalMarketerProject";
+import DigitalMarketerProject from "../../../components/resources/jobExplorer/digitalMarketer/DigitalMarketerProject";
 
 export default function DMProjectPage() {
   return (
