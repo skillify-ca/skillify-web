@@ -1,17 +1,20 @@
 import React from "react";
 
 import { UserSkillsRatings } from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
-import SkillRowEmoji from "./SkillRowEmoji";
+import RatingSlider from "./RatingSlider";
 
-export type SkillRowProps = {
+export type UserSkillRowProps = {
   userSkillRating: UserSkillsRatings;
   isEditable: boolean;
+  handleUserSkillRatingChange: (rating: number) => void;
 };
 
-export default function SkillRow({
+export default function UserSkillRow({
   userSkillRating,
   isEditable,
-}: SkillRowProps) {
+  handleUserSkillRatingChange,
+}: UserSkillRowProps) {
+  const [rating, setRating] = React.useState(userSkillRating.studentRating);
   const renderEmojiByRating = (skillRating: number) => {
     if (skillRating == 0) {
       return "😶";
@@ -35,11 +38,14 @@ export default function SkillRow({
         {userSkillRating.intro_course_skill.name}
       </p>
       <div className="flex items-center space-x-4 sm:col-span-2">
-        <p className="text-xl">{userSkillRating.studentRating}</p>
-        <SkillRowEmoji
-          userSkillId={userSkillRating.id}
-          studentRating={userSkillRating.studentRating}
+        <p className="text-xl">{rating}</p>
+        <RatingSlider
           isEditable={isEditable}
+          userSkillRating={rating}
+          handleUserSkillRatingChange={(newRating) => {
+            setRating(newRating);
+            handleUserSkillRatingChange(newRating);
+          }}
         />
       </div>
     </div>

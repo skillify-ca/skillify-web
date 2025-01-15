@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import { animated, useSpring } from "react-spring";
 
@@ -6,8 +6,12 @@ import { CheckCircleIcon } from "@heroicons/react/outline";
 import { FetchSkillsAndRatings } from "../../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 import { FETCH_UNITS } from "../../../graphql/studentPortal/skillRatings/fetchUnits";
 import { FetchUserSkillsRatings } from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
+import {
+  UPDATE_USER_SKILL_RATING,
+  UpdateUserSkillRatingArgs,
+} from "../../../graphql/studentPortal/skillRatings/updateUserSkillRating";
 import { Button } from "../../ui/Button";
-import SkillRow from "./SkillRow";
+import UserSkillRow from "./UserSkillRow";
 
 export type SkillRatingsProps = {
   userId: string;
@@ -26,6 +30,8 @@ export default function SkillRatingsComponent({
   const [haveTabsLoaded, setHaveTabsLoaded] = useState(false);
   const [springProps, set] = useSpring(() => ({ opacity: 1 }));
 
+  const [ratingToSave, setRatingToSave] = useState<UpdateUserSkillRatingArgs>();
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
     set({ opacity: 0 });
@@ -43,6 +49,14 @@ export default function SkillRatingsComponent({
       setSections(unitNames);
       setActiveTab(unitNames[0]);
       setHaveTabsLoaded(true);
+    },
+  });
+
+  // call update user skill rating mutation
+  const [saveUserSkillRating] = useMutation(UPDATE_USER_SKILL_RATING, {
+    variables: ratingToSave,
+    onCompleted: () => {
+      alert("Rating saved");
     },
   });
 
@@ -106,11 +120,17 @@ export default function SkillRatingsComponent({
                     skill.intro_course_skill.intro_course_unit.title ===
                     activeTab
                 )
-                .map((it, i) => (
-                  <SkillRow
-                    key={i}
+                .map((it) => (
+                  <UserSkillRow
+                    key={it.id}
                     userSkillRating={it}
                     isEditable={isEditable}
+                    handleUserSkillRatingChange={(rating) => {
+                      setRatingToSave({
+                        userSkillId: it.id,
+                        studentRating: rating,
+                      });
+                    }}
                   />
                 ))}
           </animated.div>
@@ -121,7 +141,7 @@ export default function SkillRatingsComponent({
           <Button
             label="Save"
             onClick={() => {
-              // TODO
+              saveUserSkillRating();
             }}
           />
         ) : null}

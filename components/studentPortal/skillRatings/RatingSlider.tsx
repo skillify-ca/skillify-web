@@ -1,21 +1,19 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
-export interface EmojiSliderProps {
-  userSkillId: string;
-  studentRating: number;
+export interface RatingSliderProps {
   isEditable: boolean;
+  userSkillRating: number;
+  handleUserSkillRatingChange: (newStudentRating: number) => void;
 }
 
-const EmojiSlider = ({
-  userSkillId,
-  studentRating,
+const RatingSlider = ({
   isEditable,
-}: EmojiSliderProps) => {
-  const dispatch = useDispatch();
-
+  userSkillRating,
+  handleUserSkillRatingChange,
+}: RatingSliderProps) => {
   function handleChange(e) {
     const newStudentRating = Number(e.target.value) || 0;
+    handleUserSkillRatingChange(newStudentRating);
   }
 
   return (
@@ -24,11 +22,11 @@ const EmojiSlider = ({
         type="range"
         onChange={handleChange}
         className="w-44"
-        value={studentRating}
+        value={userSkillRating}
         disabled={!isEditable}
       />
     </div>
   );
 };
 
-export default EmojiSlider;
+export default RatingSlider;
