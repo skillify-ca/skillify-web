@@ -3,7 +3,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Offer, OfferTable } from "../../components/resources/jobTracker/JobTrackerComponent";
+import {
+  Offer,
+  OfferTable,
+} from "../../components/resources/jobTracker/JobTrackerComponent";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileGoalBadge from "../../components/studentPortal/profile/ProfileGoalBadge";
 import ProfileHeaderComponent from "../../components/studentPortal/profile/ProfileHeaderComponent";
@@ -45,12 +48,12 @@ import {
   setUserBadgeCount,
   setUserProfile,
 } from "../../redux/profileSlice";
+
 import {
-  setSkillRatings,
-  skillRatingsSelector,
-} from "../../redux/skillRatingsSlice";
+  FETCH_USER_SKILLS_RATINGS,
+  FetchUserSkillsRatings,
+} from "../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
-import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
 import { getInterviewData } from "../api/studentPortal/interviews/LuckyInterviewData";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 
@@ -69,10 +72,13 @@ export default function InternalProfile({
   const dispatch = useDispatch();
 
   // set userId to prop if navigating from /profile/x/[linkName], otherwise set as url parameter
-  const userId = userIdFromLink ? userIdFromLink : router.query.userId;
+  const userId = userIdFromLink
+    ? userIdFromLink
+    : Array.isArray(router.query.userId)
+    ? router.query.userId[0]
+    : router.query.userId;
   const { user } = useAuth();
   const { userGoals } = useSelector(userGoalsSelector);
-  const { skillRatings } = useSelector(skillRatingsSelector);
   const { userProfileData, userBadgeCount, totalBadgeCount } =
     useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
@@ -80,12 +86,13 @@ export default function InternalProfile({
   const [isCAD, setIsCAD] = useState(true);
   const [year, setYear] = useState(2023);
   const [interviewData, setInterviewData] = useState<Offer[]>([]);
+
   useEffect(() => {
-    if (user?.uid) {
-      // Fetch interview data only if user.uid exists
-      setInterviewData(getInterviewData(user?.uid));
+    if (userId) {
+      setInterviewData(getInterviewData(userId));
     }
   }, [user?.uid]);
+
   useEffect(() => {
     if (userRole === "coach" && !isExternal) {
       setIsEditable(true);
@@ -107,6 +114,7 @@ export default function InternalProfile({
             lastSeen: data.users[0].last_seen,
             name: data.users[0].name,
             profileImage: profileImage,
+            currentFocus: data.users[0].current_focus,
           })
         );
       }
@@ -122,16 +130,24 @@ export default function InternalProfile({
     },
   });
 
-  useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
-    variables: {
-      userId: userId,
-    },
-    onCompleted: (data) => {
-      dispatch(
-        setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
-      );
-    },
-  });
+  const { data: skillRatings } = useQuery<FetchSkillsAndRatings>(
+    FETCH_SKILLS_AND_RATINGS,
+    {
+      variables: {
+        userId: userId,
+      },
+    }
+  );
+
+  // fetch user skill ratings
+  const { data: userSkillRatings } = useQuery<FetchUserSkillsRatings>(
+    FETCH_USER_SKILLS_RATINGS,
+    {
+      variables: {
+        userId: userId,
+      },
+    }
+  );
 
   useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
     variables: {
@@ -210,24 +226,31 @@ export default function InternalProfile({
       component: (
         <GoalsSectionComponent
           inProfile={true}
-          userGoals={userGoals
-            .filter((goal) => !goal.isComplete && !goal.isArchived)
-            .slice(0, 3)}
+          userGoals={userGoals.filter(
+            (goal) => !goal.isComplete && !goal.isArchived
+          )}
         />
       ),
     },
     {
       shouldShow: true,
       title: `Skills (${
-        skillRatings.filter((it) => it.studentRating === 100).length
-      } / ${skillRatings.length} Mastered)`,
+        userSkillRatings?.intro_course_skills_user?.filter(
+          (it) => it.studentRating === 100
+        ).length
+      } / ${skillRatings?.intro_course_skills?.length} Mastered)`,
       hasProgress: true,
       value:
-        (skillRatings.filter((it) => it.studentRating === 100).length * 100) /
-        skillRatings.length,
+        (userSkillRatings?.intro_course_skills_user?.filter(
+          (it) => it.studentRating === 100
+        ).length *
+          100) /
+        skillRatings?.intro_course_skills?.length,
       component: (
         <SkillRatingsComponent
+          userId={userId}
           skillRatings={skillRatings}
+          userSkillRatings={userSkillRatings}
           isEditable={isEditable}
         />
       ),
@@ -242,12 +265,12 @@ export default function InternalProfile({
       ),
     },
     {
-      shouldShow:  userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
-      title: `Interview Tracking`,
+      shouldShow: userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
+      title: `Interview Tracking (${interviewData?.length} / 50)`,
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
       component: typeof userId == "string" && (
-        <OfferTable  isCAD={isCAD} year={year} data={interviewData} />
+        <OfferTable isCAD={isCAD} year={year} data={interviewData} />
       ),
     },
   ];

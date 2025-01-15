@@ -40,6 +40,7 @@ export const FETCH_USER_PROFILE_DATA = gql`
       last_seen
       name
       profile_image
+      current_focus
     }
   }
 `;
@@ -55,6 +56,8 @@ export type UserProfileResponse = {
   id: string;
   last_seen: Date;
   name: string;
+  profile_image: string;
+  current_focus: string;
 };
 
 export type UserProfileData = {
@@ -64,6 +67,7 @@ export type UserProfileData = {
   lastSeen: Date;
   name: string;
   profileImage?: string;
+  currentFocus?: string;
 };
 
 export type User = {
