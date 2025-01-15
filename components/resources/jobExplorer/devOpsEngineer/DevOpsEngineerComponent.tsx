@@ -59,7 +59,8 @@ const DevOpsEngineerComponent = () => {
             >
               Project: {project.name}
             </a>
-          {/* Add project name to the title */}
+            {/* Add project name to the title */}
+          </h2>
         </div>
       </div>
     </div>
