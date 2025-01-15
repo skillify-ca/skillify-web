@@ -3,6 +3,7 @@ import {
   CashIcon,
   CogIcon,
   DocumentSearchIcon,
+  GlobeIcon,
   LightBulbIcon,
   LightningBoltIcon,
   PlayIcon,
@@ -46,6 +47,12 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     link: "/resources/mockInterview",
     icon: <CogIcon className="w-6 mr-4" />,
     isPremium: true,
+  },
+  {
+    name: "Job Board",
+    page: "jobBoard",
+    link: "/studentPortal/jobBoard",
+    icon: <GlobeIcon className="w-6 mr-4" />,
   },
   {
     name: "Job Explorer",
