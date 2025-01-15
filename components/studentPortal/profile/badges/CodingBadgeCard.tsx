@@ -32,11 +32,12 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
     <Root>
       <Trigger asChild>
         {
-          <div className="flex items-center justify-center p-4 shadow cursor-pointer bg-backgroundPrimary rounded-xl">
+          <div className="flex items-center gap-4 p-4 shadow cursor-pointer bg-backgroundPrimary rounded-xl">
             <img
               src={badge.coding_badge.image}
               className="w-16 h-16 transition-all border rounded-full shadow lg:w-24 lg:h-24 hover:scale-110 hover:shadow-lg"
             />
+            <p>{badge.coding_badge.title}</p>
           </div>
         }
       </Trigger>
@@ -46,7 +47,7 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
 
         <Content className={`${currentTheme}`}>
           <div
-            className={`fixed h-[600px] w-[300px] md:h-[600px] md:w-[300px] p-4 transform -translate-x-1/2 md:-translate-y-1/2 -translate-y-1/2 ${"bg-backgroundPrimary"} rounded-lg left-1/2 top-1/2 md:top-1/2`}
+            className={`fixed h-[600px] w-[300px] md:h-[600px] md:w-[300px] lg:w-[400px] p-4 transform -translate-x-1/2 md:-translate-y-1/2 -translate-y-1/2 ${"bg-backgroundPrimary"} rounded-lg left-1/2 top-1/2 md:top-1/2`}
           >
             <CodingBadgeCardContent badge={badge} />
           </div>
@@ -69,12 +70,14 @@ export function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
   return (
     <div className="flex flex-col justify-center h-full gap-4 p-4 bg-backgroundPrimary text-textPrimary">
       <p className="text-xs text-end">{formatDate(badge.created_at)}</p>
-      <p className="text-lg font-bold ">{badge.coding_badge.title}</p>
+      <p className="text-lg font-bold text-center ">
+        {badge.coding_badge.title}
+      </p>
 
       {badge.coding_badge.image ? (
         <img
           src={badge.coding_badge.image}
-          className="w-64 h-64 border shadow"
+          className="w-64 h-64 mx-auto border shadow"
         />
       ) : (
         <div className="w-36 h-36 bg-slate-400" />
