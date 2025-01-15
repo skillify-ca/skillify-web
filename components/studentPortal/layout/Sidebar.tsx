@@ -36,13 +36,11 @@ export default function Sidebar({ closeSidebar }) {
       _id: user?.uid,
     },
     onCompleted: (data) => {
-      if (data && data.users) {
+      if (data && data.users && data.users.length > 0) {
         if (data.users[0].userRole === "coach") {
           dispatch(setUserRole("coach"));
         } else if (data.users[0].userRole === "student") {
           dispatch(setUserRole("student"));
-        } else if (data.users[0].userRole === "paid") {
-          dispatch(setUserRole("paid"));
         } else if (data.users[0].userRole === "freemium") {
           dispatch(setCreatedAt(data.users[0].created_at));
           dispatch(setUserRole("freemium"));
@@ -73,7 +71,10 @@ export default function Sidebar({ closeSidebar }) {
       dispatch(setActivePage("coding_basics"));
     } else if (router.pathname.startsWith("/studentPortal")) {
       dispatch(setActivePage("dashboard"));
-    } else {
+    } else if(router.pathname.startsWith("/studentPortal/jobs")) {
+      dispatch(setActivePage("jobs"))
+    } 
+    else {
       dispatch(setActivePage("dashboard"));
     }
     closeSidebar();
@@ -105,7 +106,7 @@ export default function Sidebar({ closeSidebar }) {
 
   return (
     //Full width then restrict in page
-    (<div className="flex flex-col w-full overflow-auto bg-backgroundPrimary text-textPrimary">
+    <div className="flex flex-col w-full overflow-auto bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         {user && userRole === "freemium" ? (
           <FreemiumSidebarHeader createdAt={createdAt} />
@@ -163,6 +164,6 @@ export default function Sidebar({ closeSidebar }) {
           Logout
         </div>
       </div>
-    </div>)
+    </div>
   );
 }

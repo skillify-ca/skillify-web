@@ -1,12 +1,10 @@
 import { useQuery } from "@apollo/client";
-import Link from "next/link";
 import React, { useState } from "react";
 import {
   FETCH_CODING_BADGES,
   FetchBadgeResponse,
   UserCodingBadge,
 } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
-import { Button } from "../../../ui/Button";
 import CodingBadgeCard from "./CodingBadgeCard";
 
 export type AchievementComponentProps = {
@@ -30,23 +28,15 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   return (
     <div className="p-4 rounded-xl bg-backgroundSecondary">
       {userBadges && (
-        <div className="grid w-full grid-cols-3 gap-4 overflow-x-scroll lg:flex ">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {emptyArray
             .concat(userBadges)
             .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
-            .filter((badge, index) => {
-              return index < 5;
-            })
             .map((badge, index) => {
               return <CodingBadgeCard badge={badge} key={index} />;
             })}
         </div>
       )}
-      <div className="mt-4">
-        <Link href="/studentPortal/badges">
-          <Button label={"Show More"}></Button>
-        </Link>
-      </div>
     </div>
   );
 };
