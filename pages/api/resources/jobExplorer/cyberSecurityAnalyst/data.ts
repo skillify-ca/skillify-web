@@ -95,6 +95,6 @@ export const description =
   
   export const project = {
     name: "Cybersecurity Analyst Project",
-    link: "cyberSecurityProject",
+    link: "cyberSecurityAnalystProject",
   };
   
