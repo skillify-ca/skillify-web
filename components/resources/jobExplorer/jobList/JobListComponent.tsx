@@ -3,7 +3,6 @@ import React from "react";
 
 
 const disabledJobs = [
-  "Product Manager",
 ];
 
 const JobGroup = ({ subheading, jobs }) => (
