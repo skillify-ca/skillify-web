@@ -51,10 +51,16 @@ const DevOpsEngineerComponent = () => {
       <div className="w-full lg:w-1/2 text-center"> {/* Center the Project section */}
         <div className="mb-8">
           <h2 className="mb-4 text-2xl font-bold text-blue-600">
-            <a href={project.link} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+            <a
+              href={`projects/${project.link}`}
+              className="text-blue-500 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Project: {project.name}
             </a>
-          </h2> {/* Add project name to the title */}
+            {/* Add project name to the title */}
+          </h2>
         </div>
       </div>
     </div>
