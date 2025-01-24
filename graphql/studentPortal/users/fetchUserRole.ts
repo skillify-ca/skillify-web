@@ -12,7 +12,7 @@ export const FETCH_USER_ROLE = gql`
 `;
 
 export type FetchRoleData = {
-  users: UserData;
+  users: UserData[];
 };
 export type UserData = {
   userRole: UserRole;
