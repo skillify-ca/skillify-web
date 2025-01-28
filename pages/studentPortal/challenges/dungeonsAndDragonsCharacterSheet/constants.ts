@@ -56,3 +56,8 @@ export const SKILL_LIST = [
   { name: "Stealth", attributeModifier: "Dexterity" },
   { name: "Survival", attributeModifier: "Wisdom" },
 ];
+
+// needed to pass vercel checks
+export default function DummyComponent() {
+  return null;
+}

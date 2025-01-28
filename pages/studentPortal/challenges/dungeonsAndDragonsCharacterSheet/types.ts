@@ -8,3 +8,8 @@ export type Attributes = {
 };
 
 export type Class = "Barbarian" | "Wizard" | "Bard";
+
+// needed to pass vercel checks
+export default function DummyComponent() {
+  return null;
+}
