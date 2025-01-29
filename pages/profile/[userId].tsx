@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Offer,
@@ -265,7 +265,7 @@ export default function InternalProfile({
       ),
     },
     {
-      shouldShow: userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
+      shouldShow: true,
       title: `Interview Tracking (${interviewData?.length} / 50)`,
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
