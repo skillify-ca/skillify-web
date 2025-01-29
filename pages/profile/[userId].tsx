@@ -54,7 +54,7 @@ import {
   FetchUserSkillsRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
-import { getInterviewData } from "../api/studentPortal/interviews/LuckyInterviewData";
+import { getInterviewData } from "../api/studentPortal/interviews/InterviewDataMap";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 
 type InternalProfileProps = {
