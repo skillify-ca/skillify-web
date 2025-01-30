@@ -1,11 +1,12 @@
 import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
-import FrontEndProject from "../../../components/resources/jobExplorer/frontEndDev/FrontEndProject";
+import JobExplorerProject from "../../../components/resources/jobExplorer/JobExplorerProject";
+import { title, goal, objectives, requirements, estimatedTime, submissionRequirements } from "../../../pages/api/resources/jobExplorer/frontEndDev/projectData"
 
 export default function FEProjectPage() {
   return (
     <div>
-      <FrontEndProject />
+      <JobExplorerProject title={title} goal={goal} objectives={objectives} requirements={requirements} estimatedTime={estimatedTime} submissionRequirements={submissionRequirements} />
     </div>
   );
 }
