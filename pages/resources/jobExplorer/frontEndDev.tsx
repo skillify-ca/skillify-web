@@ -2,7 +2,7 @@ import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
 import FrontEndDevComponent from "../../../components/resources/jobExplorer/frontEndDev/FrontEndDevComponent";
 
-export default function JobListPage() {
+export default function FrontEndPage() {
   return (
     <div>
       <FrontEndDevComponent />
@@ -10,7 +10,7 @@ export default function JobListPage() {
   );
 }
 
-JobListPage.getLayout = function getLayout(page) {
+FrontEndPage.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
