@@ -3,7 +3,7 @@ import { JimiInterviewData } from "./JimiInterviewData";
 import { LuckyInterviewData } from "./LuckyInterviewData";
 
 
-//Todo: Think of an approach to not expose the userIds in the server code
+//TODO: Think of an approach to not expose the userIds in the server code
 const InterviewMap: { [key: string]: Offer[] } = {
   "R7nzMKiRewgJuLm54eQ1KdHV3g82": LuckyInterviewData,
   "q1u3HimWe4dPGeWiReAotyocQpF2": JimiInterviewData
