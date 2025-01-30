@@ -108,7 +108,7 @@ const JobListComponent = () => {
       image: "/images/resources/jobExplorer/android.png",
       width: 100,
       height: 100,
-      link: "././androidAppDev",
+      link: "././androidDeveloper",
       group: "mobile",
     },
     {
@@ -117,7 +117,7 @@ const JobListComponent = () => {
       image: "/images/resources/jobExplorer/ios.png",
       width: 100,
       height: 100,
-      link: "././iosAppDev",
+      link: "././iosDeveloper",
       group: "mobile",
     },
     {

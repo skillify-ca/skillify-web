@@ -1,11 +1,19 @@
 import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
 import JobExplorerJobComponent from "../../../components/resources/jobExplorer/JobExplorerJobComponent";
-import { REACT_NATIVE_DEVELOPER_DATA } from "../../api/resources/jobExplorer/reactNativeDeveloper";
+import { fetchJobDetailsData } from "../../api/resources/jobExplorer/fetchJobDetailsData";
 
-export default function ReactNativeAppDeveloperPage() {
+export default function JobDetailsPage({ jobData }) {
+  if (!jobData) {
+    return (
+      <div>
+        <p className="font-bold">Job Not Found</p>
+      </div>
+    );
+  }
+
   const { title, description, mandatorySkills, additionalSkills, project } =
-    REACT_NATIVE_DEVELOPER_DATA;
+    jobData;
   return (
     <div>
       <JobExplorerJobComponent
@@ -19,7 +27,7 @@ export default function ReactNativeAppDeveloperPage() {
   );
 }
 
-ReactNativeAppDeveloperPage.getLayout = function getLayout(page) {
+JobDetailsPage.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
@@ -27,3 +35,14 @@ ReactNativeAppDeveloperPage.getLayout = function getLayout(page) {
     </div>
   );
 };
+
+// read the slug from the URL and fetch the data for the job
+export async function getServerSideProps(context) {
+  const { slug } = context.params;
+  const jobData = await fetchJobDetailsData(slug);
+  return {
+    props: {
+      jobData,
+    },
+  };
+}
