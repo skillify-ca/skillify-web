@@ -1,7 +1,12 @@
 import Link from "next/link";
+import React from "react";
 
 export default function Coding() {
   const lessons = [
+    {
+      name: "Dungeons and Dragons Character Sheet",
+      link: "dungeonsAndDragonsCharacterSheet",
+    },
     { name: "Evaluate Expression", link: "evaluateExpression" },
     {
       name: "Minimum Number Of Frogs Croaking",
@@ -13,18 +18,19 @@ export default function Coding() {
     { name: "Reverse Linked List", link: "reverseLinkedList" },
   ];
   return (
-    (<div>
+    <div>
       {lessons.map((lesson) => (
         <Link
           key={lesson.link}
           href={`/studentPortal/challenges/${lesson.link}`}
-          legacyBehavior>
+          legacyBehavior
+        >
           <div className="p-4 border cursor-pointer hover:bg-sky-300">
             {lesson.name}
           </div>
         </Link>
       ))}
-    </div>)
+    </div>
   );
 }
 
