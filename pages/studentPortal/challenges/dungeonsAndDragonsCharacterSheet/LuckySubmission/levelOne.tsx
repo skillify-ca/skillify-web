@@ -12,28 +12,28 @@ const levelOne = () => {
   const attributes = ATTRIBUTE_LIST;
 
   // STATE VARIABLES
-  const [attributeCount, setAttributeCount] = useState([0, 0, 0, 0, 0, 0]);
+  const [attributeCounts, setAttributeCounts] = useState([0, 0, 0, 0, 0, 0]);
 
   // CLICK HANDLERS
   const incrementHandler = (i) => {
-    const nextCount = attributeCount.map((counter, index) => {
+    const nextCount = attributeCounts.map((counter, index) => {
       if (index === i) {
         return counter + 1;
       } else {
         return counter;
       }
     });
-    setAttributeCount(nextCount);
+    setAttributeCounts(nextCount);
   };
   const decrementHandler = (i) => {
-    const nextCount = attributeCount.map((counter, index) => {
+    const nextCount = attributeCounts.map((counter, index) => {
       if (index === i) {
         return counter - 1;
       } else {
         return counter;
       }
     });
-    setAttributeCount(nextCount);
+    setAttributeCounts(nextCount);
   };
 
   // TSX RETURN
@@ -44,7 +44,7 @@ const levelOne = () => {
         {" "}
         <button onClick={() => incrementHandler(index)}>+</button>
         <button onClick={() => decrementHandler(index)}>-</button>
-        <p>{attributeCount[index]}</p>
+        <p>{attributeCounts[index]}</p>
       </div>
     </div>
   ));
