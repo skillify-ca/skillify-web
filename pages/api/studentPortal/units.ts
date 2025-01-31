@@ -305,8 +305,8 @@ export const reactUnit: Unit = {
     },
     {
       title: "Assignment 5",
-      description: "Build a tutorial to a Leetcode question",
-      link: "leetcode-assignment",
+      description: "Build a Pokedex App",
+      link: "pokedex-app",
       type: "lesson",
     },
   ],
