@@ -1,10 +1,16 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
-import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { getLessonForBasicsCourse } from "../../../api/studentPortal/courses/codingBasics";
 import { ResponseData } from "../../../api/studentPortal/courses/codingBasics/introduction";
+
+// dynamic import for the LessonComponent component
+const LessonComponent = dynamic(
+  () => import("../../../../components/studentPortal/lessons/LessonComponent"),
+  { ssr: false }
+);
 
 const LessonPage = ({ lessonComponents, nextSlug }: ResponseData) => {
   return (
