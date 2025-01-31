@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import ArrayIteration from "../../../components/studentPortal/challenges/dataStructures/ArrayIteration";
-import HashMap from "../../../components/studentPortal/challenges/dataStructures/HashMap";
-import { Button } from "../../../components/ui/Button";
 
 export default function WordPattern(props) {
   const onResetRequested = () => {
@@ -99,10 +96,47 @@ export default function WordPattern(props) {
           290. Word Pattern
         </h1>
         <p className="w-full p-4 text-center bg-blue-300">
-          Given a pattern and a string s, find if s follows the same pattern.
-          Here follow means a full match, such that there is a bijection between
-          a letter in pattern and a non-empty word in s.
+          For this assignment you will need to be familiar with the PokeAPI.
+          When battling an opponent in Pokemon, it's important to use Pokemon
+          types that will be useful in battle. In this assignment, you will
+          create a React component that will allow a user to create a list of
+          Pokemon types and a list of Pokemon. The user will then be able to
+          check if the list of Pokemon match the list of specified Pokemon
+          types. The order of the Pokemon types and Pokemon matters. If the list
+          of Pokemon types match the list of Pokemon, the user will see a
+          success message. If the list of Pokemon types do not match the list of
+          Pokemon, the user will see an error message. This particular trainer
+          has an odd request. They do not want to have different Pokemon on
+          their that share the same type.
         </p>
+        <p>
+          Examples of a passing team:
+          <ul>- 6 Pikachus</ul>
+          <ul> - 5 Charizards and 1 Blastoise </ul>
+          <ul>
+            - 1 Charizard, 1 Blastoise, 1 Vulpix, 1 Gengar, 1 Pikachu, 1
+            Bulbsaur
+          </ul>
+        </p>
+        <p>
+          Examples of a failing team:
+          <ul>- 5 Pikachus and 1 Raichu</ul>
+          <ul>- 4 Charizards, 1 Blastoise and 1 Vulpix</ul>
+        </p>
+        <ul>
+          <li>
+            Step 1. Create a React component that allows a user to create a list
+            of 6 Pokemon types. Duplicates are allowed.{" "}
+          </li>
+          <li>
+            Step 2. Create a React component that allows a user to create a list
+            of 6 Pokemon. Duplicates are allowed.{" "}
+          </li>
+          <li>
+            Step 3. Show a success or error message if the list of Pokemon types
+            match the list of Pokemon. The order matters!
+          </li>
+        </ul>
       </div>
       <div className="flex flex-col items-center justify-center gap-4 heropattern-bamboo-gray-300">
         <div className="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
@@ -132,80 +166,10 @@ export default function WordPattern(props) {
           </div>
           <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
             <p className="font-bold">Algorithm</p>
-            Iterate through the string and build up a dictionary of key-value
-            pairs. Save both the current character and the current word in the
-            dictionary along with the current index.
-          </div>
-          <div className="flex flex-col gap-2 p-4 bg-white shadow-lg rounded-xl">
-            <h2 className="font-bold">Pattern Input</h2>
-            <input
-              className="p-4 bg-blue-50"
-              value={pattern}
-              onChange={(e) => onPatternInputChangeRequested(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col gap-2 p-4 bg-white shadow-lg rounded-xl">
-            <h2 className="font-bold">Words Input</h2>
-            <input
-              className="p-4 bg-blue-50"
-              value={str}
-              onChange={(e) => onStrInputChangeRequested(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col p-4 space-y-4 bg-white shadow-lg rounded-xl">
-            <p className="font-bold ">Interactive</p>
-            <div className="flex flex-col space-y-2 bg-white">
-              <p className="text-sm font-bold">Pattern</p>
-              <ArrayIteration data={pattern.split("")} currentIndex={index} />
-            </div>
-            <div className="flex flex-col space-y-2 bg-white">
-              <p className="text-sm font-bold">Words</p>
-              <ArrayIteration data={words()} currentIndex={index} />
-            </div>
-            <div className="flex flex-col space-y-2 bg-white">
-              <p className="text-sm font-bold">Dictionary</p>
-
-              <HashMap data={dictionary} />
-            </div>
-            <div className="flex flex-col space-y-2 bg-white">
-              <p className="text-sm font-bold">Message</p>
-              <p className="text-sm font-bold">{message}</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
-            <p className="font-bold">Controls</p>
-            <div className="grid grid-cols-2 gap-4">
-              <Button
-                disabled={isComplete}
-                label="Check Dictionary"
-                backgroundColor="blue"
-                onClick={onCheckDictionaryRequested}
-              />
-              <Button
-                disabled={isComplete}
-                label="Set Dictionary"
-                backgroundColor="blue"
-                onClick={onSetDictionaryRequested}
-              />
-              <Button
-                disabled={isComplete}
-                label="Advance"
-                backgroundColor="blue"
-                onClick={onAdvanceRequested}
-              />
-
-              <Button
-                label="Reset"
-                backgroundColor="blue"
-                onClick={onResetRequested}
-              />
-              <Button
-                label="Clear"
-                backgroundColor="blue"
-                onClick={onClearRequested}
-              />
-            </div>
+            Iterate through the list of Pokemon types and build up a
+            map/dictionary of key-value pairs. Save both the current Pokemon
+            Type and the current word in the dictionary along with the current
+            index.
           </div>
         </div>
       </div>
