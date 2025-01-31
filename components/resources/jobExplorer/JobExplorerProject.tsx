@@ -39,11 +39,7 @@ const JobExplorerProject = ({
       <div className="mt-6">
         <h3 className="text-xl font-bold">Submission</h3>
         <p className="mt-2 text-gray-800">
-          To submit your assignment, create a GitHub repository for your {title}{" "}
-          and share the link with us.
-        </p>
-        <p className="mt-2 text-gray-800">
-          Your repository should include {submissionRequirements}.
+          {submissionRequirements}.
         </p>
       </div>
     </div>

@@ -1,12 +1,12 @@
 import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
 import JobExplorerProject from "../../../components/resources/jobExplorer/JobExplorerProject";
-import { title, goal, objectives, requirements, estimatedTime, submissionRequirements } from "../../../pages/api/resources/jobExplorer/backEndDev/projectData"
+import { BACK_END_PROJECT_DATA } from "../../../pages/api/resources/jobExplorer/backEndDev/projectData"
 
 export default function BEProjectPage() {
   return (
     <div>
-      <JobExplorerProject title={title} goal={goal} objectives={objectives} requirements={requirements} estimatedTime={estimatedTime} submissionRequirements={submissionRequirements} />
+      <JobExplorerProject title={BACK_END_PROJECT_DATA.title} goal={BACK_END_PROJECT_DATA.goal} objectives={BACK_END_PROJECT_DATA.objectives} requirements={BACK_END_PROJECT_DATA.requirements} estimatedTime={BACK_END_PROJECT_DATA.estimatedTime} submissionRequirements={BACK_END_PROJECT_DATA.submissionRequirements} />
     </div>
   );
 }

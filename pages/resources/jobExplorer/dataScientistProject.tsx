@@ -1,12 +1,12 @@
 import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
 import JobExplorerProject from "../../../components/resources/jobExplorer/JobExplorerProject";
-import { title, goal, objectives, requirements, estimatedTime, submissionRequirements } from "../../../pages/api/resources/jobExplorer/dataScientist/projectData"
+import { DATA_SCIENCE_PROJECT_DATA } from "../../../pages/api/resources/jobExplorer/dataScientist/projectData"
 
 export default function DSProjectPage() {
   return (
     <div>
-      <JobExplorerProject title={title} goal={goal} objectives={objectives} requirements={requirements} estimatedTime={estimatedTime} submissionRequirements={submissionRequirements} />
+      <JobExplorerProject title={DATA_SCIENCE_PROJECT_DATA.title} goal={DATA_SCIENCE_PROJECT_DATA.goal} objectives={DATA_SCIENCE_PROJECT_DATA.objectives} requirements={DATA_SCIENCE_PROJECT_DATA.requirements} estimatedTime={DATA_SCIENCE_PROJECT_DATA.estimatedTime} submissionRequirements={DATA_SCIENCE_PROJECT_DATA.submissionRequirements} />
     </div>
   );
 }
