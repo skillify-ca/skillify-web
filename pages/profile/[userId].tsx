@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Offer,
@@ -54,7 +54,7 @@ import {
   FetchUserSkillsRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
-import { getInterviewData } from "../api/studentPortal/interviews/LuckyInterviewData";
+import { getInterviewData } from "../api/studentPortal/interviews/InterviewDataMap";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 
 type InternalProfileProps = {
@@ -265,7 +265,7 @@ export default function InternalProfile({
       ),
     },
     {
-      shouldShow: userId == "R7nzMKiRewgJuLm54eQ1KdHV3g82",
+      shouldShow: true,
       title: `Interview Tracking (${interviewData?.length} / 50)`,
       hasProgress: true,
       value: (userBadgeCount * 100) / totalBadgeCount,
