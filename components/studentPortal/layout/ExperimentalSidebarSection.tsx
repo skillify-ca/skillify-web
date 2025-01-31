@@ -1,12 +1,10 @@
 import {
-  CameraIcon,
   CashIcon,
   CogIcon,
   DocumentSearchIcon,
   GlobeIcon,
   LightBulbIcon,
   LightningBoltIcon,
-  PlayIcon,
   StarIcon,
 } from "@heroicons/react/outline";
 import React from "react";
@@ -15,30 +13,15 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../ui/Collapsible";
-import SkillifyCommandPalette from "./CommandPalette";
 import { PaidSidebarItemProps } from "./PaidSidebarItem";
 import SidebarItem from "./SidebarItem";
 
 const experimentalSidebarItems: PaidSidebarItemProps[] = [
   {
-    name: "Games",
-    link: "/studentPortal/games",
-    page: "games",
-    icon: <PlayIcon className="w-6 mr-4" />,
-    isPremium: true,
-  },
-  {
     name: "Challenges",
     page: "challenges",
     link: "/studentPortal/challenges",
     icon: <StarIcon className="w-6 mr-4" />,
-    isPremium: true,
-  },
-  {
-    name: "Workshops",
-    page: "workshops",
-    link: "/studentPortal/workshops",
-    icon: <CameraIcon className="w-6 mr-4" />,
     isPremium: true,
   },
   {
@@ -97,20 +80,6 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     icon: <LightningBoltIcon className="w-6 h-6 mr-4" />,
     isPremium: true,
   },
-  {
-    name: "Skillify AI",
-    link: "/studentPortal/skillifyAI",
-    page: "skillifyAI",
-    icon: <CogIcon className="w-6 h-6 mr-4" />,
-    isPremium: true,
-  },
-  {
-    name: "Virtual Hangout",
-    link: "/studentPortal/virtualHangout",
-    page: "virtualHangout",
-    icon: <CameraIcon className="w-6 h-6 mr-4" />,
-    isPremium: true,
-  },
 ];
 
 function ExperimentalSidebarSection({ userRole, closeSidebar }) {
@@ -128,8 +97,6 @@ function ExperimentalSidebarSection({ userRole, closeSidebar }) {
           </div>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <SkillifyCommandPalette />
-
           {experimentalSidebarItems.map((item) => (
             <SidebarItem
               key={item.name}
