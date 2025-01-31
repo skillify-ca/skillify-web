@@ -61,8 +61,6 @@ export default function Sidebar({ closeSidebar }) {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/goals")) {
       dispatch(setActivePage("goals"));
-    } else if (router.pathname.startsWith("/studentPortal/workshops")) {
-      dispatch(setActivePage("workshops"));
     } else if (router.pathname.startsWith("/studentPortal/courses/frontend")) {
       dispatch(setActivePage("frontend_development"));
     } else if (
@@ -71,10 +69,9 @@ export default function Sidebar({ closeSidebar }) {
       dispatch(setActivePage("coding_basics"));
     } else if (router.pathname.startsWith("/studentPortal")) {
       dispatch(setActivePage("dashboard"));
-    } else if(router.pathname.startsWith("/studentPortal/jobs")) {
-      dispatch(setActivePage("jobs"))
-    } 
-    else {
+    } else if (router.pathname.startsWith("/studentPortal/jobs")) {
+      dispatch(setActivePage("jobs"));
+    } else {
       dispatch(setActivePage("dashboard"));
     }
     closeSidebar();

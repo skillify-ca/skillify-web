@@ -5,7 +5,6 @@ export type SidebarPage =
   | "dashboard"
   | "coaches"
   | "goals"
-  | "workshops"
   | "jobs"
   | "profile"
   | "goals"

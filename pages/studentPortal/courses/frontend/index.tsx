@@ -10,7 +10,6 @@ import { UPDATE_USER } from "../../../../graphql/studentPortal/users/updateUser"
 import { useAuth } from "../../../../lib/authContext";
 import { profileSelector } from "../../../../redux/profileSlice";
 import { freemiumUnits } from "../../../api/studentPortal/freemium/freemiumUnits";
-import { paidUnits } from "../../../api/studentPortal/freemium/helpers";
 import { Unit, reactUnits } from "../../../api/studentPortal/units";
 export default function StudentPortalPage() {
   const { user } = useAuth();
@@ -51,12 +50,6 @@ export default function StudentPortalPage() {
             <UnitView key={index} data={it} course="frontend" />
           ))}
           {isModalOpen && <FreemiumDialogComponent trigger={false} />}
-        </div>
-      ) : userRole === "paid" ? (
-        <div className="grid grid-cols-1 gap-4">
-          {paidUnits.map((it, index) => (
-            <UnitView key={index} data={it} course="frontend" />
-          ))}
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4">
