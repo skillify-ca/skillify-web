@@ -14,7 +14,7 @@ const accountabilityMenuData: Record<string, string[]> = {
     "Architectural/System Design",
     "Bug Fixing",
     "Coding",
-    "Continuous Integration and Deployment (CI/CD)",
+  "Continuous Integration and Deployment (CI/CD)",
     "Feature Enhancements",
     "Requirements Analysis",
     "Testing",
