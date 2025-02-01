@@ -135,7 +135,3 @@ export const LuckyInterviewData: Offer[]=[
     },
    
   ]
-  export function getInterviewData(userId: string | null): Offer[] | null {
-    const allowedUserId = "R7nzMKiRewgJuLm54eQ1KdHV3g82"; // Replace with your expected userId
-    return userId === allowedUserId ? LuckyInterviewData : null;
-  }
