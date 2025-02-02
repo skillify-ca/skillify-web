@@ -252,3 +252,11 @@ function DungeonsAndDragonsCharacterSheet() {
 }
 
 export default DungeonsAndDragonsCharacterSheet;
+
+/**
+ *
+ * high level overview of attributes/modifiers/skills was not clear
+ * where to find the attribute list constant was not clear, tell them its in the api
+ * dont worry about the other the code in the constants thats for other levels
+ * explain how to create a submission folder
+ */
