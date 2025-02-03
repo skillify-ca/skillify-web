@@ -77,3 +77,11 @@ export const project = {
   name: "AI Engineer Project",
   link: "aiEngineerProject",
 };
+
+export const AI_ENGINEER_JOB_DATA = {
+  title,
+  description,
+  mandatorySkills,
+  additionalSkills,
+  project,
+};
