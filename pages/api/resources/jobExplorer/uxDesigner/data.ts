@@ -73,3 +73,11 @@ export const project = {
   name: "UX Designer Project",
   link: "uxDesignerProject",
 };
+
+export const UX_DESIGNER_DATA = {
+title,
+description,
+mandatorySkills,
+additionalSkills,
+project,
+};
