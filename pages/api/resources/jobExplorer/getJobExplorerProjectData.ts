@@ -17,8 +17,8 @@ export type JobExplorerProjectData = {
 const projectsDataMap: { [slug: string]: JobExplorerProjectData } = {
   devOpsEngineerProject: devOpsEngineerProjectData,
   uxDesignerProject: uxDesignerProjectData,
-  digitalMarketerProjectData: digitalMarketerProjectData, 
-  productManagerProjectData:productManagerProjectData,
+  digitalMarketerProject: digitalMarketerProjectData, 
+  productManagerProject:productManagerProjectData,
   cyberSecurityProject: cyberSecurityAnalystProjectData,
   aiEngineerProject: aiEngineerProjectData,
 };

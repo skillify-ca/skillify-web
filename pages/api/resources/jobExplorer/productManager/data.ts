@@ -87,3 +87,11 @@ export const project = {
   name: "Product Manager Project",
   link: "productManagerProject",
 };
+
+export const PRODUCT_MANAGER_DATA = {
+title,
+description,
+mandatorySkills,
+additionalSkills,
+project,
+};
