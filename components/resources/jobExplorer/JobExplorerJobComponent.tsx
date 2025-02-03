@@ -1,4 +1,4 @@
-
+import React from 'react';
 type JobExplorerJobComponentProps = {
   title: string;
   description: string;
