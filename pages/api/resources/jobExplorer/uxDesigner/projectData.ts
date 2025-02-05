@@ -24,7 +24,9 @@ const requirements = [
 ];
 const estimatedTime = "1-2 weeks";
 const submissionRequirements = formatList([
-  "Submit your design assets, wireframes, prototypes, and any supporting documentation",
+  "Create a GitHub repository to track your design assets, wireframes, prototypes, and any supporting documentation"
+  ,
+  "please submit the link to the to complete the project",
 ]);
 
 export const uxDesignerProjectData = {

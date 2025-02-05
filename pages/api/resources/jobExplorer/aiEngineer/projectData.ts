@@ -27,7 +27,8 @@ import { formatList } from "../formatList";
   const estimatedTime= "8 weeks"
   const submissionRequirements= formatList([
     "Create a GitHub repository for your AI project",
-    "Include the AI model code, the application code (if applicable), documentation, and instructions on how to interact with the application",
+    "Include documentation, and instructions on how to interact with the application",
+    "please submit the link to the to complete the project",
   ])
 
 export const aiEngineerProjectData = {

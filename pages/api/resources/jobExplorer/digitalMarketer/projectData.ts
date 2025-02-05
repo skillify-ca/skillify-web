@@ -20,7 +20,7 @@ const requirements = [
 ];
 const estimatedTime = "4-6 weeks";
 const submissionRequirements = formatList([
-  "Submit a portfolio or case study in PDF format or as a website, including an overview of the business, research summary, marketing strategy, examples of marketing materials, and performance metrics",
+  "Submit a portfolio or case study, including an overview of the business, research summary, marketing strategy, examples of marketing materials, and performance metrics",
 ]);
 
 export const digitalMarketerProjectData = {
