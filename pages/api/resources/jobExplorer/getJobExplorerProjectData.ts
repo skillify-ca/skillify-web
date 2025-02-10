@@ -1,6 +1,11 @@
 import { aiEngineerProjectData } from "./aiEngineer/projectData";
 import { cyberSecurityAnalystProjectData } from "./cyberSecurityAnalyst/projectData";
 import { devOpsEngineerProjectData } from "./devOpsEngineer/projectData";
+import { FRONT_END_PROJECT_DATA } from "./frontEndDev/projectData";
+import { BACK_END_PROJECT_DATA } from "./backEndDev/projectData";
+import { DATA_SCIENCE_PROJECT_DATA } from "./dataScientist/projectData";
+import { FULLSTACK_PROJECT_DATA } from "./fullstackDev/projectData";
+import { GAME_DEV_PROJECT_DATA } from "./gameDev/projectData";
 import { digitalMarketerProjectData } from "./digitalMarketer/projectData";
 import { productManagerProjectData } from "./productManager/projectData";
 import { uxDesignerProjectData } from "./uxDesigner/projectData";
@@ -16,9 +21,14 @@ export type JobExplorerProjectData = {
 
 const projectsDataMap: { [slug: string]: JobExplorerProjectData } = {
   devOpsEngineerProject: devOpsEngineerProjectData,
+  frontEndDevProject: FRONT_END_PROJECT_DATA,
+  backEndDevProject: BACK_END_PROJECT_DATA,
+  dataScientistProject: DATA_SCIENCE_PROJECT_DATA,
+  fullstackDevProject: FULLSTACK_PROJECT_DATA,
+  gameDevProject: GAME_DEV_PROJECT_DATA,
   uxDesignerProject: uxDesignerProjectData,
   digitalMarketerProject: digitalMarketerProjectData, 
-  productManagerProject:productManagerProjectData,
+  productManagerProject: productManagerProjectData,
   cyberSecurityProject: cyberSecurityAnalystProjectData,
   aiEngineerProject: aiEngineerProjectData,
 };
