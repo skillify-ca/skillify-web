@@ -30,9 +30,10 @@ const requirements = [
 const estimatedTime = "8 weeks";
 
 const submissionRequirements = formatList([
-  "all the necessary configuration files",
-  "scripts",
-  "documentation to set up and run the entire DevOps pipeline",
+  "Create a GitHub repository for your DevOps project",
+  "document your devops progress in a README.md file",
+  "please submit the link to the to complete the project",
+
 ]);
 
 export const devOpsEngineerProjectData = {

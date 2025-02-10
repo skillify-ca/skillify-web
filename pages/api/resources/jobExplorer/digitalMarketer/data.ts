@@ -105,3 +105,12 @@ export const project = {
   name: "Digital Marketer Project",
   link: "digitalMarketerProject",
 };
+
+
+export const DIGITAL_MARKETER_DATA = {
+  title,
+  description,
+  mandatorySkills,
+  additionalSkills,
+  project,
+};
