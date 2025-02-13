@@ -73,3 +73,10 @@ export const project = {
   name: "DevOps Engineer Project",
   link: "devOpsEngineerProject",
 };
+export const DEV_OPS_ENGINEER_DATA = {
+  title,
+  description,
+  mandatorySkills,
+  additionalSkills,
+  project,
+};

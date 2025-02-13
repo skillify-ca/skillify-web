@@ -1,5 +1,4 @@
-import React from "react";
-
+import React from 'react';
 type JobExplorerJobComponentProps = {
   title: string;
   description: string;
@@ -74,7 +73,7 @@ const JobExplorerJobComponent = ({
         <div className="mb-8">
           <h2 className="mb-4 text-2xl font-bold text-blue-600">
             <a
-              href={project.link}
+              href={'projects/' + project.link}
               className="text-blue-500 hover:underline"
               target="_blank"
               rel="noopener noreferrer"

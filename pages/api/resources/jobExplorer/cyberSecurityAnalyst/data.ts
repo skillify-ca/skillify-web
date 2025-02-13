@@ -98,3 +98,11 @@ export const description =
     link: "cyberSecurityProject",
   };
   
+  export const CYBER_SECURITY_ANALYST_DATA = {
+    title,
+    description,
+    mandatorySkills,
+    additionalSkills,
+    project,
+  };
+  
