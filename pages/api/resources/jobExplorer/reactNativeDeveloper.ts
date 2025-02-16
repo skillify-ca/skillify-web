@@ -3,8 +3,8 @@ export const REACT_NATIVE_DEVELOPER_DATA = {
   description: "description",
   mandatorySkills: [
     {
-      name: "skill1",
-      link: "link",
+      name: "Wiki Page, general info",
+      link: "https://en.wikipedia.org/wiki/React_Native",
     },
     {
       name: "skill2",
