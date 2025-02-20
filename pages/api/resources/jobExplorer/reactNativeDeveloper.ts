@@ -11,23 +11,52 @@ export const REACT_NATIVE_DEVELOPER_DATA = {
       link: "https://react.dev/",
     },
     {
-      name: "Javascript",
+      name: "Javascript (ES6+)",
       link: "https://www.codecademy.com/learn/introduction-to-javascript",
     },
     {
       name: "CSS",
       link: "https://www.codecademy.com/learn/learn-css",
     },
+      {
+      name: "Mobile Developement Concepts (iOS & Android Differences, UI/UX Guidelines)",
+      link: "https://www.learnui.design/blog/ios-vs-android-app-ui-design-complete-guide.html",
+    },
+    {
+      name: "State Management (Redux, Context API, Recoil, or Zustand)",
+      link: "https://medium.com/@rashmipatil24/recoil-vs-zustand-vs-redux-ddd4f4f20a92",
+    },
+    {
+      name: "APIs & Networking (REST, GraphQL, Fetch, Axios)",
+      link: "https://aws.amazon.com/appsync/?gclid=CjwKCAiAn9a9BhBtEiwAbKg6fst1HjXY2H7Q0qNN9X9hvTorPNGJL82ktZoNkGdY5PimQeTQ7CL2-xoC1EIQAvD_BwE&trk=94c949ef-bca0-40b5-8d5d-1613b3f188a3&sc_channel=ps&ef_id=CjwKCAiAn9a9BhBtEiwAbKg6fst1HjXY2H7Q0qNN9X9hvTorPNGJL82ktZoNkGdY5PimQeTQ7CL2-xoC1EIQAvD_BwE:G:s&s_kwcid=AL!4422!3!647374787252!p!!g!!graphql!19613643996!145815299979",
+    },
+    {
+      name: "Version Control (Git/GitHub/GitLab)",
+      link: "https://www.atlassian.com/git/tutorials/what-is-git",
+    },
   
   ],
   additionalSkills: [
+    
     {
-      name: "Debugging",
+      name: "Typescript",
+      link: "https://www.typescriptlang.org/",
+    },
+    {
+      name: "Performance Optimization",
+      link: "https://reactnative.dev/docs/flatlist",
+    },
+    {
+      name: "Testing & Debugging",
       link: "https://reactnative.dev/docs/debugging",
     },
     {
-      name: "Mobile Development",
-      link: "https://reactnative.dev/docs/intro-react-native-components#views-and-mobile-development",
+      name: "Animations & UI Enhancements",
+      link: "https://reactnative.dev/docs/animations",
+    },
+    {
+      name: "Offline Functionality",
+      link: "https://www.sqlite.org/",
     },
   ],
   project: { name: "project", link: "link" },
