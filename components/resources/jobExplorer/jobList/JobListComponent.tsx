@@ -1,6 +1,7 @@
 import Image from "next/legacy/image";
 import React from "react";
 
+
 const disabledJobs = [];
 
 const JobGroup = ({ subheading, jobs }) => (
@@ -15,14 +16,17 @@ const JobGroup = ({ subheading, jobs }) => (
             key={job.title}
             className={`flex flex-col items-center rounded-lg p-6 shadow-md ${
               isDisabled
-                ? "bg-gray-300 text-black"
-                : "bg-orange-500 text-white hover:bg-orange-600 hover:scale-105"
-            } cursor-pointer transition duration-300`}
+                ? "bg-gray-300 text-black cursor-not-allowed"
+                : "bg-orange-500 text-white hover:bg-orange-600 hover:scale-105 cursor-pointer"
+            } transition duration-300`}
+            onClick={() => {
+              if (!isDisabled) {
+                window.location.href = job.link; // Navigate when clicked
+              }
+            }}
           >
             <h2 className="mb-4 text-lg font-semibold">
-              <a href={job.link} className="text-black hover:underline">
-                {job.title}
-              </a>
+              {job.title}
             </h2>
             <div className="w-32 h-32 overflow-hidden">
               <div className="object-cover w-full h-full rounded-full">
@@ -42,6 +46,7 @@ const JobGroup = ({ subheading, jobs }) => (
     </div>
   </div>
 );
+
 
 const JobListComponent = () => {
   const jobs = [
