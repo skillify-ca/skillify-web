@@ -114,6 +114,20 @@ export default function Quiz() {
               color={3}
             />
           </div>
+          <div>
+            <Card
+              date={""}
+              title={"Job Explorer"}
+              image={
+                "https://images.unsplash.com/photo-1559481581-d800dfdb9316?q=80&w=2218&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+              description={
+                "Use the job explorer as a roadmap for your future career in software development."
+              }
+              link={"/resources/jobExplorer/jobList"}
+              color={0}
+            />
+          </div>
         </div>
       </div>
     </div>
