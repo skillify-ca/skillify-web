@@ -8,7 +8,6 @@ import { digitalMarketerProjectData } from "./digitalMarketer/projectData";
 import { FRONT_END_PROJECT_DATA } from "./frontEndDev/projectData";
 import { FULLSTACK_PROJECT_DATA } from "./fullstackDev/projectData";
 import { GAME_DEV_PROJECT_DATA } from "./gameDev/projectData";
-import { iosDeveloperProjectData } from "./iosDev/projectData";
 import { productManagerProjectData } from "./productManager/projectData";
 import { uxDesignerProjectData } from "./uxDesigner/projectData";
 
@@ -33,8 +32,7 @@ const projectsDataMap: { [slug: string]: JobExplorerProjectData } = {
   productManagerProject: productManagerProjectData,
   cyberSecurityProject: cyberSecurityAnalystProjectData,
   aiEngineerProject: aiEngineerProjectData,
-  androidDevProject: androidDeveloperProjectData,
-  iosDevProject: iosDeveloperProjectData
+  androidDevProject: androidDeveloperProjectData
 };
 
 export function getJobExplorerProjectData(
