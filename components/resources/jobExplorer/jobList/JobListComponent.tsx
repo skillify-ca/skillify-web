@@ -1,47 +1,63 @@
 import Image from "next/legacy/image";
 import React from "react";
+import { useSpring, animated } from "@react-spring/web";
+
 
 const disabledJobs = [];
 
-const JobGroup = ({ subheading, jobs }) => (
-  <div className="mb-12">
-    <h2 className="mb-4 text-2xl font-bold">{subheading}</h2>
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-      {jobs.map((job) => {
-        const isDisabled = disabledJobs.includes(job.title); // Check if job.title exists in disabledJobs array
+const JobGroup = ({ subheading, jobs }) => {
+  return (
+    <div className="mb-12">
+      <h2 className="mb-4 text-2xl font-bold">{subheading}</h2>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {jobs.map((job) => {
+          const isDisabled = disabledJobs.includes(job.title);
 
-        return (
-          <div
-            key={job.title}
-            className={`flex flex-col items-center rounded-lg p-6 shadow-md ${
-              isDisabled
-                ? "bg-gray-300 text-black"
-                : "bg-orange-500 text-white hover:bg-orange-600 hover:scale-105"
-            } cursor-pointer transition duration-300`}
-          >
-            <h2 className="mb-4 text-lg font-semibold">
-              <a href={job.link} className="text-black hover:underline">
-                {job.title}
-              </a>
-            </h2>
-            <div className="w-32 h-32 overflow-hidden">
-              <div className="object-cover w-full h-full rounded-full">
-                <Image
-                  src={job.image}
-                  alt={job.title}
-                  width={job.width}
-                  height={job.height}
-                  layout="responsive"
-                  objectFit="cover"
-                />
+          // Apply individual animation to each card
+          const styles = useSpring({
+            from: { opacity: 0, transform: "scale(0)" },
+            to: { opacity: 1, transform: "scale(1)" },
+            config: { tension: 150, friction: 15, mass: 0.5 }, // Slower animation
+          });
+
+          return (
+            <animated.div
+              key={job.title}
+              style={styles}
+              className={`flex flex-col items-center rounded-lg p-6 shadow-md ${
+                isDisabled
+                  ? "bg-gray-300 text-black cursor-not-allowed"
+                  : "bg-orange-500 text-white hover:bg-blue-600 hover:scale-105 cursor-pointer"
+              } transition duration-300`}
+              onClick={() => {
+                if (!isDisabled) {
+                  window.location.href = job.link;
+                }
+              }}
+            >
+              <h2 className="mb-4 text-lg font-semibold">{job.title}</h2>
+              <div className="w-32 h-32 overflow-hidden">
+                <div className="object-cover w-full h-full rounded-full">
+                  <Image
+                    src={job.image}
+                    alt={job.title}
+                    width={job.width}
+                    height={job.height}
+                    layout="responsive"
+                    objectFit="cover"
+                  />
+                </div>
               </div>
-            </div>
-          </div>
-        );
-      })}
+            </animated.div>
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
+
+
 
 const JobListComponent = () => {
   const jobs = [
@@ -198,4 +214,4 @@ const JobListComponent = () => {
   );
 };
 
-export default JobListComponent;
+export default React.memo(JobListComponent);

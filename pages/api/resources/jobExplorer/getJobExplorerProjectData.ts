@@ -1,12 +1,14 @@
 import { aiEngineerProjectData } from "./aiEngineer/projectData";
-import { cyberSecurityAnalystProjectData } from "./cyberSecurityAnalyst/projectData";
-import { devOpsEngineerProjectData } from "./devOpsEngineer/projectData";
-import { FRONT_END_PROJECT_DATA } from "./frontEndDev/projectData";
+import { androidDeveloperProjectData } from "./androidDev/projectData";
 import { BACK_END_PROJECT_DATA } from "./backEndDev/projectData";
+import { cyberSecurityAnalystProjectData } from "./cyberSecurityAnalyst/projectData";
 import { DATA_SCIENCE_PROJECT_DATA } from "./dataScientist/projectData";
+import { devOpsEngineerProjectData } from "./devOpsEngineer/projectData";
+import { digitalMarketerProjectData } from "./digitalMarketer/projectData";
+import { FRONT_END_PROJECT_DATA } from "./frontEndDev/projectData";
 import { FULLSTACK_PROJECT_DATA } from "./fullstackDev/projectData";
 import { GAME_DEV_PROJECT_DATA } from "./gameDev/projectData";
-import { digitalMarketerProjectData } from "./digitalMarketer/projectData";
+import { iosDeveloperProjectData } from "./iosDev/projectData";
 import { productManagerProjectData } from "./productManager/projectData";
 import { uxDesignerProjectData } from "./uxDesigner/projectData";
 
@@ -31,6 +33,8 @@ const projectsDataMap: { [slug: string]: JobExplorerProjectData } = {
   productManagerProject: productManagerProjectData,
   cyberSecurityProject: cyberSecurityAnalystProjectData,
   aiEngineerProject: aiEngineerProjectData,
+  iosDevProject: iosDeveloperProjectData,
+  androidDevProject: androidDeveloperProjectData
 };
 
 export function getJobExplorerProjectData(
