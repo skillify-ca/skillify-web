@@ -19,28 +19,41 @@ const JobExplorerProject = ({
 }: JobExplorerProjectProps) => {
   return (
     <div className="p-8 bg-gray-100 rounded-lg shadow-md">
-      <h2 className="mb-4 text-2xl font-bold">{title}</h2>
-      <p className="text-gray-800">{goal}</p>
-      <p className="mt-2 text-gray-800">
+      <h2 className="mb-4 text-2xl text-blue-600 font-bold">{title}</h2>
+      <p className="text-black-800">{goal}</p>
+      <p className="mt-2 text-black-800">
         Follow the objectives and requirements mentioned below to complete the
-        project within {estimatedTime}.
+        project within <span className="font-semibold text-black-600">{estimatedTime}</span>.
       </p>
-      <h3 className="mt-4 text-xl font-bold">Project Objectives:</h3>
-      <ul className="pl-4 text-gray-800 list-disc list-inside">
-        {objectives &&
-          objectives.map((objective, i) => <li key={i}>{objective}</li>)}
-      </ul>
-      <h3 className="mt-4 text-xl font-bold">Requirements:</h3>
-      <ul className="pl-4 text-gray-800 list-disc list-inside">
-        {requirements &&
-          requirements.map((requirement, i) => <li key={i}>{requirement}</li>)}
-      </ul>
 
-      <div className="mt-6">
-        <h3 className="text-xl font-bold">Submission</h3>
-        <p className="mt-2 text-gray-800">
-          {submissionRequirements}.
-        </p>
+      {/* Objectives Card */}
+      {objectives?.length > 0 && (
+        <div className="mt-6 bg-orange-500 p-6 rounded-lg shadow-md hover:scale-105 transform transition duration-300">
+          <h3 className="text-xl font-bold text-blue-600">Project Objectives:</h3>
+          <ul className="pl-4 text-black-600 list-disc list-inside">
+            {objectives.map((objective, i) => (
+              <li key={i}>{objective}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Requirements Card */}
+      {requirements?.length > 0 && (
+        <div className="mt-6 bg-orange-500 p-6 rounded-lg shadow-md hover:scale-105 transform transition duration-300">
+          <h3 className="text-xl font-bold text-blue-600">Requirements:</h3>
+          <ul className="pl-4 text-black-600 list-disc list-inside">
+            {requirements.map((requirement, i) => (
+              <li key={i}>{requirement}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Submission Card */}
+      <div className="mt-6 bg-orange-500 p-6 rounded-lg shadow-md hover:scale-105 transform transition duration-300">
+        <h3 className="text-xl font-bold text-blue-600">Submission:</h3>
+        <p className="mt-2 text-black-600">{submissionRequirements}</p>
       </div>
     </div>
   );
