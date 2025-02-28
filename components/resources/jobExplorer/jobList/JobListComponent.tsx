@@ -44,7 +44,7 @@ const JobGroup = ({ subheading, jobs }) => {
                     width={job.width}
                     height={job.height}
                     layout="responsive"
-                    objectFit="cover"
+                    objectFit={job.title === "Android Developer" ? "contain" : "cover"}
                   />
                 </div>
               </div>
@@ -130,7 +130,7 @@ const JobListComponent = () => {
     {
       // ios developer
       title: "iOS Developer",
-      image: "/images/resources/jobExplorer/ios.png",
+      image: "/images/resources/jobExplorer/ios2.0.png",
       width: 100,
       height: 100,
       link: "././iosDeveloper",
