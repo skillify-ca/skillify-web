@@ -2,7 +2,7 @@
 
 import { useQuery } from "@apollo/client/react";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FETCH_USER_ROLE,
@@ -61,6 +61,8 @@ export default function Sidebar({ closeSidebar }) {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/goals")) {
       dispatch(setActivePage("goals"));
+    } else if (router.pathname.startsWith("/studentPortal/accountability")) {
+      dispatch(setActivePage("accountability"));
     } else if (router.pathname.startsWith("/studentPortal/courses/frontend")) {
       dispatch(setActivePage("frontend_development"));
     } else if (
