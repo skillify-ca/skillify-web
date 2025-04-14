@@ -300,7 +300,7 @@ export default function InternalProfile({
         userProfileData={userProfileData}
         isEditable={!isExternal}
       />
-      <div className="flex justify-center">
+      <div className="flex justify-left font-bold m-4">
         {accountabilityLoading ? (
           <LoadingComponent />
         ) : accountabilityError ? (

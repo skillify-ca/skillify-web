@@ -2,7 +2,7 @@
 
 import { useQuery } from "@apollo/client/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FETCH_USER_ROLE,

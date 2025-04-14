@@ -1,3 +1,4 @@
+import React from "react";
 import JSIcon from "../../ui/JSIcon";
 import ReactIcon from "../../ui/ReactIcon";
 import { PaidSidebarItemProps } from "./PaidSidebarItem";
