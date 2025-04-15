@@ -49,6 +49,12 @@ import {
   setUserProfile,
 } from "../../redux/profileSlice";
 
+import AccountabilityHeatmap from "../../components/accountability/AccountabilityHeatmap";
+import LoadingComponent from "../../components/ui/loader";
+import {
+  FETCH_ACCOUNTABILITY_TASKS_BY_USER,
+  FetchAccountabilityTasksByUser,
+} from "../../graphql/studentPortal/accountability/fetchAccountabilityTasks";
 import {
   FETCH_USER_SKILLS_RATINGS,
   FetchUserSkillsRatings,
@@ -136,6 +142,19 @@ export default function InternalProfile({
       variables: {
         userId: userId,
       },
+    }
+  );
+
+  const {
+    data,
+    loading: accountabilityLoading,
+    error: accountabilityError,
+  } = useQuery<FetchAccountabilityTasksByUser>(
+    FETCH_ACCOUNTABILITY_TASKS_BY_USER,
+    {
+      variables: { userId },
+      skip: !userId,
+      fetchPolicy: "cache-first",
     }
   );
 
@@ -281,6 +300,15 @@ export default function InternalProfile({
         userProfileData={userProfileData}
         isEditable={!isExternal}
       />
+      <div className="flex justify-left font-bold m-4">
+        {accountabilityLoading ? (
+          <LoadingComponent />
+        ) : accountabilityError ? (
+          <p>An error occurred while fetching data.</p>
+        ) : (
+          <AccountabilityHeatmap entries={data?.accountability ?? []} />
+        )}
+      </div>
       {sections.map((section) => {
         return section.shouldShow ? (
           <Section

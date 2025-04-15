@@ -69,11 +69,14 @@ const AccountabilityHeatmap: React.FC<AccountabilityHeatmapProps> = ({
   /**
    * Map entries by date for quick lookup.
    */
-  const dateToEntryMap = entries.reduce<Record<string, Entry>>((acc, entry) => {
-    const dateKey = entry.creationDate.slice(0, 10); // Extract YYYY-MM-DD
-    acc[dateKey] = entry;
-    return acc;
-  }, {});
+  const dateToEntryMap = (entries ?? []).reduce<Record<string, Entry>>(
+    (acc, entry) => {
+      const dateKey = entry.creationDate.slice(0, 10); // Extract YYYY-MM-DD
+      acc[dateKey] = entry;
+      return acc;
+    },
+    {}
+  );
 
   /**
    * Build weeks array, where each week contains up to 7 days.
