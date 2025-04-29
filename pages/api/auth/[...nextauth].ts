@@ -20,6 +20,7 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
 
+      // FETCH user id from Hasura
       if (user) {
         const client = new ApolloClient({
           uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
@@ -59,7 +60,7 @@ export const authOptions: AuthOptions = {
   },
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, 
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET, 

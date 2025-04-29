@@ -14,27 +14,29 @@ import { Unit, codingBasicsCourse } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
+
   const [updateUser] = useMutation(UPDATE_USER);
 
   const [units, setUnits] = useState<Unit[]>([]);
 
   useEffect(() => {
     setUnits(codingBasicsCourse.units);
-  }, [units]);
+  }, []);
 
   useEffect(() => {
-    // TODO save profile photos to firebase storage and allow users to edit photos
-    updateUser({
-      variables: {
-        userId: user.uid,
-        last_seen: new Date(),
-        profile_image: user.photoURL,
-      },
-    });
-  }, [user]);
+    if (user) {
+      updateUser({
+        variables: {
+          userId: user.uid,
+          last_seen: new Date(),
+          profile_image: user.photoURL,
+        },
+      });
+    }
+  }, [user, updateUser]);
 
   return (
-    <div className="grid w-full grid-cols-12 ">
+    <div className="grid w-full grid-cols-12">
       <div className="flex flex-col h-screen col-span-12 px-4 pb-4 overflow-y-auto lg:col-span-8 sm:px-8 sm:pb-8">
         <PageHeader
           title={`Let's start learning, ${user.displayName}`}
