@@ -148,6 +148,9 @@ function Auth({ children }) {
   React.useEffect(() => {
     if (loading) return; // Do nothing while loading
     // if (!user) router.push("/welcome"); // If not authenticated, force log in
+    if (!user) {
+      router.replace("/welcome");
+    }
   }, [user, loading]);
 
   if (user) {
