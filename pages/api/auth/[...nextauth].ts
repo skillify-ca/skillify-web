@@ -19,8 +19,6 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-
-      // FETCH user id from Hasura
       if (user) {
         const client = new ApolloClient({
           uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
@@ -34,26 +32,19 @@ export const authOptions: AuthOptions = {
           });
 
           if (data?.users?.length > 0) {
-            
             token.uid = data.users[0].id;
-            console.log("User found, UID set:", token.uid);
-          } else {
-            console.warn("No user found for email:", user.email);
           }
-        } catch (error) {
-          console.error("Error fetching user from Hasura:", error);
+        } catch {
+          // TODO: intergrate with monitoring system
         }
       }
 
-      return token;   
+      return token;
     },
 
     async session({ session, token }) {
       if (token?.uid) {
         session.uid = token.uid;
-        console.log("Session callback - UID attached:", session.uid);
-      } else {
-        console.warn("Session callback - No UID found in token");
       }
       return session;
     },
@@ -63,10 +54,10 @@ export const authOptions: AuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   jwt: {
-    secret: process.env.NEXTAUTH_SECRET, 
-    maxAge: 30 * 24 * 60 * 60, 
+    secret: process.env.NEXTAUTH_SECRET,
+    maxAge: 30 * 24 * 60 * 60,
   },
-  debug: true, 
+  debug: false, // default for production
 };
 
 export default NextAuth(authOptions);

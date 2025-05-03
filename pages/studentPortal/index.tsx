@@ -8,6 +8,7 @@ import PageHeader from "../../components/ui/PageHeader";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../lib/authContext";
 
+import React from "react";
 import GoalsFeed from "../../components/studentPortal/goals/feed/GoalsFeed";
 import { Unit, codingBasicsCourse } from "../api/studentPortal/units";
 

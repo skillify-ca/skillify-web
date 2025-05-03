@@ -146,11 +146,16 @@ function Auth({ children }) {
   const router = useRouter();
 
   React.useEffect(() => {
-    if (loading) return; // Do nothing while loading
-    // if (!user) router.push("/welcome"); // If not authenticated, force log in
-    if (!user) {
-      router.replace("/welcome");
-    }
+    if (loading) return;
+
+    // Delay to allow user to hydrate if needed
+    const timeout = setTimeout(() => {
+      if (!user) {
+        router.replace("/welcome");
+      }
+    }, 100);
+
+    return () => clearTimeout(timeout);
   }, [user, loading]);
 
   if (user) {
