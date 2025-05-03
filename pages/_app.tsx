@@ -144,6 +144,7 @@ export default MyApp;
 function Auth({ children }) {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const MAX_WAIT_TIME = 100;
 
   React.useEffect(() => {
     if (loading) return;
@@ -153,7 +154,7 @@ function Auth({ children }) {
       if (!user) {
         router.replace("/welcome");
       }
-    }, 100);
+    }, MAX_WAIT_TIME);
 
     return () => clearTimeout(timeout);
   }, [user, loading]);
