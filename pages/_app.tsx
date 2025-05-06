@@ -144,10 +144,19 @@ export default MyApp;
 function Auth({ children }) {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const MAX_WAIT_TIME = 100;
 
   React.useEffect(() => {
-    if (loading) return; // Do nothing while loading
-    // if (!user) router.push("/welcome"); // If not authenticated, force log in
+    if (loading) return;
+
+    // Delay to allow user to hydrate if needed
+    const timeout = setTimeout(() => {
+      if (!user) {
+        router.replace("/welcome");
+      }
+    }, MAX_WAIT_TIME);
+
+    return () => clearTimeout(timeout);
   }, [user, loading]);
 
   if (user) {

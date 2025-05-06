@@ -18,27 +18,34 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
-      // fetch user id from hasura
-      const client = new ApolloClient({
-        uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-        cache: new InMemoryCache(),
-      });
-      const { data } = await client.query({
-        query: FETCH_USER_BY_EMAIL,
-        variables: {
-          email: token.email,
-        },
-      });
+    async jwt({ token, user }) {
+      if (user) {
+        const client = new ApolloClient({
+          uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+          cache: new InMemoryCache(),
+        });
 
-      if (data.users?.length > 0) {
-        token.uid = data.users[0].id;
+        try {
+          const { data } = await client.query({
+            query: FETCH_USER_BY_EMAIL,
+            variables: { email: user.email },
+          });
+
+          if (data?.users?.length > 0) {
+            token.uid = data.users[0].id;
+          }
+        } catch {
+          // TODO: intergrate with monitoring system
+        }
       }
 
       return token;
     },
-    async session({ session, token, user }) {
-      session.uid = token.uid;
+
+    async session({ session, token }) {
+      if (token?.uid) {
+        session.uid = token.uid;
+      }
       return session;
     },
   },
@@ -47,8 +54,10 @@ export const authOptions: AuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   jwt: {
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    secret: process.env.NEXTAUTH_SECRET,
+    maxAge: 30 * 24 * 60 * 60,
   },
+  debug: false, // default for production
 };
 
 export default NextAuth(authOptions);
