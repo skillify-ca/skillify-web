@@ -4,7 +4,7 @@ import AccountabilityHeatmap from "../../../components/accountability/Accountabi
 import { Button } from "../../../components/ui/Button";
 import Dropdown from "../../../components/ui/Dropdown";
 import LoadingComponent from "../../../components/ui/loader";
-import { GET_ACCOUNTABILITY_TASKS_BY_USER } from "../../../graphql/studentPortal/accountability/fetchAccountabilityTasks";
+import { FETCH_ACCOUNTABILITY_TASKS_BY_USER } from "../../../graphql/studentPortal/accountability/fetchAccountabilityTasks";
 import { INSERT_ACCOUNTABILITY_MUTATION } from "../../../graphql/studentPortal/accountability/insertAccountabilityTask";
 import { useAuth } from "../../../lib/authContext";
 
@@ -14,7 +14,7 @@ const accountabilityMenuData: Record<string, string[]> = {
     "Architectural/System Design",
     "Bug Fixing",
     "Coding",
-  "Continuous Integration and Deployment (CI/CD)",
+    "Continuous Integration and Deployment (CI/CD)",
     "Feature Enhancements",
     "Requirements Analysis",
     "Testing",
@@ -26,6 +26,7 @@ const accountabilityMenuData: Record<string, string[]> = {
     "Mentorship",
     "Networking",
     "Peer Swarming",
+    "Office Hours",
   ],
 };
 
@@ -63,7 +64,7 @@ const AccountabilityDashboard: React.FC = () => {
     data,
     loading: accountabilityLoading,
     error: accountabilityError,
-  } = useQuery(GET_ACCOUNTABILITY_TASKS_BY_USER, {
+  } = useQuery(FETCH_ACCOUNTABILITY_TASKS_BY_USER, {
     variables: { userId },
     skip: !userId,
   });
