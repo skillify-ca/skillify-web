@@ -6,7 +6,6 @@ import Hero, { HighlightableText } from "./Hero";
 import SubscribeBanner from "./SubscribeBanner";
 import TermsAndConditions from "./TermsAndConditions";
 import TestimonialSect from "./TestimonialSect";
-import WhatYouGet from "./WhatYouGet";
 import WhoItsFor from "./WhoItsFor";
 
 export type LandingPageCopy = {
@@ -29,7 +28,7 @@ export default function LandingPage({
         <Hero headerText={headerText} description={description} />
         <WhoItsFor />
         <Credentials headerText={credentialsText} />
-        <WhatYouGet />
+        {/* <WhatYouGet /> */}
         <TestimonialSect />
         <FAQ />
         <SubscribeBanner />

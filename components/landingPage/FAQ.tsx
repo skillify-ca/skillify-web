@@ -62,7 +62,7 @@ export default function FAQ() {
     {
       question: "Why should I pick your program over another coding bootcamp?",
       answer:
-        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! We connect our top students with hiring managers from these companies.\n- We will do whatever it takes to help you acheive your career goals.\n- Our program is like working out with a personal trainer. We will push you when needed, but also readjust your goals when needed\n- Other bootcamps will leave you behind if you get sick, or need to take a vacation. We understand life happens and we will work with you to get you back on track.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert instructors who care about you and want to see you succeed.\n- You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
+        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! \n- Our program is like working out with a personal trainer. We will push you when needed, but also readjust your goals when needed\n- Other bootcamps will leave you behind if you get sick, or need to take a vacation. We understand life happens and we will work with you to get you back on track.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert human instructors who care about you and want to see you succeed.\n - We teach you how to use AI, but there is a human connection behind every assignment and lesson. You will learn from people that want to see you succeed, not from an AI-bot. - You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
     },
     {
       question: "How much does the program cost?",
@@ -82,12 +82,12 @@ export default function FAQ() {
     {
       question: "Do you provide any scholarships or financial aid?",
       answer:
-        "We have limited scholarships available for people from underrepresented communities, such as POC and women in tech.",
+        "There are limited scholarships available for people from underrepresented communities, such as POC and women in tech. Up to 50% off!",
     },
     {
       question: "Can I complete the course on my phone?",
       answer:
-        "Some course videos can be viewed on your phone, but in order to build a website or mobile application, you will need to use a laptop/computer.",
+        "Some course videos and coaching sessions can be done on your phone, but in order to build a website or mobile application, you will need to use a laptop/computer.",
     },
   ];
 

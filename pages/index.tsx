@@ -73,7 +73,7 @@ const HomePage = () => {
   return (
     <div>
       <SEO
-        title={"Skillify - Toronto's diverse coding bootcamp"}
+        title={"Skillify - Toronto's most personalized coding bootcamp"}
         description={
           "Toronto's best coding academy for online learning! We teach high demand skills to help you get hired in the tech industry."
         }
