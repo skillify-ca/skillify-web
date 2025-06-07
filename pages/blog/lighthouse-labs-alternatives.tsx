@@ -200,7 +200,7 @@ export async function getStaticProps() {
         "On-Demand Instructor support",
         "Engaging and Interactive Lessons",
       ],
-      pricing: "$6000 for 3 months",
+      pricing: "$12000 for 12 months",
     },
     {
       id: "general-assembly",

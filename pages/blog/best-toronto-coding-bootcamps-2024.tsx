@@ -41,13 +41,12 @@ export async function getServerSideProps({ params }) {
         {
           title: "Skillify",
           image: "/images/logo-2.png",
-          description: "Cost: $6000 for 3 months.",
+          description: "Cost: $12000 for 12 months.",
           link: "https://skillify.ca",
         },
         {
           title: "Lighthouse Labs",
-          image:
-            "https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg",
+          image: "/images/lighthouse.png",
           description:
             "Cost: $14000 for 3 months. They are our top pick among our competitors.",
 
