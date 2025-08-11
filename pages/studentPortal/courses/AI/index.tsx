@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const AIMatchingGame = () => {
   const [flipped, setFlipped] = useState(false);
@@ -106,8 +106,18 @@ const AILesson = () => {
       </div>
 
       {/*Reflection*/}
-      <div>
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Reflection</h2>
+        <p className="text-lg text-black-600">
+          Before moving on, take a moment to consider your own experiences with
+          AI:
+        </p>
+        <li>
+          What challenges have you encountered when working with AI to achieve
+          specific outcomes?
+        </li>
+        <li>What possibilities for AI collaboration excite you most?</li>
+        <li>What do you hope to gain from this course?</li>
       </div>
 
       {/* Matching Game */}
