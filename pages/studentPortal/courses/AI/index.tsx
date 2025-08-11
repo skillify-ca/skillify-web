@@ -14,7 +14,7 @@ const AIMatchingGame = () => {
         onClick={handleFlip}
       >
         <div
-          className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${
+          className={`relative w-full h-full cursor-pointer border border-gray-800 rounded-lg transition-transform duration-700 [transform-style:preserve-3d] ${
             flipped ? "[transform:rotateY(180deg)]" : ""
           }`}
         >
@@ -105,9 +105,14 @@ const AILesson = () => {
         </ul>
       </div>
 
+      {/*Reflection*/}
+      <div>
+        <h2 className="text-2xl font-bold mb-4">Reflection</h2>
+      </div>
+
       {/* Matching Game */}
       <div>
-        <h2 className="text-2xl font-bold mb-4">Matching Game</h2>
+        <h2 className="text-2xl font-bold mb-4">Flash Cards</h2>
         <AIMatchingGame />
       </div>
     </div>
