@@ -1,118 +1,69 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const AIMatchingGame = () => {
-  //starts off as false so it shows the front side
-  //when the user clicks on the card it toggles between true and false
-  //front side = false and back side = true
-  const [flipped, setFlipped] = useState(false);
-  const [flipped2, setFlipped2] = useState(false);
-  const [flipped3, setFlipped3] = useState(false);
+  // Array of flashcards
+  const cards = [
+    {
+      title: "AI Fluency",
+      description:
+        "The ability to work with AI systems in ways that are effective, efficient, ethical, and safe. Includes practical skills, knowledge, insights, and values that help you adapt to evolving AI technologies.",
+    },
+    {
+      title: "The 4Ds",
+      description:
+        "The four core competencies of AI Fluency: Delegation, Description, Discernment, and Diligence.",
+    },
+    {
+      title: "Delegation",
+      description:
+        "Deciding on what work should be done by humans, what work should be done by AI, and how to distribute tasks between them. Includes understanding your goals, AI capabilities, and making strategic choices about collaboration.",
+    },
+  ];
 
-  const handleFlip = () => {
-    //when user click card handleFlip is triggered
-    setFlipped(!flipped);
-  };
+  // useState now tracks all cards at once
+  const [flipped, setFlipped] = useState(Array(cards.length).fill(false));
 
-  const handleFlip2 = () => {
-    setFlipped2(!flipped2);
-  };
-
-  const handleFlip3 = () => {
-    setFlipped3(!flipped3);
+  const handleFlip = (index) => {
+    setFlipped((prev) => {
+      const updated = [...prev];
+      updated[index] = !updated[index];
+      return updated;
+    });
   };
 
   return (
-    <div className="flex justify-center">
-      {/* First Card - AI Fluency */}
-      <div
-        className="relative w-72 h-80 [perspective:1000px] cursor-pointer"
-        onClick={handleFlip}
-      >
+    <div className="flex justify-center gap-4">
+      {cards.map((card, index) => (
         <div
-          className={`relative w-full h-full border border-gray-800 rounded-lg transition-transform duration-700 [transform-style:preserve-3d] ${
-            flipped ? "[transform:rotateY(180deg)]" : ""
-          }`}
+          key={index}
+          className="relative w-72 h-80 [perspective:1000px] cursor-pointer"
+          onClick={() => handleFlip(index)}
         >
-          {/* Front */}
-          <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex items-center justify-center [backface-visibility:hidden]">
-            <h2 className="text-xl text-gray-900 text-center">AI Fluency</h2>
-          </div>
+          <div
+            className={`relative w-full h-full border border-gray-800 rounded-lg transition-transform duration-700 [transform-style:preserve-3d] ${
+              flipped[index] ? "[transform:rotateY(180deg)]" : ""
+            }`}
+          >
+            {/* Front */}
+            <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex items-center justify-center [backface-visibility:hidden]">
+              <h2 className="text-xl text-gray-900 text-center">
+                {card.title}
+              </h2>
+            </div>
 
-          {/* Back */}
-          <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex flex-col items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
-            <span className="text-xl text-gray-900 text-center font-semibold">
-              AI Fluency
-            </span>
-            <div className="h-3"></div>
-            <span className="text-sm leading-tight text-gray-600 text-left">
-              The ability to work with AI systems in ways that are effective,
-              efficient, ethical, and safe. Includes practical skills,
-              knowledge, insights, and values that help you adapt to evolving AI
-              technologies.
-            </span>
+            {/* Back */}
+            <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex flex-col items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+              <span className="text-xl text-gray-900 text-center font-semibold">
+                {card.title}
+              </span>
+              <div className="h-3"></div>
+              <span className="text-sm leading-tight text-gray-600 text-left">
+                {card.description}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Second Card - The 4Ds */}
-      <div
-        className="relative w-72 h-80 [perspective:1000px] cursor-pointer"
-        onClick={handleFlip2}
-      >
-        <div
-          className={`relative w-full h-full border border-gray-800 rounded-lg transition-transform duration-700 [transform-style:preserve-3d] ${
-            flipped2 ? "[transform:rotateY(180deg)]" : ""
-          }`}
-        >
-          {/* Front */}
-          <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex items-center justify-center [backface-visibility:hidden]">
-            <h2 className="text-xl text-gray-900 text-center">The 4Ds</h2>
-          </div>
-
-          {/* Back */}
-          <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex flex-col items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
-            <span className="text-xl text-gray-900 text-center font-semibold">
-              The 4Ds
-            </span>
-            <div className="h-3"></div>
-            <span className="text-sm leading-tight text-gray-600 text-left">
-              The four core competencies of AI Fluency: Delegation, Description,
-              Discernment, and Diligence.
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Third Card - Delegation */}
-      <div
-        className="relative w-72 h-80 [perspective:1000px] cursor-pointer"
-        onClick={handleFlip3}
-      >
-        <div
-          className={`relative w-full h-full border border-gray-800 rounded-lg transition-transform duration-700 [transform-style:preserve-3d] ${
-            flipped3 ? "[transform:rotateY(180deg)]" : ""
-          }`}
-        >
-          {/* Front */}
-          <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex items-center justify-center [backface-visibility:hidden]">
-            <h2 className="text-xl text-gray-900 text-center">Delegation</h2>
-          </div>
-
-          {/* Back */}
-          <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex flex-col items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
-            <span className="text-xl text-gray-900 text-center font-semibold">
-              Delegation
-            </span>
-            <div className="h-3"></div>
-            <span className="text-sm leading-tight text-gray-600 text-left">
-              Deciding on what work should be done by humans, what work should
-              be done by AI, and how to distribute tasks between them. Includes
-              understanding your goals, AI capabilities, and making strategic
-              choices about collaboration.
-            </span>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
@@ -180,7 +131,7 @@ const AILesson = () => {
         </ul>
       </div>
 
-      {/*Reflection*/}
+      {/* Reflection */}
       <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Reflection</h2>
         <p className="text-lg text-black-600">
@@ -195,7 +146,7 @@ const AILesson = () => {
         <li>What do you hope to gain from this course?</li>
       </div>
 
-      {/* Matching Game */}
+      {/* Flashcards */}
       <div>
         <h2 className="text-2xl font-bold mb-4 text-center">Flash Cards</h2>
         <AIMatchingGame />
