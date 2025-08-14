@@ -167,9 +167,18 @@ const allCards = [
 
 // AIMatchingGame component
 const AIMatchingGame = () => {
+  // State variables
+  //visibleCards is a storing variable for the cards that are visible on the screen
+  //setVisibleCards is a function to update visibleCards
+  //and allcards.silce(0,3) is the first 3 cards that is shown on the screen inititally
   const [visibleCards, setVisibleCards] = useState(allCards.slice(0, 3));
+  //flipped keeps track of the backside of the cards
+  //and array of 3 elements that show false initially
   const [flipped, setFlipped] = useState(Array(3).fill(false));
 
+  //handleFlip is called when the user clicks on the card
+  //index is which card is clicked (0,1,2)
+  //
   const handleFlip = (index) => {
     setFlipped((prev) => {
       const updated = [...prev];
