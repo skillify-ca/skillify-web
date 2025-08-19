@@ -76,6 +76,22 @@ class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-235433930-1"
           ></script>
+
+          {/* Google Analytics 4 */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-EDXYP149JQ"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-EDXYP149JQ');
+              `,
+            }}
+          />
         </Head>
         <body style={this.bodyStyle}>
           <Main />
