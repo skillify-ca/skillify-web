@@ -73,10 +73,11 @@ const Framework = () => {
     matched.length === new Set(cardsData.map((c) => c.pairId)).size;
 
   return (
-    <div>
-      <h1 className="font-bold text-2xl mb-6 text-center">The 4D Framework</h1>
-
-      <div className="flex justify-between px-10">
+    <div className="mt-10">
+      {/* moved down and more to the left */}
+      {/* Title aligned more to the left */}
+      <h1 className="font-bold text-2xl mb-6 text-left">The 4D Framework</h1>
+      <div className="flex justify-between">
         {/* Left side: Shuffled Names */}
         <div className="flex flex-col gap-4 w-1/3">
           {names.map((card) => (
@@ -107,9 +108,8 @@ const Framework = () => {
           ))}
         </div>
       </div>
-
-      {/* Shuffle Button (only enabled after all matches) */}
-      <div className="text-center mt-6">
+      {/* Shuffle Button aligned left under title */}
+      <div className="mt-6">
         <button
           onClick={handleShuffle}
           disabled={!allMatched}
