@@ -1,200 +1,141 @@
-import Head from "next/head";
-import BlogCard from "../../components/blog/BlogCard";
-import BlogPost from "../../components/blog/BlogPost";
+import { GetStaticProps } from "next";
+import Link from "next/link";
+import SEO from "../../components/SEO";
 import LandingNavbar from "../../components/landingPage/LandingNavbar";
+import { BlogPostMeta, getAllBlogPosts } from "../../lib/mdx";
 
-interface BlogCard {
-  date: string;
-  title: string;
-  image: string;
-  description: string;
-  link: string;
-  color: number;
+interface BlogIndexProps {
+  posts: BlogPostMeta[];
 }
 
-export default function Blog() {
-  const featuredPosts = [
-    {
-      date: "November 30, 2023",
-      title: "Where can I learn to code in Toronto?",
-      image:
-        "https://i.pcmag.com/imagery/roundups/07tAycb2jrO6jKSb5RsGUFq-1..v1569492641.jpg",
-      description: "This resource lists the top coding bootcamps in Toronto",
-      link: "/blog/best-toronto-coding-bootcamps-2024",
-      color: 0,
-    },
-    {
-      date: "September 19, 2023",
-      title: "What is a good tech salary in Canada?",
-      image: "https://images.unsplash.com/photo-1641932971241-df935a6d16e1",
-      description: "A summary of tech interview stats and salaries in Canada",
-      link: "/resources/jobTracker",
-      color: 2,
-    },
-    {
-      date: "December 5, 2023",
-      title: "Best Coding Bootcamps in Toronto According to Redding",
-      image: "/images/blog/best-coding-bootcamps-toronto-reddit/reddit.png",
-      description:
-        "A list of Reddit threads discussing coding bootcamps in Toronto",
-      link: "/blog/best-coding-bootcamps-toronto-reddit",
-      color: 1,
-    },
-  ];
-
-  const blogCards = [
-    {
-      date: "September 11, 2024",
-      title: "The Problem Solving Mindset",
-      image: "/images/blog/problem-solving-mindset/mindset.jpg",
-      description:
-        "The secret mindset that will help any engineer to grow in their career",
-      link: "/blog/problem-solving-mindset",
-      color: 2,
-    },
-    {
-      date: "April 13, 2023",
-      title: "Coding Academy Survival Guide",
-      image: "/images/blog/jest-function-testing/software_testing.jpeg",
-      description:
-        "18 Relevant and helpful tips for exceling in your coding academy or engineering internship",
-      link: "/blog/coding-academy-tips",
-      color: 3,
-    },
-    {
-      date: "February 20, 2023",
-      title: "Switching to Software Engineering",
-      image: "/images/blog/make-the-leap/softwareeng.jpg",
-      description:
-        "A Skillify Student's Account of Switching Careers from Actuarial Science to Software Engineering",
-      link: "/blog/making-the-leap-into-development",
-      color: 0,
-    },
-    {
-      date: "August 15, 2022",
-      title: "How to learn to code online?",
-      image:
-        "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80",
-      description: "Our guide on how to learn to code online",
-      link: "/blog/learn-to-code-online",
-      color: 2,
-    },
-    {
-      date: "August 14, 2022",
-      title: "How to learn to code in Java?",
-      image:
-        "https://images.unsplash.com/photo-1588239034647-25783cbfcfc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80",
-      description: "Our guide on how to learn to code in Java",
-      link: "/blog/learn-to-code-in-java",
-      color: 1,
-    },
-    {
-      date: "August 13, 2022",
-      title: "How to learn to code in Python?",
-      image:
-        "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2064&q=80",
-      description: "Our guide on how to learn to code in Python",
-      link: "/blog/learn-to-code-in-python",
-      color: 0,
-    },
-    {
-      date: "July 11, 2022",
-      title: "How to stand out to coop employers?",
-      image:
-        "https://images.unsplash.com/photo-1516659257916-7be846591235?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      description: "An employers perspective to hiring coop students",
-      link: "/blog/how-to-stand-out-to-coop-employers",
-      color: 3,
-    },
-    {
-      date: "April 13, 2022",
-      title: "Do Product Manager Need Coding Skills?",
-      image:
-        "https://www.gooddata.com/img/blog/_1200x630/project-manager-bg.jpg",
-      description:
-        "We talk about whether product managers should learn how to code",
-      link: "/blog/do-product-managers-need-coding-skills",
-      color: 2,
-    },
-    {
-      date: "April 2, 2022",
-      title: "Are Toronto coding bootcamps worth it?",
-      image:
-        "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHdvcnRoJTIwaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
-      description: "This resource lists the top coding bootcamps in Toronto",
-      link: "/blog/is-it-worth-paying-for-a-coding-bootcamp",
-      color: 1,
-    },
-  ];
-
+export default function BlogIndex({ posts }: BlogIndexProps) {
   return (
-    <div className="bg-white">
-      <Head>
-        <title>{"Skillify Blog"}</title>
-        <meta
-          name="description"
-          content={"Articles and resources about Toronto coding bootcamps"}
-        />
-        <meta property="og:title" content={"Skillify Blog"} />
-        <meta
-          property="og:image"
-          content={"https://www.skillify.ca/images/images/logo.png"}
-        />
-        <meta
-          property="og:description"
-          content={"Articles and resources about Toronto coding bootcamps"}
-        />
-        <meta property="og:url" content="https://skillify.ca/" />
-        <meta property="og:type" content="website" />
-      </Head>
+    <div className="items-center bg-gray-100 md:flex md:flex-col heropattern-hideout-blue-100 theme-default">
+      <SEO
+        title="Blog | Skillify - Learn to Code and Build Your Career"
+        description="Read our latest articles about coding bootcamps, programming education, career advice, and tech industry insights."
+        image="https://skillify.ca/images/logo-2.png"
+      />
       <LandingNavbar />
-      <div className="w-full mx-auto bg-slate-50 max-w-7xl">
-        <div className="sm:p-8 ">
-          <h1 className="p-8 text-5xl font-bold text-center text-white bg-murkrow ">
-            Blog
+      <div className="items-center max-w-5xl gap-4 p-4 bg-white shadow-lg sm:my-8 md:flex md:flex-col md:mx-16">
+        <div className="w-full">
+          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">
+            Skillify Blog
           </h1>
-        </div>
-        <h2 className="w-full px-4 my-8 text-3xl font-bold text-center">
-          Featured Posts
-        </h2>
-        <div className="grid items-center w-full grid-cols-1 gap-16 px-8 pb-16 sm:px-16 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredPosts.map((blogCard, index) => {
-            return (
-              <BlogCard
-                key={index}
-                title={blogCard.title}
-                date={blogCard.date}
-                image={blogCard.image}
-                description={blogCard.description}
-                link={blogCard.link}
-                color={blogCard.color}
-              />
-            );
-          })}
-        </div>
-        <h2 className="w-full px-4 mb-8 text-3xl font-bold text-center">
-          All Posts
-        </h2>
-        <div className="grid items-center w-full grid-cols-1 gap-8 px-8 pb-16 sm:px-16">
-          {blogCards.map((blogCard, index) => {
-            return (
-              <BlogPost
-                key={index}
-                title={blogCard.title}
-                date={blogCard.date}
-                image={blogCard.image}
-                description={blogCard.description}
-                link={blogCard.link}
-                color={blogCard.color}
-              />
-            );
-          })}
+          <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+            Discover the latest insights on coding bootcamps, programming education, 
+            career development, and tech industry trends.
+          </p>
+
+          {posts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600 text-lg">No blog posts found.</p>
+            </div>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <article
+                  key={post.slug}
+                  className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                >
+                  <Link href={`/blog/${post.slug}`}>
+                    <div className="cursor-pointer">
+                      {post.image && (
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-48 object-cover rounded-t-lg"
+                        />
+                      )}
+                      <div className="p-6">
+                        <h2 className="text-xl font-bold mb-3 text-gray-900 hover:text-orange-600 transition-colors">
+                          {post.title}
+                        </h2>
+                        <p className="text-gray-600 mb-4 line-clamp-3">
+                          {post.description}
+                        </p>
+                        <div className="flex items-center justify-between text-sm text-gray-500">
+                          <div className="flex items-center gap-4">
+                            <span>By {post.author}</span>
+                            <span>•</span>
+                            <time dateTime={post.date}>
+                              {new Date(post.date).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                              })}
+                            </time>
+                          </div>
+                          {post.readingTime && (
+                            <span className="text-orange-600 font-medium">
+                              {post.readingTime}
+                            </span>
+                          )}
+                        </div>
+                        {post.tags && post.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mt-4">
+                            {post.tags.slice(0, 3).map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                            {post.tags.length > 3 && (
+                              <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
+                                +{post.tags.length - 3} more
+                              </span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {/* Featured Categories */}
+          <div className="mt-16 pt-12 border-t border-gray-200">
+            <h2 className="text-2xl font-bold mb-8 text-center">Browse by Category</h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {[
+                { name: "Coding Bootcamps", count: posts.filter(p => p.tags?.includes("coding bootcamp")).length },
+                { name: "Career Advice", count: posts.filter(p => p.tags?.includes("career")).length },
+                { name: "Programming Education", count: posts.filter(p => p.tags?.includes("programming education")).length },
+                { name: "Tech Industry", count: posts.filter(p => p.tags?.includes("tech")).length },
+              ].map((category) => (
+                <div
+                  key={category.name}
+                  className="p-4 bg-gray-50 rounded-lg text-center hover:bg-gray-100 transition-colors cursor-pointer"
+                >
+                  <h3 className="font-semibold text-gray-900">{category.name}</h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {category.count} article{category.count !== 1 ? 's' : ''}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-Blog.getLayout = function getLayout(page) {
-  return <div className=" theme-default">{page}</div>;
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = getAllBlogPosts();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+};
+
+// Use a custom layout that doesn't include the student portal layout
+BlogIndex.getLayout = function getLayout(page) {
+  return <div className="theme-default">{page}</div>;
 };

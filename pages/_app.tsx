@@ -8,6 +8,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { Provider as ReduxProvider } from "react-redux";
+import MDXProvider from "../components/blog/MDXProvider";
 import Layout from "../components/studentPortal/layout/Layout";
 import initializeApollo from "../lib/apollo";
 import { AuthProvider, useAuth } from "../lib/authContext";
@@ -125,12 +126,14 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ReduxProvider store={store}>
             <AuthProvider>
-              {Component.auth ||
-              router.pathname.startsWith("/studentPortal") ? (
-                <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
-              ) : (
-                getLayout(<Component {...pageProps} />)
-              )}
+              <MDXProvider>
+                {Component.auth ||
+                router.pathname.startsWith("/studentPortal") ? (
+                  <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
+                ) : (
+                  getLayout(<Component {...pageProps} />)
+                )}
+              </MDXProvider>
             </AuthProvider>
           </ReduxProvider>
         </DndProvider>
