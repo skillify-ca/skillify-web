@@ -1,4 +1,6 @@
+import React from "react";
 import AIMatchingGame from "../../../../components/studentPortal/courses/AI/AIMatchingGame";
+import Framework from "../../../../components/studentPortal/courses/AI/Framework";
 
 // Full AI Lesson
 const AILesson = () => {
@@ -82,6 +84,7 @@ const AILesson = () => {
       </div>
 
       <AIMatchingGame />
+      <Framework />
     </div>
   );
 };
