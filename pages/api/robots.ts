@@ -30,3 +30,4 @@ Crawl-delay: 1`;
     res.status(405).json({ error: `Method ${req.method} not allowed` });
   }
 }
+

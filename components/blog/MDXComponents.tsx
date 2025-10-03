@@ -205,3 +205,4 @@ export const MDXComponents = {
   CompetitorSection,
   ResourceList,
 };
+

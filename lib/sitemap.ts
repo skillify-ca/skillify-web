@@ -45,3 +45,4 @@ export function writeSitemap(): void {
   const sitemap = generateSitemap();
   fs.writeFileSync('public/sitemap.xml', sitemap);
 }
+

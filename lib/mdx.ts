@@ -92,3 +92,4 @@ export function getAllBlogSlugs(): string[] {
     .filter((file) => file.endsWith('.mdx'))
     .map((file) => file.replace(/\.mdx$/, ''));
 }
+
