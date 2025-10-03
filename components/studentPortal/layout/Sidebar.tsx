@@ -20,7 +20,6 @@ import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
 import FreemiumSidebarHeader from "../freemium/FreemiumSidebarHeader";
 import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
 import ExperimentalSidebarSection from "./ExperimentalSidebarSection";
-import { premiumCourses, sideBarItemsData } from "./SidebarData";
 import { freeCourses, sideBarItemsData } from "./SidebarData";
 import SidebarItem from "./SidebarItem";
 
