@@ -11,7 +11,7 @@ function JSIcon(props: JSIconProps) {
       x="0px"
       y="0px"
       fill="currentColor"
-      className="w-6 h-6 mr-1"
+      className="w-6 h-6 mr-4"
       viewBox="0 0 50 50"
       {...props}
     >

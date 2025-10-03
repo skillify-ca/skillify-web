@@ -21,6 +21,7 @@ import FreemiumSidebarHeader from "../freemium/FreemiumSidebarHeader";
 import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
 import ExperimentalSidebarSection from "./ExperimentalSidebarSection";
 import { premiumCourses, sideBarItemsData } from "./SidebarData";
+import { freeCourses, sideBarItemsData } from "./SidebarData";
 import SidebarItem from "./SidebarItem";
 
 export default function Sidebar({ closeSidebar }) {
@@ -130,7 +131,7 @@ export default function Sidebar({ closeSidebar }) {
             <p className="font-bold">Courses</p>
           </div>
           <div className="">
-            {premiumCourses.map((course) => {
+            {freeCourses.map((course) => {
               return (
                 <SidebarItem
                   key={course.title}

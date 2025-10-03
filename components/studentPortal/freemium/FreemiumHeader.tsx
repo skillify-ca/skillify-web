@@ -18,7 +18,7 @@ export const FreemiumHeader = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="grid w-full h-16 grid-cols-7 border-b-2 bg-backgroundPrimary">
+    <div className="w-full h-16 flex border-b-2 bg-backgroundPrimary justify-between">
       <div
         onClick={handleMenuIconClick}
         className="flex items-center pl-4 md:hidden"
@@ -41,40 +41,42 @@ export const FreemiumHeader = ({
           <img className="w-48 h-8" src="/images/logo-dark.svg" />
         ) : null}
       </div>
-      <div className="flex items-center justify-end col-span-3 pr-2 space-x-6">
-        <Button
-          label="Join"
-          onClick={(e) => {
-            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-            setIsModalOpen(true);
-          }}
-        />
-        {isModalOpen && (
-          <FreemiumDialogComponent
-            trigger={false}
-            onClose={() => setIsModalOpen(false)}
-            startOnUpgradeModal={true}
+      <div className="flex">
+        <div className="flex items-center justify-end pr-2 space-x-6">
+          <Button
+            label="Join"
+            onClick={(e) => {
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              setIsModalOpen(true);
+            }}
           />
-        )}
-      </div>
-      <div
-        onClick={handleToggleClick}
-        className="flex items-center justify-end pr-4"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="w-6 h-6 text-textPrimary"
+          {isModalOpen && (
+            <FreemiumDialogComponent
+              trigger={false}
+              onClose={() => setIsModalOpen(false)}
+              startOnUpgradeModal={true}
+            />
+          )}
+        </div>
+        <div
+          onClick={handleToggleClick}
+          className="sm:flex hidden items-center justify-end pr-4"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 text-textPrimary"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   );

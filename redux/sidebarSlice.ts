@@ -14,7 +14,8 @@ export type SidebarPage =
   | "interviewPrep1"
   | "interviewPrep2"
   | "crypto"
-  | "financialLiteracy";
+  | "financialLiteracy"
+  | "vibe_coding";
 
 export interface SidebarState {
   activePage: SidebarPage;

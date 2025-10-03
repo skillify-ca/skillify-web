@@ -41,7 +41,7 @@ export default function Upgrade() {
         <Button
           size="large"
           disabled={isDisabled}
-          label={`${"Request Access"}`}
+          label={`${"Upgrade Access"}`}
           onClick={handleRequestClick}
         />
       )}

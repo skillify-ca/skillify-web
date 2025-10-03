@@ -23,7 +23,7 @@ export default function UserProfileSection({
             <div className="w-full ml-4">
               <p className="text-lg font-bold">{user.displayName}</p>
               <p className="font-medium text-gray-500 capitalize">
-                {"Prospective Student"}{" "}
+                {"Free Plan"}{" "}
               </p>
             </div>
           </div>
