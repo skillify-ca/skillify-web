@@ -10,6 +10,7 @@ export const FETCH_COACHES = gql`
       }
       competencies
       link
+      image_url
     }
   }
 `;
@@ -26,6 +27,7 @@ export type Coach = {
   link: string;
   competencies: string;
   user: User;
+  image_url: string;
 };
 
 type User = {
