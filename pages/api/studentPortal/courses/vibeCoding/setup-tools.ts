@@ -66,7 +66,7 @@ export function getDataForSetupToolsLesson(): LessonPageData {
               required: true,
             },
             {
-              label: "Optional - I have installed Github Desktop, Visual Studio Code and Cline. (For technical students only).",
+              label: "Optional - I have installed Github Desktop, Visual Studio Code and Cline. I have a Google Gemini API key (For technical students only).",
               required: false,
             },
           ],
