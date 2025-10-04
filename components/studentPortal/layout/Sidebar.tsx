@@ -121,7 +121,7 @@ export default function Sidebar({ closeSidebar }) {
         {sideBarItemsData(user, goalApproaching).map((it) => {
           return (
             <SidebarItem
-              key={it.title}
+              key={it.page}
               userRole={userRole}
               it={it}
               closeSidebar={closeSidebar}
@@ -136,7 +136,7 @@ export default function Sidebar({ closeSidebar }) {
             {freeCourses.map((course) => {
               return (
                 <SidebarItem
-                  key={course.title}
+                  key={course.page}
                   userRole={userRole}
                   it={course}
                   closeSidebar={closeSidebar}

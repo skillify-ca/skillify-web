@@ -26,7 +26,7 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
   },
   {
     name: "Mock Interview Bot",
-    page: "",
+    page: "mockInterview",
     link: "/resources/mockInterview",
     icon: <CogIcon className="w-6 mr-4" />,
     isPremium: true,
@@ -40,7 +40,7 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
   },
   {
     name: "Job Explorer",
-    page: "",
+    page: "jobExplorer",
     link: "/resources/jobExplorer/jobList",
     icon: <DocumentSearchIcon className="w-6 mr-4" />,
     isPremium: true,
