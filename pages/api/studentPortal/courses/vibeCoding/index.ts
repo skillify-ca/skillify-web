@@ -3,13 +3,160 @@ import { ResponseData } from "../codingBasics/introduction";
 import { getDataForDeployToVercelLesson } from "./deploy-to-vercel";
 import { getDataForSetupToolsLesson } from "./setup-tools";
 
+function getDataForShowingListAndDetailsLesson(): ResponseData {
+  return {
+    lessonComponents: [
+      {
+        component: "title",
+        text: "Showing a list of items and details",
+      },
+      {
+        component: "checkboxForm",
+        title: "Completion Criteria",
+        items: [
+          {
+            label: "My app displays a list of items and details with mock data.",
+            required: true,
+          },
+        ],
+        url: "/studentPortal/courses/vibeCoding/connect-to-database",
+      }
+    ],
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "",
+  };
+}
+
+function getDataForConnectToDatabaseLesson(): ResponseData {
+  return {
+    lessonComponents: [
+      {
+        component: "title",
+        text: "Connecting to a Google Sheets database",
+      },
+      {
+        component: "checkboxForm",
+        title: "Completion Criteria",
+        items: [
+          {
+            label: "My web app is reading data from a Google Sheets database.",
+            required: true,
+          },
+        ],
+        url: "/studentPortal/courses/vibeCoding",
+      }
+    ],
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "",
+  };
+}
+
+function getDataForSearchingAndFilteringDataLesson(): ResponseData {
+  return {
+    lessonComponents: [
+      {
+        component: "title",
+        text: "Searching and filtering data",
+      },
+      {
+        component: "checkboxForm",
+        title: "Completion Criteria",
+        items: [
+          {
+            label: "My web app has a working search bar for searching and filtering data.",
+            required: true,
+          },
+        ],
+        url: "/studentPortal/courses/vibeCoding",
+      }
+    ],
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "",
+  };
+}
+
+function getDataForPopulateDatabaseLesson(): ResponseData {
+  return {
+    lessonComponents: [
+      {
+        component: "title",
+        text: "Populate and extend your database",
+      },
+      {
+        component: "checkboxForm",
+        title: "Completion Criteria",
+        items: [
+          {
+            label: "My database has a good amount of quality data.",
+            required: true,
+          },
+        ],
+        url: "/studentPortal/courses/vibeCoding",
+      }
+    ],
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "",
+  };
+}
+
+function getDataForConclusionLesson(): ResponseData {
+  return {
+    lessonComponents: [
+      {
+        component: "title",
+        text: "Conclusion",
+      },
+      {
+        component: "description",
+        text: "This is the end of the Vibe Coding course. You can continue to work on your project or start a new one. Remember, the goal is to validate your ideas and get feedback from users. Good luck!",
+      },
+      {
+        component: "checkboxForm",
+        title: "Completion Criteria",
+        items: [
+          {
+            label: "I have updated my web app and have gotten feedback from my targetusers.",
+            required: true,
+          },
+        ],
+        url: "/studentPortal/courses/vibeCoding",
+      }
+    ],
+    currentNode: 0,
+    nextNode: 0,
+    nextSlug: "",
+  };
+} 
+
 export function getLessonForVibeCodingCourse(lessonId: string) {
-  console.log("lessonId", lessonId);
   if (lessonId.toLocaleLowerCase() === "setup-tools") {
     return getDataForSetupToolsLesson();
   }
   if (lessonId.toLocaleLowerCase() === "deploy-to-vercel") {
     return getDataForDeployToVercelLesson();
+  }
+  if (lessonId.toLocaleLowerCase() === "showing-list-and-details") {
+    return getDataForShowingListAndDetailsLesson();
+  }
+
+  if (lessonId.toLocaleLowerCase() === "connect-to-database") {
+    return getDataForConnectToDatabaseLesson();
+  }
+
+  if (lessonId.toLocaleLowerCase() === "searching-and-filtering-data") {
+    return getDataForSearchingAndFilteringDataLesson();
+  }
+
+  if (lessonId.toLocaleLowerCase() === "populate-database") {
+    return getDataForPopulateDatabaseLesson();
+  }
+
+  if (lessonId.toLocaleLowerCase() === "conclusion") {
+    return getDataForConclusionLesson();
   }
 
   throw new Error(`Could not find lessons for ${lessonId}`);

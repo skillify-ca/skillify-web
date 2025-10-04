@@ -16,6 +16,36 @@ export const vibeCodingUnits: Unit[] = [
         link: "deploy-to-vercel",
         type: "lesson",
       },
+      {
+        title: "Lesson 3",
+        description: "Showing a list of items and details",
+        link: "showing-list-and-details",
+        type: "lesson",
+      },
+      {
+        title: "Lesson 4",
+        description: "Connecting to a Google Sheets database",
+        link: "connect-to-database",
+        type: "lesson",
+      },
+      {
+        title: "Lesson 5",
+        description: "Searching and filtering data",
+        link: "searching-and-filtering-data",
+        type: "lesson",
+      },
+      {
+        title: "Lesson 6",
+        description: "Populate and extend your database",
+        link: "populate-database",
+        type: "lesson",
+      },
+      {
+        title: "Lesson 7",
+        description: "Conclusion",
+        link: "conclusion",
+        type: "lesson",
+      },
     ],
   },
 ];
