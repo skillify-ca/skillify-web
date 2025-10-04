@@ -1,10 +1,8 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
-import ExpandableContainer from "../../ui/ExpandableContainer";
+import CheckboxForm from "../../ui/CheckboxForm";
 import WebhookInputBox from "../../ui/WebhookInputBox";
 import { Hint } from "../assignments/AssignmentComponent";
-import HintRow from "../assignments/HintRow";
-import TemplateInputBox from "../assignments/TemplateInputBox";
 import Quiz from "../quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 
@@ -101,6 +99,12 @@ export type LessonComponentData =
       component: "prompt";
       header: string;
       bullets: string[];
+    }
+  | {
+      component: "checkboxForm";
+      items: { label: string; required: boolean }[];
+      url: string;
+      title: string | undefined;
     };
 
 export type LessonComponentProps = {
@@ -221,37 +225,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       </div>
     );
   }
-  if (data.component === "hint-list") {
+  if (data.component === "checkboxForm") {
     return (
-      <ExpandableContainer open={false} title="Hints">
-        <div className="flex flex-col mx-4 space-y-4 text-lg">
-          <p>Click below to reveal hints</p>
-          {data.hintRow.map((it, index) => (
-            <HintRow key={index} description={it.description} link={it.link} />
-          ))}
-        </div>
-      </ExpandableContainer>
-    );
-  }
-  if (data.component === "template") {
-    return (
-      <ExpandableContainer open={true} title="Assignment Template">
-        <TemplateInputBox templateLink={data.templateLink} />
-      </ExpandableContainer>
-    );
-  }
-  if (data.component === "prompt") {
-    return (
-      <ExpandableContainer open={true} title="Directions">
-        <div className="flex flex-col mx-4">
-          <p className="text-lg">{data.header}</p>
-          <ul className="ml-10 space-y-2 list-disc list-outside text-md">
-            {data.bullets.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-      </ExpandableContainer>
+      <CheckboxForm items={data.items} url={data.url} title={data.title} />
     );
   }
 

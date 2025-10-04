@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import GoalsFeed from "../../../../components/studentPortal/goals/feed/GoalsFeed";
 import UnitView from "../../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../../components/ui/PageHeader";
@@ -33,7 +33,7 @@ export const VibeCodingCourse = () => {
         />
         <div className="grid grid-cols-1 gap-4">
           {units.map((it, i) => (
-            <UnitView key={i} data={it} course="codingBasics" />
+            <UnitView key={i} data={it} course="vibeCoding" />
           ))}
         </div>
       </div>
