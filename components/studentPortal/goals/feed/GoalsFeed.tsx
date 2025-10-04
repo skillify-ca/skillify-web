@@ -1,11 +1,13 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import { FETCH_ALL_USER_GOALS } from "../../../../graphql/studentPortal/goals/fetchAllUserGoals";
+import { Avatar, AvatarFallback, AvatarImage } from "../../../ui/Avatar";
 
 type Goal = {
   id: string;
   description: string;
   userName: string;
+  profileImage: string;
   completedOn: string;
 };
 
@@ -20,6 +22,7 @@ export default function GoalsFeed() {
           description: goal.goalName,
           userName: goal.usersTable.name,
           completedOn: goal.updatedAt,
+          profileImage: goal.usersTable.profile_image,
         };
       });
 
@@ -39,7 +42,13 @@ export default function GoalsFeed() {
             <p className="text-sm font-bold text-bulbasaur-500">Completed</p>
 
             <p>{goal.description}</p>
-            <p className="font-bold">{goal.userName} </p>
+            <div className="flex items-center gap-2">
+              <Avatar className="w-8 h-8 bg-slate-200">
+                <AvatarImage src={goal.profileImage} alt="user avatar" />
+                <AvatarFallback>{goal.userName.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <p className="font-bold">{goal.userName} </p>
+            </div>
             <p className="text-xs">
               {new Date(goal.completedOn).toLocaleDateString("en-US", {
                 month: "short",
@@ -47,6 +56,7 @@ export default function GoalsFeed() {
                 year: "numeric",
               })}
             </p>
+          
           </div>
         ))}
       </div>
