@@ -69,7 +69,10 @@ export default function Sidebar({ closeSidebar }) {
       router.pathname.startsWith("/studentPortal/courses/codingBasics")
     ) {
       dispatch(setActivePage("coding_basics"));
-    } else if (router.pathname.startsWith("/studentPortal")) {
+    } else if (router.pathname.startsWith("/studentPortal/courses/vibeCoding")) {
+      dispatch(setActivePage("vibe_coding"));
+    }
+    else if (router.pathname.startsWith("/studentPortal")) {
       dispatch(setActivePage("dashboard"));
     } else if (router.pathname.startsWith("/studentPortal/jobs")) {
       dispatch(setActivePage("jobs"));

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "./Button";
 import { Checkbox } from "./Checkbox";
@@ -28,7 +29,7 @@ export default function CheckboxForm({ items, url, title }: CheckboxFormProps) {
         <Checkbox label={item.label} onChange={(e) => onChange(item.label)} checked={checkedItems.includes(item.label)} />
       ))}
       <div className="mt-4">
-      <Button label="Continue" onClick={() => window.open(url, "_blank")} disabled={isDisabled} />
+        <Link href={url}> <Button label="Continue" disabled={isDisabled} /></Link>
       </div>
     </div>
     );
