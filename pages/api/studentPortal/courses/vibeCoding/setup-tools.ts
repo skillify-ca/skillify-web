@@ -46,11 +46,11 @@ export function getDataForSetupToolsLesson(): LessonPageData {
               required: true,
             },
           ],
-          url: "/studentPortal/courses/vibeCoding/deploy-to-vercel",
+          url: "/studentPortal/courses/vibeCoding/hello-world-ai-studio",
   
         },
       ],
       lessonId: 1,
-      lessonCount: 7,
+      lessonCount: 8,
     };
   }

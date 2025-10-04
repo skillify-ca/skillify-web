@@ -28,7 +28,7 @@ export function getDataForDeployToVercelLesson(): LessonPageData {
           url: "/studentPortal/courses/vibeCoding/showing-list-and-details",
         },
       ],
-      lessonId: 2,
+      lessonId: 3,
       lessonCount: 7,
     };
   }

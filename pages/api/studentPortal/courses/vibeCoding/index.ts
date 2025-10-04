@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getDataForDeployToVercelLesson } from "./deploy-to-vercel";
+import { getDataForHelloWorldAiStudioLesson } from "./hello-world-ai-studio";
 import { getDataForSetupToolsLesson } from "./setup-tools";
 import { LessonPageData } from "./types";
 
@@ -22,8 +23,8 @@ function getDataForShowingListAndDetailsLesson(): LessonPageData {
         url: "/studentPortal/courses/vibeCoding/connect-to-database",
       }
     ],
-    lessonId: 3,
-    lessonCount: 7,
+    lessonId: 4,
+    lessonCount: 8,
   };
 }
 
@@ -46,8 +47,8 @@ function getDataForConnectToDatabaseLesson(): LessonPageData {
         url: "/studentPortal/courses/vibeCoding/searching-and-filtering-data",
       }
     ],
-    lessonId: 4,
-    lessonCount: 7,
+    lessonId: 5,
+    lessonCount: 8,
   };
 }
 
@@ -70,8 +71,8 @@ function getDataForSearchingAndFilteringDataLesson(): LessonPageData {
         url: "/studentPortal/courses/vibeCoding/populate-database",
       }
     ],
-    lessonId: 5,
-    lessonCount: 7,
+    lessonId: 6,
+    lessonCount: 8,
   };
 }
 
@@ -94,8 +95,8 @@ function getDataForPopulateDatabaseLesson(): LessonPageData {
         url: "/studentPortal/courses/vibeCoding/conclusion",
       }
     ],
-    lessonId: 6,
-    lessonCount: 7,
+    lessonId: 7,
+    lessonCount: 8,
   };
 }
 
@@ -122,14 +123,17 @@ function getDataForConclusionLesson(): LessonPageData {
         url: "/studentPortal/courses/vibeCoding",
       }
     ],
-    lessonId: 7,
-    lessonCount: 7,
+    lessonId: 8,
+    lessonCount: 8,
   };
 } 
 
 export function getLessonForVibeCodingCourse(lessonId: string) {
   if (lessonId.toLocaleLowerCase() === "setup-tools") {
     return getDataForSetupToolsLesson();
+  }
+  if (lessonId.toLocaleLowerCase() === "hello-world-ai-studio") {
+    return getDataForHelloWorldAiStudioLesson();
   }
   if (lessonId.toLocaleLowerCase() === "deploy-to-vercel") {
     return getDataForDeployToVercelLesson();
