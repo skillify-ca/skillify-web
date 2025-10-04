@@ -4,10 +4,9 @@ import { Button } from "../../ui/Button";
 
 type CoachCardProps = {
   coach: Coach;
-  disabled: boolean;
 };
 
-export default function CoachCard({ coach, disabled }: CoachCardProps) {
+export default function CoachCard({ coach }: CoachCardProps) {
   return (
     <div className="flex flex-col justify-between p-8 shadow-lg bg-backgroundSecondary">
       <div className="flex flex-col items-center justify-center mb-4">
@@ -25,7 +24,7 @@ export default function CoachCard({ coach, disabled }: CoachCardProps) {
       </div>
       <div className="flex items-center justify-center p-4 mt-4">
         <a href={coach.link} target="_blank" rel="noreferrer">
-          <Button label="Book Time" disabled={disabled} />
+          <Button label="Book Time" />
         </a>
       </div>
     </div>
