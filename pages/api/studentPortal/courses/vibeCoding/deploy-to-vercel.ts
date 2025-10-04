@@ -1,6 +1,7 @@
-import { ResponseData } from "../codingBasics/introduction";
 
-export function getDataForDeployToVercelLesson(): ResponseData {
+import { LessonPageData } from "./types";
+
+export function getDataForDeployToVercelLesson(): LessonPageData {
     return {
       lessonComponents: [
         {
@@ -24,11 +25,10 @@ export function getDataForDeployToVercelLesson(): ResponseData {
               required: true,
             },
           ],
-          url: "/studentPortal/courses/vibeCoding",
+          url: "/studentPortal/courses/vibeCoding/showing-list-and-details",
         },
       ],
-      currentNode: 0,
-      nextNode: 0,
-      nextSlug: "",
+      lessonId: 2,
+      lessonCount: 7,
     };
   }

@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ResponseData } from "../codingBasics/introduction";
 import { getDataForDeployToVercelLesson } from "./deploy-to-vercel";
 import { getDataForSetupToolsLesson } from "./setup-tools";
+import { LessonPageData } from "./types";
 
-function getDataForShowingListAndDetailsLesson(): ResponseData {
+function getDataForShowingListAndDetailsLesson(): LessonPageData {
   return {
     lessonComponents: [
       {
@@ -22,13 +22,12 @@ function getDataForShowingListAndDetailsLesson(): ResponseData {
         url: "/studentPortal/courses/vibeCoding/connect-to-database",
       }
     ],
-    currentNode: 0,
-    nextNode: 0,
-    nextSlug: "",
+    lessonId: 3,
+    lessonCount: 7,
   };
 }
 
-function getDataForConnectToDatabaseLesson(): ResponseData {
+function getDataForConnectToDatabaseLesson(): LessonPageData {
   return {
     lessonComponents: [
       {
@@ -44,16 +43,15 @@ function getDataForConnectToDatabaseLesson(): ResponseData {
             required: true,
           },
         ],
-        url: "/studentPortal/courses/vibeCoding",
+        url: "/studentPortal/courses/vibeCoding/searching-and-filtering-data",
       }
     ],
-    currentNode: 0,
-    nextNode: 0,
-    nextSlug: "",
+    lessonId: 4,
+    lessonCount: 7,
   };
 }
 
-function getDataForSearchingAndFilteringDataLesson(): ResponseData {
+function getDataForSearchingAndFilteringDataLesson(): LessonPageData {
   return {
     lessonComponents: [
       {
@@ -69,16 +67,15 @@ function getDataForSearchingAndFilteringDataLesson(): ResponseData {
             required: true,
           },
         ],
-        url: "/studentPortal/courses/vibeCoding",
+        url: "/studentPortal/courses/vibeCoding/populate-database",
       }
     ],
-    currentNode: 0,
-    nextNode: 0,
-    nextSlug: "",
+    lessonId: 5,
+    lessonCount: 7,
   };
 }
 
-function getDataForPopulateDatabaseLesson(): ResponseData {
+function getDataForPopulateDatabaseLesson(): LessonPageData {
   return {
     lessonComponents: [
       {
@@ -94,16 +91,15 @@ function getDataForPopulateDatabaseLesson(): ResponseData {
             required: true,
           },
         ],
-        url: "/studentPortal/courses/vibeCoding",
+        url: "/studentPortal/courses/vibeCoding/conclusion",
       }
     ],
-    currentNode: 0,
-    nextNode: 0,
-    nextSlug: "",
+    lessonId: 6,
+    lessonCount: 7,
   };
 }
 
-function getDataForConclusionLesson(): ResponseData {
+function getDataForConclusionLesson(): LessonPageData {
   return {
     lessonComponents: [
       {
@@ -126,9 +122,8 @@ function getDataForConclusionLesson(): ResponseData {
         url: "/studentPortal/courses/vibeCoding",
       }
     ],
-    currentNode: 0,
-    nextNode: 0,
-    nextSlug: "",
+    lessonId: 7,
+    lessonCount: 7,
   };
 } 
 
@@ -164,7 +159,7 @@ export function getLessonForVibeCodingCourse(lessonId: string) {
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<LessonPageData>
 ) {
   const slug = (req.query.slug as string) || "setup-tools";
   const data = getLessonForVibeCodingCourse(slug);

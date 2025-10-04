@@ -1,6 +1,6 @@
-import { ResponseData } from "../codingBasics/introduction";
+import { LessonPageData } from "./types";
 
-export function getDataForSetupToolsLesson(): ResponseData {
+export function getDataForSetupToolsLesson(): LessonPageData {
     return {
       lessonComponents: [
         {
@@ -74,8 +74,7 @@ export function getDataForSetupToolsLesson(): ResponseData {
   
         },
       ],
-      currentNode: 0,
-      nextNode: 0,
-      nextSlug: "deploy-to-vercel",
+      lessonId: 1,
+      lessonCount: 7,
     };
   }
