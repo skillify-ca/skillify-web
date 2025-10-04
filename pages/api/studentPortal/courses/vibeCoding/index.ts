@@ -115,7 +115,7 @@ function getDataForConclusionLesson(): LessonPageData {
         title: "Completion Criteria",
         items: [
           {
-            label: "I have updated my web app and have gotten feedback from my targetusers.",
+            label: "I have updated my web app and have gotten feedback from my target users.",
             required: true,
           },
         ],
