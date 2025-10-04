@@ -4,8 +4,8 @@ import GoalsFeed from "../../../../components/studentPortal/goals/feed/GoalsFeed
 import UnitView from "../../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../../components/ui/PageHeader";
 import { useAuth } from "../../../../lib/authContext";
+import { vibeCodingUnits } from "../../../api/studentPortal/courses/vibeCoding/units";
 import { Unit } from "../../../api/studentPortal/units";
-import { vibeCodingUnits } from "./units";
 
 const VibeCodingCoursePage = () => {
   return (

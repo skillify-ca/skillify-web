@@ -1,4 +1,4 @@
-import { Unit } from "../../../api/studentPortal/units";
+import { Unit } from "../../units";
 
 export const vibeCodingUnits: Unit[] = [
   {
