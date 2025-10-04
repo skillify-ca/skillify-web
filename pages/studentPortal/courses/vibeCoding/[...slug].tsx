@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import React from "react";
 import { LessonComponentData } from "../../../../components/studentPortal/lessons/LessonComponent";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { getLessonForVibeCodingCourse } from "../../../api/studentPortal/courses/vibeCoding";
