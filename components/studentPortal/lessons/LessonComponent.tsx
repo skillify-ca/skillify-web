@@ -152,8 +152,8 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   }
   if (data.component === "resource-list") {
     return (
-      <>
-        <h1 className="font-bold">{data.title ?? "Resources"}</h1>
+      <div>
+        <h1 className="font-bold mb-4">{data.title ?? "Resources"}</h1>
         <div className="flex flex-col gap-8">
           {data.resources.map((it, index) => (
             <ResourceRow
@@ -166,7 +166,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
             />
           ))}
         </div>
-      </>
+      </div>
     );
   }
   if (data.component === "quiz") {
@@ -198,15 +198,21 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   }
   if (data.component === "video") {
     return (
-      <div className="pb-56 mb-8 h-96">
-        <iframe
+      <div className="h-full flex flex-col">
+        <h3 className="font-bold mb-4">Video</h3>
+        {/* <iframe
           src={`${data.url}`}
           frameBorder="0"
           webkit-allowfullscreen
           moz-allowfullscreen
           allowFullScreen
           className="w-full h-96"
-        ></iframe>
+        ></iframe> */}
+        <video
+          src={`${data.url}`}
+          controls
+          className="h-full w-full"
+          />
       </div>
     );
   }

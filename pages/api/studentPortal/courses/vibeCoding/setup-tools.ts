@@ -9,8 +9,12 @@ export function getDataForSetupToolsLesson(): LessonPageData {
         },
         {
           component: "description",
-          text: `Welcome to the Vibe Coding course! Vibe Coding is an excellent way to prototype your ideas and validate if you are on the right track. \n\nBut vibe coding has limitations that make it difficult to build and maintain a production ready applications with real users.\n\nMake sure you download or sign up for these programs to start. Message Vithushan if you're having trouble.`,
-        },
+          text: `Welcome to the Vibe Coding course! Vibe Coding is an excellent way to prototype your ideas and validate if you are on the right track. 
+
+But vibe coding has limitations that make it difficult to build and maintain a production ready applications with real users.
+
+Make sure you download or sign up for these programs to start. Message Vithushan if you're having trouble.`,
+        },    
         {
           component: "resource-list",
           resources: [   
@@ -36,6 +40,10 @@ export function getDataForSetupToolsLesson(): LessonPageData {
               image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.uEi-BYi_M-Rnv9abB82xqwHaHa%3Fpid%3DApi&f=1&ipt=25a367dae41815f21a2025d1dc44dace3940ae7805e7ac02cea437d2b5a5413c",
             },           
           ],
+        },
+        {
+          component: "video",
+          url: "https://firebasestorage.googleapis.com/v0/b/math-champ-b7e77.appspot.com/o/vibeCoding%2Fsetting-up-tools.mov?alt=media"
         },
         {
           component: "checkboxForm",

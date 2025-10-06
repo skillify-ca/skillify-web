@@ -12,6 +12,10 @@ export function getDataForHelloWorldAiStudioLesson(): LessonPageData {
           text: `Now that you have setup your tools, you can start coding your first project in AI Studio.`,
         },
         {
+          component: "video",
+          url: "https://firebasestorage.googleapis.com/v0/b/math-champ-b7e77.appspot.com/o/vibeCoding%2Fai-studio-hello-world.mov?alt=media"
+        },
+        {
           component: "checkboxForm",
           title: "Completion Criteria",
           items: [

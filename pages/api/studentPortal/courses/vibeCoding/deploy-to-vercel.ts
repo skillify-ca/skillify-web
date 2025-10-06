@@ -13,8 +13,8 @@ export function getDataForDeployToVercelLesson(): LessonPageData {
           text: "Now that you have setup your tools, you can deploy your app to Vercel.",
         },
         {
-          component: "image",
-          url: "/images/lessons/vercel.png",
+          component: "video",
+          url: "https://firebasestorage.googleapis.com/v0/b/math-champ-b7e77.appspot.com/o/vibeCoding%2Fdeploy-to-vercel.mov?alt=media"
         },
         {
           component: "checkboxForm",

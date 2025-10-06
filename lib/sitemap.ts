@@ -46,3 +46,4 @@ export function writeSitemap(): void {
   fs.writeFileSync('public/sitemap.xml', sitemap);
 }
 
+

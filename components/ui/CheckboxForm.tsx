@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "./Button";
 import { Checkbox } from "./Checkbox";
 
@@ -24,7 +24,7 @@ export default function CheckboxForm({ items, url, title }: CheckboxFormProps) {
 
   return (
     <div>
-      {title && <h1 className="text-2xl font-bold">{title}</h1>}
+      {title && <h1 className="font-bold mb-4">{title}</h1>}
       {items.map((item) => (
         <Checkbox label={item.label} onChange={(e) => onChange(item.label)} checked={checkedItems.includes(item.label)} />
       ))}
