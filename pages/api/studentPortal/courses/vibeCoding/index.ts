@@ -12,6 +12,10 @@ function getDataForShowingListAndDetailsLesson(): LessonPageData {
         text: "Showing a list of items and details",
       },
       {
+        component: "video",
+        url: "https://firebasestorage.googleapis.com/v0/b/math-champ-b7e77.appspot.com/o/vibeCoding%2Fbuilding-list.mov?alt=media"
+      },
+      {
         component: "checkboxForm",
         title: "Completion Criteria",
         items: [
@@ -36,6 +40,10 @@ function getDataForConnectToDatabaseLesson(): LessonPageData {
         text: "Connecting to a Google Sheets database",
       },
       {
+        component: "video",
+        url: "https://firebasestorage.googleapis.com/v0/b/math-champ-b7e77.appspot.com/o/vibeCoding%2Freal-data.mov?alt=media"
+      },
+      {
         component: "checkboxForm",
         title: "Completion Criteria",
         items: [
@@ -58,6 +66,10 @@ function getDataForSearchingAndFilteringDataLesson(): LessonPageData {
       {
         component: "title",
         text: "Searching and filtering data",
+      },
+      {
+        component: "video",
+        url: "https://firebasestorage.googleapis.com/v0/b/math-champ-b7e77.appspot.com/o/vibeCoding%2Fsearch.mov?alt=media",
       },
       {
         component: "checkboxForm",
