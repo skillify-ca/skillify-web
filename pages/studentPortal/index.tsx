@@ -10,7 +10,8 @@ import { useAuth } from "../../lib/authContext";
 
 import React from "react";
 import GoalsFeed from "../../components/studentPortal/goals/feed/GoalsFeed";
-import { Unit, codingBasicsCourse } from "../api/studentPortal/units";
+import { vibeCodingUnits } from "../api/studentPortal/courses/vibeCoding/units";
+import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
@@ -20,7 +21,7 @@ export default function StudentPortalPage() {
   const [units, setUnits] = useState<Unit[]>([]);
 
   useEffect(() => {
-    setUnits(codingBasicsCourse.units);
+    setUnits(vibeCodingUnits);
   }, []);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function StudentPortalPage() {
         />
         <div className="grid grid-cols-1 gap-4">
           {units.map((it, i) => (
-            <UnitView key={i} data={it} course="codingBasics" />
+            <UnitView key={i} data={it} course="vibeCoding" />
           ))}
         </div>
       </div>
