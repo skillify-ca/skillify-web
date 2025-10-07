@@ -30,7 +30,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           style={fillerStyles}
           className="flex items-center justify-end bg-rattata"
         >
-          <span className="p-5 font-bold text-center text-white">{`${completed}%`}</span>
+          <span className="p-2 font-bold text-center text-white">{`${completed}%`}</span>
         </div>
       </div>
     </div>)
