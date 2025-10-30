@@ -129,7 +129,7 @@ const BookingCheckoutPage = () => {
                 className='border-2 rounded-lg p-4 grid grid-cols-[1fr_auto] gap-4 items-center hover:border-blue-400 transition-colors'
               >
                 <p className="text-lg">{slot}</p>
-                <a href="https://book.stripe.com/00wdR91KrdfOfHK7Vo0480E" target='_blank'>
+                <a href="https://book.stripe.com/00wdR91KrdfOfHK7Vo0480E" target='_blank' rel="noreferrer">
                 <Button 
                   label={loading ? 'Loading...' : `Reserve`}                  
                   disabled={loading}
