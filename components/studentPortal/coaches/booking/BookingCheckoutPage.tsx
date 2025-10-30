@@ -147,7 +147,7 @@ const BookingCheckoutPage = () => {
                   <Button
                     label={`Reserve`}
                     onClick={() => {
-                      logToSlack(`New Coaching Request Income Pre-Stripe: ${user.email}`);
+                      logToSlack(`New Coaching Request Income Pre-Stripe - Email: ${user.email} Time Slot: ${slot}`);
                     }}
                   />
                 </a>
