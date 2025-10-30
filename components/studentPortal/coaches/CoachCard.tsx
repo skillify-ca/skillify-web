@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { Coach } from "../../../graphql/studentPortal/coaches/fetchCoaches";
 import { useAuth } from "../../../lib/authContext";
 import { logToSlack } from "../../../pages/api/slack/slackLogger";
@@ -59,7 +60,6 @@ export function VithushanLockedCoachCard({ coach }: CoachCardProps) {
 
   const { user } = useAuth();
 
-
   const handleClick = () => {
     setIsClicked(true);
     logToSlack(`New Coach Request: ${coach.user.name} from ${user.email}`);
@@ -67,7 +67,7 @@ export function VithushanLockedCoachCard({ coach }: CoachCardProps) {
 
   return (
     <div className="flex flex-col justify-between p-8 shadow-lg bg-backgroundSecondary h-full">
-     <div className="flex flex-col items-center justify-center mb-4">
+      <div className="flex flex-col items-center justify-center mb-4">
         <img
           src={coach.image_url}
           className="object-cover w-40 h-40 border-8 rounded-full border-brandPrimary"
@@ -81,20 +81,9 @@ export function VithushanLockedCoachCard({ coach }: CoachCardProps) {
         </p>
       </div>
       <div className="flex items-center justify-center p-4 mt-4">
-        {!isClicked ? (
-          <Button
-            label="Book Time"
-            disabled={isClicked}
-            onClick={handleClick}
-          />
-        ) : (
-          <div className="flex items-center justify-center gap-2">
-            <img src="/images/studentPortal/checkmark.svg" className="w-10 h-10" />
-            <p className="text-bulbasaur-500">
-              We will email you to find a time to meet!
-            </p>
-          </div>
-        )}
+        <Link href={"/studentPortal/coaches/booking"}>
+        <Button label="Book Time" onClick={handleClick} />
+        </Link>
       </div>
     </div>
   );

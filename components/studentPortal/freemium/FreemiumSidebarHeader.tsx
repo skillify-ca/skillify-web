@@ -15,7 +15,7 @@ export default function UserProfileSection({
     (<div className="flex flex-col w-full border-b-2 bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         {user && (
-          <div className="flex flex-col items-center w-full gap-4 p-4">
+          <div className="flex flex-col sm:flex-row items-center w-full gap-4 sm:gap-0 p-4">
             <Avatar className="bg-slate-200">
               <AvatarImage src={user.photoURL} alt="user avatar" />
               <AvatarFallback>{user.displayName.charAt(0)}</AvatarFallback>

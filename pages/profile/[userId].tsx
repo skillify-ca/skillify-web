@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Offer,
@@ -201,98 +201,114 @@ export default function InternalProfile({
     },
   });
 
-  const sections = [
-    {
-      shouldShow: userProfileData.name.startsWith("G"),
-      title: "Summary",
-      hasProgress: false,
-      value: 0,
-      component: <StudentFeedbackComponent />,
-    },
-    {
-      shouldShow: true,
-      title: `Projects (${userProjects.length}/5 Complete)`,
-      hasProgress: true,
-      value: (userProjects.length * 100) / 5,
-      component: (
-        <>
-          {isEditable && (
-            <div className="p-4">
-              <Link href="/studentPortal/projects/create" legacyBehavior>
-                <Button label="Create" />
-              </Link>
-            </div>
-          )}
-          <ProjectsSection userProjects={userProjects} />
-        </>
-      ),
-    },
-    {
-      shouldShow: true,
-      title: (
-        <div className="flex items-center justify-center gap-4">
-          Goals
-          <ProfileGoalBadge />
-          {` (${userGoals.filter((it) => it.isComplete).length}/${
-            userGoals.length
-          } Complete)`}
-        </div>
-      ),
-      hasProgress: true,
-      value:
-        (userGoals.filter((it) => it.isComplete).length * 100) /
-        userGoals.length,
-      component: (
-        <GoalsSectionComponent
-          inProfile={true}
-          userGoals={userGoals.filter(
-            (goal) => !goal.isComplete && !goal.isArchived
-          )}
-        />
-      ),
-    },
-    {
-      shouldShow: true,
-      title: `Skills (${
-        userSkillRatings?.intro_course_skills_user?.filter(
-          (it) => it.studentRating === 100
-        ).length
-      } / ${skillRatings?.intro_course_skills?.length} Mastered)`,
-      hasProgress: true,
-      value:
-        (userSkillRatings?.intro_course_skills_user?.filter(
-          (it) => it.studentRating === 100
-        ).length *
-          100) /
-        skillRatings?.intro_course_skills?.length,
-      component: (
-        <SkillRatingsComponent
-          userId={userId}
-          skillRatings={skillRatings}
-          userSkillRatings={userSkillRatings}
-          isEditable={isEditable}
-        />
-      ),
-    },
-    {
-      shouldShow: true,
-      title: `Badges (${userBadgeCount}/${totalBadgeCount} Unlocked)`,
-      hasProgress: true,
-      value: (userBadgeCount * 100) / totalBadgeCount,
-      component: typeof userId == "string" && (
-        <AchievementComponent userId={userId} />
-      ),
-    },
-    {
-      shouldShow: true,
-      title: `Interview Tracking (${interviewData?.length} / 50)`,
-      hasProgress: true,
-      value: (userBadgeCount * 100) / totalBadgeCount,
-      component: typeof userId == "string" && (
-        <OfferTable isCAD={isCAD} year={year} data={interviewData} />
-      ),
-    },
-  ];
+  const sections = useMemo(
+    () => [
+      {
+        shouldShow: userProfileData.name.startsWith("G"),
+        title: "Summary",
+        hasProgress: false,
+        value: 0,
+        component: <StudentFeedbackComponent />,
+      },
+      {
+        shouldShow: true,
+        title: `Projects (${userProjects.length}/5 Complete)`,
+        hasProgress: true,
+        value: (userProjects.length * 100) / 5,
+        component: (
+          <>
+            {isEditable && (
+              <div className="p-4">
+                <Link href="/studentPortal/projects/create" legacyBehavior>
+                  <Button label="Create" />
+                </Link>
+              </div>
+            )}
+            <ProjectsSection userProjects={userProjects} />
+          </>
+        ),
+      },
+      {
+        shouldShow: true,
+        title: (
+          <div className="flex items-center justify-center gap-4">
+            Goals
+            <ProfileGoalBadge />
+            {` (${userGoals.filter((it) => it.isComplete).length}/${
+              userGoals.length
+            } Complete)`}
+          </div>
+        ),
+        hasProgress: true,
+        value:
+          (userGoals.filter((it) => it.isComplete).length * 100) /
+          userGoals.length,
+        component: (
+          <GoalsSectionComponent
+            inProfile={true}
+            userGoals={userGoals.filter(
+              (goal) => !goal.isComplete && !goal.isArchived
+            )}
+          />
+        ),
+      },
+      {
+        shouldShow: true,
+        title: `Skills (${
+          userSkillRatings?.intro_course_skills_user?.filter(
+            (it) => it.studentRating === 100
+          ).length
+        } / ${skillRatings?.intro_course_skills?.length} Mastered)`,
+        hasProgress: true,
+        value:
+          (userSkillRatings?.intro_course_skills_user?.filter(
+            (it) => it.studentRating === 100
+          ).length *
+            100) /
+          skillRatings?.intro_course_skills?.length,
+        component: (
+          <SkillRatingsComponent
+            userId={userId}
+            skillRatings={skillRatings}
+            userSkillRatings={userSkillRatings}
+            isEditable={isEditable}
+          />
+        ),
+      },
+      {
+        shouldShow: true,
+        title: `Badges (${userBadgeCount}/${totalBadgeCount} Unlocked)`,
+        hasProgress: true,
+        value: (userBadgeCount * 100) / totalBadgeCount,
+        component: typeof userId == "string" && (
+          <AchievementComponent userId={userId} />
+        ),
+      },
+      {
+        shouldShow: true,
+        title: `Interview Tracking`,
+        hasProgress: true,
+        value: (userBadgeCount * 100) / totalBadgeCount,
+        component: typeof userId == "string" && (
+          <OfferTable isCAD={isCAD} year={year} data={interviewData} />
+        ),
+      },
+    ],
+    [
+      ,
+      userBadgeCount,
+      totalBadgeCount,
+      userId,
+      skillRatings,
+      userProjects,
+      userSkillRatings,
+      isEditable,
+      userGoals,
+      interviewData,
+    ]
+  );
+
+  console.log("ID", interviewData)
 
   return (
     <div className="flex flex-col m-4 space-y-4 overflow-auto bg-scroll sm:p-4">

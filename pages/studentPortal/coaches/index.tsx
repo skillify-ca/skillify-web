@@ -70,7 +70,7 @@ export default function CoachesPage() {
               <PageHeader
                 title={"Coaches"}
                 description={
-                  "Book time with our expert coaches to get 1:1 help. Use them to catch up or to get ahead!"
+                  "Book time with our expert coaches to get small group or 1:1 help. Use them to catch up or to get ahead!"
                 }
               />
             </div>
