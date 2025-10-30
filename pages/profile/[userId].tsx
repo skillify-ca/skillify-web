@@ -295,7 +295,6 @@ export default function InternalProfile({
       },
     ],
     [
-      ,
       userBadgeCount,
       totalBadgeCount,
       userId,
