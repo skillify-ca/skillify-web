@@ -30,7 +30,7 @@ Make sure you download or sign up for these programs to start. Message Vithushan
               "A suite of tools for developers to build with Google's latest generative AI models.",
             link: "https://aistudio.google.com/",
             image:
-              "http://localhost:3000/images/courses/gemini-studio.png",
+              "https://skillify.ca/images/courses/gemini-studio.png",
           },
           {
             title: "Vercel",
