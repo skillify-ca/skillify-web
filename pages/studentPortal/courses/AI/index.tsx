@@ -1,3 +1,4 @@
+import React from "react";
 import AIMatchingGame from "../../../../components/studentPortal/courses/AI/AIMatchingGame";
 
 // Full AI Lesson

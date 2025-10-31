@@ -2,6 +2,7 @@ import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
 import Carousel from "../../ui/Carousel";
 import CheckboxForm from "../../ui/CheckboxForm";
+import SliderList from "../../ui/SliderList";
 import WebhookInputBox from "../../ui/WebhookInputBox";
 import { Hint } from "../assignments/AssignmentComponent";
 import Quiz from "../quiz/Quiz";
@@ -30,87 +31,92 @@ export type QuizQuestion = {
 
 export type LessonComponentData =
   | {
-      component: "title";
-      text: string;
-    }
+    component: "title";
+    text: string;
+  }
   | {
-      component: "description";
-      text: string;
-    }
+    component: "description";
+    text: string;
+    bold?: boolean;
+  }
   | {
-      component: "image";
-      url: string;
-    }
+    component: "image";
+    url: string;
+  }
   | {
-      component: "caption";
-      text: string;
-    }
+    component: "caption";
+    text: string;
+  }
   | {
-      component: "resource-list";
-      title?: string;
-      resources: Resource[];
-    }
+    component: "resource-list";
+    title?: string;
+    resources: Resource[];
+  }
   | { component: "quiz"; data: QuizData }
   | {
-      component: "code-sandbox";
-      title: string;
-      link: string;
-    }
+    component: "code-sandbox";
+    title: string;
+    link: string;
+  }
   | {
-      component: "list";
-      items: string[];
-    }
+    component: "list";
+    items: string[];
+  }
   | {
-      component: "loom-video";
-      videoId: string;
-    }
+    component: "loom-video";
+    videoId: string;
+  }
   | {
-      component: "submission";
-      codeSandboxTitle: string;
-      link: string;
-      placeholder: string;
-      assignmentId: string;
-    }
+    component: "submission";
+    codeSandboxTitle: string;
+    link: string;
+    placeholder: string;
+    assignmentId: string;
+  }
   | {
-      component: "video";
-      url: string;
-    }
+    component: "video";
+    url: string;
+  }
   | {
-      component: "custom";
-      children: React.ReactNode;
-    }
+    component: "custom";
+    children: React.ReactNode;
+  }
   | {
-      component: "code-snippet";
-      text?: string;
-      code: string;
-    }
+    component: "code-snippet";
+    text?: string;
+    code: string;
+  }
   | {
-      component: "youtube";
-      url: string;
-    }
+    component: "youtube";
+    url: string;
+  }
   | {
-      component: "template";
-      templateLink: string;
-    }
+    component: "template";
+    templateLink: string;
+  }
   | {
-      component: "hint-list";
-      hintRow: Hint[];
-    }
+    component: "hint-list";
+    hintRow: Hint[];
+  }
   | {
-      component: "prompt";
-      header: string;
-      bullets: string[];
-    }
+    component: "prompt";
+    header: string;
+    bullets: string[];
+  }
   | {
-      component: "checkboxForm";
-      items: { label: string; required: boolean }[];
-      url: string;
-      title: string | undefined;
-    } 
-    | {
-      component: "carousel",
-      items: {text: string; image: string}[]
-    }
+    component: "checkboxForm";
+    items: { label: string; required: boolean }[];
+    url: string;
+    title: string | undefined;
+  }
+  | {
+    component: "carousel",
+    items: { text: string; image: string }[]
+  }
+  | {
+    component: "slider-list",
+    items: string[]
+  }
 
 export type LessonComponentProps = {
   data: LessonComponentData;
@@ -121,6 +127,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   }
   if (data.component === "description") {
+    if (data.bold) {
+      return <p className="whitespace-pre-line font-bold">{data.text}</p>;
+    }
     return <p className="whitespace-pre-line">{data.text}</p>;
   }
   if (data.component === "caption") {
@@ -175,9 +184,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     );
   }
   if (data.component === "list") {
-     return (
+    return (
       <div>
-        <ul className="flex flex-col gap-8 list-disc list-inside">
+        <ul className="flex flex-col gap-4 list-disc list-inside">
           {data.items.map((it, index) => (
             <li>{it}</li>
           ))}
@@ -187,6 +196,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   }
   if (data.component === "carousel") {
     return <Carousel items={data.items} />
+  }
+  if (data.component === "slider-list") {
+    return <SliderList items={data.items} />
   }
   if (data.component === "quiz") {
     return <Quiz quizData={data.data} />;
@@ -231,7 +243,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           src={`${data.url}`}
           controls
           className="h-full w-full"
-          />
+        />
       </div>
     );
   }

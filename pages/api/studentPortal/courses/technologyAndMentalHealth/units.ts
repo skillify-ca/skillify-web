@@ -18,8 +18,8 @@ export const technologyAndMentalHealthUnits: Unit[] = [
       },
       {
         title: "Lesson 3",
-        description: "Reflection Task",
-        link: "reflection-task",
+        description: "Offline vs Online",
+        link: "offline-vs-online",
         type: "lesson",
       },
       {

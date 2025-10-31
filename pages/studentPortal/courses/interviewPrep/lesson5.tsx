@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 // ref https://www.simplilearn.com/how-to-introduce-yourself-in-a-job-interview-article#:~:text=%22Good%20day%2C%20I%20am%20%5B,the%20requirements%20of%20this%20position.
 
