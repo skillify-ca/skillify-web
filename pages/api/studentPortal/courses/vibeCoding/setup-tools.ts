@@ -51,7 +51,7 @@ Make sure you download or sign up for these programs to start. Message Vithushan
             description:
               "A coding editor for building software applications.",
             link: "https://cline.bot/",
-            image: "https://skillify.ca/images/course/cline.png",
+            image: "https://skillify.ca/images/courses/cline.png",
           },
         ],
       },
