@@ -199,7 +199,7 @@ function getDataForWhenDoesTechnologyBecomeAProblemLesson(): LessonPageData {
       },
       {
         component: "carousel",
-        items: [          
+        items: [
           { text: "Time online leads to neglect of other important activities (eg. eating healthy, moving your body, socializing, doing work)", image: "/images/courses/mental-health/healthy-food.jpg" },
           { text: "Physical pain in your back or neck", image: "/images/courses/mental-health/neck-pain.jpg" },
           { text: "Interfering with getting a good night's sleep (8 hours a night)", image: "/images/courses/mental-health/sleep.jpg" },
@@ -209,7 +209,7 @@ function getDataForWhenDoesTechnologyBecomeAProblemLesson(): LessonPageData {
       {
         component: "checkboxForm",
         items: [
-          { label: "I identified one way reducing my technology use could improve my life", required: false}
+          { label: "I identified one way reducing my technology use could improve my life", required: false }
         ],
         title: "",
         url: "/studentPortal/courses/technologyAndMentalHealth/what-can-you-do"
@@ -229,19 +229,21 @@ function getDataForWhatCanYouDoLesson(): LessonPageData {
       },
       {
         component: "description",
-        text: "It can feel overwhelming when trying to cut down on your technology use. Technology is all around us and it's hard to avoid these environmental triggers. The best thing you can is to pick one small step where you can be consistent.",
+        text: "It can feel overwhelming when trying to cut down on your technology use. Technology is all around us and it's hard to avoid these environmental triggers. The best thing you can is to be aware of the effects and pick one small step where you can be consistent.",
       },
       {
-        component: "list",
+        component: "checkboxForm",
         items: [
-          "Be aware of the costs of using technology and social media",
-          "Talk to your friends and family about their internet, gambling and video game use. Talking about it with someone you trust can alleviate some internal pressure and weight you are holding",
-          "Leave computers and media devices in common areas, like the family room",
-          "Physically distance yourself from your cellphone when you can. (eg. Put it in the cupboard)",
-          "Shift some of your online activities to be more offline",
-          "Schedule regular in person interactions with friends or family",
-          "Be a role model for people who are younger than you. Pay attention to what you present to others",
-        ]
+          { label: "I am aware of the costs of using technology and social media", required: false },
+          { label: "I identified one friend or family member who I can talk to about their internet, gambling and video game use", required: false },
+          { label: "I identfieid a common area where I can leave computers and media devices, like the family room", required: false },
+          { label: "I have a spot to leave my cellphone that allows me to physically distance myself from it", required: false },
+          { label: "I identified an online activity that I can shift to be more offline", required: false },
+          { label: "I scheduled an in person interaction with a friend or family member that I usually wouldn't have", required: false },
+          { label: "I am trying to be a role model for people who are younger than myself. I'm not perfect but I'm working on myself.", required: false },
+        ],
+        title: "Completion Criteria",
+        url: "/studentPortal/courses/technologyAndMentalHealth"
       }
     ],
     lessonId: 6,
