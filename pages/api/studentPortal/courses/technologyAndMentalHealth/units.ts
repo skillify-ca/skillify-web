@@ -30,7 +30,7 @@ export const technologyAndMentalHealthUnits: Unit[] = [
       },
       {
         title: "Lesson 5",
-        description: "When does Technology Become a Problem",
+        description: "When Is It a Problem?",
         link: "when-does-technology-become-a-problem",
         type: "lesson",
       },

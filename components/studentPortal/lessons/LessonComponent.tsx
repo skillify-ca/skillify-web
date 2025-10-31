@@ -2,6 +2,7 @@ import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
 import Carousel from "../../ui/Carousel";
 import CheckboxForm from "../../ui/CheckboxForm";
+import SaveableTextInput from "../../ui/SaveableTextInput";
 import SliderList from "../../ui/SliderList";
 import WebhookInputBox from "../../ui/WebhookInputBox";
 import { Hint } from "../assignments/AssignmentComponent";
@@ -116,6 +117,10 @@ export type LessonComponentData =
   | {
     component: "slider-list",
     items: string[]
+  } | {
+    component: "saveable-text-input",
+    key: string;
+    placeholder?: string;
   }
 
 export type LessonComponentProps = {
@@ -266,6 +271,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     return (
       <CheckboxForm items={data.items} url={data.url} title={data.title} />
     );
+  }
+  if (data.component === "saveable-text-input") {
+    return <SaveableTextInput storageKey={data.key} placeholder={data.placeholder} />
   }
 
   return null;
