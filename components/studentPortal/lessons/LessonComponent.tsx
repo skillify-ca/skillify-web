@@ -169,6 +169,17 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       </div>
     );
   }
+  if (data.component === "list") {
+     return (
+      <div>
+        <ul className="flex flex-col gap-8 list-disc list-inside">
+          {data.items.map((it, index) => (
+            <li>{it}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
   if (data.component === "quiz") {
     return <Quiz quizData={data.data} />;
   }
