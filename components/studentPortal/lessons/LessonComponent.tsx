@@ -5,9 +5,15 @@ import CheckboxForm from "../../ui/CheckboxForm";
 import SaveableTextInput from "../../ui/SaveableTextInput";
 import SliderList from "../../ui/SliderList";
 import WebhookInputBox from "../../ui/WebhookInputBox";
-import { Hint } from "../assignments/AssignmentComponent";
+
 import Quiz from "../quiz/Quiz";
 import ResourceRow from "./ResourceRow";
+
+export type Hint = {
+  description: string;
+  icon?: string;
+  link?: string;
+};
 
 export type Resource = {
   title: string;
