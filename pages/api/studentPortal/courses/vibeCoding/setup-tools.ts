@@ -11,7 +11,7 @@ export function getDataForSetupToolsLesson(): LessonPageData {
           component: "description",
           text: `Welcome to the Vibe Coding course! Vibe Coding is an excellent way to prototype your ideas and validate if you are on the right track. 
 
-But vibe coding has limitations that make it difficult to build and maintain a production ready applications with real users.
+But vibe coding has limitations that make it difficult to build and maintain production-grade applications with a larger number real users.
 
 Make sure you download or sign up for these programs to start. Message Vithushan if you're having trouble.`,
         },    
@@ -19,7 +19,7 @@ Make sure you download or sign up for these programs to start. Message Vithushan
           component: "resource-list",
           resources: [   
             {
-              title: "Github",
+              title: "GitHub",
               description: "A platform for hosting and collaborating on code.",
               link: "https://github.com/",
               image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgithub.githubassets.com%2Fassets%2FGitHub-Mark-ea2971cee799.png&f=1&nofb=1&ipt=5a0c08166208adea369f3181702e3fe07f25bce1b75034a129fbf81e3ed03f0c",
@@ -28,7 +28,7 @@ Make sure you download or sign up for these programs to start. Message Vithushan
               title: "Google AI Studio",
               description:
                 "A suite of tools for developers to build with Google's latest generative AI models.",
-              link: "https://aistudio.google.com/prompts/new_chat",
+              link: "https://www.skillify.ca/images/courses/gemini-studio.png",
               image:
                 "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fregistry.npmmirror.com%2F%40lobehub%2Ficons-static-png%2Flatest%2Ffiles%2Fdark%2Faistudio-color.png&f=1&nofb=1&ipt=596c84ab89b56dff884ac5334141fb139704df07051c2ad90d863ae326d9b4f5",
             },
@@ -50,7 +50,7 @@ Make sure you download or sign up for these programs to start. Message Vithushan
           title: "Completion Criteria",
           items: [
             {
-              label: "I have a Github account, Google AI Studio account and Vercel account. I have downloaded Github Desktop.",
+              label: "I have a GitHub account, Google AI Studio account and Vercel account. I have downloaded GitHub Desktop.",
               required: true,
             },
           ],
