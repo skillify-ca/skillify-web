@@ -26,14 +26,14 @@ function getDataForModesOfTechnologyLesson(): LessonPageData {
         text: "Modes of Technology",
       },
       {
-        component: "list",
+        component: "carousel",
         items: [
-          "Televisions",
-          "Computers",
-          "Smartphones",
-          "Social Media (includes LinkedIn, Reddit, Instagram, TikTok, Facebook)",
-          "Online Gambling (can include sports betting, trading stocks and crypto)",
-          "Video Games",
+          {text: "Televisions", image: ""},
+          {text: "Computers", image: ""},
+          {text: "Smartphones", image: ""},
+          {text: "Social Media (includes LinkedIn, Reddit, Instagram, TikTok, Facebook)", image: ""},
+          {text: "Online Gambling (can include sports betting, trading stocks and crypto)", image: ""},
+          {text: "Video Games", image: ""},
         ]
       }
     ],

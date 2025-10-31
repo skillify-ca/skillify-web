@@ -1,5 +1,6 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
+import Carousel from "../../ui/Carousel";
 import CheckboxForm from "../../ui/CheckboxForm";
 import WebhookInputBox from "../../ui/WebhookInputBox";
 import { Hint } from "../assignments/AssignmentComponent";
@@ -105,7 +106,11 @@ export type LessonComponentData =
       items: { label: string; required: boolean }[];
       url: string;
       title: string | undefined;
-    };
+    } 
+    | {
+      component: "carousel",
+      items: {text: string; image: string}[]
+    }
 
 export type LessonComponentProps = {
   data: LessonComponentData;
@@ -179,6 +184,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
         </ul>
       </div>
     );
+  }
+  if (data.component === "carousel") {
+    return <Carousel items={data.items} />
   }
   if (data.component === "quiz") {
     return <Quiz quizData={data.data} />;
