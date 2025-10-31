@@ -16,6 +16,7 @@ export type SidebarPage =
   | "crypto"
   | "financialLiteracy"
   | "vibe_coding"
+  | "technology_and_mental_health"
   | "mockInterview"
   | "jobExplorer"
   | "challenges"

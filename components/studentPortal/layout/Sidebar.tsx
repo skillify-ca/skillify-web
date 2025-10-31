@@ -71,8 +71,9 @@ export default function Sidebar({ closeSidebar }) {
       dispatch(setActivePage("coding_basics"));
     } else if (router.pathname.startsWith("/studentPortal/courses/vibeCoding")) {
       dispatch(setActivePage("vibe_coding"));
-    }
-    else if (router.pathname.startsWith("/studentPortal")) {
+    } else if (router.pathname.startsWith("/studentPortal/courses/technologyAndMentalHealth")) {
+      dispatch(setActivePage("technology_and_mental_health"))
+    } else if (router.pathname.startsWith("/studentPortal")) {
       dispatch(setActivePage("dashboard"));
     } else if (router.pathname.startsWith("/studentPortal/jobs")) {
       dispatch(setActivePage("jobs"));
