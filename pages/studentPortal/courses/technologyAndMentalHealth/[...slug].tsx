@@ -2,7 +2,8 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { LessonComponentData } from "../../../../components/studentPortal/lessons/LessonComponent";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { getLessonForMentalHealthCourse } from "../../../api/studentPortal/courses/mentalHealth";
+import { getLessonForTechnologyAndMentalHealthCourse } from "../../../api/studentPortal/courses/technologyAndMentalHealth";
+
 
 // dynamic import for the LessonComponent component
 const LessonComponent = dynamic(
@@ -27,7 +28,7 @@ const LessonPage = ({ lessonComponents, lessonId, lessonCount }: { lessonCompone
 export async function getServerSideProps({ params }) {
   const slug = params.slug.join("/");
   return {
-    props: getLessonForMentalHealthCourse(slug),
+    props: getLessonForTechnologyAndMentalHealthCourse(slug),
   };
 }
 

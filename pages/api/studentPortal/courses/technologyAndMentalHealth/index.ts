@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { LessonPageData } from "./types";
+import { LessonPageData } from "../types";
 
 function getDataForIntroductionLesson(): LessonPageData {
   return {

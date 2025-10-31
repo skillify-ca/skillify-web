@@ -1,5 +1,5 @@
 
-import { LessonPageData } from "./types";
+import { LessonPageData } from "../types";
 
 export function getDataForDeployToVercelLesson(): LessonPageData {
     return {

@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { LessonPageData } from "../types";
 import { getDataForDeployToVercelLesson } from "./deploy-to-vercel";
 import { getDataForHelloWorldAiStudioLesson } from "./hello-world-ai-studio";
 import { getDataForSetupToolsLesson } from "./setup-tools";
-import { LessonPageData } from "./types";
 
 function getDataForShowingListAndDetailsLesson(): LessonPageData {
   return {

@@ -1,4 +1,4 @@
-import { LessonPageData } from "./types";
+import { LessonPageData } from "../types";
 
 export function getDataForHelloWorldAiStudioLesson(): LessonPageData {
     return {

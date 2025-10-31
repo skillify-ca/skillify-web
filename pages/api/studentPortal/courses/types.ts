@@ -1,4 +1,4 @@
-import { LessonComponentData } from "../../../../../components/studentPortal/lessons/LessonComponent";
+import { LessonComponentData } from "../../../../components/studentPortal/lessons/LessonComponent";
 
 export type LessonPageData = {
   lessonComponents: LessonComponentData[];
