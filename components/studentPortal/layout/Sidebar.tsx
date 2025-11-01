@@ -109,6 +109,7 @@ export default function Sidebar({ closeSidebar }) {
           <PaidSidebarHeader
             userRole={userRole}
             userProfileImage={user.photoURL}
+            userProfileImage={user?.photoURL}
           />
         )}
         {sideBarItemsData(user, goalApproaching).map((it) => {

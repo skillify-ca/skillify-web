@@ -1,4 +1,3 @@
-import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
 import LanguageResults from "../../../../components/resources/quizzes/firstProgrammingLanguageQuiz/LanguageResults";
@@ -11,8 +10,7 @@ import {
   UserInput,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { INSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCodingLanguageQuiz";
-import { UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCodingLanguageQuiz";
+import { supabase } from "../../../../lib/supabase";
 import { logToSlack } from "../../../api/slack/slackLogger";
 import { computeLanguageScore } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
@@ -55,25 +53,6 @@ const FirstProgrammingLanguageQuiz = () => {
     email: "",
   });
 
-  //Insert mutation - Store Name & Email. Returns id.
-  const [createQuizResponse] = useMutation(
-    INSERT_CODING_LANGUAGE_QUIZ_RESPONSE,
-    {
-      onCompleted: (data) => {
-        if (!quizResponseId) {
-          setQuizResponseId(
-            parseInt(data.insert_coding_language_quiz.returning[0].id)
-          );
-        }
-      },
-    }
-  );
-
-  //Update Mutation - Store the rest of the columns via id.
-  const [updateQuizResponse] = useMutation(
-    UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE
-  );
-
   const finalResponseObject = {
     id: quizResponseId || 0,
     reasons: quizViewState.questions[0].options
@@ -90,17 +69,68 @@ const FirstProgrammingLanguageQuiz = () => {
     ),
   };
 
+
+  // Replace useMutation with async functions
+  const createQuizResponse = async ({name, email} : {name: string, email: string}) => {
+    try {
+      const { data, error } = await supabase
+        .from("coding_language_quiz")
+        .insert([{ name, email }])
+        .select()
+        .single();
+
+      if (error) throw error;
+      
+      if (data && !quizResponseId) {
+        setQuizResponseId(data.id);
+      }
+      
+      return data;
+    } catch (error) {
+      console.error("Error creating quiz response:", error);
+      throw error;
+    }
+  };
+
+  const updateQuizResponse = async (responseObject: {
+    id: number;
+    reasons: string[];
+    fields: string[];
+    interests: string[];
+    result: string;
+  }) => {
+    try {
+      const { data, error } = await supabase
+        .from("coding_language_quiz")
+        .update({
+          reasons: responseObject.reasons,
+          fields: responseObject.fields,
+          interests: responseObject.interests,
+          result: responseObject.result,
+        })
+        .eq("id", responseObject.id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error("Error updating quiz response:", error);
+      throw error;
+    }
+  };
+  
   const handleNextClick = () => {
     setTriggerAnimation(false);
 
     //triggering mutations via onNextClick
     if (stage == Stage.START) {
-      createQuizResponse({ variables: userInput });
+      createQuizResponse(userInput);
       logToSlack(
         `New FPL Quiz Response: ${userInput.name} - ${userInput.email}`
       );
     } else if (stage == Stage.BLUEPRINT) {
-      updateQuizResponse({ variables: finalResponseObject });
+      updateQuizResponse(finalResponseObject);
     }
     if (
       stage == Stage.QUESTIONS &&

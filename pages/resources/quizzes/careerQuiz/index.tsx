@@ -1,4 +1,3 @@
-import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
 import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
@@ -11,9 +10,7 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
-import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
+import { supabase } from "../../../../lib/supabase";
 import { logToSlack } from "../../../api/slack/slackLogger";
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeCareerResult from "../../../api/studentPortal/quizzes/careerQuiz/computeCareerResults";
@@ -66,19 +63,87 @@ const CareerQuiz = () => {
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
-  const [createQuizResponse] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {
-    onCompleted: (data) => {
-      if (!quizResponseId) {
-        setQuizResponseId(parseInt(data.insert_career_quiz.returning[0].id));
+
+
+  // Replace useMutation with async functions
+  const createQuizResponse = async ({ name, email }: { name: string, email: string }) => {
+    try {
+      const { data, error } = await supabase
+        .from("career_quiz")
+        .insert([{ name, email }])
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      if (data && !quizResponseId) {
+        setQuizResponseId(data.id);
       }
-    },
-  });
-  const [saveEducationInputs] = useMutation(
-    UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE
-  );
-  const [saveCompletedUserPreferences] = useMutation(
-    UPDATE_CAREER_QUIZ_RESPONSE
-  );
+
+      return data;
+    } catch (error) {
+      console.error("Error creating quiz response:", error);
+      throw error;
+    }
+  };
+
+  const saveEducationInputs = async (
+    { id, degree, institution, experience, education }: {
+      id: number,
+      degree: string,
+      institution: string,
+      experience: string,
+      education: string
+    }
+  ) => {
+    try {
+      const { data, error } = await supabase
+        .from("career_quiz")
+        .update({
+          degree,
+          institution,
+          experience,
+          education,
+        })
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error("Error saving education inputs:", error);
+      throw error;
+    }
+  };
+
+  const saveCompletedUserPreferences = async (responseObject: {
+    id: number;
+    industries: string[];
+    skills: string[];
+    tasks: string[];
+    result: string;
+  }) => {
+    try {
+      const { data, error } = await supabase
+        .from("career_quiz")
+        .update({
+          industries: responseObject.industries,
+          skills: responseObject.skills,
+          tasks: responseObject.tasks,
+          result: responseObject.result,
+        })
+        .eq("id", responseObject.id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error("Error saving completed preferences:", error);
+      throw error;
+    }
+  };
 
   const [userInput, setUserInput] = useState({
     name: "",
@@ -89,22 +154,20 @@ const CareerQuiz = () => {
     // result: string
   ) => {
     if (stage === Stage.START) {
-      createQuizResponse({
-        variables: { name: userInput.name, email: userInput.email },
-      });
+      createQuizResponse(
+        { name: userInput.name, email: userInput.email },
+      );
 
       logToSlack(
         `New Career Quiz Response: ${userInput.name} - ${userInput.email}`
       );
     } else if (stage === Stage.EDUCATION) {
       saveEducationInputs({
-        variables: {
-          id: quizResponseId,
-          degree: educationState.degree,
-          institution: educationState.institution,
-          experience: educationState.experience,
-          education: educationState.education,
-        },
+        id: quizResponseId,
+        degree: educationState.degree,
+        institution: educationState.institution,
+        experience: educationState.experience,
+        education: educationState.education,
       });
     } else {
       const result = ComputeCareerResult(quizViewState)[0];
@@ -121,9 +184,9 @@ const CareerQuiz = () => {
           .map((option) => option.name),
         result: result,
       };
-      saveCompletedUserPreferences({
-        variables: finalResponseObject,
-      });
+      saveCompletedUserPreferences(
+        finalResponseObject,
+      );
     }
   };
 
@@ -162,10 +225,10 @@ const CareerQuiz = () => {
       options: question.options.map((questionOption) =>
         questionOption.name === option.name
           ? {
-              ...questionOption,
+            ...questionOption,
 
-              isSelected: questionOption.isSelected ? false : true,
-            }
+            isSelected: questionOption.isSelected ? false : true,
+          }
           : questionOption
       ),
     }));

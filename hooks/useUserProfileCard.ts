@@ -1,8 +1,28 @@
 import { useEffect, useState } from "react";
-import {
-    fetchUserProfileCard,
-    FetchUserProfileCardResponse,
-} from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
+
+export type FetchUserProfileCardResponse = {
+  users: Array<Users>;
+};
+
+export type CodingBadge = {
+  title: string;
+  image: string;
+};
+
+
+export type Users = {
+  id: string;
+  name: string;
+  link: string;
+  created_at: string;
+  current_badge: number;
+  coding_badge: CodingBadge;
+  user_coding_badges_aggregate: {
+    aggregate: {
+      count: number;
+    };
+  };
+};
 
 export function useUserProfileCard() {
   const [data, setData] = useState<FetchUserProfileCardResponse | null>(null);

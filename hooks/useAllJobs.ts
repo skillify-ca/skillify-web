@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-    fetchAllJobs,
-    FetchAllJobs,
-} from "../../../graphql/studentPortal/jobs/fetchAllJobs";
+import { FetchAllJobs, fetchAllJobs } from "../graphql/studentPortal/jobs/fetchAllJobs";
+
 
 export function useAllJobs() {
   const [data, setData] = useState<FetchAllJobs | null>(null);

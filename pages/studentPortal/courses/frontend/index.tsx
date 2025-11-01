@@ -50,7 +50,6 @@ export default function StudentPortalPage() {
             .from("users")
             .update({
               last_seen: new Date(),
-              profile_image: user.photoURL,
             })
             .eq("id", user.uid);
           if (error) {
