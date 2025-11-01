@@ -1,12 +1,7 @@
-import { useQuery } from "@apollo/client";
 import { addDays, format } from "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  FETCH_USER_GOALS_COUNT,
-  FetchGoalCountResponse,
-} from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import { UserRole, profileSelector } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
@@ -15,7 +10,7 @@ import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
 import FreemiumExitComponent from "../freemium/FreemiumExitComponent";
 import { FreemiumHeader } from "../freemium/FreemiumHeader";
 import Sidebar from "./Sidebar";
-import { useLastSeenModal } from "./useLastSeenModal";
+import { useUserGoalsCount } from "./useUserGoalsCount";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -30,26 +25,20 @@ export const Layout: React.FC<LayoutProps> = ({ children, isPremiumPage }) => {
   const dispatch = useDispatch();
 
   const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
-  const {} = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
-    variables: {
-      userId: user?.uid,
-      goalDateThreshold: goalDateThreshold,
-    },
-    onCompleted: (data) => {
-      if (data.user_goals_aggregate.aggregate.count) {
-        dispatch(setIsGoalApproaching(true));
-      } else {
-        dispatch(setIsGoalApproaching(false));
-      }
-    },
-    fetchPolicy: "cache-and-network",
-  });
+  const { count: goalCount } = useUserGoalsCount(user?.uid, goalDateThreshold);
 
-  const { showOnboardingModal, showExitModal } = useLastSeenModal(
-    user?.uid,
-    userRole,
-    createdAt
-  );
+  useEffect(() => {
+    if (goalCount > 0) {
+      dispatch(setIsGoalApproaching(true));
+    } else {
+      dispatch(setIsGoalApproaching(false));
+    }
+  }, [goalCount, dispatch]);
+
+  const { showOnboardingModal, showExitModal } = {
+    showOnboardingModal: false,
+    showExitModal: false
+  }
 
   return (
     <div className={`flex flex-col h-full bg-white ${currentTheme}`}>
