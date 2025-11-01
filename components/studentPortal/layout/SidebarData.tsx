@@ -101,7 +101,7 @@ export const freeCourses: PaidSidebarItemProps[] = [
     isPremium: false,
   },
   {
-    name: "Tech and Mental Health",
+    name: "Mental Health",
     link: "/studentPortal/courses/technologyAndMentalHealth",
     page: "technology_and_mental_health",
     icon: technologyAndMentalHealthIcon(),
@@ -117,7 +117,7 @@ export const freeCourses: PaidSidebarItemProps[] = [
     isPremium: false,
   },
   {
-    name: "Frontend Development",
+    name: "Frontend",
     link: "/studentPortal/courses/frontend",
     page: "frontend_development",
     icon: <ReactIcon />,

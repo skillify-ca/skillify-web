@@ -110,7 +110,7 @@ function ExperimentalSidebarSection({ userRole, closeSidebar }) {
             >
               ▲
             </span>
-            <p className="font-bold">Experimental</p>
+            <p className="font-bold">Premium</p>
           </div>
         </CollapsibleTrigger>
         <CollapsibleContent>
