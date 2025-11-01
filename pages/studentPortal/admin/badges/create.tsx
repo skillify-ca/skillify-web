@@ -1,27 +1,27 @@
-import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { CodingBadgeCardContent } from "../../../../components/studentPortal/profile/badges/CodingBadgeCard";
 import { Button } from "../../../../components/ui/Button";
 import { Input } from "../../../../components/ui/Input";
-import { CREATE_CODING_BADGE } from "../../../../graphql/studentPortal/admin/createBadge";
+import { supabase } from "../../../../lib/supabase";
 
 export default function AdminBadges() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
-  const [createBadge] = useMutation(CREATE_CODING_BADGE);
-  function handleSaveClick() {
-    createBadge({
-      variables: {
-        title,
-        description,
-        image,
-      },
-    }).then((res) => {
-      alert(JSON.stringify(res.data));
-    });
-  }
+  const handleSaveClick = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("coding_badges")
+        .insert([{ title, description, image }]);
+      if (error) {
+        throw error;
+      }
+      alert(JSON.stringify(data));
+    } catch (error) {
+      console.error("Error creating badge:", error);
+    }
+  };
   return (
     <div className="grid grid-cols-2">
       <div className="flex flex-col gap-4 p-4">

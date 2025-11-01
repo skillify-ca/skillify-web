@@ -1,22 +1,48 @@
-import { useQuery } from "@apollo/client";
-import React from "react";
-import {
-  FETCH_BADGES,
-  FetchBadgesResponse,
-} from "../../../../graphql/studentPortal/badges/fetchBadges";
-import {
-  FETCH_USER_BADGES,
-  FetchUserBadgesResponse,
-} from "../../../../graphql/studentPortal/userBadges/fetchUserBadges";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../../../lib/authContext";
+import { supabase } from "../../../../lib/supabase";
 
 export default function Badges() {
-  const { data: badges, loading } = useQuery<FetchBadgesResponse>(FETCH_BADGES);
-  const { data: userBadges, loading: userBadgesLoading } =
-    useQuery<FetchUserBadgesResponse>(FETCH_USER_BADGES);
+  const { user } = useAuth();
+  const [badges, setBadges] = useState([]);
+  const [userBadges, setUserBadges] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const userBadgesIds = userBadges?.user_coding_badges.map(
-    (badge) => badge.badgeId
-  );
+  useEffect(() => {
+    const fetchBadges = async () => {
+      try {
+        const { data, error } = await supabase.from("coding_badges").select("*");
+        if (error) {
+          throw error;
+        }
+        setBadges(data);
+      } catch (error) {
+        console.error("Error fetching badges:", error);
+      }
+    };
+
+    const fetchUserBadges = async () => {
+      if (!user) return;
+      try {
+        const { data, error } = await supabase
+          .from("user_coding_badges")
+          .select("badgeId:badge_id")
+          .eq("user_id", user.uid);
+        if (error) {
+          throw error;
+        }
+        setUserBadges(data.map((b) => b.badgeId));
+      } catch (error) {
+        console.error("Error fetching user badges:", error);
+      }
+    };
+
+    Promise.all([fetchBadges(), fetchUserBadges()]).finally(() =>
+      setLoading(false)
+    );
+  }, [user]);
+
+  const userBadgesIds = userBadges;
 
   return (
     <div className="h-screen overflow-scroll">
@@ -27,7 +53,7 @@ export default function Badges() {
       {loading ? <p>Loading...</p> : null}
       {badges ? (
         <div className="grid grid-cols-4 gap-16 p-16 pt-0 place-items-center">
-          {badges.coding_badges.map((badge) => (
+          {badges.map((badge) => (
             <div
               key={badge.title}
               className="flex flex-col items-center justify-center p-4 h-96 bg-backgroundSecondary w-80"
@@ -51,4 +77,4 @@ export default function Badges() {
   );
 }
 
-// Badges.premium = true;
+Badges.premium = true;

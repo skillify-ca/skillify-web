@@ -1,44 +1,47 @@
-import { useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { Button } from "../../../../components/ui/Button";
-import { FETCH_ALL_BADGES } from "../../../../graphql/studentPortal/achievements/fetchAllCodingBadges";
-import {
-  FETCH_CODING_BADGES,
-  FetchBadgeResponse,
-  UserCodingBadge,
-} from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
-import { ADD_BADGE_TO_USER } from "../../../../graphql/studentPortal/admin/addBadgeToUser";
-import {
-  FETCH_USER_PROFILE_CARD,
-  FetchUserProfileCardResponse,
-  Users,
-} from "../../../../graphql/studentPortal/admin/fetchUserProfileCard";
-import { REMOVE_BADGE_FROM_USER } from "../../../../graphql/studentPortal/admin/removeBadgeFromUser";
+import { supabase } from "../../../../lib/supabase";
 import { fetchProfilePicture } from "../../../api/studentPortal/profile/profilePicturesClient";
+
+interface Users {
+  id: string;
+  name: string;
+  profile_image: string;
+}
 
 export default function AssignBadges() {
   // Query all users
   const [userList, setUserList] = React.useState<Users[]>([]);
 
-  const [selectedUser, setSelectedUser] = React.useState<Users>();
+  const [selectedUser, setSelectedUser] = React.useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProfilePicture(selectedUser?.id)
-      .then((url) => setProfilePicture(url))
-      .catch((error) => console.error(error));
-  }, [selectedUser]);
-
-  const { loading } = useQuery<FetchUserProfileCardResponse>(
-    FETCH_USER_PROFILE_CARD,
-    {
-      onCompleted: (data) => {
-        if (data?.users && data?.users?.length > 0) {
-          setUserList(data.users);
+    const fetchUsers = async () => {
+      try {
+        const { data, error } = await supabase.from("users").select("*");
+        if (error) {
+          throw error;
         }
-      },
+        setUserList(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    if (selectedUser) {
+      fetchProfilePicture(selectedUser.id)
+        .then((url) => setProfilePicture(url))
+        .catch((error) => console.error(error));
     }
-  );
+  }, [selectedUser]);
 
   if (loading) return <p>Loading...</p>;
 
@@ -80,49 +83,91 @@ export default function AssignBadges() {
   );
 }
 
-function UserBadgeEditor({ user }: { user: Users }) {
+function UserBadgeEditor({ user }) {
   const [badgeList, setBadgeList] = useState([]);
-  const [userBadges, setUserBadges] = useState<UserCodingBadge[]>([]);
+  const [userBadges, setUserBadges] = useState([]);
 
-  useQuery(FETCH_ALL_BADGES, {
-    onCompleted: (data) => {
-      if (data?.coding_badges?.length > 0) {
-        setBadgeList(data.coding_badges);
+  useEffect(() => {
+    const fetchAllBadges = async () => {
+      try {
+        const { data, error } = await supabase.from("coding_badges").select("*");
+        if (error) {
+          throw error;
+        }
+        setBadgeList(data);
+      } catch (error) {
+        console.error("Error fetching all badges:", error);
       }
-    },
-  });
+    };
 
-  //   fetch FETCH_CODING_BADGES
-  useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
-    variables: {
-      userId: user.id,
-    },
-    onCompleted: (data) => {
-      setUserBadges(data.user_coding_badges);
-    },
-  });
+    fetchAllBadges();
+  }, []);
 
-  const [addBadgeToUser] = useMutation(ADD_BADGE_TO_USER, {
-    refetchQueries: [
-      {
-        query: FETCH_CODING_BADGES,
-        variables: {
-          userId: user.id,
-        },
-      },
-    ],
-  });
+  useEffect(() => {
+    const fetchUserBadges = async () => {
+      if (!user) return;
+      try {
+        const { data, error } = await supabase
+          .from("user_coding_badges")
+          .select("*, coding_badge:coding_badges(*)")
+          .eq("user_id", user.id);
+        if (error) {
+          throw error;
+        }
+        setUserBadges(data);
+      } catch (error) {
+        console.error("Error fetching user badges:", error);
+      }
+    };
 
-  const [removeBadgeFromUser] = useMutation(REMOVE_BADGE_FROM_USER, {
-    refetchQueries: [
-      {
-        query: FETCH_CODING_BADGES,
-        variables: {
-          userId: user.id,
-        },
-      },
-    ],
-  });
+    fetchUserBadges();
+  }, [user]);
+
+  const addBadgeToUser = async (badgeId) => {
+    try {
+      const { error } = await supabase
+        .from("user_coding_badges")
+        .insert([{ user_id: user.id, badge_id: badgeId }]);
+      if (error) {
+        throw error;
+      }
+      // Refetch user badges
+      const { data, error: refetchError } = await supabase
+        .from("user_coding_badges")
+        .select("*, coding_badge:coding_badges(*)")
+        .eq("user_id", user.id);
+      if (refetchError) {
+        throw refetchError;
+      }
+      setUserBadges(data);
+    } catch (error) {
+      console.error("Error adding badge to user:", error);
+    }
+  };
+
+  const removeBadgeFromUser = async (badgeId) => {
+    try {
+      const { error } = await supabase
+        .from("user_coding_badges")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("badge_id", badgeId);
+      if (error) {
+        throw error;
+      }
+      // Refetch user badges
+      const { data, error: refetchError } = await supabase
+        .from("user_coding_badges")
+        .select("*, coding_badge:coding_badges(*)")
+        .eq("user_id", user.id);
+      if (refetchError) {
+        throw refetchError;
+      }
+      setUserBadges(data);
+    } catch (error) {
+      console.error("Error removing badge from user:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -141,18 +186,8 @@ function UserBadgeEditor({ user }: { user: Users }) {
                 userBadges
                   .map((uBadge) => uBadge.coding_badge.id)
                   .includes(badge.id)
-                  ? removeBadgeFromUser({
-                      variables: {
-                        userId: user.id,
-                        badgeId: badge.id,
-                      },
-                    })
-                  : addBadgeToUser({
-                      variables: {
-                        userId: user.id,
-                        badgeId: badge.id,
-                      },
-                    });
+                  ? removeBadgeFromUser(badge.id)
+                  : addBadgeToUser(badge.id);
               }}
               label={
                 userBadges

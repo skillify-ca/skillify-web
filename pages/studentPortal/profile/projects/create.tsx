@@ -1,9 +1,8 @@
-import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { Button } from "../../../components/ui/Button";
-import { INSERT_PROJECT } from "../../../graphql/studentPortal/projects/insertProject";
-import { useAuth } from "../../../lib/authContext";
+import { Button } from "../../../../components/ui/Button";
+import { useAuth } from "../../../../lib/authContext";
+import { supabase } from "../../../../lib/supabase";
 
 export default function CreateProject() {
   // get user id
@@ -18,24 +17,25 @@ export default function CreateProject() {
   // initialize router
   const router = useRouter();
 
-  // create a mutation for inserting a new project
-  // TODO refetch projects query
-  const [createProject] = useMutation(INSERT_PROJECT, {
-    onCompleted: () => router.push(`/profile/${user.uid}`),
-  });
-
   // handle save button click
-  const onSave = () => {
-    // insert new project into DB
-    createProject({
-      variables: {
-        githubLink: githubLink,
-        projectLink: projectLink,
-        name: projectName,
-        image: imageURL,
-        userId: user.uid,
-      },
-    });
+  const onSave = async () => {
+    try {
+      const { error } = await supabase.from("user_projects").insert([
+        {
+          githubLink: githubLink,
+          projectLink: projectLink,
+          name: projectName,
+          image: imageURL,
+          userId: user.uid,
+        },
+      ]);
+      if (error) {
+        throw error;
+      }
+      router.push(`/profile/${user.uid}`);
+    } catch (error) {
+      console.error("Error creating project:", error);
+    }
   };
 
   return (
