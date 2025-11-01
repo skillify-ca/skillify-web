@@ -1,12 +1,10 @@
-import { useMutation, useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import AccountabilityHeatmap from "../../../components/accountability/AccountabilityHeatmap";
-import { Button } from "../../../components/ui/Button";
-import Dropdown from "../../../components/ui/Dropdown";
-import LoadingComponent from "../../../components/ui/loader";
-import { FETCH_ACCOUNTABILITY_TASKS_BY_USER } from "../../../graphql/studentPortal/accountability/fetchAccountabilityTasks";
-import { INSERT_ACCOUNTABILITY_MUTATION } from "../../../graphql/studentPortal/accountability/insertAccountabilityTask";
-import { useAuth } from "../../../lib/authContext";
+import React, { useEffect, useState } from "react";
+import AccountabilityHeatmap from "../../../../components/accountability/AccountabilityHeatmap";
+import { Button } from "../../../../components/ui/Button";
+import Dropdown from "../../../../components/ui/Dropdown";
+import LoadingComponent from "../../../../components/ui/loader";
+import { useAuth } from "../../../../lib/authContext";
+import { supabase } from "../../../../lib/supabase";
 
 // Accountability Menu Data
 const accountabilityMenuData: Record<string, string[]> = {
@@ -56,23 +54,38 @@ const AccountabilityDashboard: React.FC = () => {
 
   const [accountabilityTask, setAccountabilityTask] =
     useState<AccountabilityTask>(getInitialAccountabilityTaskState(userId));
+  const [accountabilityData, setAccountabilityData] = useState(null);
+  const [accountabilityLoading, setAccountabilityLoading] = useState(true);
+  const [accountabilityError, setAccountabilityError] = useState(null);
+  const [inserting, setInserting] = useState(false);
 
   const { topic, subfield, description } = accountabilityTask;
 
-  // Fetch user accountability data
-  const {
-    data,
-    loading: accountabilityLoading,
-    error: accountabilityError,
-  } = useQuery(FETCH_ACCOUNTABILITY_TASKS_BY_USER, {
-    variables: { userId },
-    skip: !userId,
-  });
+  useEffect(() => {
+    const fetchAccountabilityData = async () => {
+      if (!userId) {
+        setAccountabilityLoading(false);
+        return;
+      }
+      try {
+        const { data, error } = await supabase
+          .from("accountability")
+          .select("*")
+          .eq("user_id", userId);
 
-  // Mutation for inserting accountability task
-  const [insertAccountabilityTask, { loading: inserting }] = useMutation(
-    INSERT_ACCOUNTABILITY_MUTATION
-  );
+        if (error) {
+          throw error;
+        }
+        setAccountabilityData(data);
+      } catch (error) {
+        setAccountabilityError(error);
+      } finally {
+        setAccountabilityLoading(false);
+      }
+    };
+
+    fetchAccountabilityData();
+  }, [userId]);
 
   // Handlers
   const handleChange = (name: keyof AccountabilityTask, value: string) => {
@@ -93,12 +106,28 @@ const AccountabilityDashboard: React.FC = () => {
       return;
     }
 
+    setInserting(true);
     try {
-      const variables = { user_id: userId, topic, subfield, description };
-      const response = await insertAccountabilityTask({ variables });
+      const { error } = await supabase
+        .from("accountability")
+        .insert([accountabilityTask]);
+      if (error) {
+        throw error;
+      }
       resetTaskState();
+      // Refetch data after successful insertion
+      const { data, error: refetchError } = await supabase
+        .from("accountability")
+        .select("*")
+        .eq("user_id", userId);
+      if (refetchError) {
+        throw refetchError;
+      }
+      setAccountabilityData(data);
     } catch (error) {
       console.error("An error occurred while submitting the task:", error);
+    } finally {
+      setInserting(false);
     }
   };
 
@@ -156,7 +185,7 @@ const AccountabilityDashboard: React.FC = () => {
         ) : accountabilityError ? (
           <p>An error occurred while fetching data.</p>
         ) : (
-          <AccountabilityHeatmap entries={data?.accountability} />
+          <AccountabilityHeatmap entries={accountabilityData} />
         )}
       </div>
     </div>
