@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../../../components/ui/Button";
 import PageHeader from "../../../components/ui/PageHeader";
 import { AllJobsData } from "../../../graphql/studentPortal/jobs/fetchAllJobs";
-import { useAllJobs } from "./useAllJobs";
+import { useAllJobs } from "../../../hooks/useAllJobs";
 
 export default function JobBoardPage() {
   const { data: jobsData } = useAllJobs();

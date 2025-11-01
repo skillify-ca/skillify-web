@@ -15,6 +15,7 @@ import {
   AllUserGoalsData
 } from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
 import { useTotalUserBadgesCount } from "../../../hooks/useTotalUserBadgesCount";
+import { useUserProfileCard } from "../../../hooks/useUserProfileCard";
 import { useAuth } from "../../../lib/authContext";
 import {
   UserRole,
@@ -22,7 +23,6 @@ import {
   setTotalBadgeCount,
   setUserRole
 } from "../../../redux/profileSlice";
-import { useUserProfileCard } from "./useUserProfileCard";
 
 const coachingDashboard = () => {
   const { user } = useAuth();
