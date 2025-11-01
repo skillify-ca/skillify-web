@@ -1,34 +1,28 @@
-import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../../../components/studentPortal/admin/ProfileDetailCard";
+import { useAllUserGoals } from "../../../components/studentPortal/goals/feed/useAllUserGoals";
+import { useUserRole } from "../../../components/studentPortal/layout/useUserRole";
 import { Button } from "../../../components/ui/Button";
 import Dropdown from "../../../components/ui/Dropdown";
 import {
-  FETCH_TOTAL_USER_BADGES_COUNT,
-  FetchTotalBadgesCountResponse,
-} from "../../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
-import {
-  FETCH_USER_PROFILE_CARD,
-  FetchUserProfileCardResponse,
-  Users,
+  Users
 } from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
 import {
-  AllUserGoalsData,
-  FETCH_ALL_USER_GOALS,
-  FetchAllUserGoalsDataResponse,
+  AllUserGoalsData
 } from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
-import { FETCH_USER_ROLE } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import {
   UserRole,
   profileSelector,
   setTotalBadgeCount,
-  setUserRole,
+  setUserRole
 } from "../../../redux/profileSlice";
+import { useTotalUserBadgesCount } from "../../profile/useTotalUserBadgesCount";
+import { useUserProfileCard } from "./useUserProfileCard";
 
 const coachingDashboard = () => {
   const { user } = useAuth();
@@ -42,41 +36,37 @@ const coachingDashboard = () => {
   const [goalCompletionDateList, setGoalCompletionDateList] = useState([]);
   const { totalBadgeCount } = useSelector(profileSelector);
 
-  const { loading } = useQuery<FetchUserProfileCardResponse>(
-    FETCH_USER_PROFILE_CARD,
-    {
-      onCompleted: (data) => {
-        if (data?.users && data.users.length > 0) {
-          setUserList(data.users);
-        }
-      },
-    }
-  );
+  const { loading, data: userProfileCardData } = useUserProfileCard();
 
-  useQuery(FETCH_USER_ROLE, {
-    variables: {
-      _id: user.uid,
-    },
-    onCompleted: (roleData) => {
-      if (roleData.users[0].userRole !== "coach") {
+  useEffect(() => {
+    if (userProfileCardData?.users && userProfileCardData.users.length > 0) {
+      setUserList(userProfileCardData.users);
+    }
+  }, [userProfileCardData]);
+
+  const { data: userRoleData } = useUserRole(user?.uid);
+
+  useEffect(() => {
+    if (userRoleData && userRoleData.users && userRoleData.users.length > 0) {
+      if (userRoleData.users[0].userRole !== "coach") {
         router.replace("/studentPortal");
       }
-      setUserRoleState(roleData.users[0].userRole);
-    },
-  });
+      setUserRoleState(userRoleData.users[0].userRole);
+    }
+  }, [userRoleData, router]);
 
   const handleChangeUserRole = (value: string) => {
     setUserRoleState(value as UserRole);
     dispatch(setUserRole(value as UserRole));
   };
 
-  const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
-    onCompleted: (data) => {
-      if (data?.user_goals?.length > 0) {
-        setGoalsList(data.user_goals);
-      }
-    },
-  });
+  const { data: allUserGoalsData } = useAllUserGoals();
+
+  useEffect(() => {
+    if (allUserGoalsData?.user_goals && allUserGoalsData.user_goals.length > 0) {
+      setGoalsList(allUserGoalsData.user_goals);
+    }
+  }, [allUserGoalsData]);
 
   useEffect(() => {
     if (goalsList && userList) {
@@ -103,16 +93,15 @@ const coachingDashboard = () => {
     }
   }, [goalsList, userList]);
 
-  const { loading: totalUserBadgeCountLoading } =
-    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
-      onCompleted: (data) => {
-        if (data) {
-          dispatch(
-            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
-          );
-        }
-      },
-    });
+  const { data: totalBadgesCountData } = useTotalUserBadgesCount();
+
+  useEffect(() => {
+    if (totalBadgesCountData) {
+      dispatch(
+        setTotalBadgeCount(totalBadgesCountData.coding_badges_aggregate.aggregate.count)
+      );
+    }
+  }, [totalBadgesCountData, dispatch]);
 
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;

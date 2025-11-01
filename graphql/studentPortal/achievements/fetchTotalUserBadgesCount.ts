@@ -1,14 +1,16 @@
-import { gql } from "@apollo/client";
+import { supabase } from "../../../lib/supabase";
 
-export const FETCH_TOTAL_USER_BADGES_COUNT = gql`
-query fetchTotalUserBadgesCount {
-  coding_badges_aggregate {
-    aggregate {
-      count
-    }
+export async function fetchTotalUserBadgesCount() {
+  const { count, error } = await supabase
+    .from("coding_badges")
+    .select("*", { count: "exact", head: true });
+
+  if (error) {
+    throw error;
   }
+
+  return count || 0;
 }
-`;
 
 export type FetchTotalBadgesCountResponse = {
   coding_badges_aggregate: {
