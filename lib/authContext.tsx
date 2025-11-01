@@ -71,6 +71,13 @@ export const AuthProvider = ({ children }) => {
           console.error("Error inserting user:", insertError);
           return;
         }
+
+         setUser({
+          uid: userId,
+          email: session?.user?.email,
+          displayName: session?.user?.name,
+          photoURL: session?.user?.image,
+        });
       }
     };
 
