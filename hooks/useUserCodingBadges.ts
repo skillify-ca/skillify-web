@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { UserCodingBadge } from "../../graphql/studentPortal/achievements/fetchUserBadges";
-import { supabase } from "../../lib/supabase";
+import { UserCodingBadge } from "../graphql/studentPortal/achievements/fetchUserBadges";
+import { supabase } from "../lib/supabase";
 
 export function useUserCodingBadges(userId: string) {
   const [data, setData] = useState<UserCodingBadge[]>([]);

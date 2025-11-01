@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import {
-    fetchUserProfile,
-    FetchUserProfileDataResponse,
-} from "../../graphql/studentPortal/profile/fetchUserProfile";
+  fetchUserProfile,
+  FetchUserProfileDataResponse,
+} from "../graphql/studentPortal/profile/fetchUserProfile";
 
 export function useUserProfile(userId: string) {
   const [data, setData] = useState<FetchUserProfileDataResponse | null>(null);

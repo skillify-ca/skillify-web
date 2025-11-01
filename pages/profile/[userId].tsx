@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Offer,
@@ -25,16 +25,16 @@ import {
 import AccountabilityHeatmap from "../../components/accountability/AccountabilityHeatmap";
 import LoadingComponent from "../../components/ui/loader";
 
+import { useAccountability } from "../../hooks/useAccountability";
+import { useCodingBadges } from "../../hooks/useCodingBadges";
+import { useSkillsAndRatings } from "../../hooks/useSkillsAndRatings";
+import { useUserCodingBadges } from "../../hooks/useUserCodingBadges";
+import { useUserGoals } from "../../hooks/useUserGoals";
+import { useUserProfile } from "../../hooks/useUserProfile";
+import { useUserProjects } from "../../hooks/useUserProjects";
+import { useUserSkillsRatings } from "../../hooks/useUserSkillsRatings";
 import { getInterviewData } from "../api/studentPortal/interviews/InterviewDataMap";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
-import { useAccountability } from "./useAccountability";
-import { useCodingBadges } from "./useCodingBadges";
-import { useSkillsAndRatings } from "./useSkillsAndRatings";
-import { useUserCodingBadges } from "./useUserCodingBadges";
-import { useUserGoals } from "./useUserGoals";
-import { useUserProfile } from "./useUserProfile";
-import { useUserProjects } from "./useUserProjects";
-import { useUserSkillsRatings } from "./useUserSkillsRatings";
 
 type InternalProfileProps = {
   userIdFromLink?: string;

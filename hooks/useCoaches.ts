@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Coach } from "../../../components/studentPortal/coaches/CoachCard";
-import { supabase } from "../../../lib/supabase";
+import { Coach } from "../components/studentPortal/coaches/CoachCard";
+import { supabase } from "../lib/supabase";
 
 
 export function useCoaches() {

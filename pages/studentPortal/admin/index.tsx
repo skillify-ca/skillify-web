@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../../../components/studentPortal/admin/ProfileDetailCard";
 import { useAllUserGoals } from "../../../components/studentPortal/goals/feed/useAllUserGoals";
@@ -14,6 +14,7 @@ import {
 import {
   AllUserGoalsData
 } from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
+import { useTotalUserBadgesCount } from "../../../hooks/useTotalUserBadgesCount";
 import { useAuth } from "../../../lib/authContext";
 import {
   UserRole,
@@ -21,7 +22,6 @@ import {
   setTotalBadgeCount,
   setUserRole
 } from "../../../redux/profileSlice";
-import { useTotalUserBadgesCount } from "../../profile/useTotalUserBadgesCount";
 import { useUserProfileCard } from "./useUserProfileCard";
 
 const coachingDashboard = () => {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import {
-    fetchUserSkillsRatings,
-    FetchUserSkillsRatings,
-} from "../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
+  fetchUserSkillsRatings,
+  FetchUserSkillsRatings,
+} from "../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 
 export function useUserSkillsRatings(userId: string) {
   const [data, setData] = useState<FetchUserSkillsRatings | null>(null);

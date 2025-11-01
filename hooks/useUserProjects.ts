@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../../lib/supabase";
+import { supabase } from "../lib/supabase";
 
-export function useUserGoals(userId) {
+export function useUserProjects(userId) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchUserGoals = async () => {
+  useEffect(() => {    
+    const fetchUserProjects = async () => {
       if (!userId) {
         setLoading(false);
         return;
       }
       try {
+        
         const { data, error } = await supabase
-          .from("user_goals")
+          .from("user_projects")
           .select("*")
           .eq("userId", userId);
 
@@ -27,9 +28,9 @@ export function useUserGoals(userId) {
       } finally {
         setError(false);
       }
-    };
+    }
 
-    fetchUserGoals();
+    fetchUserProjects();
   }, [userId]);
 
   return {

@@ -1,12 +1,11 @@
 import Lottie from "lottie-react";
-import React from "react";
 import { useSelector } from "react-redux";
 import CoachCard, { LockedCoachCard, VithushanLockedCoachCard } from "../../../components/studentPortal/coaches/CoachCard";
 import ErrorMessage from "../../../components/ui/ErrorMessage";
 import PageHeader from "../../../components/ui/PageHeader";
+import { useCoaches } from "../../../hooks/useCoaches";
 import upgradeAnimation from "../../../lib/animations/upgrade.json";
 import { profileSelector } from "../../../redux/profileSlice";
-import { useCoaches } from "./useCoaches";
 
 export default function CoachesPage() {
   const { userRole } = useSelector(profileSelector);

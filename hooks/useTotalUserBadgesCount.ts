@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import {
-    FetchTotalBadgesCountResponse,
-    fetchTotalUserBadgesCount,
-} from "../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
+  FetchTotalBadgesCountResponse,
+  fetchTotalUserBadgesCount,
+} from "../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 
 export function useTotalUserBadgesCount() {
   const [data, setData] = useState<FetchTotalBadgesCountResponse | null>(null);

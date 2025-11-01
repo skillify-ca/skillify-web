@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   fetchSkillsAndRatings,
   FetchSkillsAndRatings,
-} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
+} from "../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 
 export function useSkillsAndRatings(userId: string) {
   const [data, setData] = useState<FetchSkillsAndRatings | null>(null);
