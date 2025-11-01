@@ -8,7 +8,6 @@ import {
 } from "../../components/resources/jobTracker/JobTrackerComponent";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileGoalBadge from "../../components/studentPortal/profile/ProfileGoalBadge";
-import ProfileHeaderComponent from "../../components/studentPortal/profile/ProfileHeaderComponent";
 import ProjectsSection from "../../components/studentPortal/profile/ProjectsSection";
 import Section from "../../components/studentPortal/profile/Section";
 import StudentFeedbackComponent from "../../components/studentPortal/profile/StudentFeedbackComponent";
@@ -235,10 +234,10 @@ export default function InternalProfile({
 
   return (
     <div className="flex flex-col m-4 space-y-4 overflow-auto bg-scroll sm:p-4">
-      <ProfileHeaderComponent
+      {/* <ProfileHeaderComponent
         userProfileData={userProfileData}
         isEditable={!isExternal}
-      />
+      /> */}
       <div className="flex justify-left font-bold m-4">
         {accountabilityLoading ? (
           <LoadingComponent />
