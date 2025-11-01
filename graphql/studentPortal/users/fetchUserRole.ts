@@ -1,15 +1,23 @@
-import { gql } from "@apollo/client";
+import { supabase } from "../../../lib/supabase";
 import { UserRole } from "../../../redux/profileSlice";
 
-export const FETCH_USER_ROLE = gql`
-  query FetchUserRole($_id: String = "") {
-    users(where: { id: { _eq: $_id } }) {
-      created_at
-      email
+export async function fetchUserRole(userId: string) {
+  const { data, error } = await supabase
+    .from("users")
+    .select(`
+      created_at,
+      email,
       userRole
-    }
+    `)
+    .eq("id", userId)
+    .single();
+
+  if (error) {
+    throw error;
   }
-`;
+
+  return data;
+}
 
 export type FetchRoleData = {
   users: UserData[];

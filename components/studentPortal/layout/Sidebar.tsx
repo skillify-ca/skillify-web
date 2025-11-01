@@ -1,13 +1,8 @@
 "use client";
 
-import { useQuery } from "@apollo/client/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FETCH_USER_ROLE,
-  FetchRoleData,
-} from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import { Mixpanel } from "../../../lib/mixpanel";
 import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
@@ -22,6 +17,7 @@ import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
 import ExperimentalSidebarSection from "./ExperimentalSidebarSection";
 import { freeCourses, sideBarItemsData } from "./SidebarData";
 import SidebarItem from "./SidebarItem";
+import { useUserRole } from "./useUserRole";
 
 export default function Sidebar({ closeSidebar }) {
   const { goalApproaching } = useSelector(activePageSelector);
@@ -31,24 +27,22 @@ export default function Sidebar({ closeSidebar }) {
 
   const [userProfileImage, setUserProfileImage] = useState<string>("");
 
-  useQuery<FetchRoleData>(FETCH_USER_ROLE, {
-    variables: {
-      _id: user?.uid,
-    },
-    onCompleted: (data) => {
-      if (data && data.users && data.users.length > 0) {
-        if (data.users[0].userRole === "coach") {
-          dispatch(setUserRole("coach"));
-        } else if (data.users[0].userRole === "student") {
-          dispatch(setUserRole("student"));
-        } else if (data.users[0].userRole === "freemium") {
-          dispatch(setCreatedAt(data.users[0].created_at));
-          dispatch(setUserRole("freemium"));
-        }
+  const { data: userRoleData } = useUserRole(user?.uid);
+
+  useEffect(() => {
+    if (userRoleData && userRoleData.users && userRoleData.users.length > 0) {
+      if (userRoleData.users[0].userRole === "coach") {
+        dispatch(setUserRole("freemium"));
+
+        // dispatch(setUserRole("coach"));
+      } else if (userRoleData.users[0].userRole === "student") {
+        dispatch(setUserRole("student"));
+      } else if (userRoleData.users[0].userRole === "freemium") {
+        dispatch(setCreatedAt(userRoleData.users[0].created_at));
+        dispatch(setUserRole("freemium"));
       }
-    },
-    fetchPolicy: "cache-and-network",
-  });
+    }
+  }, [userRoleData, dispatch]);
 
   const router = useRouter();
 
