@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-    fetchSkillsAndRatings,
-    FetchSkillsAndRatings,
+  fetchSkillsAndRatings,
+  FetchSkillsAndRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 
 export function useSkillsAndRatings(userId: string) {
@@ -17,8 +17,6 @@ export function useSkillsAndRatings(userId: string) {
       }
       try {
         const rawData = await fetchSkillsAndRatings(userId);
-
-        console.log("rawData", rawData)
 
         // Transform Supabase response to match expected structure
         const transformedData: FetchSkillsAndRatings = {

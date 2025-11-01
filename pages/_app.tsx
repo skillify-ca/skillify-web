@@ -1,4 +1,3 @@
-import { ApolloProvider } from "@apollo/client";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -10,7 +9,6 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { Provider as ReduxProvider } from "react-redux";
 import MDXProvider from "../components/blog/MDXProvider";
 import Layout from "../components/studentPortal/layout/Layout";
-import initializeApollo from "../lib/apollo";
 import { AuthProvider, useAuth } from "../lib/authContext";
 import * as fbq from "../lib/fbPixel";
 import * as ga from "../lib/googleAnalytics";
@@ -61,8 +59,6 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
     };
   }, [router.events]);
 
-  const client = initializeApollo();
-
   let isMobile = false;
   if (typeof window !== "undefined") {
     isMobile = window.innerWidth < 600;
@@ -75,8 +71,8 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 
   // TODO remove setting Component.Auth
   return (
-    <ApolloProvider client={client}>
-      <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => {}} />
+    <SessionProvider session={pageProps.session}>
+      <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => { }} />
       {typeof window != "undefined" && !(window as any).mixpanel && (
         <Script
           strategy="afterInteractive"
@@ -122,23 +118,21 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         }}
       />
       {/* <!-- End Google Tag Manager --> */}
-      <SessionProvider session={pageProps.session}>
-        <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-          <ReduxProvider store={store}>
-            <AuthProvider>
-              <MDXProvider>
-                {Component.auth ||
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+        <ReduxProvider store={store}>
+          <AuthProvider>
+            <MDXProvider>
+              {Component.auth ||
                 router.pathname.startsWith("/studentPortal") ? (
-                  <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
-                ) : (
-                  getLayout(<Component {...pageProps} />)
-                )}
-              </MDXProvider>
-            </AuthProvider>
-          </ReduxProvider>
-        </DndProvider>
-      </SessionProvider>
-    </ApolloProvider>
+                <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
+              ) : (
+                getLayout(<Component {...pageProps} />)
+              )}
+            </MDXProvider>
+          </AuthProvider>
+        </ReduxProvider>
+      </DndProvider>
+    </SessionProvider>
   );
 }
 

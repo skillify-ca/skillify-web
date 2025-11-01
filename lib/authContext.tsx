@@ -2,7 +2,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { upsertUserQuery } from "../graphql/studentPortal/users/initializeUser";
+import { supabase } from "./supabase";
 
 export interface User {
   uid: string;
@@ -32,23 +32,28 @@ export const AuthProvider = ({ children }) => {
     const userId = uuidv4();
     const nickname = user.displayName ?? "";
     const email = user.email;
-    const url = "https://talented-duckling-40.hasura.app/v1/graphql";
 
-    // TODO if user was already in the user table, then update the last seen column
-    // If the user was newly added to the user table, then initialize their skills, and badges
-    const graphqlReq = {
-      query: upsertUserQuery,
-      variables: { userId: userId, name: nickname, email: email },
-    };
+    const { error } = await supabase
+      .from("users")
+      .upsert(
+        {
+          id: userId,
+          name: nickname,
+          email: email,
+          last_seen: new Date().toISOString(),
+        },
+        {
+          onConflict: "email", // Use email as the conflict target
+          ignoreDuplicates: false, // Update on conflict
+        }
+      )
+      .select()
+      .single();
 
-    await fetch(url, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-hasura-admin-secret": process.env.HASURA_ADMIN_SECRET,
-      },
-      body: JSON.stringify(graphqlReq),
-    });
+    if (error) {
+      console.error("Error syncing user:", error);
+      return;
+    }
   };
 
   useEffect(() => {
