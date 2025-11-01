@@ -1,49 +1,26 @@
-import { gql } from "@apollo/client";
+import { supabase } from "../../../lib/supabase";
 
-export const FETCH_USER_PROFILE = gql`
-  query fetchUserProfile($userId: String = "", $courseId: String = "") {
-    user_badges(
-      where: {
-        userId: { _eq: $userId }
-        badge: { courseId: { _eq: $courseId } }
-      }
-      order_by: { badgeId: asc }
-    ) {
-      badge {
-        title
-        image
-        id
-        description
-        courseId
-      }
-      locked
-    }
-    user_skills(
-      where: { user_id: { _eq: $userId } }
-      order_by: { skill_id: asc }
-    ) {
-      emoji
-      skill {
-        title
-        level
-      }
-    }
-  }
-`;
-
-export const FETCH_USER_PROFILE_DATA = gql`
-  query fetchUserProfileData($userId: String = "") {
-    users(where: { id: { _eq: $userId } }) {
-      id
-      created_at
-      email
-      last_seen
-      name
-      profile_image
+export async function fetchUserProfile(userId: string) {
+  const { data, error } = await supabase
+    .from("users")
+    .select(`
+      id,
+      created_at,
+      email,
+      last_seen,
+      name,
+      profile_image,
       current_focus
-    }
+    `)
+    .eq("id", userId)
+    .single();
+
+  if (error) {
+    throw error;
   }
-`;
+
+  return data;
+}
 
 export type FetchUserProfileDataResponse = {
   users: Array<UserProfileResponse>;

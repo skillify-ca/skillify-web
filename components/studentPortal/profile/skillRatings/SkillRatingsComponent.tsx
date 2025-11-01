@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { animated, useSpring } from "react-spring";
 
 import { CheckCircleIcon } from "@heroicons/react/outline";
-import { FetchSkillsAndRatings } from "../../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
-import { FETCH_UNITS } from "../../../graphql/studentPortal/skillRatings/fetchUnits";
-import { FetchUserSkillsRatings } from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
+import { FetchSkillsAndRatings } from "../../../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
+import { FETCH_UNITS } from "../../../../graphql/studentPortal/skillRatings/fetchUnits";
+import { FetchUserSkillsRatings } from "../../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 import {
   UPDATE_USER_SKILL_RATING,
   UpdateUserSkillRatingArgs,
-} from "../../../graphql/studentPortal/skillRatings/updateUserSkillRating";
-import { Button } from "../../ui/Button";
+} from "../../../../graphql/studentPortal/skillRatings/updateUserSkillRating";
+import { Button } from "../../../ui/Button";
 import UserSkillRow from "./UserSkillRow";
 
 export type SkillRatingsProps = {

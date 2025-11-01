@@ -1,24 +1,27 @@
-import { gql } from "@apollo/client";
+import { supabase } from "../../../lib/supabase";
 
-export const FETCH_SKILLS_AND_RATINGS = gql`
-query fetchAllSkillsAndExistingRatings($userId: String = "", $_eq: String = "") {
-  intro_course_skills {
-    id
-    name
-    intro_course_skills_users(where: {userId: {_eq: $userId}}) {
-      id
-    }
-    intro_course_unit {
-      title
-    }
-    intro_course_skills_users_aggregate(where: {userId: {_eq: $userId}}) {
-      nodes {
-        studentRating
-      }
-    }
+export async function fetchSkillsAndRatings(userId: string) {
+  const { data, error } = await supabase
+    .from("intro_course_skills")
+    .select(`
+      id,
+      name,
+      intro_course_skills_user (
+        id,
+        studentRating,
+        userId
+      ),
+      intro_course_unit (
+        title
+      )
+    `);
+
+  if (error) {
+    throw error;
   }
+
+  return data;
 }
-`;
 
 
 

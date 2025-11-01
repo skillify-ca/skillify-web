@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
@@ -14,16 +13,8 @@ import ProjectsSection from "../../components/studentPortal/profile/ProjectsSect
 import Section from "../../components/studentPortal/profile/Section";
 import StudentFeedbackComponent from "../../components/studentPortal/profile/StudentFeedbackComponent";
 import AchievementComponent from "../../components/studentPortal/profile/badges/AchievementComponent";
-import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
+import SkillRatingsComponent from "../../components/studentPortal/profile/skillRatings/SkillRatingsComponent";
 import { Button } from "../../components/ui/Button";
-import {
-  FETCH_USER_PROFILE_DATA,
-  FetchUserProfileDataResponse,
-} from "../../graphql/studentPortal/profile/fetchUserProfile";
-import {
-  FETCH_SKILLS_AND_RATINGS,
-  FetchSkillsAndRatings,
-} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 import { useAuth } from "../../lib/authContext";
 import {
   profileSelector,
@@ -34,16 +25,17 @@ import {
 
 import AccountabilityHeatmap from "../../components/accountability/AccountabilityHeatmap";
 import LoadingComponent from "../../components/ui/loader";
-import {
-  FETCH_USER_SKILLS_RATINGS,
-  FetchUserSkillsRatings,
-} from "../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
-import { supabase } from "../../lib/supabase";
+
 import { getInterviewData } from "../api/studentPortal/interviews/InterviewDataMap";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 import { useAccountability } from "./useAccountability";
+import { useCodingBadges } from "./useCodingBadges";
+import { useSkillsAndRatings } from "./useSkillsAndRatings";
+import { useUserCodingBadges } from "./useUserCodingBadges";
 import { useUserGoals } from "./useUserGoals";
+import { useUserProfile } from "./useUserProfile";
 import { useUserProjects } from "./useUserProjects";
+import { useUserSkillsRatings } from "./useUserSkillsRatings";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
@@ -88,77 +80,50 @@ export default function InternalProfile({
     }
   }, [userRole]);
 
-  useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
-    variables: {
-      userId: userId,
-    },
-    onCompleted: async (data) => {
-      if (data.users.length > 0) {
-        const profileImage = await fetchProfilePicture(data.users[0].id);
+  const { data: userProfileDataResponse } = useUserProfile(userId || "");
+
+  useEffect(() => {
+    const updateUserProfile = async () => {
+      if (userProfileDataResponse?.users && userProfileDataResponse.users.length > 0) {
+        const profileImage = await fetchProfilePicture(userProfileDataResponse.users[0].id);
         dispatch(
           setUserProfile({
-            createdAt: data.users[0].created_at,
-            email: data.users[0].email,
-            id: data.users[0].id,
-            lastSeen: data.users[0].last_seen,
-            name: data.users[0].name,
+            createdAt: userProfileDataResponse.users[0].created_at,
+            email: userProfileDataResponse.users[0].email,
+            id: userProfileDataResponse.users[0].id,
+            lastSeen: userProfileDataResponse.users[0].last_seen,
+            name: userProfileDataResponse.users[0].name,
             profileImage: profileImage,
-            currentFocus: data.users[0].current_focus,
+            currentFocus: userProfileDataResponse.users[0].current_focus,
           })
         );
       }
-    },
-  });
+    };
+
+    updateUserProfile();
+  }, [userProfileDataResponse, dispatch]);
 
   const {data: userGoals} = useUserGoals(userId)
 
-  const { data: skillRatings } = useQuery<FetchSkillsAndRatings>(
-    FETCH_SKILLS_AND_RATINGS,
-    {
-      variables: {
-        userId: userId,
-      },
-    }
-  );
+  const { data: skillRatings } = useSkillsAndRatings(userId || "");
 
-  // fetch user skill ratings
-  const { data: userSkillRatings } = useQuery<FetchUserSkillsRatings>(
-    FETCH_USER_SKILLS_RATINGS,
-    {
-      variables: {
-        userId: userId,
-      },
-    }
-  );
+  const { data: userSkillRatings } = useUserSkillsRatings(userId || "");
+
+  const { data: userCodingBadges } = useUserCodingBadges(userId || "");
 
   useEffect(() => {
-    const fetchUserCodingBadges = async () => {
-      let { data: user_coding_badges, error } = await supabase
-        .from("user_coding_badges")
-        .select("*")
-        .eq("userId", userId);
+    if (userCodingBadges) {
+      dispatch(setUserBadgeCount(userCodingBadges.length));
+    }
+  }, [userCodingBadges, dispatch]);
 
-      if (user_coding_badges) {
-        dispatch(setUserBadgeCount(user_coding_badges.length));
-      }
-    };
-
-    fetchUserCodingBadges();
-  }, [userId]);
+  const { data: codingBadges } = useCodingBadges();
 
   useEffect(() => {
-    const fetchCodingBadges = async () => {
-      let { data: coding_badges, error } = await supabase
-        .from("coding_badges")
-        .select("*");
-
-      if (coding_badges) {
-        dispatch(setTotalBadgeCount(coding_badges.length));
-      }
-    };
-
-    fetchCodingBadges();
-  }, [userId]);
+    if (codingBadges) {
+      dispatch(setTotalBadgeCount(codingBadges.length));
+    }
+  }, [codingBadges, dispatch]);
 
   const {data: userProjects} = useUserProjects(userId)
 
