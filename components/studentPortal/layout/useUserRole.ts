@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import {
-  FetchRoleData,
   fetchUserRole,
+  UserData
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 
 export function useUserRole(userId: string | undefined) {
-  const [data, setData] = useState<FetchRoleData | null>(null);
+  const [data, setData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
 
@@ -20,14 +20,10 @@ export function useUserRole(userId: string | undefined) {
 
         if (userData) {
           // Transform to match expected structure
-          const transformedData: FetchRoleData = {
-            users: [
-              {
-                created_at: userData.created_at,
-                email: userData.email,
-                userRole: userData.userRole,
-              },
-            ],
+          const transformedData: UserData = {
+            created_at: userData.created_at,
+            email: userData.email,
+            userRole: userData.userRole,
           };
 
           setData(transformedData);

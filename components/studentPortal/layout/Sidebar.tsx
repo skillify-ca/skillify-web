@@ -30,15 +30,13 @@ export default function Sidebar({ closeSidebar }) {
   const { data: userRoleData } = useUserRole(user?.uid);
 
   useEffect(() => {
-    if (userRoleData && userRoleData.users && userRoleData.users.length > 0) {
-      if (userRoleData.users[0].userRole === "coach") {
-        dispatch(setUserRole("freemium"));
-
-        // dispatch(setUserRole("coach"));
-      } else if (userRoleData.users[0].userRole === "student") {
+    if (userRoleData) {
+      if (userRoleData.userRole === "coach") {
+        dispatch(setUserRole("coach"));
+      } else if (userRoleData.userRole === "student") {
         dispatch(setUserRole("student"));
-      } else if (userRoleData.users[0].userRole === "freemium") {
-        dispatch(setCreatedAt(userRoleData.users[0].created_at));
+      } else if (userRoleData.userRole === "freemium") {
+        dispatch(setCreatedAt(userRoleData.created_at));
         dispatch(setUserRole("freemium"));
       }
     }
