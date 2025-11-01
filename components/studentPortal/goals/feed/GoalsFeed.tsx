@@ -1,7 +1,6 @@
-import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import { FETCH_ALL_USER_GOALS } from "../../../../graphql/studentPortal/goals/fetchAllUserGoals";
+import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../../../ui/Avatar";
+import { useAllUserGoals } from "./useAllUserGoals";
 
 type Goal = {
   id: string;
@@ -12,23 +11,23 @@ type Goal = {
 };
 
 export default function GoalsFeed() {
-  const [goals, setGoals] = useState<Goal[]>([]);
+  const { data } = useAllUserGoals();
 
-  useQuery(FETCH_ALL_USER_GOALS, {
-    onCompleted: (data) => {
-      const transformedGoals = data.user_goals.map((goal) => {
+  const goals: Goal[] = data?.user_goals
+    ? data.user_goals.map((goal) => {
         return {
           id: goal.id,
           description: goal.goalName,
-          userName: goal.usersTable.name,
-          completedOn: goal.updatedAt,
-          profileImage: goal.usersTable.profile_image,
+          userName: goal.usersTable?.name || "",
+          completedOn: goal.updatedAt instanceof Date 
+            ? goal.updatedAt.toISOString() 
+            : typeof goal.updatedAt === 'string' 
+            ? goal.updatedAt 
+            : new Date(goal.updatedAt).toISOString(),
+          profileImage: goal.usersTable?.profile_image || "",
         };
-      });
-
-      setGoals(transformedGoals);
-    },
-  });
+      })
+    : [];
 
   return (
     <div className="h-screen p-4 overflow-y-auto border-l-2 bg-backgroundPrimary">

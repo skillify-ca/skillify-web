@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import {
   Content,
   Overlay,
@@ -8,7 +7,6 @@ import {
 } from "@radix-ui/react-dialog";
 import React from "react";
 import { useSelector } from "react-redux";
-import { FETCH_BADGE } from "../../../../graphql/studentPortal/achievements/fetchBadge";
 import { UserCodingBadge } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 import { themeSelector } from "../../../../redux/themeSlice";
 
@@ -17,15 +15,6 @@ type CodingBadgeProps = {
 };
 
 const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
-  useQuery(FETCH_BADGE, {
-    variables: {
-      badgeId: badge.coding_badge.id,
-    },
-    onCompleted: (data) => {
-      console.log(data.coding_badges);
-    },
-  });
-
   const { currentTheme } = useSelector(themeSelector);
 
   return (
