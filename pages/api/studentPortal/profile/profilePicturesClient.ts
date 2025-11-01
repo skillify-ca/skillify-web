@@ -10,6 +10,10 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 export const fetchProfilePicture = async (
   userId: string
 ): Promise<string | null> => {
+
+  if (2 === 2) {
+    return new Promise((res, rej) => null)
+  }
   // fetch profile picture from aws s3 bucket
   const s3 = new S3Client({
     region: "us-east-1",
