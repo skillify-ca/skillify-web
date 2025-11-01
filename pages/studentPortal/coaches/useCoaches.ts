@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Coach } from "../../../components/studentPortal/coaches/CoachCard";
 import { supabase } from "../../../lib/supabase";
-import { fetchProfilePicture } from "../../api/studentPortal/profile/profilePicturesClient";
 
 
 export function useCoaches() {
@@ -15,6 +14,7 @@ export function useCoaches() {
         let { data, error } = await supabase
           .from("coaches")
           .select("*, user:user_id(*)");
+
         if (error) throw error;
 
         const coachesWithImages = await Promise.all(
@@ -23,7 +23,6 @@ export function useCoaches() {
               ...coach,
               user: {
                 ...coach.user,
-                profile_image: await fetchProfilePicture(coach.user.id),
               },
             };
           })
