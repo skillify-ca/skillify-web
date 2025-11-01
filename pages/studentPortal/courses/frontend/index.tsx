@@ -1,11 +1,9 @@
-import { useMutation } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FreemiumDialogComponent from "../../../../components/studentPortal/freemium/FreemiumDialogueComponent";
 import UnitView from "../../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../../components/ui/PageHeader";
-import { UPDATE_USER } from "../../../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../../../lib/authContext";
 import { supabase } from "../../../../lib/supabase";
 import { profileSelector } from "../../../../redux/profileSlice";
@@ -14,7 +12,6 @@ import { Unit, reactUnits } from "../../../api/studentPortal/units";
 export default function StudentPortalPage() {
   const { user } = useAuth();
   const { userRole } = useSelector(profileSelector);
-  const [updateUser] = useMutation(UPDATE_USER);
   const [userIntroNodes, setUserIntroNodes] = useState(null);
 
   useEffect(() => {
@@ -46,14 +43,25 @@ export default function StudentPortalPage() {
   }, [userIntroNodes]);
 
   useEffect(() => {
-    // TODO save profile photos to firebase storage and allow users to edit photos
-    updateUser({
-      variables: {
-        userId: user.uid,
-        last_seen: new Date(),
-        profile_image: user.photoURL,
-      },
-    });
+    const updateUser = async () => {
+      if (user) {
+        try {
+          const { error } = await supabase
+            .from("users")
+            .update({
+              last_seen: new Date(),
+              profile_image: user.photoURL,
+            })
+            .eq("id", user.uid);
+          if (error) {
+            throw error;
+          }
+        } catch (error) {
+          console.error("Error updating user:", error);
+        }
+      }
+    };
+    updateUser();
   }, [user]);
 
   return (
