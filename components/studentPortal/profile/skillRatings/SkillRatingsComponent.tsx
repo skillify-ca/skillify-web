@@ -1,17 +1,17 @@
-import { useMutation, useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import { animated, useSpring } from "react-spring";
-
 import { CheckCircleIcon } from "@heroicons/react/outline";
-import { FetchSkillsAndRatings } from "../../../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
-import { FETCH_UNITS } from "../../../../graphql/studentPortal/skillRatings/fetchUnits";
-import { FetchUserSkillsRatings } from "../../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
-import {
-  UPDATE_USER_SKILL_RATING,
-  UpdateUserSkillRatingArgs,
-} from "../../../../graphql/studentPortal/skillRatings/updateUserSkillRating";
+import React, { useEffect, useState } from "react";
+import { animated, useSpring } from "react-spring";
+import { supabase } from "../../../../lib/supabase";
 import { Button } from "../../../ui/Button";
 import UserSkillRow from "./UserSkillRow";
+
+interface FetchSkillsAndRatings {
+  intro_course_skills: any[];
+}
+
+interface FetchUserSkillsRatings {
+  intro_course_skills_user: any[];
+}
 
 export type SkillRatingsProps = {
   userId: string;
@@ -30,7 +30,7 @@ export default function SkillRatingsComponent({
   const [haveTabsLoaded, setHaveTabsLoaded] = useState(false);
   const [springProps, set] = useSpring(() => ({ opacity: 1 }));
 
-  const [ratingToSave, setRatingToSave] = useState<UpdateUserSkillRatingArgs>();
+  const [ratingToSave, setRatingToSave] = useState(null);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -40,25 +40,44 @@ export default function SkillRatingsComponent({
     }, 300);
   };
 
-  // fetch units and set as tabs
-  useQuery(FETCH_UNITS, {
-    onCompleted: (data) => {
-      const unitNames = data.intro_course_unit
-        .map((unit) => unit.title)
-        .filter((it) => it !== "Introduction");
-      setSections(unitNames);
-      setActiveTab(unitNames[0]);
-      setHaveTabsLoaded(true);
-    },
-  });
+  useEffect(() => {
+    const fetchUnits = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("intro_course_unit")
+          .select("title");
+        if (error) {
+          throw error;
+        }
+        const unitNames = data
+          .map((unit) => unit.title)
+          .filter((it) => it !== "Introduction");
+        setSections(unitNames);
+        setActiveTab(unitNames[0]);
+        setHaveTabsLoaded(true);
+      } catch (error) {
+        console.error("Error fetching units:", error);
+      }
+    };
 
-  // call update user skill rating mutation
-  const [saveUserSkillRating] = useMutation(UPDATE_USER_SKILL_RATING, {
-    variables: ratingToSave,
-    onCompleted: () => {
+    fetchUnits();
+  }, []);
+
+  const saveUserSkillRating = async () => {
+    if (!ratingToSave) return;
+    try {
+      const { error } = await supabase
+        .from("intro_course_skills_user")
+        .update({ studentRating: ratingToSave.studentRating })
+        .eq("id", ratingToSave.userSkillId);
+      if (error) {
+        throw error;
+      }
       alert("Rating saved");
-    },
-  });
+    } catch (error) {
+      console.error("Error saving user skill rating:", error);
+    }
+  };
 
   if (activeTab === "") {
     return <div>Loading...</div>;
