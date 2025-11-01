@@ -1,5 +1,4 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { supabase } from "./supabase";
@@ -25,64 +24,83 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState<User>();
-  const router = useRouter();
   const { status, data: session } = useSession();
 
   const userSync = async (user) => {
-    const userId = uuidv4();
-    const nickname = user.displayName ?? "";
-    const email = user.email;
+      const nickname = user.displayName ?? "";
+      const email = user.email;
 
-    const { error } = await supabase
-      .from("users")
-      .upsert(
-        {
-          id: userId,
-          name: nickname,
-          email: email,
-          last_seen: new Date().toISOString(),
-        },
-        {
-          onConflict: "email", // Use email as the conflict target
-          ignoreDuplicates: false, // Update on conflict
+      // Check if user already exists
+      const { data: existingUser, error: fetchError } = await supabase
+        .from("users")
+        .select("id")
+        .eq("email", email)
+        .maybeSingle();
+
+      if (fetchError) {
+        console.error("Error fetching user:", fetchError);
+        return;
+      }
+
+      if (existingUser) {
+        // User exists - just update last_seen
+        const { error: updateError } = await supabase
+          .from("users")
+          .update({
+            last_seen: new Date().toISOString(),
+          })
+          .eq("id", existingUser.id);
+
+        if (updateError) {
+          console.error("Error updating user:", updateError);
+          return;
         }
-      )
-      .select()
-      .single();
+      } else {
+        // User doesn't exist - create new user
+        const userId = uuidv4();
+        const { error: insertError } = await supabase
+          .from("users")
+          .insert({
+            id: userId,
+            name: nickname,
+            email: email,
+            last_seen: new Date().toISOString(),
+          });
 
-    if (error) {
-      console.error("Error syncing user:", error);
-      return;
-    }
+        if (insertError) {
+          console.error("Error inserting user:", insertError);
+          return;
+        }
+      }
+    };
+
+    useEffect(() => {
+      if (session?.user) {
+        setUser({
+          uid: session?.uid,
+          email: session?.user?.email,
+          displayName: session?.user?.name,
+          photoURL: session?.user?.image,
+        });
+        userSync(session?.user);
+      }
+    }, [session, status]);
+
+    const signInSkillify = () => {
+      signIn("google", { callbackUrl: "/studentPortal" });
+    };
+
+    const signOutSkillify = () => {
+      setUser(undefined);
+      signOut({ callbackUrl: "/welcome" });
+    };
+
+    const value = {
+      user: user,
+      loading: status === "loading",
+      signIn: signInSkillify,
+      signOut: signOutSkillify,
+    };
+
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
   };
-
-  useEffect(() => {
-    if (session?.user) {
-      setUser({
-        uid: session?.uid,
-        email: session?.user?.email,
-        displayName: session?.user?.name,
-        photoURL: session?.user?.image,
-      });
-      userSync(session?.user);
-    }
-  }, [session, status]);
-
-  const signInSkillify = () => {
-    signIn("google", { callbackUrl: "/studentPortal" });
-  };
-
-  const signOutSkillify = () => {
-    setUser(undefined);
-    signOut({ callbackUrl: "/welcome" });
-  };
-
-  const value = {
-    user: user,
-    loading: status === "loading",
-    signIn: signInSkillify,
-    signOut: signOutSkillify,
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
