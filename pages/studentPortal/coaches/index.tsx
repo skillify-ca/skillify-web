@@ -1,41 +1,16 @@
-import { useQuery } from "@apollo/client";
 import Lottie from "lottie-react";
 import React from "react";
 import { useSelector } from "react-redux";
 import CoachCard, { LockedCoachCard, VithushanLockedCoachCard } from "../../../components/studentPortal/coaches/CoachCard";
 import ErrorMessage from "../../../components/ui/ErrorMessage";
 import PageHeader from "../../../components/ui/PageHeader";
-import {
-  Coach,
-  FETCH_COACHES,
-  FetchCoachesResponse,
-} from "../../../graphql/studentPortal/coaches/fetchCoaches";
 import upgradeAnimation from "../../../lib/animations/upgrade.json";
 import { profileSelector } from "../../../redux/profileSlice";
-import { fetchProfilePicture } from "../../api/studentPortal/profile/profilePicturesClient";
+import { useCoaches } from "./useCoaches";
 
 export default function CoachesPage() {
   const { userRole } = useSelector(profileSelector);
-  const { data, loading, error } = useQuery<FetchCoachesResponse>(
-    FETCH_COACHES,
-    {
-      onCompleted: async (data) => {
-        Promise.all(
-          data.coaches.map(async (coach) => {
-            return {
-              ...coach,
-              user: {
-                ...coach.user,
-                profile_image: await fetchProfilePicture(coach.user.id),
-              },
-            };
-          })
-        ).then((coachesWithImages) => setCoaches(coachesWithImages.reverse()));
-      },
-    }
-  );
-
-  const [coaches, setCoaches] = React.useState<Coach[]>([]);
+  const {coaches, loading, error } = useCoaches()
 
   if (loading) {
     return <p>Loading...</p>;

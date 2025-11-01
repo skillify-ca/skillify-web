@@ -1,9 +1,25 @@
-import React, { useState } from "react";
 import Link from "next/link";
-import { Coach } from "../../../graphql/studentPortal/coaches/fetchCoaches";
+import React, { useState } from "react";
 import { useAuth } from "../../../lib/authContext";
 import { logToSlack } from "../../../pages/api/slack/slackLogger";
 import { Button } from "../../ui/Button";
+
+export interface Coach {
+  id: string;
+  name: string;
+  bio: string;
+  profile_image: string;
+  user_id: string;
+  link: string;
+  competencies: string[];
+  image_url: string;
+  user: {
+    id: string;
+    profile_image: string;
+    name: string;
+    bio: string;
+  };
+}
 
 type CoachCardProps = {
   coach: Coach;

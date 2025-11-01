@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Offer,
@@ -17,26 +17,9 @@ import AchievementComponent from "../../components/studentPortal/profile/badges/
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import { Button } from "../../components/ui/Button";
 import {
-  FETCH_TOTAL_USER_BADGES_COUNT,
-  FetchTotalBadgesCountResponse,
-} from "../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
-import {
-  FETCH_USER_BADGES_COUNT,
-  FetchUserBadgesCountResponse,
-} from "../../graphql/studentPortal/achievements/fetchUserBadgesCount";
-import {
-  FETCH_USER_GOALS,
-  FetchUserGoalsDataResponse,
-} from "../../graphql/studentPortal/goals/fetchUserGoals";
-import {
   FETCH_USER_PROFILE_DATA,
   FetchUserProfileDataResponse,
 } from "../../graphql/studentPortal/profile/fetchUserProfile";
-import {
-  FETCH_USER_PROJECTS,
-  FetchUserProjectsDataResponse,
-  UserProjectData,
-} from "../../graphql/studentPortal/profile/fetchUserProjects";
 import {
   FETCH_SKILLS_AND_RATINGS,
   FetchSkillsAndRatings,
@@ -52,16 +35,15 @@ import {
 import AccountabilityHeatmap from "../../components/accountability/AccountabilityHeatmap";
 import LoadingComponent from "../../components/ui/loader";
 import {
-  FETCH_ACCOUNTABILITY_TASKS_BY_USER,
-  FetchAccountabilityTasksByUser,
-} from "../../graphql/studentPortal/accountability/fetchAccountabilityTasks";
-import {
   FETCH_USER_SKILLS_RATINGS,
   FetchUserSkillsRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
-import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
+import { supabase } from "../../lib/supabase";
 import { getInterviewData } from "../api/studentPortal/interviews/InterviewDataMap";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
+import { useAccountability } from "./useAccountability";
+import { useUserGoals } from "./useUserGoals";
+import { useUserProjects } from "./useUserProjects";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
@@ -84,14 +66,15 @@ export default function InternalProfile({
     ? router.query.userId[0]
     : router.query.userId;
   const { user } = useAuth();
-  const { userGoals } = useSelector(userGoalsSelector);
   const { userProfileData, userBadgeCount, totalBadgeCount } =
     useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
-  const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
   const [isCAD, setIsCAD] = useState(true);
   const [year, setYear] = useState(2023);
   const [interviewData, setInterviewData] = useState<Offer[]>([]);
+
+  const { accountabilityData, accountabilityLoading, accountabilityError } =
+    useAccountability(userId);
 
   useEffect(() => {
     if (userId) {
@@ -127,14 +110,7 @@ export default function InternalProfile({
     },
   });
 
-  useQuery<FetchUserGoalsDataResponse>(FETCH_USER_GOALS, {
-    variables: {
-      userId: userId,
-    },
-    onCompleted: (data: FetchUserGoalsDataResponse) => {
-      dispatch(setUserGoals(data.user_goals));
-    },
-  });
+  const {data: userGoals} = useUserGoals(userId)
 
   const { data: skillRatings } = useQuery<FetchSkillsAndRatings>(
     FETCH_SKILLS_AND_RATINGS,
@@ -142,19 +118,6 @@ export default function InternalProfile({
       variables: {
         userId: userId,
       },
-    }
-  );
-
-  const {
-    data,
-    loading: accountabilityLoading,
-    error: accountabilityError,
-  } = useQuery<FetchAccountabilityTasksByUser>(
-    FETCH_ACCOUNTABILITY_TASKS_BY_USER,
-    {
-      variables: { userId },
-      skip: !userId,
-      fetchPolicy: "cache-first",
     }
   );
 
@@ -168,38 +131,36 @@ export default function InternalProfile({
     }
   );
 
-  useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
-    variables: {
-      userId: userId,
-    },
-    onCompleted: (data) => {
-      if (data.user_coding_badges_aggregate.aggregate.count) {
-        dispatch(
-          setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count)
-        );
+  useEffect(() => {
+    const fetchUserCodingBadges = async () => {
+      let { data: user_coding_badges, error } = await supabase
+        .from("user_coding_badges")
+        .select("*")
+        .eq("userId", userId);
+
+      if (user_coding_badges) {
+        dispatch(setUserBadgeCount(user_coding_badges.length));
       }
-    },
-  });
+    };
 
-  useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
-    onCompleted: (data) => {
-      if (data.coding_badges_aggregate) {
-        dispatch(
-          setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
-        );
+    fetchUserCodingBadges();
+  }, [userId]);
+
+  useEffect(() => {
+    const fetchCodingBadges = async () => {
+      let { data: coding_badges, error } = await supabase
+        .from("coding_badges")
+        .select("*");
+
+      if (coding_badges) {
+        dispatch(setTotalBadgeCount(coding_badges.length));
       }
-    },
-  });
+    };
 
-  useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
-    variables: {
-      userId: userId,
-    },
+    fetchCodingBadges();
+  }, [userId]);
 
-    onCompleted: (data: FetchUserProjectsDataResponse) => {
-      setUserProjects(data.user_projects);
-    },
-  });
+  const {data: userProjects} = useUserProjects(userId)
 
   const sections = useMemo(
     () => [
@@ -307,8 +268,6 @@ export default function InternalProfile({
     ]
   );
 
-  console.log("ID", interviewData)
-
   return (
     <div className="flex flex-col m-4 space-y-4 overflow-auto bg-scroll sm:p-4">
       <ProfileHeaderComponent
@@ -321,7 +280,7 @@ export default function InternalProfile({
         ) : accountabilityError ? (
           <p>An error occurred while fetching data.</p>
         ) : (
-          <AccountabilityHeatmap entries={data?.accountability ?? []} />
+          <AccountabilityHeatmap entries={accountabilityData ?? []} />
         )}
       </div>
       {sections.map((section) => {
