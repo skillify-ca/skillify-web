@@ -1,13 +1,10 @@
-import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
 import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
+import { supabase } from "../../../../lib/supabase";
 import { ResponseData } from "../../../api/studentPortal/courses/codingBasics/introduction";
 import { getLessonForReactCourse } from "../../../api/studentPortal/courses/frontend";
 
@@ -26,27 +23,33 @@ const LessonPage = ({
 
   const { user } = useAuth();
   const router = useRouter();
-  const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
-  const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
 
-  const handleContinue = () => {
-    completeUserNode({
-      variables: {
-        user_id: user.uid,
-        node_id: currentNode,
-        completed: true,
-      },
-    }).then((res) => {
-      unlockUserNode({
-        variables: {
-          user_id: user.uid,
-          node_id: nextNode,
-          locked: false,
-        },
-        refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
-      });
+  const handleContinue = async () => {
+    try {
+      const { error: completeError } = await supabase
+        .from("user_intro_nodes")
+        .update({ completed: true })
+        .eq("user_id", user.uid)
+        .eq("node_id", currentNode);
+
+      if (completeError) {
+        throw completeError;
+      }
+
+      const { error: unlockError } = await supabase
+        .from("user_intro_nodes")
+        .update({ locked: false })
+        .eq("user_id", user.uid)
+        .eq("node_id", nextNode);
+
+      if (unlockError) {
+        throw unlockError;
+      }
+
       router.push(`/studentPortal/intro/${nextSlug}`);
-    });
+    } catch (error) {
+      console.error("Error completing/unlocking node:", error);
+    }
   };
 
   return (

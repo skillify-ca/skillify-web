@@ -3,11 +3,11 @@ import React from "react";
 import {
   FETCH_BADGES,
   FetchBadgesResponse,
-} from "../../../graphql/studentPortal/badges/fetchBadges";
+} from "../../../../graphql/studentPortal/badges/fetchBadges";
 import {
   FETCH_USER_BADGES,
   FetchUserBadgesResponse,
-} from "../../../graphql/studentPortal/userBadges/fetchUserBadges";
+} from "../../../../graphql/studentPortal/userBadges/fetchUserBadges";
 
 export default function Badges() {
   const { data: badges, loading } = useQuery<FetchBadgesResponse>(FETCH_BADGES);
@@ -51,4 +51,4 @@ export default function Badges() {
   );
 }
 
-Badges.premium = true;
+// Badges.premium = true;

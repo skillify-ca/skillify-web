@@ -6,6 +6,7 @@ import useMeasure from "react-use-measure";
 export interface ExpandableContainerProps {
   open: boolean;
   title: string;
+  children: React.ReactNode;
 }
 
 const ExpandableContainer: React.FC<ExpandableContainerProps> = ({

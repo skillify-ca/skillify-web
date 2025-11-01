@@ -1,7 +1,6 @@
-import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import ExpandableContainer from "../../../components/ui/ExpandableContainer";
-import { FETCH_BADGE } from "../../../graphql/studentPortal/achievements/fetchBadge";
+import React, { useEffect, useState } from "react";
+import ExpandableContainer from "../../../../components/ui/ExpandableContainer";
+import { supabase } from "../../../../lib/supabase";
 
 // const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -13,14 +12,27 @@ type Badge = {
 const BadgeDetailsPage = ({ slug }) => {
   const [badgeDetail, setBadgeData] = useState<Badge>();
 
-  useQuery(FETCH_BADGE, {
-    variables: {
-      badgeId: slug,
-    },
-    onCompleted: (data) => {
-      setBadgeData(data.coding_badges[0]);
-    },
-  });
+  useEffect(() => {
+    const fetchBadge = async () => {
+      if (!slug) return;
+      try {
+        const { data, error } = await supabase
+          .from("coding_badges")
+          .select("*")
+          .eq("id", slug)
+          .single();
+
+        if (error) {
+          throw error;
+        }
+        setBadgeData(data);
+      } catch (error) {
+        console.error("Error fetching badge:", error);
+      }
+    };
+
+    fetchBadge();
+  }, [slug]);
 
   return (
     <div>
