@@ -1,7 +1,8 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
 import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { FETCH_USER_BY_EMAIL } from "../../../graphql/studentPortal/users/fetchUserByEmail";
+import { supabase } from "../../../lib/supabase";
+
+
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -20,22 +21,20 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        const client = new ApolloClient({
-          uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-          cache: new InMemoryCache(),
-        });
+         try {
+          // Query Supabase for user by email
+          const { data, error } = await supabase
+            .from("users")
+            .select("id")
+            .eq("email", user.email)
+            .single();
 
-        try {
-          const { data } = await client.query({
-            query: FETCH_USER_BY_EMAIL,
-            variables: { email: user.email },
-          });
-
-          if (data?.users?.length > 0) {
-            token.uid = data.users[0].id;
+          if (!error && data) {
+            token.uid = data.id;
           }
-        } catch {
-          // TODO: intergrate with monitoring system
+        } catch (error) {
+          // TODO: integrate with monitoring system
+          console.error("Error fetching user:", error);
         }
       }
 
