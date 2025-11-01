@@ -1,28 +1,12 @@
-import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import {
-  FETCH_CODING_BADGES,
-  FetchBadgeResponse,
-  UserCodingBadge,
-} from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
+import React from "react";
+import { UserCodingBadge } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 import CodingBadgeCard from "./CodingBadgeCard";
 
 export type AchievementComponentProps = {
-  userId: string;
+  userBadges: UserCodingBadge[];
 };
 
-const AchievementComponent = ({ userId }: AchievementComponentProps) => {
-  const [userBadges, setUserBadges] = useState<UserCodingBadge[]>([]);
-
-  const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
-    variables: {
-      userId: userId,
-    },
-    onCompleted: (data) => {
-      setUserBadges(data.user_coding_badges);
-    },
-  });
-
+const AchievementComponent = ({ userBadges }: AchievementComponentProps) => {
   const emptyArray: UserCodingBadge[] = [];
 
   return (

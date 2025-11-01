@@ -207,7 +207,7 @@ export default function InternalProfile({
         hasProgress: true,
         value: (userBadgeCount * 100) / totalBadgeCount,
         component: typeof userId == "string" && (
-          <AchievementComponent userId={userId} />
+          <AchievementComponent userBadges={userCodingBadges || []} />
         ),
       },
       {
