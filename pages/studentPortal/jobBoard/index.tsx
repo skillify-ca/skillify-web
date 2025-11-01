@@ -1,22 +1,13 @@
-import { useQuery } from "@apollo/client";
 import moment from "moment";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../../../components/ui/Button";
 import PageHeader from "../../../components/ui/PageHeader";
-import {
-  AllJobsData,
-  FETCH_ALL_JOBS,
-} from "../../../graphql/studentPortal/jobs/fetchAllJobs";
+import { AllJobsData } from "../../../graphql/studentPortal/jobs/fetchAllJobs";
+import { useAllJobs } from "./useAllJobs";
 
 export default function JobBoardPage() {
-  const [jobs, setJobs] = useState<AllJobsData[]>([]);
-
-  useQuery(FETCH_ALL_JOBS, {
-    onCompleted: (roleData) => {
-      console.log(roleData);
-      setJobs(roleData.jobs);
-    },
-  });
+  const { data: jobsData } = useAllJobs();
+  const jobs: AllJobsData[] = jobsData?.jobs || [];
 
   return (
     <div className="grid w-full grid-cols-12 ">

@@ -1,14 +1,10 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../../components/studentPortal/goals/GoalsSectionComponent";
 import { Button } from "../../../components/ui/Button";
-import {
-  FETCH_USER_GOALS,
-  FetchUserGoalsDataResponse,
-} from "../../../graphql/studentPortal/goals/fetchUserGoals";
 import { useAuth } from "../../../lib/authContext";
+import { supabase } from "../../../lib/supabase";
 import {
   setGoalsSections,
   setUserGoals,
@@ -21,16 +17,28 @@ export default function Goals(props) {
   const dispatch = useDispatch();
   const { userGoals, goalsSections } = useSelector(userGoalsSelector);
 
-  const {} = useQuery<FetchUserGoalsDataResponse>(FETCH_USER_GOALS, {
-    variables: {
-      userId: user.uid,
-    },
-    fetchPolicy: "cache-and-network",
+  useEffect(() => {
+    const fetchUserGoals = async () => {
+      if (!user) {
+        return;
+      }
+      try {
+        const { data, error } = await supabase
+          .from("user_goals")
+          .select("*")
+          .eq("userId", user.uid);
 
-    onCompleted: (data: FetchUserGoalsDataResponse) => {
-      dispatch(setUserGoals(data.user_goals));
-    },
-  });
+        if (error) {
+          throw error;
+        }
+        dispatch(setUserGoals(data));
+      } catch (error: any) {
+        console.log("error", error);
+      }
+    };
+
+    fetchUserGoals();
+  }, [user]);
 
   useEffect(() => {
     if (userGoals.length > 0) {

@@ -1,11 +1,9 @@
-import { useMutation } from "@apollo/client";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
-import { FETCH_USER_GOALS } from "../../../graphql/studentPortal/goals/fetchUserGoals";
-import { UPSERT_USER_GOALS } from "../../../graphql/studentPortal/goals/upsertUserGoals";
 import { useAuth } from "../../../lib/authContext";
+import { supabase } from "../../../lib/supabase";
 
 export const GOAL_CHAR_LIMIT = 1500;
 
@@ -22,11 +20,17 @@ const EditGoalsPage = () => {
     targetDate: new Date(),
   });
 
-  // route back to goals overview page on complete
-  const [saveNewGoal] = useMutation(UPSERT_USER_GOALS, {
-    onCompleted: () => router.push("/studentPortal/goals"),
-    refetchQueries: [{ query: FETCH_USER_GOALS }],
-  });
+  const saveNewGoal = async () => {
+    try {
+      const { error } = await supabase.from("user_goals").insert([newGoalValues]);
+      if (error) {
+        throw error;
+      }
+      router.push("/studentPortal/goals");
+    } catch (error) {
+      console.error("Error saving new goal:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col p-4 m-4 space-y-8 overflow-auto bg-scroll">
@@ -75,13 +79,7 @@ const EditGoalsPage = () => {
       <div>
         <Button
           label="Add Goal"
-          onClick={() => {
-            saveNewGoal({
-              variables: {
-                objects: newGoalValues,
-              },
-            });
-          }}
+          onClick={saveNewGoal}
           disabled={
             newGoalValues.goalName.length == 0 ||
             newGoalValues.goalName.length > GOAL_CHAR_LIMIT ||

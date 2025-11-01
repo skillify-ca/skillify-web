@@ -1,4 +1,3 @@
-import { useMutation, useQuery } from "@apollo/client";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import {
   ArchiveIcon,
@@ -7,18 +6,10 @@ import {
 } from "@heroicons/react/solid";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../../../components/ui/Button";
-import {
-  FETCH_USER_GOALS,
-  FETCH_USER_GOAL_DETAIL,
-  FetchUserGoalsDataResponse,
-  UserGoalsData,
-} from "../../../graphql/studentPortal/goals/fetchUserGoals";
-import { FETCH_USER_GOALS_COUNT } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
-import { REMOVE_USER_GOAL } from "../../../graphql/studentPortal/goals/removeUserGoal";
-import { UPSERT_USER_GOALS } from "../../../graphql/studentPortal/goals/upsertUserGoals";
 import { useAuth } from "../../../lib/authContext";
+import { supabase } from "../../../lib/supabase";
 import { GOAL_CHAR_LIMIT } from "./addGoal";
 
 const EditGoalsPage = () => {
@@ -27,39 +18,65 @@ const EditGoalsPage = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
+  const [editedGoalValues, setEditedGoalValues] = useState(null);
   const [editGoalNotes, setEditGoalNotes] = useState<boolean>();
+  const [goalDetail, setGoalDetail] = useState(null);
 
-  const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
-    refetchQueries: [
-      { query: FETCH_USER_GOALS },
-      { query: FETCH_USER_GOALS_COUNT },
-    ],
-    onCompleted: () => router.push("/studentPortal/goals"),
-  });
+  useEffect(() => {
+    const fetchGoalDetail = async () => {
+      if (!user || !slug) {
+        return;
+      }
+      try {
+        const { data, error } = await supabase
+          .from("user_goals")
+          .select("*")
+          .eq("userId", user.uid)
+          .eq("id", slug)
+          .single();
 
-  const [removeUserGoal] = useMutation(REMOVE_USER_GOAL, {
-    refetchQueries: [{ query: FETCH_USER_GOALS }],
-    onCompleted: () => router.push("/studentPortal/goals"),
-  });
+        if (error) {
+          throw error;
+        }
+        setGoalDetail(data);
+        setEditedGoalValues(data);
+      } catch (error) {
+        console.error("Error fetching goal details:", error);
+      }
+    };
 
-  const goalDetailResults = useQuery<FetchUserGoalsDataResponse>(
-    FETCH_USER_GOAL_DETAIL,
-    {
-      variables: {
-        userId: user.uid,
-        id: slug,
-      },
-      onCompleted: (data) => {
-        setEditedGoalValues(data.user_goals[0]);
-      },
+    fetchGoalDetail();
+  }, [user, slug]);
+
+  const saveEditedGoals = async () => {
+    try {
+      const { error } = await supabase
+        .from("user_goals")
+        .update(editedGoalValues)
+        .eq("id", slug);
+      if (error) {
+        throw error;
+      }
+      router.push("/studentPortal/goals");
+    } catch (error) {
+      console.error("Error saving edited goal:", error);
     }
-  );
+  };
 
-  let goalDetail: UserGoalsData;
-  if (goalDetailResults.data) {
-    goalDetail = goalDetailResults.data.user_goals[0];
-  }
+  const removeUserGoal = async () => {
+    try {
+      const { error } = await supabase
+        .from("user_goals")
+        .delete()
+        .eq("id", slug);
+      if (error) {
+        throw error;
+      }
+      router.push("/studentPortal/goals");
+    } catch (error) {
+      console.error("Error removing goal:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
@@ -180,7 +197,7 @@ const EditGoalsPage = () => {
               className={"h-10 w-10 hover:text-red-600 cursor-pointer"}
               onClick={() =>
                 window.confirm("Are you sure you want to delete this goal?")
-                  ? removeUserGoal({ variables: { id: editedGoalValues.id } })
+                  ? removeUserGoal()
                   : ""
               }
             />
@@ -191,24 +208,7 @@ const EditGoalsPage = () => {
                   goalDetail === editedGoalValues ||
                   editedGoalValues.goalName.length > 60
                 }
-                onClick={() => {
-                  // this is a workaround to remove __typename from the gql response which causes mutation to fail
-                  const editedGoalValuesForHasura = {
-                    goalName: editedGoalValues.goalName,
-                    goalNotes: editedGoalValues.goalNotes,
-                    userId: editedGoalValues.userId,
-                    id: editedGoalValues.id,
-                    isArchived: editedGoalValues.isArchived,
-                    isComplete: editedGoalValues.isComplete,
-                    targetDate: editedGoalValues.targetDate,
-                  };
-
-                  saveEditedGoals({
-                    variables: {
-                      objects: editedGoalValuesForHasura,
-                    },
-                  });
-                }}
+                onClick={saveEditedGoals}
               />
             </div>
           </div>
