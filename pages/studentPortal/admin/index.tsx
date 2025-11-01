@@ -47,11 +47,11 @@ const coachingDashboard = () => {
   const { data: userRoleData } = useUserRole(user?.uid);
 
   useEffect(() => {
-    if (userRoleData && userRoleData.users && userRoleData.users.length > 0) {
-      if (userRoleData.users[0].userRole !== "coach") {
+    if (userRoleData ) {
+      if (userRoleData.userRole !== "coach") {
         router.replace("/studentPortal");
       }
-      setUserRoleState(userRoleData.users[0].userRole);
+      setUserRoleState(userRoleData.userRole);
     }
   }, [userRoleData, router]);
 

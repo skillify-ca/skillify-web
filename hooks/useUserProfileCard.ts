@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { fetchUserProfileCard } from "../graphql/studentPortal/admin/fetchUserProfileCard";
 
 export type FetchUserProfileCardResponse = {
   users: Array<Users>;
