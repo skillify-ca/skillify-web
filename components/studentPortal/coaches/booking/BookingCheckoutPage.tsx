@@ -7,7 +7,7 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../../../lib/authContext";
 import { logToSlack } from "../../../../pages/api/slack/slackLogger";
 import { Button } from "../../../ui/Button";
@@ -114,9 +114,7 @@ const BookingCheckoutPage = () => {
   }
 
   const timeSlots = [
-    formatDateTime(getNextWeekdayDateTime(1, 18, 0)), // Monday 6:00 PM
     formatDateTime(getNextWeekdayDateTime(1, 19, 0)), // Monday 7:00 PM
-    formatDateTime(getNextWeekdayDateTime(2, 11, 0)), // Tuesday 10:00 AM
     formatDateTime(getNextWeekdayDateTime(2, 12, 0)), // Tuesday 11:00 AM
   ];
 
