@@ -117,7 +117,7 @@ export const freeCourses: PaidSidebarItemProps[] = [
     isPremium: false,
   },
   {
-    name: "Frontend",
+    name: "Frontend Web",
     link: "/studentPortal/courses/frontend",
     page: "frontend_development",
     icon: <ReactIcon />,
