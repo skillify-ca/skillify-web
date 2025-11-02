@@ -30,7 +30,7 @@ export default function CoachesPage() {
           </div>
           <p>
             Paid users meet frequently with all of our amazing coaches to get
-            unstuck and move faster towards their learning and careergoals.
+            unstuck and move faster towards their learning and career goals.
           </p>
         </div>
       )}
