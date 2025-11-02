@@ -3,6 +3,7 @@ export type UnitNode =
       title: string;
       description: string;
       link: string;
+      locked?: boolean;
       type: "lesson" | "quiz" | "assignment";
     }
   | {
@@ -234,13 +235,6 @@ export const tailwindUnit: Unit = {
       link: "tailwindcss-colourstyling",
       type: "lesson",
     },
-    {
-      title: "Assignment 1",
-      description: "TailwindCSS Assignment",
-
-      link: "tailwindAssignment",
-      type: "assignment",
-    },
   ],
 };
 
@@ -346,7 +340,7 @@ export const backendUnit: Unit = {
   ],
 };
 
-const projectUnit: Unit = {
+export const projectUnit: Unit = {
   title: "Projects",
   nodes: [
     {

@@ -54,7 +54,7 @@ export const UnitView: React.FC<UnitViewProps> = ({
                 key={it.title}
                 hiddenLine={index === data.nodes.length - 1}
                 completed={false}
-                locked={false}
+                locked={it.locked}
                 title={it.title}
                 description={it.description}
                 type={it.type}

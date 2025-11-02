@@ -1,5 +1,6 @@
 import {
   githubUnit,
+  projectUnit,
   reactUnit,
   tailwindUnit,
   Unit,
@@ -10,27 +11,22 @@ export const freemiumUnits: Unit[] = [
   webIntroUnit,
   githubUnit,
   tailwindUnit,
-  transformReactUnit(reactUnit),
+  transform(reactUnit),
+  transform(projectUnit),
 ];
 
-function transformReactUnit(unit: Unit): Unit {
+function transform(unit: Unit): Unit {
   return {
-    title: unit.title,
-    nodes: unit.nodes.map((node, index) => {
-      if (index > 3) {
-        return {
-          type: "grayedOut",
-        };
-      } else if (index === 3) {
-        return {
-          link: "",
-          title: "Enjoying the Skillify Experience?",
-          description: "Access the full community and program!",
-          type: "freemiumMessage",
-        };
-      } else {
+    ...unit,
+    nodes: unit.nodes.map((node) => {
+      if ("locked" in node) {
         return node;
       }
+      return {
+        ...node,
+        locked: true,
+      };
     }),
   };
 }
+
