@@ -121,7 +121,7 @@ function getDataForConclusionLesson(): LessonPageData {
       },
       {
         component: "description",
-        text: "This is the end of the Vibe Coding course. You can continue to work on your project or start a new one. Remember, the goal is to validate your ideas and get feedback from users. Good luck!",
+        text: "This is the end of the Vibe Coding course. AI Tools can be very helpful when you keep the problem small but they are expensive and have limits and restrictions. You can continue to work on your project or start a new one. Remember, the goal is to validate your ideas and get feedback from users. Book an office hour with a coach if you get stuck. Good luck!",
       },
       {
         component: "checkboxForm",
