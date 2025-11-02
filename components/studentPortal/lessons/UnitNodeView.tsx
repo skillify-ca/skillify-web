@@ -29,10 +29,10 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   return (
-    <div className="grid grid-cols-12 h-36">
+    <div className="grid grid-cols-12 min-h-[9rem]">
       <div
         className={`
-        col-span-12 grid grid-cols-12 h-28
+        col-span-12 grid grid-cols-12 min-h-[7rem]
         ${"hover:bg-backgroundSecondary hover:shadow-lg transform transition-all"
           } ${"border-2 shadow bg-backgroundPrimary"}  `}
       >
@@ -40,8 +40,8 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
           {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
         </div>
         <div className="flex flex-col justify-center w-full col-span-5 p-4">
-          <p className="">{title}</p>
-          <p className="">{description}</p>
+          <p className="font-medium">{title}</p>
+          <p className="text-sm md:text-base break-words">{description}</p>
         </div>
         <div
           className={`flex flex-col col-span-5 justify-center p-4`}
