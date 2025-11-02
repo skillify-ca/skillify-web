@@ -47,9 +47,16 @@ Make sure you download or sign up for these programs to start. Message Vithushan
             image: "https://skillify.ca/images/studentPortal/basics/introduction/vs-code.png",
           },
           {
+            title: "Github Copilot - Advanced",
+            description:
+              "An AI pair programmer built by Microsoft to help you code faster.",
+            link: "https://marketplace.visualstudio.com/items?itemName=GitHub.copilot",
+            image: "https://skillify.ca/images/courses/copilot.png",
+          },
+          {
             title: "Cline - Advanced",
             description:
-              "A coding editor for building software applications.",
+              "An open-source coding assistant that lets you work with any LLM.",
             link: "https://cline.bot/",
             image: "https://skillify.ca/images/courses/cline.png",
           },
