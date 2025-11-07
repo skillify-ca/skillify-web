@@ -27,7 +27,7 @@ const HomePage = () => {
       { text: "university graduates", highlight: true },
       { text: "to start a " },
       { text: "career", highlight: true },
-      { text: "in tech" },
+      { text: "in AI" },
     ],
     description:
       "Get personalized and flexible training for high-paying remote jobs from Silicon Valley instructors. We customize our program to you and your unique interests.",
