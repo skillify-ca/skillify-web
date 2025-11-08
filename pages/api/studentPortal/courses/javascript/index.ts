@@ -1,7 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getDataForHTMLAssignment } from "../html/assignment1";
-import { getLessonComponentsForHTML1Data } from "../html/lesson1";
-import { getLessonComponentsForHTMLQuizData } from "../html/quiz1";
 import { ResponseData } from "../types";
 import { getDataForJSIntroduction } from "./introduction";
 import { getDataForIntroductionLesson } from "./introduction-coding-basics";
@@ -22,20 +19,6 @@ import { getJavaScriptSummary } from "./summary";
 export function getLessonForJavaScriptCourse(lessonId: string) {
   if (lessonId.toLocaleLowerCase() === "introduction") {
     return getDataForIntroductionLesson();
-  } else if (lessonId.toLocaleLowerCase() === "html-1") {
-    return getLessonComponentsForHTML1Data();
-  } else if (lessonId.toLocaleLowerCase() === "html-quiz-1") {
-    return getLessonComponentsForHTMLQuizData();
-  } else if (lessonId.toLocaleLowerCase() === "html-assignment-1") {
-    return getDataForHTMLAssignment();
-  } else if (lessonId.toLocaleLowerCase() === "css-introduction") {
-    return getDataForJSLesson1();
-  } else if (lessonId.toLocaleLowerCase() === "css-grid") {
-    return getDataForJSLesson2();
-  } else if (lessonId.toLocaleLowerCase() === "css-flexbox") {
-    return getDataForJSLesson3();
-  } else if (lessonId.toLocaleLowerCase() === "css-quiz") {
-    return getLessonComponentsForJSQuiz1Data();
   } else if (lessonId.toLocaleLowerCase() === "js-introduction") {
     return getDataForJSIntroduction();
   } else if (lessonId.toLocaleLowerCase() === "js-variables") {
