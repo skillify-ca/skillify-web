@@ -46,14 +46,14 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     isPremium: true,
   },
   {
-    name: "Interview Prep 1",
+    name: "Interview Prep",
     link: "/studentPortal/courses/interviewPrep",
     page: "interviewPrep1",
     icon: <LightBulbIcon className="w-6 h-6 mr-4" />,
     isPremium: true,
   },
   {
-    name: "Interview Prep 2",
+    name: "LeetCode",
     link: "/studentPortal/courses/interviewPrep2",
     page: "interviewPrep2",
     icon: <LightBulbIcon className="w-6 h-6 mr-4" />,

@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Button } from "../../../../ui/Button";
+
+import React from "react";
 
 export default function CodingChallengeInstructions() {
   return (
