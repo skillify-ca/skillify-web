@@ -1,7 +1,7 @@
 import React from "react";
 import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { ResponseData } from "../../../api/studentPortal/courses/codingBasics/introduction";
+import { ResponseData } from "../../../api/studentPortal/courses/javascript/introduction-coding-basics";
 import { getLessonForPersonalFinanceCourse } from "../../../api/studentPortal/courses/personalFinance";
 
 const LessonPage = ({ lessonComponents }: ResponseData) => {

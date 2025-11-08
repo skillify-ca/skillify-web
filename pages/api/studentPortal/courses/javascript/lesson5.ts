@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Resource } from "../../../../../../components/studentPortal/lessons/LessonComponent";
-import { ResponseData } from "../introduction";
+import { Resource } from "../../../../../components/studentPortal/lessons/LessonComponent";
+import { ResponseData } from "../types";
 
 export function getDataForJSLesson5() {
   const resources: Resource[] = [

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { LessonComponentData } from "../../../../../../components/studentPortal/lessons/LessonComponent";
-import { ResponseData } from "../introduction";
+import { LessonComponentData } from "../../../../../components/studentPortal/lessons/LessonComponent";
+import { ResponseData } from "../types";
 
 export function getPortfolioAssignment(): ResponseData {
   const lessonComponents: LessonComponentData[] = [

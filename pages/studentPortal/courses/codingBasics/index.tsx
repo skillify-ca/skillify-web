@@ -4,7 +4,7 @@ import GoalsFeed from "../../../../components/studentPortal/goals/feed/GoalsFeed
 import UnitView from "../../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../../components/ui/PageHeader";
 import { useAuth } from "../../../../lib/authContext";
-import { Unit, codingBasicsCourse } from "../../../api/studentPortal/units";
+import { Unit, javascriptUnit } from "../../../api/studentPortal/units";
 
 const InterviewCoursePage = () => {
   return (
@@ -20,8 +20,8 @@ export const InterviewPrepCourse = () => {
   const [units, setUnits] = useState<Unit[]>([]);
 
   useEffect(() => {
-    setUnits(codingBasicsCourse.units);
-  }, [units]);
+    setUnits([javascriptUnit]);
+  }, []);
 
   return (
     <div className="grid w-full grid-cols-12 ">

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { LessonComponentData } from "../../../../../../components/studentPortal/lessons/LessonComponent";
-import { ResponseData } from "../introduction";
+import { LessonComponentData } from "../../../../../components/studentPortal/lessons/LessonComponent";
+import { ResponseData } from "../types";
 
 export function getJSNBAAssignment(): ResponseData {
   const playerDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/Players?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;

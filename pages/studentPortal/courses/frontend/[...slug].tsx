@@ -5,8 +5,8 @@ import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { useAuth } from "../../../../lib/authContext";
 import { supabase } from "../../../../lib/supabase";
-import { ResponseData } from "../../../api/studentPortal/courses/codingBasics/introduction";
 import { getLessonForReactCourse } from "../../../api/studentPortal/courses/frontend";
+import { ResponseData } from "../../../api/studentPortal/courses/javascript/introduction-coding-basics";
 
 const LessonPage = ({
   lessonComponents,

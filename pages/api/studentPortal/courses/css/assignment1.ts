@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ResponseData } from "../introduction";
+import { ResponseData } from "../types";
 
 export function getDataForCSSAssignment() {
   const data: ResponseData = {
@@ -115,7 +115,7 @@ export function getDataForCSSAssignment() {
     ],
     currentNode: 52,
     nextNode: 7,
-    nextSlug: "js-introduction",
+    nextSlug: "",
   };
   return data;
 }

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ResponseData } from "../introduction";
+import { ResponseData } from "../types";
 
 export function getDataForHTMLAssignment() {
   const data: ResponseData = {
@@ -100,9 +100,9 @@ export function getDataForHTMLAssignment() {
         videoId: "c150ce49d1844f3297c4a304a6f3c486",
       },
     ],
-    currentNode: 4,
-    nextNode: 5,
-    nextSlug: "css-introduction",
+    currentNode: 1,
+    nextNode: 2,
+    nextSlug: "",
   };
 
   return data;

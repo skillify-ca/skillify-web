@@ -24,88 +24,16 @@ type Course = {
 };
 
 // Database Layer
-export const codingBasicsCourse: Course = {
-  title: "Coding Basics",
-  units: [
+export const javascriptUnit: Unit = {
+  title: "JavaScript",
+  nodes: [
     {
-      title: "Introduction",
-      nodes: [
-        {
-          type: "lesson",
-          title: "Introduction",
-          description: "",
-          link: "introduction",
-        },
-      ],
+      type: "lesson",
+      title: "JavaScript Introduction",
+      description: "",
+      link: "js-introduction",
     },
     {
-      title: "HTML",
-      nodes: [
-        {
-          type: "lesson",
-          title: "HTML Lesson",
-          description: "",
-          link: "html-1",
-        },
-        {
-          type: "quiz",
-          title: "HTML Quiz",
-          description: "",
-          link: "html-quiz-1",
-        },
-        {
-          type: "assignment",
-          title: "HTML Assignment",
-          description: "",
-          link: "html-assignment-1",
-        },
-      ],
-    },
-    {
-      title: "CSS",
-      nodes: [
-        {
-          type: "lesson",
-          title: "CSS Lesson",
-          description: "",
-          link: "css-introduction",
-        },
-        {
-          type: "lesson",
-          title: "CSS Grid",
-          description: "",
-          link: "css-grid",
-        },
-        {
-          type: "lesson",
-          title: "CSS Flexbox",
-          description: "",
-          link: "css-flexbox",
-        },
-        {
-          type: "quiz",
-          title: "CSS Quiz",
-          description: "",
-          link: "css-quiz",
-        },
-        {
-          type: "assignment",
-          title: "CSS Assignment",
-          description: "",
-          link: "css-assignment",
-        },
-      ],
-    },
-    {
-      title: "JavaScript",
-      nodes: [
-        {
-          type: "lesson",
-          title: "JavaScript Introduction",
-          description: "",
-          link: "js-introduction",
-        },
-        {
           type: "lesson",
           title: "JavaScript Variables",
           description: "",
@@ -183,7 +111,65 @@ export const codingBasicsCourse: Course = {
           description: "",
           link: "js-portfolio-assignment",
         },
-      ],
+  ],
+};
+
+export const htmlUnit: Unit = {
+  title: "HTML",
+  nodes: [
+    {
+      type: "lesson",
+      title: "HTML Lesson",
+      description: "",
+      link: "html-introduction",
+    },
+    {
+      type: "quiz",
+      title: "HTML Quiz",
+      description: "",
+      link: "html-quiz-1",
+    },
+    {
+      type: "assignment",
+      title: "HTML Assignment",
+      description: "",
+      link: "html-assignment-1",
+    },
+  ],
+};
+
+export const cssUnit: Unit = {
+  title: "CSS",
+  nodes: [
+    {
+      type: "lesson",
+      title: "CSS Lesson",
+      description: "",
+      link: "css-introduction",
+    },
+    {
+      type: "lesson",
+      title: "CSS Grid",
+      description: "",
+      link: "css-grid",
+    },
+    {
+      type: "lesson",
+      title: "CSS Flexbox",
+      description: "",
+      link: "css-flexbox",
+    },
+    {
+      type: "quiz",
+      title: "CSS Quiz",
+      description: "",
+      link: "css-quiz",
+    },
+    {
+      type: "assignment",
+      title: "CSS Assignment",
+      description: "",
+      link: "css-assignment",
     },
   ],
 };

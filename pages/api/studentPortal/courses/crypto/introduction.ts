@@ -1,5 +1,5 @@
 import { LessonComponentData } from "../../../../../components/studentPortal/lessons/LessonComponent";
-import { ResponseData } from "../codingBasics/introduction";
+import { ResponseData } from "../javascript/introduction-coding-basics";
 
 export const getIntroductionCryptoLesson = (): ResponseData => {
   const lessonComponents: LessonComponentData[] = [

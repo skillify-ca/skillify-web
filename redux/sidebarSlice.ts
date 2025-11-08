@@ -21,7 +21,10 @@ export type SidebarPage =
   | "jobExplorer"
   | "challenges"
   | "jobBoard"
-
+  | "html"
+  | "css"
+  | "javascript"
+  
 export interface SidebarState {
   activePage: SidebarPage;
   goalApproaching: boolean;

@@ -1,29 +1,25 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getDataForCSSAssignment } from "./css/assignment1";
-import { getDataForCSSLesson1 } from "./css/lesson1";
-import { getDataForLesson2Flexbox } from "./css/lesson2-Flexbox";
-import { getDataForLesson2Grid } from "./css/lesson2-Grid";
-import { getLessonComponentsForCSSQuizData } from "./css/quiz1";
-import { getDataForHTMLAssignment } from "./html/assignment1";
-import { getLessonComponentsForHTML1Data } from "./html/lesson1";
-import { getLessonComponentsForHTMLQuizData } from "./html/quiz1";
-import { getDataForIntroductionLesson, ResponseData } from "./introduction";
-import { getDataForJSIntroduction } from "./javascript/introduction";
-import { getDataForJSLesson1 } from "./javascript/lesson1";
-import { getDataForJSLesson2 } from "./javascript/lesson2";
-import { getDataForJSLesson3 } from "./javascript/lesson3";
-import { getDataForJSLesson4 } from "./javascript/lesson4";
-import { getDataForJSLesson5 } from "./javascript/lesson5";
-import { getDataForJSLesson6 } from "./javascript/lesson6";
-import { getDataForJSLesson7 } from "./javascript/lesson7";
-import { getJSNBAAssignment } from "./javascript/nba-assignment";
-import { getJSPokemonAssignment } from "./javascript/pokemon-assignment";
-import { getPortfolioAssignment } from "./javascript/portfolio";
-import { getLessonComponentsForJSQuiz1Data } from "./javascript/quiz1";
-import { getDataForJSQuiz2 } from "./javascript/quiz2";
-import { getJavaScriptSummary } from "./javascript/summary";
+import { getDataForHTMLAssignment } from "../html/assignment1";
+import { getLessonComponentsForHTML1Data } from "../html/lesson1";
+import { getLessonComponentsForHTMLQuizData } from "../html/quiz1";
+import { ResponseData } from "../types";
+import { getDataForJSIntroduction } from "./introduction";
+import { getDataForIntroductionLesson } from "./introduction-coding-basics";
+import { getDataForJSLesson1 } from "./lesson1";
+import { getDataForJSLesson2 } from "./lesson2";
+import { getDataForJSLesson3 } from "./lesson3";
+import { getDataForJSLesson4 } from "./lesson4";
+import { getDataForJSLesson5 } from "./lesson5";
+import { getDataForJSLesson6 } from "./lesson6";
+import { getDataForJSLesson7 } from "./lesson7";
+import { getJSNBAAssignment } from "./nba-assignment";
+import { getJSPokemonAssignment } from "./pokemon-assignment";
+import { getPortfolioAssignment } from "./portfolio";
+import { getLessonComponentsForJSQuiz1Data } from "./quiz1";
+import { getDataForJSQuiz2 } from "./quiz2";
+import { getJavaScriptSummary } from "./summary";
 
-export function getLessonForBasicsCourse(lessonId: string) {
+export function getLessonForJavaScriptCourse(lessonId: string) {
   if (lessonId.toLocaleLowerCase() === "introduction") {
     return getDataForIntroductionLesson();
   } else if (lessonId.toLocaleLowerCase() === "html-1") {
@@ -33,15 +29,13 @@ export function getLessonForBasicsCourse(lessonId: string) {
   } else if (lessonId.toLocaleLowerCase() === "html-assignment-1") {
     return getDataForHTMLAssignment();
   } else if (lessonId.toLocaleLowerCase() === "css-introduction") {
-    return getDataForCSSLesson1();
+    return getDataForJSLesson1();
   } else if (lessonId.toLocaleLowerCase() === "css-grid") {
-    return getDataForLesson2Grid();
+    return getDataForJSLesson2();
   } else if (lessonId.toLocaleLowerCase() === "css-flexbox") {
-    return getDataForLesson2Flexbox();
+    return getDataForJSLesson3();
   } else if (lessonId.toLocaleLowerCase() === "css-quiz") {
-    return getLessonComponentsForCSSQuizData();
-  } else if (lessonId.toLocaleLowerCase() === "css-assignment") {
-    return getDataForCSSAssignment();
+    return getLessonComponentsForJSQuiz1Data();
   } else if (lessonId.toLocaleLowerCase() === "js-introduction") {
     return getDataForJSIntroduction();
   } else if (lessonId.toLocaleLowerCase() === "js-variables") {
@@ -80,7 +74,7 @@ export default function handler(
   res: NextApiResponse<ResponseData>
 ) {
   const slug = (req.query.slug as string) || "introduction";
-  const data = getLessonForBasicsCourse(slug);
+  const data = getLessonForJavaScriptCourse(slug);
 
   res.status(200).json(data);
 }

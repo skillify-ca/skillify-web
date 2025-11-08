@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { LessonComponentData } from "../../../../../components/studentPortal/lessons/LessonComponent";
-import { ResponseData } from "../codingBasics/introduction";
+import { ResponseData } from "../javascript/introduction-coding-basics";
 
 export const getTailwindAssignmentData = (): ResponseData => {
   const lessonComponents: LessonComponentData[] = [

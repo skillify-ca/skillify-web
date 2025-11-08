@@ -1,12 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { LessonComponentData } from "../../../../../components/studentPortal/lessons/LessonComponent";
-
-export type ResponseData = {
-  lessonComponents: LessonComponentData[];
-  currentNode: number;
-  nextNode: number;
-  nextSlug: string;
-};
+import { ResponseData } from "../types";
 
 export function getDataForIntroductionLesson() {
   const data: ResponseData = {

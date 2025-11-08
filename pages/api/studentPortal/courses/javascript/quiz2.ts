@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Resource } from "../../../../../../components/studentPortal/lessons/LessonComponent";
-import { ResponseData } from "../introduction";
+import { Resource } from "../../../../../components/studentPortal/lessons/LessonComponent";
+import { ResponseData } from "../types";
 
-export function getDataForJSIntroduction() {
+export function getDataForJSQuiz2() {
   const resources: Resource[] = [
     {
       title: "Grasshopper",
@@ -41,9 +41,9 @@ export function getDataForJSIntroduction() {
         resources,
       },
     ],
-    currentNode: 7,
-    nextNode: 8,
-    nextSlug: "js-variables",
+    currentNode: 45,
+    nextNode: 46,
+    nextSlug: "js-pokemon-assignment",
   };
   return data;
 }
@@ -52,7 +52,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const data = getDataForJSIntroduction();
+  const data = getDataForJSQuiz2();
 
   res.status(200).json(data);
 }

@@ -5,3 +5,10 @@ export type LessonPageData = {
   lessonId: number;
   lessonCount: number;
 };
+
+export type ResponseData = {
+  lessonComponents: LessonComponentData[];
+  currentNode: number;
+  nextNode: number;
+  nextSlug: string;
+};

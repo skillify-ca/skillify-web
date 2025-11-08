@@ -2,8 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import {
   LessonComponentData,
   Resource,
-} from "../../../../../../components/studentPortal/lessons/LessonComponent";
-import { ResponseData } from "../introduction";
+} from "../../../../../components/studentPortal/lessons/LessonComponent";
+import { ResponseData } from "../types";
 
 export function getJavaScriptSummary(): ResponseData {
   const resources: Resource[] = [
