@@ -3,8 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { getLessonForBasicsCourse } from "../../../api/studentPortal/courses/javascript";
-import { ResponseData } from "../../../api/studentPortal/courses/javascript/introduction-coding-basics";
+import { getLessonForJavaScriptCourse } from "../../../api/studentPortal/courses/javascript";
+import { ResponseData } from "../../../api/studentPortal/courses/types";
 
 // dynamic import for the LessonComponent component
 const LessonComponent = dynamic(
@@ -37,7 +37,7 @@ const LessonPage = ({ lessonComponents, nextSlug }: ResponseData) => {
 export async function getServerSideProps({ params }) {
   const slug = params.slug.join("/");
   return {
-    props: getLessonForBasicsCourse(slug),
+    props: getLessonForJavaScriptCourse(slug),
   };
 }
 
