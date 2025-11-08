@@ -9,18 +9,21 @@ type HeroProps = {
 export type HighlightableText = {
   text: string;
   highlight?: boolean;
+  animated?: boolean;
 };
 
 export default function Hero({ headerText, description }: HeroProps) {
   return (
-    (<div className="">
+    <div className="">
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="p-8 lg:p-16 md:text-center lg:text-left">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            {headerText.map((line) => (
+            {headerText.map((line, index) => (
               <span
-                key={line.text}
-                className={`${line.highlight ? "text-charmander" : ""}`}
+                key={`${line.text}-${index}`} 
+                className={`${line.highlight ? "text-charmander" : ""} ${
+                  line.animated ? "inline-block animate-slide-up" : ""
+                }`}
               >
                 {line.text}{" "}
               </span>
@@ -51,6 +54,6 @@ export default function Hero({ headerText, description }: HeroProps) {
           />
         </div>
       </div>
-    </div>)
+    </div>
   );
 }

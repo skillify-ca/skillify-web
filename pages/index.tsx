@@ -8,6 +8,17 @@ import LandingPage, {
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
+  const animatedWords = ["AI", "Crypto", "Tech", "Data"];
+  const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimatedWordIndex((prevIndex) => (prevIndex + 1) % animatedWords.length);
+    }, 2000); // Change word every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const onScroll = (e) => {
       if (e.target.documentElement.scrollTop > 400) {
@@ -27,7 +38,12 @@ const HomePage = () => {
       { text: "university graduates", highlight: true },
       { text: "to start a " },
       { text: "career", highlight: true },
-      { text: "in AI" },
+      { text: "in " },
+      {
+        text: animatedWords[animatedWordIndex],
+        highlight: true,
+        animated: true,
+      },
     ],
     description:
       "Get personalized and flexible training for high-paying remote jobs from Silicon Valley instructors. We customize our program to you and your unique interests.",
