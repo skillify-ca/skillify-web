@@ -1,6 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
-import assignmentsSlice, { AssignmentsState } from "./assignmentsSlice";
 import evaluateExpressionSlice, {
   EvaluateExpressionState,
 } from "./evaluateExpressionSlice";
@@ -18,7 +17,6 @@ type State = {
   sidebarState: SidebarState;
   userGoalsState: UserGoalsState;
   profileState: ProfileState;
-  assignmentsState: AssignmentsState;
   userState: userState;
   themeState: ThemeState;
 };
@@ -27,7 +25,6 @@ const quizReducer = quizSlice.reducer;
 const sidebarReducer = sidebarSlice.reducer;
 const userGoalsReducer = userGoalsSlice;
 const profileReducer = profileSlice;
-const assignmentsReducer = assignmentsSlice;
 const userReducer = userSlice;
 const themeReducer = themeSlice;
 
@@ -37,7 +34,6 @@ const rootReducer = combineReducers({
   sidebarState: sidebarReducer,
   userGoalsState: userGoalsReducer,
   profileState: profileReducer,
-  assignmentsState: assignmentsReducer,
   userState: userReducer,
   themeState: themeReducer,
 });

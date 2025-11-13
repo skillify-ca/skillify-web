@@ -8,7 +8,7 @@ import LandingPage, {
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
-  const animatedWords = ["AI", "Crypto", "Tech", "Data"];
+  const animatedWords = ["Tech", "AI", "Crypto", "Data", "Marketing", "Design", "Product", "Sales"];
   const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
 
   useEffect(() => {

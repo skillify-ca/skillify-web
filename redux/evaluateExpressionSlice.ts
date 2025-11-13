@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { SimpleCalculatorProps } from "../components/coding/evaluateExpression/SimpleCalculator";
+import { SimpleCalculatorProps } from "../components/studentPortal/challenges/evaluateExpression/SimpleCalculator";
 import { RootState } from "./rootReducer";
 
 export enum Stage {
