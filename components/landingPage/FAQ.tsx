@@ -20,12 +20,7 @@ export default function FAQ() {
         "We reserve a select number of seats for students who didn't go to university or college. If you're passionate about learning to code, book a call with us and we'll see if you're a good fit. If we decide that you're not a good fit at this moment, we will send you free resources and training to help you level up your skills until you're ready to work with us.",
     },
     {
-      question: "How long does the program take to complete?",
-      answer:
-        "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 5-10 months. To provide a rough time frame: If you already have some coding experience and you're a fast learner, you can complete the program in 5-7 months. If you have no experience, are a slower learner, or have other comittments, you can complete the program in 8-10 months. We will work with you to create a customized plan that fits your learning needs and career goals.",
-    },
-    {
-      question: "What does the program include?",
+      question: "What does Skillify offer?",
       answer:
         " - 1:1 and small group coaching\n - An internship experience where you build products on a team under the leadership of senior software engineers\n - Full access to Skillify online learning platform\n - Job hunting support and career guidance",
     },
@@ -33,21 +28,6 @@ export default function FAQ() {
       question: "What projects will I build inside the program?",
       answer:
         "The journey to becoming employable will require you to be able to build a variety of different digital products. We will help you build the following projects:\n\nProject 1: An online marketing website\nProject 2: An e-commerce store\nProject 3: A full-stack web application \nProject 4: A multiplayer game\nProject 5: A mobile application\nProject 6: An AI-powered digital product\n\n PS. You will also have the opportunity to bring your own ideas and build them out under the leadership of ex-Spotify engineers!",
-    },
-    {
-      question: "How do I enroll/apply?",
-      answer:
-        "To apply for Skillify Coding Academy, click the 'Apply Now' button to book a call with one of our coaches, where you’ll introduce yourself and give us an overview of your background (including your education and coding experience) to determine if you’d be a good fit for our program. Don’t worry - it’s not meant to be intimidating or stressful. During this interview, we want to meet you, get to know you better, and answer all your questions! We want to understand your personal experiences and interests so that we can customize the best plan for you.",
-    },
-    {
-      question: "How long will it take to get a job?",
-      answer:
-        "Our graduates are employed as software developers within 6 months of completing the program. The job market for software engineers has gotten harder so you might need to spend a bit longer honing your craft and elevating your digital skills to a more intermediate level. The path to software engineering does require hard work, but for those of you who are willing to put in the effort, we will be there to support you every step of the way and make sure that you don't waste your time.",
-    },
-    {
-      question: "What kind of job can I get after this program?",
-      answer:
-        "You can get a job as a software developer. There are many different types of software developer positions that you could apply to, including but not limited to:\n - Web Developer\n - Backend Developer\n - Mobile Developer\n - Game Developer\n - Fullstack Developer\n - Dev Ops Engineer\n - Sales Engineer\n\nCheck out our job personality quiz to see which role is best for you!",
     },
     {
       question: "What salary can I get after this program?",
@@ -58,31 +38,6 @@ export default function FAQ() {
       question: "Will you help me find a job?",
       answer:
         "Our coaches have a deep network of technical professionals in companies all over the world. We leverage our network to introduce you to potential employers. We provide resume critique and mock-interview training to help you ace your interviews. As long as you don't give up on the program, we won't give up on you until you get a job that you're happy with. If you have questions or concerns, schedule a call with us and we'll be happy to answer them.",
-    },
-    {
-      question: "Why should I pick your program over another coding bootcamp?",
-      answer:
-        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! \n- Our program is like working out with a personal trainer. We will push you when needed, but also readjust your goals when needed\n- Other bootcamps will leave you behind if you get sick, or need to take a vacation. We understand life happens and we will work with you to get you back on track.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert human instructors who care about you and want to see you succeed.\n - We teach you how to use AI, but there is a human connection behind every assignment and lesson. You will learn from people that want to see you succeed, not from an AI-bot. - You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
-    },
-    {
-      question: "How much does the program cost?",
-      answer:
-        'Check out our prices and prices for our competitors at <a class="underline text-brandPrimary" href="/blog/best-toronto-coding-bootcamps-2024">this blog post.</a> Book a call with one of our coaches to learn more about costs, payment plans, and scholarships.',
-    },
-    {
-      question: "Can I use my RESP or OSAP to pay for this?",
-      answer:
-        "There are no OSAP or RESP options at the moment, but we are working to change this.",
-    },
-    {
-      question: "Are there any financing options?",
-      answer:
-        "Yes! We partner with select financial institutions that can provide you with flexible financing options to help you break down your payment. Email us or book a call to learn more.",
-    },
-    {
-      question: "Do you provide any scholarships or financial aid?",
-      answer:
-        "There are limited scholarships available for people from underrepresented communities, such as POC and women in tech. Up to 50% off!",
     },
     {
       question: "Can I complete the course on my phone?",
