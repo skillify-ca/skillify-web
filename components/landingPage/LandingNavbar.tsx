@@ -18,7 +18,7 @@ export default function LandingNavbar({
   };
   return (
     (<div className="w-full bg-white border-b-2">
-      <div className=" md:hidden">
+      <div className=" hidden">
         <div className="z-20 grid w-full h-16 grid-cols-3 p-4 md:hidden ">
           <div
             className="cursor-pointer text-textPrimary"
