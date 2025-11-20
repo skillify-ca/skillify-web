@@ -50,7 +50,7 @@ export default function LandingNavbar({
             active ? "h-[24rem]" : "h-0"
           } duration-500 ease-in-out md:hidden`}
         >
-          <div className="flex flex-col gap-4">
+          <div className="hidden gap-4">
             <Link href={"/blog"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Blog</p>
@@ -116,7 +116,7 @@ export default function LandingNavbar({
               className="mt-4 cursor-pointer md:mt-0 md:p-4 w-28 sm:w-40"
             />
           </Link>
-          <div className="flex gap-4">
+          <div className="hidden gap-4">
             <Link href={"/blog"} legacyBehavior>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Blog</p>
@@ -140,7 +140,7 @@ export default function LandingNavbar({
               </div>
             </Link>
           </div>
-          <div className="flex items-center gap-4 p-4">
+          <div className="hidden items-center gap-4 p-4">
             <div className="">
               <a
                 href={"https://www.linkedin.com/in/vithushan/"}

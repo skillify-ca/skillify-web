@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SEO from "../components/SEO";
-import LandingFooter from "../components/landingPage/LandingFooter";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
@@ -8,7 +7,7 @@ import LandingPage, {
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
-  const animatedWords = ["Tech", "AI", "Crypto", "Data", "Marketing", "Design", "Product", "Sales"];
+  const animatedWords = ["Math", "English", "Science", ];
   const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
 
   useEffect(() => {
@@ -34,10 +33,8 @@ const HomePage = () => {
 
   const defaultCopy: LandingPageCopy = {
     headerText: [
-      { text: "Coaching" },
-      { text: "university graduates", highlight: true },
-      { text: "to start a " },
-      { text: "career", highlight: true },
+      { text: "Private Tutoring for" },
+      { text: "K-12 students", highlight: true },
       { text: "in " },
       {
         text: animatedWords[animatedWordIndex],
@@ -46,14 +43,14 @@ const HomePage = () => {
       },
     ],
     description:
-      "Get personalized and flexible training for high-paying remote jobs from Silicon Valley instructors. We customize our program to you and your unique interests.",
+      "Get personalized and flexible tutoring for K-12 subjects. We customize our program to you and your unique interests.",
     credentialsText: "",
     benefitsText: "Grow without limits",
     benefits: [
       {
         title: "Expert Mentors",
         descripton:
-          "Get tailored coaching from our industry experts. Our coaches walk alongside you to help you confidently take the next step.",
+          "Get personalized learning plans from our expert tutors. Our tutoring is aligned to Ontario curriculum standards.",
       },
       {
         title: "Job Search Support",
@@ -110,7 +107,7 @@ const HomePage = () => {
           showNavBar ? "opacity-100" : "opacity-0 h-0"
         } overflow-hidden shadow-lg border-t-2 transform transition-all`}
       >
-        <LandingFooter />
+        {/* <LandingFooter /> */}
       </div>
     </div>
   );
