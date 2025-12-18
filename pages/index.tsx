@@ -9,7 +9,7 @@ const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
   const k12animatedWords = ["Math", "English", "Science"];
   const coachingAnimatedWords = ["getting interviews", "landing job offers", "negotiating salaries"];
-  const lifeCoachingAnimatedWords = ["Mental Health and Addiction", "Personal Finance", "Leadership and Communication", "Civic Engagement", "Business and Entrepreneurship"];
+  const lifeCoachingAnimatedWords = ["Mental Health and Addiction", "Personal Finance and Entrepreneurship", "Leadership and Communication", "Civic Engagement"];
   const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
 
   const [copyType, setCopyType] = useState<
