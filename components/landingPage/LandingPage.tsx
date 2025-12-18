@@ -18,10 +18,12 @@ export default function LandingPage({
   description,
   copyType,
 }: LandingPageCopy) {
+  const heroImageUrl = "/images/landingPage/tutoring-hero.png";
+
   return (
     <div>
       <div className="flex flex-col items-center w-full bg-gray-100">
-        <Hero headerText={headerText} description={description} />
+        <Hero headerText={headerText} description={description} heroImageUrl={heroImageUrl} />
         <WhoItsFor copyType={copyType} />
         {/* <Credentials headerText={credentialsText} /> */}
         {/* <WhatYouGet /> */}

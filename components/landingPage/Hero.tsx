@@ -5,6 +5,7 @@ import React from "react";
 type HeroProps = {
   headerText: HighlightableText[];
   description: string;
+  heroImageUrl: string;
 };
 
 export type HighlightableText = {
@@ -13,7 +14,7 @@ export type HighlightableText = {
   animated?: boolean;
 };
 
-export default function Hero({ headerText, description }: HeroProps) {
+export default function Hero({ headerText, description, heroImageUrl }: HeroProps) {
   return (
     <div className="">
       <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -69,7 +70,7 @@ export default function Hero({ headerText, description }: HeroProps) {
         <div className="">
           <img
             className="object-cover w-full h-full md:h-160"
-            src="/images/landingPage/hero.png"
+            src={heroImageUrl}
             alt=""
           />
         </div>
