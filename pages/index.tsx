@@ -1,22 +1,38 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SEO from "../components/SEO";
-import LandingNavbar from "../components/landingPage/LandingNavbar";
+import LandingNavbarV2 from "../components/landingPage/LandingNavbarV2";
 import LandingPage, {
   LandingPageCopy,
 } from "../components/landingPage/LandingPage";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
-  const animatedWords = ["Math", "English", "Science", ];
+  const k12animatedWords = ["Math", "English", "Science"];
+  const coachingAnimatedWords = ["getting interviews", "landing job offers", "negotiating salaries"];
+  const lifeCoachingAnimatedWords = ["Mental Health and Addiction", "Personal Finance", "Leadership and Communication", "Civic Engagement", "Business and Entrepreneurship"];
   const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
+
+  const [copyType, setCopyType] = useState<
+  "tutoring" | "coaching" | "lifeCoaching"
+>("tutoring");
 
   useEffect(() => {
     const interval = setInterval(() => {
+      const animatedWords =
+        copyType === "coaching"
+          ? coachingAnimatedWords
+          : copyType === "lifeCoaching"
+          ? lifeCoachingAnimatedWords
+          : k12animatedWords;
       setAnimatedWordIndex((prevIndex) => (prevIndex + 1) % animatedWords.length);
     }, 2000); // Change word every 2 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [copyType]);
+
+  useEffect(() => {
+    setAnimatedWordIndex(0);
+  }, [copyType]);
 
   useEffect(() => {
     const onScroll = (e) => {
@@ -31,13 +47,100 @@ const HomePage = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const defaultCopy: LandingPageCopy = {
+    const coachingCopy: LandingPageCopy = {
+    copyType: "coaching",
+    headerText: [
+      { text: "Helping unemployed" },
+      { text: "university graduates", highlight: true },
+      { text: "in " },
+      {
+        text: coachingAnimatedWords[animatedWordIndex],
+        highlight: true,
+        animated: true,
+      },
+    ],
+    description:
+      "Get personalized and practical coaching to help you find a job, stand out in interviews, and grow your career with confidence. We tailor every plan to your goals, strengths, and real-world opportunities.",
+    credentialsText: "",
+    benefitsText: "Grow without limits",
+    benefits: [
+      {
+        title: "Expert Mentors",
+        descripton:
+          "Get personalized learning plans from our expert tutors. Our tutoring is aligned to Ontario curriculum standards.",
+      },
+      {
+        title: "Job Search Support",
+        descripton:
+          "We will help you get hired with access to resume critiques, mock coding interviews as well as exclusive internship opportunities.",
+      },
+      {
+        title: "Community of Learners",
+        descripton:
+          "Join a cohort-based course to learn with peers and keep each other accountable.",
+      },
+    ],
+    emailCaptureText: [
+      { text: "Get our" },
+      { text: "top 12 secret tips ", highlight: true },
+      { text: "for learning to code and starting a career in " },
+      { text: "tech ", highlight: true },
+    ],
+    emailCaptureDescription:
+      "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelmed.",
+  };
+
+  const lifeCoachingCopy: LandingPageCopy = {
+    copyType: "lifeCoaching",
+    headerText: [
+      { text: "Coaching " },
+      { text: "young adults", highlight: true },
+      { text: "in " },
+      {
+        text: lifeCoachingAnimatedWords[animatedWordIndex],
+        highlight: true,
+        animated: true,
+      },
+    ],
+    description:
+      "Get personalized and supportive coaching to help you build healthy habits, manage money, and navigate adulthood with clarity and confidence. We customize our guidance to your values, challenges, and long-term goals.",
+    credentialsText: "",
+    benefitsText: "Grow without limits",
+    benefits: [
+      {
+        title: "Expert Mentors",
+        descripton:
+          "Get personalized learning plans from our expert tutors. Our tutoring is aligned to Ontario curriculum standards.",
+      },
+      {
+        title: "Job Search Support",
+        descripton:
+          "We will help you get hired with access to resume critiques, mock coding interviews as well as exclusive internship opportunities.",
+      },
+      {
+        title: "Community of Learners",
+        descripton:
+          "Join a cohort-based course to learn with peers and keep each other accountable.",
+      },
+    ],
+    emailCaptureText: [
+      { text: "Get our" },
+      { text: "top 12 secret tips ", highlight: true },
+      { text: "for learning to code and starting a career in " },
+      { text: "tech ", highlight: true },
+    ],
+    emailCaptureDescription:
+      "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelmed.",
+  };
+
+  const tutoringCopy: LandingPageCopy = {
+    copyType: "tutoring",
     headerText: [
       { text: "Private Tutoring for" },
       { text: "K-12 students", highlight: true },
       { text: "in " },
       {
-        text: animatedWords[animatedWordIndex],
+        text: k12animatedWords[animatedWordIndex],
         highlight: true,
         animated: true,
       },
@@ -73,6 +176,48 @@ const HomePage = () => {
       "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelmed.",
   };
 
+const currentCopy = useMemo(() => {
+  switch (copyType) {
+    case "coaching":
+      return coachingCopy;
+    case "lifeCoaching":
+      return {
+        ...lifeCoachingCopy,
+        headerText: [
+          { text: "Teaching " },
+          { text: "young adults", highlight: true },
+          { text: "about " },
+          {
+            text: lifeCoachingAnimatedWords[animatedWordIndex],
+            highlight: true,
+            animated: true,
+          },
+        ],
+      };
+
+    default:
+      return {
+        ...tutoringCopy,
+        headerText: [
+          { text: "Private Tutoring for" },
+          { text: "K-12 students", highlight: true },
+          { text: "in " },
+          {
+            text: k12animatedWords[animatedWordIndex],
+            highlight: true,
+            animated: true,
+          },
+        ],
+      };
+  }
+}, [copyType, animatedWordIndex]);
+
+
+  function handleSetCurrentCopy(type: "tutoring" | "coaching" | "lifeCoaching") {
+  setCopyType(type);
+}
+
+
   const {
     headerText,
     description,
@@ -81,7 +226,7 @@ const HomePage = () => {
     benefits,
     emailCaptureText,
     emailCaptureDescription,
-  } = defaultCopy;
+  } = currentCopy;
 
   return (
     <div>
@@ -92,10 +237,11 @@ const HomePage = () => {
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
-      <LandingNavbar />
+      <LandingNavbarV2 onSetCurrentCopy={handleSetCurrentCopy} />
       <LandingPage
         headerText={headerText}
         description={description}
+        copyType={copyType}
         credentialsText={credentialsText}
         benefitsText={benefitsText}
         benefits={benefits}

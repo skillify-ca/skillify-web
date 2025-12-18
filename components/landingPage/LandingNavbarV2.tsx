@@ -1,14 +1,13 @@
 import Link from "next/link";
 import React from "react";
 import { Theme } from "../../redux/themeSlice";
-import CountdownTimer from "./CountdownTimer";
 
 type LandingNavbarProps = {
-  showTimer?: boolean;
+  onSetCurrentCopy: (copy: "tutoring" | "coaching" | "lifeCoaching") => void;
   theme?: Theme;
 };
-export default function LandingNavbar({
-  showTimer,
+export default function LandingNavbarV2({
+  onSetCurrentCopy,
   theme = Theme.DEFAULT,
 }: LandingNavbarProps) {
   const [active, setActive] = React.useState(false);
@@ -46,35 +45,29 @@ export default function LandingNavbar({
         </div>
 
         <div
-          className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${
-            active ? "h-[24rem]" : "h-0"
-          } duration-500 ease-in-out md:hidden`}
+          className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${active ? "h-[7rem]" : "h-0"
+            } duration-500 ease-in-out md:hidden`}
         >
-          <div className="hidden gap-4">
-            <Link href={"/blog"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Blog</p>
-              </div>
-            </Link>
+          <div className="flex-col md:hidden gap-4">
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+              onSetCurrentCopy("tutoring");
+            }}>
+              <p>K-12 Tutoring</p>
+            </div>
 
-            <Link href={"/quiz"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Quiz</p>
-              </div>
-            </Link>
+            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+                onSetCurrentCopy("coaching");
+              }}>
+                <p>Career Coaching</p>
+              </div> */}
 
-            <Link href={"/resources"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Resources</p>
-              </div>
-            </Link>
-            <Link href={"/successStories"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Success Stories</p>
-              </div>
-            </Link>
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+              onSetCurrentCopy("lifeCoaching");
+            }}>
+              <p>Life Skills</p>
+            </div>
           </div>
-          <div className="flex items-center gap-4 p-4">
+          <div className="hidden items-center gap-4 p-4">
             <div className="">
               <a
                 href={"https://www.linkedin.com/in/vithushan/"}
@@ -116,29 +109,24 @@ export default function LandingNavbar({
               className="mt-4 cursor-pointer md:mt-0 md:p-4 w-28 sm:w-40"
             />
           </Link>
-          <div className="hidden gap-4">
-            <Link href={"/blog"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Blog</p>
-              </div>
-            </Link>
+          <div className="flex gap-4">
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+              onSetCurrentCopy("tutoring");
+            }}>
+              <p>K-12 Tutoring</p>
+            </div>
 
-            <Link href={"/quiz"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Quiz</p>
-              </div>
-            </Link>
+            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+                onSetCurrentCopy("coaching");
+              }}>
+                <p>Career Coaching</p>
+              </div> */}
 
-            <Link href={"/resources"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Resources</p>
-              </div>
-            </Link>
-            <Link href={"/successStories"} legacyBehavior>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Success Stories</p>
-              </div>
-            </Link>
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+              onSetCurrentCopy("lifeCoaching");
+            }}>
+              <p>Life Skills</p>
+            </div>
           </div>
           <div className="hidden items-center gap-4 p-4">
             <div className="">
@@ -173,7 +161,6 @@ export default function LandingNavbar({
             </div>
           </div>
         </div>
-        {showTimer && <CountdownTimer />}
       </div>
     </div>)
   );

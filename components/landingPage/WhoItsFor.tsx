@@ -1,17 +1,49 @@
-import React from "react";
 
-export default function WhoItsFor() {
-  const listItems = [
-    "I graduated from a degree that I have ZERO interest in.",
-    "My job prevents me from spending more time with my family.",
-    "Life is too expensive and I'm overwhelmed!",
-    "I have friends or family in tech and they're encouraging me to learn.",
-    "University and college takes too much time and money.",
-    "I will never be able to afford a home.",
-    "Coding is hard to learn. I need coaching and support.",
-    "I want to be free to travel and work from anywhere!",
-    "Personalized education is a BIG deal, I need a custom solution that fits my needs. ",
-  ];
+export default function WhoItsFor({copyType}: {copyType: "tutoring" | "coaching" | "lifeCoaching"}) {
+
+const K12Copy = [
+  "My child is falling behind and needs extra support in school.",
+  "Homework time is stressful for our whole family.",
+  "School expectations keep increasing, and it feels overwhelming.",
+  "Other parents are getting tutors, and I don't want my child left behind.",
+  "Classrooms move too fast and don't fit how my child learns.",
+  "I worry my child isn't building a strong foundation for the future.",
+  "Some subjects feel intimidating, and my child needs patient guidance.",
+  "I want my child to feel confident and capable at school.",
+  "Personalized tutoring matters — my child needs support tailored to how they learn.",
+];
+
+const CareerCoachingCopy = [
+  "I'm not sure what career path I should take based on my skills.",
+  "I graduated with a degree but I can't find a job.",
+  "I'm not sure how to get more interviews.",
+  "I'm not sure how to stand out in a competitive job market.",
+  "I lack confidence in my interview skills and job search strategies.",
+  "I have a job offer but I'm not sure if I'm leaving money on the table.",
+  "I'm not sure how to sell my skills and experiences effectively.",
+  "Personalized career guidance matters — I need a plan built around my goals.",
+];
+
+const LifeSkillsCopy = [
+  "I feel unprepared for adulthood and real-life responsibilities.",
+  "Work and daily stress leave little time for relationships and self-care.",
+  "Money is stressful, and I don't feel in control of my finances.",
+  "I see others thriving and feel unsure how to catch up.",
+  "School never taught me the skills I actually need.",
+  "Long-term stability feels uncertain and overwhelming.",
+  "Building habits and routines is hard without support.",
+  "I want more balance, freedom, and purpose in my life.",
+  "Personalized coaching matters — I need guidance that fits my life.",
+];
+
+  let listItemsMap: { [key: string]: string[] } = {
+    tutoring: K12Copy,
+    coaching: CareerCoachingCopy,
+    lifeCoaching: LifeSkillsCopy,
+  };
+
+  const listItems = listItemsMap[copyType];
+
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 sm:p-8 bg-murkrow">
@@ -19,7 +51,7 @@ export default function WhoItsFor() {
         If any of this strikes a chord, then it’s time to learn with Skillify...
       </h2>
       <div className="flex flex-col items-start w-full p-8 m-4 lg:items-center max-w-7xl bg-slate-200 rounded-xl">
-        {listItems.map((item) => (
+        {listItems && listItems.map((item) => (
           <div
             key={item}
             className="flex items-center transition-all hover:scale-110 hover:font-bold"
