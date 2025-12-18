@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import SEO from "../components/SEO";
 import LandingNavbarV2 from "../components/landingPage/LandingNavbarV2";
 import LandingPage, {

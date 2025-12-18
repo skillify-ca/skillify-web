@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../../../lib/authContext";
 import { logToSlack } from "../../../../pages/api/slack/slackLogger";
 import { Button } from "../../../ui/Button";

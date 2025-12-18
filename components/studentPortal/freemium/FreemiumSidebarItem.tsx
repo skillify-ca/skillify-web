@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { SidebarPage, activePageSelector } from "../../../redux/sidebarSlice";
 interface FreemiumSidebarItemProps {

@@ -1,3 +1,4 @@
+import React from "react";
 import { BenefitData } from "./Benefits";
 import Hero, { HighlightableText } from "./Hero";
 import WhoItsFor from "./WhoItsFor";
