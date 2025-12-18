@@ -44,7 +44,7 @@ export const FreemiumHeader = ({
       <div className="flex">
         <div className="flex items-center justify-end pr-2 space-x-6">
           <Button
-            label="Upgrade"
+            label="K-12 Tutoring"
             onClick={(e) => {
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
               setIsModalOpen(true);

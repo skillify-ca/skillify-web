@@ -1,8 +1,7 @@
 import Link from "next/link";
-import React, { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { SidebarPage, activePageSelector } from "../../../redux/sidebarSlice";
-import FreemiumDialogComponent from "./FreemiumDialogueComponent";
 interface FreemiumSidebarItemProps {
   name: string;
   link: string;
@@ -22,18 +21,10 @@ const FreemiumSidebarItem = ({
   closeSidebar,
 }: FreemiumSidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
-  const onClick = isDisabled
-    ? () => {
-        closeSidebar();
-        setIsModalOpen(true);
-      }
-    : undefined;
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (<>
     <div>
       {isDisabled ? (
-        <div onClick={onClick}>
           <CoachLinkContent
             activePage={activePage}
             page={page}
@@ -42,7 +33,6 @@ const FreemiumSidebarItem = ({
             icon={icon}
             name={name}
           />
-        </div>
       ) : (
         <Link href={link} legacyBehavior>
           <div onClick={closeSidebar}>
@@ -56,12 +46,6 @@ const FreemiumSidebarItem = ({
             />
           </div>
         </Link>
-      )}
-      {isModalOpen && (
-        <FreemiumDialogComponent
-          trigger={false}
-          onClose={() => setIsModalOpen(false)}
-        />
       )}
     </div>
   </>);

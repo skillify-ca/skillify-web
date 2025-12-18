@@ -15,7 +15,7 @@ import FadeAnimation from "../../ui/animations/FadeAnimation";
 export enum ModalStage {
   ONE,
   TWO,
-  THREE,
+  // THREE,
 }
 export interface FreemiumDialogComponentProps {
   trigger: boolean;

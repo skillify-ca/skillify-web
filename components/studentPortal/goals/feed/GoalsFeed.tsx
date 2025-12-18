@@ -31,7 +31,7 @@ export default function GoalsFeed() {
 
   return (
     <div className="h-screen p-4 overflow-y-auto border-l-2 bg-backgroundPrimary">
-      <h1 className="mb-4 text-2xl font-bold">Goals Feed</h1>
+      <h1 className="mb-4 text-2xl font-bold">Public Goals Feed</h1>
       <div className="rounded-lg shadow-md">
         {goals.map((goal) => (
           <div

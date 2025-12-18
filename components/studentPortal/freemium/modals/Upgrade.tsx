@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../../../lib/authContext";
 import { logToSlack } from "../../../../pages/api/slack/slackLogger";
 import { Button } from "../../../ui/Button";
@@ -14,17 +14,15 @@ export default function Upgrade() {
   return (
     <div className="flex flex-col items-center justify-center gap-4 mt-8 text-white max-h-80">
       <h1 className="flex max-w-xl text-base font-bold text-center md:text-3xl">
-        Feeling Stuck?
+        Looking for K-12 Tutoring?
       </h1>
-      <img className="w-full" src="/images/freemium/gatedContentRow.svg" />
+      <img className="w-80" src="/images/freemium/tutoring.svg" />
       <ul className="flex flex-col max-w-3xl gap-4 p-2 text-xs rounded-lg md:text-lg bg-rattata/20">
         <li>
-          Join our Slack community to connect with our coaches and students.
+          Reach out to us to discuss personalized tutoring options for K-12
+          students.
         </li>
-        <li>
-          Get help on your coding questions and learn about jobs in the tech
-          industry.
-        </li>
+       
       </ul>
       {isDisabled ? (
         <div className="flex items-center gap-4 p-2 text-sm">
@@ -33,15 +31,15 @@ export default function Upgrade() {
             src="/images/freemium/greenCheck.svg"
           />
           <p>
-            We got your request! One of our coaches will send an invite to your
-            registered email.
+            We got your request! We will reach out to you at your
+            registered email ASAP.
           </p>
         </div>
       ) : (
         <Button
           size="large"
           disabled={isDisabled}
-          label={`${"Upgrade Access"}`}
+          label={`${"Request Info"}`}
           onClick={handleRequestClick}
         />
       )}

@@ -11,10 +11,10 @@ export default function WhereToStart() {
         <div className="w-full p-0 space-y-2 text-xs md:p-4 md:text-lg md:bg-mewtwo md:rounded-xl">
           <div className="grid grid-cols-5 gap-4 p-3 md:flex md:gap-0 placeholder:flex-row md:flex-col bg-mewtwo md:bg-none rounded-xl md:rounded-none">
             <p className="col-span-3 ">
-              For beginners with little to no coding experience:{" "}
+              Check out some out some of our courses:{" "}
             </p>
             <p className="flex items-center col-span-2 font-bold ">
-              Coding Basics Course!
+              Coding Basics!
             </p>
           </div>
           <div className="grid grid-cols-5 gap-4 p-3 md:flex md:gap-0 md:flex-col bg-mewtwo rounded-xl">
