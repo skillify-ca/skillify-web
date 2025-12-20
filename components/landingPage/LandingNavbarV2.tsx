@@ -113,7 +113,7 @@ export default function LandingNavbarV2({
             />
           </Link>
           <div className="flex gap-4">
-            <a href={"https://play.unity.com/en/games/bfc0bef8-b5a6-4348-a135-7472dd919c46/tag"} target="_blank">
+            <a href={"https://play.unity.com/en/games/bfc0bef8-b5a6-4348-a135-7472dd919c46/tag"} target="_blank" rel="noreferrer">
             <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
               <p>Tag Game</p>
               </div>
