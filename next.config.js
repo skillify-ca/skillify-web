@@ -16,4 +16,15 @@ module.exports = withMDX({
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  async headers() {
+    return [
+      {
+        source: '/games/tag/Build/:path*.br',
+        headers: [
+          { key: 'Content-Encoding', value: 'br' },
+          { key: 'Content-Type', value: 'application/javascript' },
+        ],
+      },
+    ]
+  },
 })
