@@ -49,7 +49,7 @@ export default function LandingNavbarV2({
             } duration-500 ease-in-out md:hidden`}
         >
           <div className="flex-col md:hidden gap-4">
-            <Link href={"https://play.unity.com/en/games/bfc0bef8-b5a6-4348-a135-7472dd919c46/tag"} legacyBehavior target="_blank">
+            <Link href={"/games/tag/index.html"} legacyBehavior target="_blank">
               <p>Tag Game</p>
             </Link>
             <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
@@ -113,7 +113,7 @@ export default function LandingNavbarV2({
             />
           </Link>
           <div className="flex gap-4">
-            <a href={"https://play.unity.com/en/games/bfc0bef8-b5a6-4348-a135-7472dd919c46/tag"} target="_blank" rel="noreferrer">
+            <a href={"/games/tag/index.html"} target="_blank" rel="noreferrer">
             <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
               <p>Tag Game</p>
               </div>
