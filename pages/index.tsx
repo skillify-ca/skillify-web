@@ -146,7 +146,7 @@ const HomePage = () => {
       },
     ],
     description:
-      "Get personalized and flexible tutoring for K-12 subjects. We customize our program to you and your unique interests.",
+      "Get personalized and flexible tutoring for K-12 subjects. Virtual and Toronto in-person options available.",
     credentialsText: "",
     benefitsText: "Grow without limits",
     benefits: [
