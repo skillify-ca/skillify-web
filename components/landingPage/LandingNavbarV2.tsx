@@ -50,7 +50,9 @@ export default function LandingNavbarV2({
         >
           <div className="flex-col md:hidden gap-4">
             <Link href={"/games/tag/index.html"} legacyBehavior target="_blank">
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
               <p>Tag Game</p>
+            </div>
             </Link>
             <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
               onSetCurrentCopy("tutoring");
@@ -64,11 +66,11 @@ export default function LandingNavbarV2({
                 <p>Career Coaching</p>
               </div> */}
 
-            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
               onSetCurrentCopy("lifeCoaching");
             }}>
               <p>Life Skills</p>
-            </div>
+            </div> */}
           </div>
           <div className="hidden items-center gap-4 p-4">
             <div className="">
@@ -130,11 +132,11 @@ export default function LandingNavbarV2({
                 <p>Career Coaching</p>
               </div> */}
 
-            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
               onSetCurrentCopy("lifeCoaching");
             }}>
               <p>Life Skills</p>
-            </div>
+            </div> */}
           </div>
           <div className="hidden items-center gap-4 p-4">
             <div className="">
