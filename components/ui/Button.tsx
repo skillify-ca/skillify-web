@@ -28,7 +28,7 @@ export interface ButtonProps {
    * Optional click handler
    */
   onClick?: (e) => void;
-  size?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large" | "long";
 }
 
 /**
@@ -82,7 +82,7 @@ export const Button: React.FC<ButtonProps> = ({
       type="button"
       onClick={disabled ? null : onClick}
       className={`max-w-full bg-gradient-to-b px-4 font-bold border-b-4 rounded-lg ${
-        size === "large" ? "w-48 py-4 h-16" : "w-36 py-2 h-12"
+        size === "large" ? "w-48 py-4 h-16" : size === "long" ? "w-80 py-2 h-12" : "w-36 py-2 h-12"
       } 
       ${disabled ? "bg-gray-400" : backgroundStyles}
       ${disabled ? "" : "active:border-b-2"}

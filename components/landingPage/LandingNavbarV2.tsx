@@ -16,7 +16,7 @@ export default function LandingNavbarV2({
     setActive(!active);
   };
   return (
-    (<div className="w-full bg-white border-b-2">
+    <div className="w-full bg-white border-b-2">
       <div className="md:hidden">
         <div className="z-20 grid w-full h-16 grid-cols-3 p-4 md:hidden ">
           <div
@@ -45,20 +45,26 @@ export default function LandingNavbarV2({
         </div>
 
         <div
-          className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${active ? "h-[7rem]" : "h-0"
-            } duration-500 ease-in-out md:hidden`}
+          className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${
+            active ? "h-[7rem]" : "h-0"
+          } duration-500 ease-in-out md:hidden`}
         >
           <div className="flex-col md:hidden gap-4">
-            <Link href={"/games/tag/index.html"} legacyBehavior target="_blank">
-            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-              <p>Tag Game</p>
-            </div>
+          <Link href={"/rotatedArray"} legacyBehavior target="_blank">
+              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+                <p>Algorithms</p>
+              </div>
             </Link>
-            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+            <Link href={"/games/tag/index.html"} legacyBehavior target="_blank">
+              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+                <p>Tag Game</p>
+              </div>
+            </Link>
+            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
               onSetCurrentCopy("tutoring");
             }}>
               <p>K-12 Tutoring</p>
-            </div>
+            </div> */}
 
             {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
                 onSetCurrentCopy("coaching");
@@ -115,16 +121,22 @@ export default function LandingNavbarV2({
             />
           </Link>
           <div className="flex gap-4">
+            <Link href={"/rotatedArray"} legacyBehavior target="_blank">
+              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+                <p>Algorithms</p>
+              </div>
+            </Link>
             <a href={"/games/tag/index.html"} target="_blank" rel="noreferrer">
-            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-              <p>Tag Game</p>
+              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+                <p>Tag Game</p>
               </div>
             </a>
-            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+
+            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
               onSetCurrentCopy("tutoring");
             }}>
               <p>K-12 Tutoring</p>
-            </div>
+            </div> */}
 
             {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
                 onSetCurrentCopy("coaching");
@@ -172,6 +184,6 @@ export default function LandingNavbarV2({
           </div>
         </div>
       </div>
-    </div>)
+    </div>
   );
 }
