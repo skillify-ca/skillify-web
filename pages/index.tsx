@@ -7,7 +7,7 @@ import LandingPage, {
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
-  const k12animatedWords = ["Math", "English", "Science"];
+  const k12animatedWords = ["Math", "Coding", "English", "Science"];
   const coachingAnimatedWords = ["getting interviews", "landing job offers", "negotiating salaries"];
   const lifeCoachingAnimatedWords = ["Mental Health and Addiction", "Personal Finance and Entrepreneurship", "Leadership and Communication", "Civic Engagement"];
   const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
