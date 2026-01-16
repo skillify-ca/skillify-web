@@ -9,6 +9,7 @@ import {
   Trigger,
 } from "@radix-ui/react-dialog";
 import LandingNavbarV2 from "../components/landingPage/LandingNavbarV2";
+import { BinarySearchExample } from "../components/studentPortal/challenges/rotatedArray/BinarySearchExample";
 import { Theme } from "../redux/themeSlice";
 
 // Examples
@@ -23,6 +24,8 @@ const MONTHS = [
   "April",
   "May",
   "June",
+  "July",
+  "August",
 ];
 
 const HOURS = [
@@ -50,6 +53,13 @@ function rotate(arr: number[], k: number) {
 }
 
 export default function RotatedArray() {
+  const [studentList, setStudentList] = useState<string[]>(studentNames);
+
+  // Handler for when students are updated
+  const handleStudentsUpdate = (newStudents: string[]) => {
+    setStudentList(newStudents);
+  };
+
   return (
     <div className="p-6 max-w-xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold">Rotated Sorted Array</h1>
@@ -98,133 +108,46 @@ export default function RotatedArray() {
 
       <p>A common problem is to find an item in a rotated sorted array.</p>
 
-      <RandomSearchExample />
+      <div className="flex flex-row gap-2 items-center">
+        <h3 className="text-lg font-bold">Example 1: Birthdays</h3>
+        <ManageStudentsModal
+          students={studentList}
+          defaultStudents={studentNames}
+          onSave={handleStudentsUpdate}
+        />
+      </div>
 
-      <p className="font-bold">Approach 2: Linear Search</p>
-
-      <p>Coming soon...</p>
-
-      <p className="font-bold">Approach 3: Binary Search</p>
-      <p>Coming soon...</p>
-
-      {/* <h3 className="text-lg font-bold">Example 2: Schedules</h3> */}
-    </div>
-  );
-}
-
-function MagicalLibrary() {
-  const [target, setTarget] = useState<number | null>(null);
-  const [array, setArray] = useState<number[] | null>(null);
-  const [left, setLeft] = useState(0);
-  const [right, setRight] = useState(0);
-  const [message, setMessage] = useState("");
-
-  // Only run on the client
-  useEffect(() => {
-    const rotation = Math.floor(Math.random() * original.length);
-    const rotated = rotate(original, rotation);
-    const picked = rotated[Math.floor(Math.random() * rotated.length)];
-
-    setArray(rotated);
-    setTarget(picked);
-    setLeft(0);
-    setRight(rotated.length - 1);
-  }, []);
-
-  if (!array || target == null) {
-    return <div className="p-6">📚 Shuffling the library...</div>;
-  }
-
-  const mid = Math.floor((left + right) / 2);
-  const isLeftSorted = array[left] <= array[mid];
-
-  const sortedRange = isLeftSorted ? [left, mid] : [mid, right];
-
-  function pick(direction: "left" | "right") {
-    if (left > right) {
-      setMessage("❌ The librarian is lost!");
-      return;
-    }
-
-    if (array[mid] === target) {
-      setMessage("🎉 You found the magical book!");
-      return;
-    }
-
-    let goLeft: boolean;
-
-    if (isLeftSorted) {
-      goLeft = target >= array[left] && target < array[mid];
-    } else {
-      goLeft = !(target > array[mid] && target <= array[right]);
-    }
-
-    const correct =
-      (direction === "left" && goLeft) || (direction === "right" && !goLeft);
-
-    if (!correct) {
-      setMessage("💥 Wrong hallway! The books vanish.");
-      setLeft(1);
-      setRight(0);
-      return;
-    }
-
-    if (goLeft) {
-      setRight(mid - 1);
-    } else {
-      setLeft(mid + 1);
-    }
-  }
-
-  return (
-    <div>
       <p>
-        Find the magical book:{" "}
-        <span className="font-bold text-purple-600">{target}</span>
+        Find a specific student's birthday in the list of birthday months for
+        your class.
       </p>
 
-      <div className="flex gap-2 justify-center">
-        {array.map((b, i) => {
-          const isMid = i === mid;
-          const isSorted = i >= sortedRange[0] && i <= sortedRange[1];
+      <p className="font-bold">Approach 1: Random Search</p>
+      <RandomSearchExample studentList={studentList} />
 
-          return (
-            <div
-              key={i}
-              className={`
-            w-12 h-16 flex items-center justify-center rounded
-            border text-lg font-bold
-            ${isMid ? "bg-yellow-300" : ""}
-            ${isSorted ? "border-green-500" : "border-red-400"}
-            ${i < left || i > right ? "opacity-30" : ""}
-          `}
-            >
-              {b}
-            </div>
-          );
-        })}
-      </div>
+      <p className="font-bold">Approach 2: Linear Search</p>
+      <LinearSearchExample studentList={studentList} />
 
-      <div className="flex justify-center gap-4">
-        <button
-          onClick={() => pick("left")}
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Search Left
-        </button>
-        <button
-          onClick={() => pick("right")}
-          className="px-4 py-2 bg-green-500 text-white rounded"
-        >
-          Search Right
-        </button>
-      </div>
+      <p className="font-bold">Approach 3: Binary Search</p>
+      <BinarySearchExample studentList={studentList} />
 
-      <p className="text-lg font-semibold text-center">{message}</p>
-
-      <div className="text-sm text-gray-600 text-center">
-        🟨 = mid &nbsp; 🟩 = sorted half &nbsp; 🟥 = rotated half
-      </div>
+      <p className="font-bold">Reflection Questions</p>
+      <ul className="list-disc list-inside">
+        <li>Which approach felt the most efficient?</li>
+        <li>
+          If you had the age rankings for Approach 1 or 2, would that have
+          changed the efficieny of those algorithms?
+        </li>
+        <li>
+          Do any of the algorithm need to change if the school year started in
+          August or October? In general, does it matter where the pivot point in
+          a rotated sorted array is?
+        </li>
+        <li>
+          Did you ever run into a month with no student birthdays? How did you
+          decide what to do next?
+        </li>
+      </ul>
     </div>
   );
 }
@@ -237,6 +160,7 @@ const studentNames = [
   "Minnal",
   "Bhoomi",
   "Kyran",
+  "Myla",
   "Nila",
   "Akash",
   "Kaavia",
@@ -247,16 +171,18 @@ const studentNames = [
   "Aarav",
   "Ishaan",
   "Sakshi",
-  "Riya",
+  "Raiya",
   "Sanya",
   "Vivaan",
+  "Alayah",
+  "Aarangan",
   "Sam",
   "Alex",
   "Aaron",
   "Harry",
 ];
 
-function RandomSearchExample() {
+function RandomSearchExample({ studentList }: { studentList: string[] }) {
   const [messageHeader, setMessageHeader] = useState("");
   const [messageBody, setMessageBody] = useState("");
   const [counter, setCounter] = useState(0);
@@ -267,8 +193,7 @@ function RandomSearchExample() {
   const [triedMonths, setTriedMonths] = useState<string[]>([]);
   const [searchStudent, setSearchStudent] = useState<string | null>(null);
   const [months, setMonths] = useState<string[]>(MONTHS);
-  // Add this state to manage the student list
-  const [studentList, setStudentList] = useState<string[]>(studentNames);
+  const [isPrimaryButtonDisabled, setIsPrimaryButtonDisabled] = useState(false);
 
   // randomly assign a birthday to each student. a month can have multiple students.
   const createBirthdayMap = useCallback(() => {
@@ -281,21 +206,12 @@ function RandomSearchExample() {
         birthdayMap.get(birthday)?.push(student);
       }
     }
-    console.log("birthdayMap", birthdayMap);
-    console.log("studentList", studentList);
     return birthdayMap;
   }, [studentList]);
 
   const getRandomStudent = useCallback(() => {
     return studentList[Math.floor(Math.random() * studentList.length)];
   }, [studentList]);
-
-  // Handler for when students are updated
-  const handleStudentsUpdate = (newStudents: string[]) => {
-    setStudentList(newStudents);
-    // Reset the game with new student list
-    reset();
-  };
 
   const checkBirthday = (selectedMonth: string) => {
     const students = birthdayMap.get(selectedMonth);
@@ -304,6 +220,7 @@ function RandomSearchExample() {
         `🎉 You found ${searchStudent}'s birthday! They have a ${selectedMonth} birthday.`
       );
       setMessageBody("");
+      setIsPrimaryButtonDisabled(true);
     } else {
       setMessageHeader(`❌ You did not find ${searchStudent}'s birthday!`);
       // show all students for this month
@@ -321,11 +238,10 @@ function RandomSearchExample() {
       } else {
         setMessageBody("No students found for this month.");
       }
+      setTriedMonths([...triedMonths, selectedMonth]);
     }
 
     setCounter(counter + 1);
-
-    setTriedMonths([...triedMonths, selectedMonth]);
   };
 
   const reset = () => {
@@ -338,6 +254,7 @@ function RandomSearchExample() {
     setSearchStudent(getRandomStudent());
     setMonths(MONTHS);
     setTriedMonths([]);
+    setIsPrimaryButtonDisabled(false);
   };
 
   useEffect(() => {
@@ -346,18 +263,10 @@ function RandomSearchExample() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-row gap-2 items-center">
-        <h3 className="text-lg font-bold">Example 1: Birthdays</h3>
-        <ManageStudentsModal
-          students={studentList}
-          defaultStudents={studentNames}
-          onSave={handleStudentsUpdate}
-        />
-      </div>
-
-      <p>Find a student's birthday in the list of birthday months.</p>
-
-      <p className="font-bold">Approach 1: Random Search</p>
+      <p className="">
+        Select a random month and click the "Check Birthdays" button to see if
+        the student's birthday is in that month.
+      </p>
 
       <div className="flex flex-col gap-2 items-center overflow-x-scroll">
         {months.map((month) => {
@@ -400,6 +309,155 @@ function RandomSearchExample() {
         <Button
           size="long"
           label="Check Birthdays"
+          disabled={isPrimaryButtonDisabled}
+          onClick={() => checkBirthday(selectedMonth)}
+          backgroundColor="blue"
+        />
+        <Button
+          size="long"
+          label="Reset"
+          onClick={() => reset()}
+          backgroundColor="white"
+          textColor="text-blue-500"
+        />
+      </div>
+    </div>
+  );
+}
+
+function LinearSearchExample({ studentList }: { studentList: string[] }) {
+  const [messageHeader, setMessageHeader] = useState("");
+  const [messageBody, setMessageBody] = useState("");
+  const [counter, setCounter] = useState(0);
+  const [birthdayMap, setBirthdayMap] = useState<Map<string, string[]>>(
+    new Map()
+  );
+  const [selectedMonth, setSelectedMonth] = useState<string>("September");
+  const [triedMonths, setTriedMonths] = useState<string[]>([]);
+  const [searchStudent, setSearchStudent] = useState<string | null>(null);
+  const [months, setMonths] = useState<string[]>(MONTHS);
+  const [isPrimaryButtonDisabled, setIsPrimaryButtonDisabled] = useState(false);
+
+  // randomly assign a birthday to each student. a month can have multiple students.
+  const createBirthdayMap = useCallback(() => {
+    const birthdayMap = new Map<string, string[]>();
+    for (const student of studentList) {
+      const birthday = MONTHS[Math.floor(Math.random() * MONTHS.length)];
+      if (!birthdayMap.has(birthday)) {
+        birthdayMap.set(birthday, [student]);
+      } else {
+        birthdayMap.get(birthday)?.push(student);
+      }
+    }
+    return birthdayMap;
+  }, [studentList]);
+
+  const getRandomStudent = useCallback(() => {
+    return studentList[Math.floor(Math.random() * studentList.length)];
+  }, [studentList]);
+
+  const checkBirthday = (selectedMonth: string) => {
+    const students = birthdayMap.get(selectedMonth);
+    if (students?.includes(searchStudent)) {
+      setMessageHeader(
+        `🎉 You found ${searchStudent}'s birthday! They have a ${selectedMonth} birthday.`
+      );
+      setMessageBody("");
+      setIsPrimaryButtonDisabled(true);
+    } else {
+      setMessageHeader(`❌ You did not find ${searchStudent}'s birthday!`);
+      // show all students for this month
+      const studentsForMonth = birthdayMap.get(selectedMonth);
+      if (studentsForMonth) {
+        if (studentsForMonth.length > 1) {
+          setMessageBody(
+            `${studentsForMonth.join(", ")} have a ${selectedMonth} birthday.`
+          );
+        } else {
+          setMessageBody(
+            `Only ${studentsForMonth[0]} has a ${selectedMonth} birthday.`
+          );
+        }
+      } else {
+        setMessageBody("No students found for this month.");
+      }
+
+      setTriedMonths([...triedMonths, selectedMonth]);
+
+      // advance to the next month
+      const currentIndex = months.indexOf(selectedMonth);
+      const nextIndex = (currentIndex + 1) % months.length;
+      setSelectedMonth(months[nextIndex]);
+    }
+
+    setCounter(counter + 1);
+  };
+
+  const reset = () => {
+    setMessageHeader("");
+    setMessageBody("");
+    setCounter(0);
+    setSelectedMonth("September");
+    const map = createBirthdayMap();
+    setBirthdayMap(map);
+    setSearchStudent(getRandomStudent());
+    setMonths(MONTHS);
+    setTriedMonths([]);
+    setIsPrimaryButtonDisabled(false);
+  };
+
+  useEffect(() => {
+    reset();
+  }, [studentList]);
+
+  return (
+    <div className="space-y-6">
+      <p className="">
+        Check each month one at a time by clicking the "Check Birthdays" button
+        until you find the student's birthday.
+      </p>
+
+      <div className="flex flex-col gap-2 items-center overflow-x-scroll">
+        {months.map((month) => {
+          const isTried = triedMonths.includes(month);
+          const isSelected = selectedMonth === month;
+
+          return (
+            <p
+              key={month}
+              className={`
+                border border-gray-300 rounded-md p-2 w-36 text-center 
+                transition-opacity duration-300
+                ${
+                  isSelected && !isTried ? "bg-orange-200 text-black" : ""
+                }                
+                ${
+                  isTried
+                    ? "opacity-40 line-through cursor-not-allowed bg-gray-200 text-gray-500"
+                    : "cursor-pointer "
+                }                
+              `}
+            >
+              {month}
+            </p>
+          );
+        })}
+      </div>
+
+      <p className="text-lg font-semibold text-center">
+        {searchStudent
+          ? `Searching for ${searchStudent}'s birthday...`
+          : "No student selected"}
+      </p>
+      <p className="text-lg font-semibold text-center">{messageHeader}</p>
+      <p className="text text-center">{messageBody}</p>
+      <p className="text-lg font-semibold text-center">{counter} attempts</p>
+
+      <div className="flex flex-col gap-2 items-center justify-center">
+        <Button
+          size="long"
+          label="Check Birthdays"
+          disabled={isPrimaryButtonDisabled}
           onClick={() => checkBirthday(selectedMonth)}
           backgroundColor="blue"
         />
@@ -626,7 +684,7 @@ RotatedArray.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbarV2 onSetCurrentCopy={() => {}} theme={Theme.DEFAULT} />
-        {page}
+      {page}
     </div>
   );
 };
