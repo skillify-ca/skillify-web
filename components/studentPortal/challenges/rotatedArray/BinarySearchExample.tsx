@@ -1,8 +1,18 @@
-import React, { useEffect, useState } from "react";
+import {
+  Content,
+  Overlay,
+  Portal,
+  Root,
+  Trigger,
+} from "@radix-ui/react-dialog";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "../../../ui/Button";
 
-// Examples
-const MONTHS = [
+// ============================================================================
+// CONSTANTS
+// ============================================================================
+
+const SCHOOL_YEAR_MONTHS = [
   "September",
   "October",
   "November",
@@ -15,7 +25,7 @@ const MONTHS = [
   "June",
   "July",
   "August",
-];
+] as const;
 
 const CALENDAR_MONTHS = [
   "January",
@@ -30,349 +40,534 @@ const CALENDAR_MONTHS = [
   "October",
   "November",
   "December",
-];
+] as const;
 
-// randomly assign a birthday to each student. a month can have multiple students.
-const createBirthdayMap = (studentList) => {
-  const birthdayMap = new Map<string, string[]>();
-  for (const student of studentList) {
-    const birthday = MONTHS[Math.floor(Math.random() * MONTHS.length)];
-    if (!birthdayMap.has(birthday)) {
-      birthdayMap.set(birthday, [student]);
-    } else {
-      birthdayMap.get(birthday)?.push(student);
-    }
-  }
-  return birthdayMap;
-};
+type Month = typeof SCHOOL_YEAR_MONTHS[number];
 
-// returns age order based on calendar year
-const enumerateStudents = (birthdayMap) => {
-  const enumeration = new Map<string, number>(); // Map<studentName, number>
-  let counter = 1;
+// ============================================================================
+// DATA MODELS
+// ============================================================================
 
-  for (const month of CALENDAR_MONTHS) {
-    const students = birthdayMap.get(month);
-    if (students && students.length > 0) {
-      for (const student of students) {
-        enumeration.set(student, counter);
-        counter++;
-      }
-    }
-  }
+interface Student {
+  id: string;
+  name: string;
+  birthMonth: Month;
+  ageRank: number; // 1 = oldest (earliest in school year)
+  schoolYearRank: number;
+}
 
-  return enumeration;
-};
+interface BinarySearchState {
   students: Student[];
+  targetStudent: Student | null;
+  selectedMonth: Month;
+  checkedMonths: Month[];
   revealedStudentIds: Array<string>;
+  attemptCount: number;
+  isComplete: boolean;
+}
 
-const getRandomStudent = (enumeration, studentList) => {
-  if (!enumeration || enumeration.size === 0) return null;
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
 
-  const ordinals = Array.from(enumeration.values());
-  const maxOrdinal = Math.max.apply(null, ordinals);
+/**
+ * Assigns random birth months to students and calculates age rankings
+ * Age rank is based on school year order (Sept = oldest)
+ */
+function initializeStudents(studentNames: string[]): Student[] {
+  // Step 1: Assign random birth months
+  const studentsWithMonths = studentNames.map((name, index) => ({
+    id: `student-${index}`,
+    name,
+    birthMonth: SCHOOL_YEAR_MONTHS[
+      Math.floor(Math.random() * SCHOOL_YEAR_MONTHS.length)
+    ] as Month,
+    ageRank: 0, // Will calculate next
+    schoolYearRank: 0,
+  }));
 
-  const eligibleStudents = studentList.filter((student) => {
-    const ordinal = enumeration.get(student);
-    return ordinal !== 1 && ordinal !== maxOrdinal;
+  // Step 2: Sort by school year order to calculate age rankings
+  const sortedBySchoolYearMonths = [...studentsWithMonths].sort((a, b) => {
+    const aIndex = SCHOOL_YEAR_MONTHS.indexOf(a.birthMonth);
+    const bIndex = SCHOOL_YEAR_MONTHS.indexOf(b.birthMonth);
+    return aIndex - bIndex;
   });
+
+  // Step 3: Assign age ranks (1 = oldest)
+  sortedBySchoolYearMonths.forEach((student, index) => {
+    student.schoolYearRank = index + 1;
+  });
+
+  const sortedByCalendarYearMonths = [...studentsWithMonths].sort((a, b) => {
+    const aIndex = CALENDAR_MONTHS.indexOf(a.birthMonth);
+    const bIndex = CALENDAR_MONTHS.indexOf(b.birthMonth);
+    return aIndex - bIndex;
+  });
+
+  // Step 3: Assign age ranks (1 = oldest)
+  sortedByCalendarYearMonths.forEach((student, index) => {
+    student.ageRank = index + 1;
+  });
+
+  return studentsWithMonths;
+}
+
+/**
+ * Selects a random student that's not the oldest or youngest
+ */
+function selectTargetStudent(students: Student[]): Student | null {
+  if (students.length < 3) return null;
+
+  const maxRank = students.length;
+  const eligibleStudents = students.filter(
+    (s) => s.ageRank !== 1 && s.ageRank !== maxRank
+  );
 
   if (eligibleStudents.length === 0) return null;
 
   return eligibleStudents[Math.floor(Math.random() * eligibleStudents.length)];
-};
+}
+
+/**
+ * Gets students who have birthdays in a specific month
+ */
+function getStudentsByMonth(students: Student[], month: Month): Student[] {
+  return students.filter((s) => s.birthMonth === month);
+}
+
+/**
+ * Gets the middle month from a list of months
+ */
+function getMiddleMonth(months: Month[]): Month {
+  return months[Math.floor(months.length / 2)];
+}
+
+/**
+ * Gets untried months from the school year
+ */
+function getUntriedMonths(checkedMonths: Month[]): Month[] {
+  return SCHOOL_YEAR_MONTHS.filter((month) => !checkedMonths.includes(month));
+}
+
+/**
+ * Gets months earlier than selected month in school year
+ */
+function getEarlierMonths(selectedMonth: Month, checkedMonths: Month[]): Month[] {
+  const selectedIndex = SCHOOL_YEAR_MONTHS.indexOf(selectedMonth);
+  return SCHOOL_YEAR_MONTHS.slice(0, selectedIndex).filter(
+    (month) => !checkedMonths.includes(month)
+  );
+}
+
+/**
+ * Gets months later than selected month in school year
+ */
+function getLaterMonths(selectedMonth: Month, checkedMonths: Month[]): Month[] {
+  const selectedIndex = SCHOOL_YEAR_MONTHS.indexOf(selectedMonth);
+  return SCHOOL_YEAR_MONTHS.slice(selectedIndex + 1).filter(
+    (month) => !checkedMonths.includes(month)
+  );
+}
+
+/**
+ * Formats age rank with ordinal suffix
+ */
+function formatAgeRank(rank: number, totalStudents: number): string {
+  const suffix = (n: number) => {
+    const lastDigit = n % 10;
+    const lastTwo = n % 100;
+    if (lastTwo >= 11 && lastTwo <= 13) return "th";
+    if (lastDigit === 1) return "st";
+    if (lastDigit === 2) return "nd";
+    if (lastDigit === 3) return "rd";
+    return "th";
+  };
+
+  const ordinal = `${rank}${suffix(rank)}`;
+
+  if (rank === 1) return `${ordinal} (oldest)`;
+  if (rank === totalStudents) return `${ordinal} (youngest)`;
+  return ordinal;
+}
+
+// ============================================================================
+// MAIN COMPONENT
+// ============================================================================
 
 export function BinarySearchExample({
   studentList,
 }: {
   studentList: string[];
 }) {
-  const [messageHeader, setMessageHeader] = useState("");
-  const [messageBody, setMessageBody] = useState("");
-  const [counter, setCounter] = useState(0);
-  const [birthdayMap, setBirthdayMap] = useState<Map<string, string[]>>(
-    new Map()
-  );
-  const middleMonthIndex = Math.floor(MONTHS.length / 2);
-  const [selectedMonth, setSelectedMonth] = useState<string>(
-    MONTHS[middleMonthIndex]
-  );
-  const [triedMonths, setTriedMonths] = useState<string[]>([]);
-  const [searchStudent, setSearchStudent] = useState<string | null>(null);
-  const [isPrimaryButtonDisabled, setIsPrimaryButtonDisabled] = useState(false);
+  // -------------------------------------------------------------------------
+  // STATE
+  // -------------------------------------------------------------------------
 
-  const [enumeration, setEnumeration] = useState<Map<string, number>>(
-    new Map()
+  const [state, setState] = useState<BinarySearchState>({
+    students: [],
+    targetStudent: null,
+    selectedMonth: SCHOOL_YEAR_MONTHS[Math.floor(SCHOOL_YEAR_MONTHS.length / 2)],
+    checkedMonths: [],
+    revealedStudentIds: new Array(),
+    attemptCount: 0,
+    isComplete: false,
+  });
+
+  const [isAgeRankingModalOpen, setAgeRankingModalOpen] = useState(false);
+
+  // -------------------------------------------------------------------------
+  // DERIVED STATE
+  // -------------------------------------------------------------------------
+
+  const currentMonthStudents = useMemo(
+    () => getStudentsByMonth(state.students, state.selectedMonth),
+    [state.students, state.selectedMonth]
   );
 
-  const checkBirthday = (selectedMonth: string) => {
-    const students = birthdayMap.get(selectedMonth);
-    if (students?.includes(searchStudent)) {
-      setMessageHeader(
-        `🎉 You found ${searchStudent}'s birthday! They have a ${selectedMonth} birthday.`
-      );
-      setMessageBody("");
-      setIsPrimaryButtonDisabled(true);
-    } else {
-      console.log("length", triedMonths.length, MONTHS.length);
-      if ([...triedMonths, selectedMonth].length === MONTHS.length) {
-        setMessageHeader(`❌ You did not find ${searchStudent}'s birthday!`);
-        setMessageBody("Did you use all the information provided?");
-      } else {
-        setMessageHeader(
-          `Searching for ${searchStudent}'s birthday month (${getOrdinalSuffix(
-            enumeration.get(searchStudent)
-          )} oldest)...`
-        );
+  const untriedMonths = useMemo(
+    () => getUntriedMonths(state.checkedMonths),
+    [state.checkedMonths]
+  );
 
-        // show all students for this month
-        const studentsForMonth = birthdayMap.get(selectedMonth);
-        if (studentsForMonth) {
-          if (studentsForMonth.length > 1) {
-            const studentRanks = studentsForMonth.map(
-              (student) =>
-                `${student} (${getOrdinalSuffix(
-                  enumeration.get(student)
-                )} oldest)`
-            );
-            setMessageBody(
-              `${studentRanks.join(", ")} have a ${selectedMonth} birthday.`
-            );
-          } else {
-            const studentRank = getOrdinalSuffix(
-              enumeration.get(studentsForMonth[0])
-            );
-            setMessageBody(
-              `Only ${studentsForMonth[0]} (${studentRank} oldest) has a ${selectedMonth} birthday.`
-            );
-          }
-        } else {
-          setMessageBody("No students found for this month.");
-        }
-      }
+  const oldestStudent = useMemo(
+    () => state.students.find((s) => s.ageRank === 1),
+    [state.students]
+  );
+
+  const youngestStudent = useMemo(
+    () => state.students.find((s) => s.ageRank === state.students.length),
+    [state.students]
+  );
+
+  // -------------------------------------------------------------------------
+  // MESSAGE GENERATION
+  // -------------------------------------------------------------------------
+
+  const message = useMemo(() => {
+    if (!state.targetStudent) {
+      return {
+        header: "Initializing...",
+        body: "",
+      };
     }
 
-    if (!triedMonths.includes(selectedMonth)) {
-      setTriedMonths([...triedMonths, selectedMonth]);
+    if (state.isComplete) {
+      return {
+        header: `🎉 You found ${state.targetStudent.name}'s birthday! They have a ${state.targetStudent.birthMonth} birthday.`,
+        body: "",
+      };
     }
-    setCounter(counter + 1);
+
+    if (state.attemptCount === 0) {
+      return {
+        header: `Searching for ${state.targetStudent.name}'s birthday month...`,
+        body: "",
+      };
+    }
+
+    if (state.checkedMonths.length === SCHOOL_YEAR_MONTHS.length) {
+      return {
+        header: `❌ You did not find ${state.targetStudent.name}'s birthday!`,
+        body: "Did you use all the information provided?",
+      };
+    }
+
+    if (currentMonthStudents.length === 0) {
+      return {
+        header: `Searching for ${state.targetStudent.name}'s birthday month...`,
+        body: "No students found for this month.",
+      };
+    }
+
+    if (currentMonthStudents.length === 1) {
+      return {
+        header: `Searching for ${state.targetStudent.name}'s birthday month...`,
+        body: `Only ${currentMonthStudents[0].name} has a ${state.selectedMonth} birthday.`,
+      };
+    }
+
+    return {
+      header: `Searching for ${state.targetStudent.name}'s birthday month...`,
+      body: `${currentMonthStudents.map((s) => s.name).join(", ")} have a ${state.selectedMonth} birthday.`,
+    };
+  }, [state, currentMonthStudents]);
+
+  // -------------------------------------------------------------------------
+  // ACTIONS
+  // -------------------------------------------------------------------------
+
+  // Then the checkBirthday function works fine
+  const checkBirthday = () => {
+    const foundTarget = currentMonthStudents.some(
+      (s) => s.id === state.targetStudent?.id
+    );
+
+    setState((prev) => ({
+      ...prev,
+      checkedMonths: [...prev.checkedMonths, prev.selectedMonth],
+      revealedStudentIds: [
+        ...prev.revealedStudentIds,
+        ...currentMonthStudents.map((s) => s.id),
+      ].filter((id, index, self) => self.indexOf(id) === index), // Remove duplicates
+      attemptCount: prev.attemptCount + 1,
+      isComplete: foundTarget,
+    }));
   };
 
   const searchEarlierMonths = () => {
-    const selectedIndex = MONTHS.indexOf(selectedMonth);
+    const earlierMonths = getEarlierMonths(state.selectedMonth, state.checkedMonths);
 
-    // Eliminate selected month and all later months
-    const monthsToEliminate = MONTHS.slice(selectedIndex);
+    if (earlierMonths.length === 0) return;
 
-    // Remaining untried earlier months
-    const remainingEarlierMonths = MONTHS.slice(0, selectedIndex).filter(
-      (month) => !triedMonths.includes(month)
-    );
+    const newSelectedMonth = getMiddleMonth(earlierMonths);
+    const selectedIndex = SCHOOL_YEAR_MONTHS.indexOf(state.selectedMonth);
+    const monthsToEliminate = SCHOOL_YEAR_MONTHS.slice(selectedIndex);
 
-    if (remainingEarlierMonths.length === 0) return;
-
-    // Pick new midpoint
-    const newMiddleIndex = Math.floor((remainingEarlierMonths.length - 1) / 2);
-    const newSelectedMonth = remainingEarlierMonths[newMiddleIndex];
-
-    setTriedMonths((prev) => {
-      const newMonths = monthsToEliminate.filter((m) => !prev.includes(m));
-      return [...prev, ...newMonths];
-    });
-    setSelectedMonth(newSelectedMonth);
+    setState((prev) => ({
+      ...prev,
+      selectedMonth: newSelectedMonth,
+      checkedMonths: [
+        ...prev.checkedMonths,
+        ...monthsToEliminate.filter((m) => !prev.checkedMonths.includes(m)),
+      ],
+    }));
   };
 
   const searchLaterMonths = () => {
-    const selectedIndex = MONTHS.indexOf(selectedMonth);
+    const laterMonths = getLaterMonths(state.selectedMonth, state.checkedMonths);
 
-    // Eliminate selected month and all earlier months
-    const monthsToEliminate = MONTHS.slice(0, selectedIndex + 1);
+    if (laterMonths.length === 0) return;
 
-    // Remaining untried later months
-    const remainingLaterMonths = MONTHS.slice(selectedIndex + 1).filter(
-      (month) => !triedMonths.includes(month)
-    );
+    const newSelectedMonth = getMiddleMonth(laterMonths);
+    const selectedIndex = SCHOOL_YEAR_MONTHS.indexOf(state.selectedMonth);
+    const monthsToEliminate = SCHOOL_YEAR_MONTHS.slice(0, selectedIndex + 1);
 
-    if (remainingLaterMonths.length === 0) return;
-
-    // Pick new midpoint
-    const newMiddleIndex = Math.floor(remainingLaterMonths.length / 2);
-    const newSelectedMonth = remainingLaterMonths[newMiddleIndex];
-
-    setTriedMonths((prev) => {
-      const newMonths = monthsToEliminate.filter((m) => !prev.includes(m));
-      return [...prev, ...newMonths];
-    });
-    setSelectedMonth(newSelectedMonth);
-  };
-
-  const reset = () => {
-    setMessageBody("");
-    setCounter(0);
-    setSelectedMonth(MONTHS[middleMonthIndex]);
-    const map = createBirthdayMap(studentList);
-    setBirthdayMap(map);
-    const newEnumeration = enumerateStudents(map);
-    const newSearchStudent = getRandomStudent(newEnumeration, studentList);
-    setSearchStudent(newSearchStudent);
-    const header = `Searching for ${newSearchStudent}'s birthday month (${getOrdinalSuffix(
-      newEnumeration.get(newSearchStudent)
-    )} oldest)...`;
-    setEnumeration(newEnumeration);
-    setMessageHeader(header);
-    setTriedMonths([]);
-    setIsPrimaryButtonDisabled(false);
-  };
-
-  useEffect(() => {
-    reset();
-  }, [studentList]);
-
-  const getFirstBirthdayMonth = (birthdayMap, monthsInOrder) => {
-    for (const month of monthsInOrder) {
-      const students = birthdayMap.get(month);
-      if (students && students.length > 0) {
-        return students[0];
-      }
-    }
-    return null; // No birthdays at all
-  };
-
-  const getLastBirthdayMonth = (birthdayMap, monthsInOrder) => {
-    for (let i = monthsInOrder.length - 1; i >= 0; i--) {
-      const month = monthsInOrder[i];
-      const students = birthdayMap.get(month);
-      if (students && students.length > 0) {
-        return students[students.length - 1];
-      }
-    }
-    return null;
-  };
-
-  const getOrdinalSuffix = (num) => {
-    const lastDigit = num % 10;
-    const lastTwoDigits = num % 100;
-
-    // Special cases: 11th, 12th, 13th
-    if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
-      return num + "th";
-    }
-
-    // Regular cases
-    if (lastDigit === 1) return num + "st";
-    if (lastDigit === 2) return num + "nd";
-    if (lastDigit === 3) return num + "rd";
-    return num + "th";
+    setState((prev) => ({
+      ...prev,
+      selectedMonth: newSelectedMonth,
+      checkedMonths: [
+        ...prev.checkedMonths,
+        ...monthsToEliminate.filter((m) => !prev.checkedMonths.includes(m)),
+      ],
+    }));
   };
 
   const checkPreviousMonth = () => {
-    const currentIndex = MONTHS.indexOf(selectedMonth);
+    const currentIndex = SCHOOL_YEAR_MONTHS.indexOf(state.selectedMonth);
 
     for (let i = currentIndex - 1; i >= 0; i--) {
-      const month = MONTHS[i];
-
-      // Skip months already eliminated by binary search
-      if (!triedMonths.includes(month)) {
-        setSelectedMonth(month);
+      const month = SCHOOL_YEAR_MONTHS[i];
+      if (!state.checkedMonths.includes(month)) {
+        setState((prev) => ({ ...prev, selectedMonth: month }));
         return;
       }
     }
   };
 
   const checkNextMonth = () => {
-    const currentIndex = MONTHS.indexOf(selectedMonth);
+    const currentIndex = SCHOOL_YEAR_MONTHS.indexOf(state.selectedMonth);
 
-    for (let i = currentIndex + 1; i < MONTHS.length; i++) {
-      const month = MONTHS[i];
-
-      // Skip months already eliminated by binary search
-      if (!triedMonths.includes(month)) {
-        setSelectedMonth(month);
+    for (let i = currentIndex + 1; i < SCHOOL_YEAR_MONTHS.length; i++) {
+      const month = SCHOOL_YEAR_MONTHS[i];
+      if (!state.checkedMonths.includes(month)) {
+        setState((prev) => ({ ...prev, selectedMonth: month }));
         return;
       }
     }
   };
 
-  const earliestBirthdayStudent = getFirstBirthdayMonth(birthdayMap, MONTHS);
-  const earliestBirthdayStudentOrdinal = getOrdinalSuffix(
-    enumeration.get(earliestBirthdayStudent)
+  const reset = () => {
+    const newStudents = initializeStudents(studentList);
+    const newTarget = selectTargetStudent(newStudents);
+    const middleMonth = SCHOOL_YEAR_MONTHS[Math.floor(SCHOOL_YEAR_MONTHS.length / 2)];
+
+    setState({
+      students: newStudents,
+      targetStudent: newTarget,
+      selectedMonth: middleMonth,
+      checkedMonths: [],
+      revealedStudentIds: new Array(),
+      attemptCount: 0,
+      isComplete: false,
+    });
+  };
+
+  // -------------------------------------------------------------------------
+  // EFFECTS
+  // -------------------------------------------------------------------------
+
+  useEffect(() => {
+    reset();
+  }, [studentList]);
+
+  // -------------------------------------------------------------------------
+  // RENDER HELPERS
+  // -------------------------------------------------------------------------
+
+  const AgeRankingContent = (
+    <div className="space-y-4">
+      {/* Extra Information Section */}
+      <div>
+        <p className="font-bold mb-2">Extra Information</p>
+        <div className="bg-gray-100 p-3 rounded space-y-1 text-sm">
+          {oldestStudent && (
+            <p>
+              The oldest student in the class is: <strong>{oldestStudent.name}</strong> ({oldestStudent.birthMonth})
+            </p>
+          )}
+          {youngestStudent && (
+            <p>
+              The youngest student the class is: <strong>{youngestStudent.name}</strong> ({youngestStudent.birthMonth})
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Age Ranking Section */}
+      <div>
+        <p className="font-bold mb-2">Class Birthdays</p>
+        <p className="text-xs text-gray-600 mb-3">
+          Sorted by school year (September to August)
+        </p>
+
+        <div className="space-y-1">
+          {state.students
+            .sort((a, b) => {
+              return a.schoolYearRank - b.schoolYearRank
+            })
+            .map((student) => {
+              const isRevealed = state.revealedStudentIds.includes(student.id);
+              const isTarget = student.id === state.targetStudent?.id;
+
+              return (
+                <div
+                  key={student.id}
+                  className={`
+                    p-2 rounded text-sm flex items-center justify-between
+                    ${isTarget ? 'bg-orange-100 border-2 border-orange-500' : 'bg-gray-50'}
+                  `}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">{student.name}</span>
+                    {isTarget && <span>🎯</span>}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs bg-blue-100 px-2 py-1 rounded">
+                      {formatAgeRank(student.ageRank, state.students.length)}
+                    </span>
+                    {isRevealed && (
+                      <span className="text-xs text-gray-500">
+                        {student.birthMonth}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+
+      {/* Explanation */}
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-3 text-sm">
+        <p className="font-medium mb-1">💡 How to use this information:</p>
+        <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <li>Compare students birthdays to decide which direction to search</li>
+          <li>Birth months are revealed when you check them</li>
+        </ul>
+      </div>
+    </div>
   );
-  const latestBirthdayStudent = getLastBirthdayMonth(birthdayMap, MONTHS);
-  const latestBirthdayStudentOrdinal = getOrdinalSuffix(
-    enumeration.get(latestBirthdayStudent)
-  );
+
+  // -------------------------------------------------------------------------
+  // RENDER
+  // -------------------------------------------------------------------------
 
   return (
     <div className="space-y-6">
-      <p className="">
+      {/* Instructions */}
+      <p>
         Binary search means reducing the search space by half each time you
-        check a birthday month. I've provided some extra information to help you
-        decide which half to check next. Every time you check a birthday month,
-        you will learn what students in that class have a birthday in that
-        month, and what their age rank is relative to the other students. For
-        example the oldest student in the class would have an age rank of 1 and
-        is probably born in January. The second oldest student in the class
-        would have an age rank of 2. Can you find the student's birthday with
-        the information provided?
+        check a birthday month. I've provided some{" "}
+        <Root open={isAgeRankingModalOpen} onOpenChange={setAgeRankingModalOpen}>
+          <Trigger asChild>
+            <button className="underline text-blue-500 hover:text-blue-700">
+              class information
+            </button>
+          </Trigger>
+          <Portal>
+            <Overlay className="bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50" />
+            <Content className="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg">
+              <div className="border-b border-gray-200 p-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold">Class Information</h2>
+                <button
+                  onClick={() => setAgeRankingModalOpen(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="p-6 max-h-[70vh] overflow-y-auto">
+                {AgeRankingContent}
+              </div>
+            </Content>
+          </Portal>
+        </Root>{" "}
+        to help you decide which half to check next.
       </p>
 
-      <p>
-        Earliest birthday in the school year is {earliestBirthdayStudent} (
-        {earliestBirthdayStudentOrdinal} oldest)
-      </p>
-      <p>
-        Latest birthday in the school year is {latestBirthdayStudent} (
-        {latestBirthdayStudentOrdinal} oldest)
-      </p>
-
-      <div className="flex flex-col gap-2 items-center overflow-x-scroll">
-        {MONTHS.map((month) => {
-          const isTried = triedMonths.includes(month);
+      {/* Month Display */}
+      <div className="flex flex-col gap-2 items-center">
+        {SCHOOL_YEAR_MONTHS.map((month) => {
+          const isChecked = state.checkedMonths.includes(month);
+          const isSelected = month === state.selectedMonth;
 
           return (
-            <p
+            <div
               key={month}
               className={`
-                  border border-gray-300 rounded-md p-2 w-36 text-center 
-                  transition-opacity duration-300
-                  ${month === selectedMonth ? "bg-orange-200 text-black" : ""}
-                  ${
-                    isTried
-                      ? "opacity-40 line-through cursor-not-allowed bg-gray-200 text-gray-500"
-                      : "cursor-default"
-                  }                
-                `}
+                border border-gray-300 rounded-md p-2 w-36 text-center 
+                transition-all duration-300
+                ${isSelected ? "bg-orange-200 border-orange-500 font-semibold" : ""}
+                ${isChecked ? "opacity-40 line-through bg-gray-200 text-gray-500" : ""}
+              `}
             >
               {month}
-            </p>
+            </div>
           );
         })}
       </div>
 
-      <p className="text-lg font-semibold text-center">{messageHeader}</p>
-      <p className="text text-center">{messageBody}</p>
-      <p className="text-lg font-semibold text-center">{counter} attempts</p>
+      {/* Messages */}
+      <div className="text-center space-y-2">
+        <p className="text-lg font-semibold">{message.header}</p>
+        {message.body && <p className="text-gray-700">{message.body}</p>}
+        <p className="text-lg font-semibold text-blue-600">
+          {state.attemptCount} attempts
+        </p>
+      </div>
 
-      <div className="flex flex-col gap-2 items-center justify-center">
+      {/* Action Buttons */}
+      <div className="flex flex-col gap-2 items-center">
         <Button
           size="long"
           label="Check Birthdays"
-          disabled={isPrimaryButtonDisabled}
-          onClick={() => checkBirthday(selectedMonth)}
+          disabled={state.isComplete}
+          onClick={checkBirthday}
           backgroundColor="blue"
         />
-        {messageBody === "No students found for this month." ? (
+
+        {message.body === "No students found for this month." ? (
           <>
             <Button
               size="long"
               label="Check Previous Month"
-              onClick={() => checkPreviousMonth()}
+              onClick={checkPreviousMonth}
               backgroundColor="green"
             />
             <Button
               size="long"
               label="Check Next Month"
-              onClick={() => checkNextMonth()}
+              onClick={checkNextMonth}
               backgroundColor="purple"
             />
           </>
@@ -381,23 +576,24 @@ export function BinarySearchExample({
             <Button
               size="long"
               label="Search Earlier Months"
-              disabled={isPrimaryButtonDisabled}
-              onClick={() => searchEarlierMonths()}
+              disabled={state.isComplete}
+              onClick={searchEarlierMonths}
               backgroundColor="green"
             />
             <Button
               size="long"
               label="Search Later Months"
-              disabled={isPrimaryButtonDisabled}
-              onClick={() => searchLaterMonths()}
+              disabled={state.isComplete}
+              onClick={searchLaterMonths}
               backgroundColor="purple"
             />
           </>
         )}
+
         <Button
           size="long"
           label="Reset"
-          onClick={() => reset()}
+          onClick={reset}
           backgroundColor="white"
           textColor="text-blue-500"
         />
