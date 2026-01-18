@@ -73,8 +73,7 @@ export default function RotatedArray() {
       <h1 className="text-2xl font-bold">Rotated Sorted Array</h1>
 
       <p>
-        This activity is a simulation of a rotated sorted array. The array is
-        rotated by a random number of positions. It's based on{" "}
+        This lesson explains how to search for an item in a rotated sorted array. It's based on{" "}
         <a
           className="text-blue-500 underline"
           href="https://leetcode.com/problems/search-in-rotated-sorted-array/"
@@ -113,8 +112,6 @@ export default function RotatedArray() {
           </p>
         ))}
       </div>
-
-      <p>A common problem is to find an item in a rotated sorted array.</p>
 
       <div className="flex flex-row gap-2 items-center">
         <h3 className="text-lg font-bold">Example 1: Birthdays</h3>

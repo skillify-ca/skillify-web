@@ -63,6 +63,8 @@ const enumerateStudents = (birthdayMap) => {
 
   return enumeration;
 };
+  students: Student[];
+  revealedStudentIds: Array<string>;
 
 const getRandomStudent = (enumeration, studentList) => {
   if (!enumeration || enumeration.size === 0) return null;
