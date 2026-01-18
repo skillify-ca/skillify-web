@@ -70,51 +70,79 @@ export default function RotatedArray() {
 
   return (
     <div className="p-6 max-w-xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">Rotated Sorted Array</h1>
+      <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">Rotated Sorted Array</h1>
 
-      <p>
-        This lesson explains how to search for an item in a rotated sorted array. It's based on{" "}
-        <a
-          className="text-blue-500 underline"
-          href="https://leetcode.com/problems/search-in-rotated-sorted-array/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Leetcode problem 33
-        </a>
-        .
-      </p>
-
-      <p>
-        Rotated sorted arrays can appear in various ways in real life. For
-        example, the months of the school year is a sorted array, but the
-        starting position is rotated to September instead of January.
-      </p>
-
-      <div className="flex flex-row gap-2 items-center justify-start overflow-x-scroll lg:overflow-x-visible lg:justify-center">
-        {MONTHS.map((month) => (
-          <p key={month} className="border border-gray-300 rounded-md p-2">
-            {month}
-          </p>
-        ))}
+      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200 mb-8">
+        <h3 className="text-xl font-bold text-green-900 mb-4 flex items-center">
+          <span className="mr-2">🎯</span> Learning Objectives
+        </h3>
+        <div className="space-y-3">
+          <div className="flex items-start">
+            <span className="text-green-600 mr-2 mt-1">✓</span>
+            <p className="text-gray-700">Understand what a rotated sorted array is and how it appears in real-world scenarios</p>
+          </div>
+          <div className="flex items-start">
+            <span className="text-green-600 mr-2 mt-1">✓</span>
+            <p className="text-gray-700">Compare different search approaches: random, linear, and binary search</p>
+          </div>
+          <div className="flex items-start">
+            <span className="text-green-600 mr-2 mt-1">✓</span>
+            <p className="text-gray-700">Analyze the efficiency of each algorithm in terms of time complexity</p>
+          </div>
+          <div className="flex items-start">
+            <span className="text-green-600 mr-2 mt-1">✓</span>
+            <p className="text-gray-700">Apply problem-solving strategies based on{" "}
+              <a
+                className="text-blue-600 underline hover:text-blue-800"
+                href="https://leetcode.com/problems/search-in-rotated-sorted-array/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Leetcode problem 33
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
 
-      <p>
-        The hours of a day is a sorted array, but we may want to start the day
-        at 8am instead of 1am if we want to represent someones calendar or
-        schedule.
-      </p>
+      <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
+        <h3 className="text-lg font-bold text-blue-900 mb-4 flex items-center">
+          <span className="mr-2">🌍</span> Real-World Examples
+        </h3>
+        
+        <div className="space-y-4">
+          <div>
+            <p className="font-medium text-gray-900 mb-2">School Year Months</p>
+            <p className="text-gray-700 mb-3">
+              The months of the school year form a sorted array, but the starting position is rotated to September instead of January.
+            </p>
+            <div className="flex flex-row gap-2 items-center justify-start overflow-x-scroll">
+              {MONTHS.map((month) => (
+                <p key={month} className="border border-blue-300 bg-white rounded-md p-2 text-sm font-medium">
+                  {month}
+                </p>
+              ))}
+            </div>
+          </div>
 
-      <div className="flex flex-row gap-2 items-center justify-start overflow-x-scroll lg:overflow-x-visible lg:justify-center">
-        {HOURS.map((month) => (
-          <p key={month} className="border border-gray-300 rounded-md p-2">
-            {month}
-          </p>
-        ))}
+          <div>
+            <p className="font-medium text-gray-900 mb-2">Work Schedule Hours</p>
+            <p className="text-gray-700 mb-3">
+              The hours of a day form a sorted array, but we may want to start the day at 8am instead of 1am for someone's calendar or schedule.
+            </p>
+            <div className="flex flex-row gap-2 items-center justify-start overflow-x-scroll">
+              {HOURS.map((hour) => (
+                <p key={hour} className="border border-blue-300 bg-white rounded-md p-2 text-sm font-medium">
+                  {hour}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-row gap-2 items-center">
-        <h3 className="text-lg font-bold">Example 1: Birthdays</h3>
+        <h3 className="text-lg font-bold">Interactive Lesson: Birthdays</h3>
         <ManageStudentsModal
           students={studentList}
           defaultStudents={studentNames}
@@ -151,23 +179,29 @@ export default function RotatedArray() {
         <BinarySearchExample studentList={studentList} />
       </CollapsibleSection>
 
-      <p className="font-bold">Reflection Questions</p>
-      <ul className="list-disc list-inside">
-        <li>Which approach felt the most efficient?</li>
-        <li>
-          If you had the age rankings for Approach 1 or 2, would that have
-          changed the efficieny of those algorithms?
-        </li>
-        <li>
-          Do any of the algorithm need to change if the school year started in
-          August or October? In general, does it matter where the pivot point in
-          a rotated sorted array is?
-        </li>
-        <li>
-          Did you ever run into a month with no student birthdays? How did you
-          decide what to do next?
-        </li>
-      </ul>
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+        <h3 className="text-xl font-bold text-blue-900 mb-4 flex items-center">
+          <span className="mr-2">💭</span> Reflection Questions
+        </h3>
+        <div className="space-y-4">
+          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+            <p className="font-medium text-gray-900 mb-1">1. Efficiency Comparison</p>
+            <p className="text-gray-700">Which approach felt the most efficient? Why?</p>
+          </div>
+          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+            <p className="font-medium text-gray-900 mb-1">2. Algorithm Impact</p>
+            <p className="text-gray-700">If you had the age rankings for Approach 1 or 2, would that have changed the efficiency of those algorithms?</p>
+          </div>
+          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+            <p className="font-medium text-gray-900 mb-1">3. Pivot Point Analysis</p>
+            <p className="text-gray-700">Do any of the algorithms need to change if the school year started in August or October? In general, does it matter where the pivot point in a rotated sorted array is?</p>
+          </div>
+          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+            <p className="font-medium text-gray-900 mb-1">4. Edge Case Handling</p>
+            <p className="text-gray-700">Did you ever run into a month with no student birthdays? How did you decide what to do next?</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
