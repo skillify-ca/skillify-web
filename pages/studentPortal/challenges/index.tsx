@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React from "react";
+import LandingNavbarV2 from "../../../components/landingPage/LandingNavbarV2";
+import { Theme } from "../../../redux/themeSlice";
 
 export default function Coding() {
   const lessons = [
@@ -34,4 +36,13 @@ export default function Coding() {
   );
 }
 
-Coding.premium = true;
+Coding.getLayout = function getLayout(page) {
+  return (
+    <div className="theme-default">
+      <LandingNavbarV2 onSetCurrentCopy={() => {}} theme={Theme.DEFAULT} />
+      {page}
+    </div>
+  );
+};
+
+// Coding.premium = true;
