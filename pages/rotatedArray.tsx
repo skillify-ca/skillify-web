@@ -10,6 +10,11 @@ import {
 } from "@radix-ui/react-dialog";
 import LandingNavbarV2 from "../components/landingPage/LandingNavbarV2";
 import { BinarySearchExample } from "../components/studentPortal/challenges/rotatedArray/BinarySearchExample";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../components/ui/Collapsible";
 import { Theme } from "../redux/themeSlice";
 
 // Examples
@@ -54,6 +59,9 @@ function rotate(arr: number[], k: number) {
 
 export default function RotatedArray() {
   const [studentList, setStudentList] = useState<string[]>(studentNames);
+  const [isRandomSearchOpen, setIsRandomSearchOpen] = useState(true);
+  const [isLinearSearchOpen, setIsLinearSearchOpen] = useState(false);
+  const [isBinarySearchOpen, setIsBinarySearchOpen] = useState(false);
 
   // Handler for when students are updated
   const handleStudentsUpdate = (newStudents: string[]) => {
@@ -122,14 +130,29 @@ export default function RotatedArray() {
         your class.
       </p>
 
-      <p className="font-bold">Approach 1: Random Search</p>
-      <RandomSearchExample studentList={studentList} />
+      <CollapsibleSection
+        title="Approach 1: Random Search"
+        open={isRandomSearchOpen}
+        setOpen={setIsRandomSearchOpen}
+      >
+        <RandomSearchExample studentList={studentList} />
+      </CollapsibleSection>
 
-      <p className="font-bold">Approach 2: Linear Search</p>
-      <LinearSearchExample studentList={studentList} />
+      <CollapsibleSection
+        title="Approach 2: Linear Search"
+        open={isLinearSearchOpen}
+        setOpen={setIsLinearSearchOpen}
+      >
+        <LinearSearchExample studentList={studentList} />
+      </CollapsibleSection>
 
-      <p className="font-bold">Approach 3: Binary Search</p>
-      <BinarySearchExample studentList={studentList} />
+      <CollapsibleSection
+        title="Approach 3: Binary Search"
+        open={isBinarySearchOpen}
+        setOpen={setIsBinarySearchOpen}
+      >
+        <BinarySearchExample studentList={studentList} />
+      </CollapsibleSection>
 
       <p className="font-bold">Reflection Questions</p>
       <ul className="list-disc list-inside">
@@ -181,6 +204,44 @@ const studentNames = [
   "Aaron",
   "Harry",
 ];
+
+function CollapsibleSection({
+  children,
+  open,
+  setOpen,
+  title,
+}: {
+  children: React.ReactNode;
+  open: boolean;
+  setOpen: (boolean) => void;
+  title: string;
+}) {
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <CollapsibleTrigger>
+        <div className="flex items-center justify-between">
+          <span
+            className={`${
+              open ? "rotate-180" : "rotate-90"
+            } transition-transform duration-300 mr-2`}
+          >
+            ▲
+          </span>
+          <p className="font-bold">{title}</p>
+        </div>
+      </CollapsibleTrigger>
+      <CollapsibleContent forceMount className="overflow-hidden">
+        <div
+          className={`grid transition-all duration-300 ease-out ${
+            open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden pt-4 pb-4">{children}</div>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
 
 function RandomSearchExample({ studentList }: { studentList: string[] }) {
   const [messageHeader, setMessageHeader] = useState("");
