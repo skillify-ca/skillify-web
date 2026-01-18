@@ -208,7 +208,7 @@ export function BinarySearchExample({
     targetStudent: null,
     selectedMonth: SCHOOL_YEAR_MONTHS[Math.floor(SCHOOL_YEAR_MONTHS.length / 2)],
     checkedMonths: [],
-    revealedStudentIds: new Array(),
+    revealedStudentIds: [],
     attemptCount: 0,
     isComplete: false,
   });
@@ -386,7 +386,7 @@ export function BinarySearchExample({
       targetStudent: newTarget,
       selectedMonth: middleMonth,
       checkedMonths: [],
-      revealedStudentIds: new Array(),
+      revealedStudentIds: [],
       attemptCount: 0,
       isComplete: false,
     });
