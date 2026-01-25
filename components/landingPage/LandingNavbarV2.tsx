@@ -50,16 +50,11 @@ export default function LandingNavbarV2({
           } duration-500 ease-in-out md:hidden`}
         >
           <div className="flex-col md:hidden gap-4">
-          <Link href={"/rotatedArray"} legacyBehavior target="_blank">
+          <Link href={"/studentPortal"} legacyBehavior target="_blank">
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Algorithms</p>
+                <p>Log In</p>
               </div>
-            </Link>
-            <Link href={"/games/tag/index.html"} legacyBehavior target="_blank">
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Tag Game</p>
-              </div>
-            </Link>
+            </Link>            
             {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
               onSetCurrentCopy("tutoring");
             }}>
@@ -88,27 +83,6 @@ export default function LandingNavbarV2({
                 <img src="/images/landingPage/linkedin.svg" className="w-8" />
               </a>{" "}
             </div>
-            <div className="">
-              <a
-                href={"https://www.instagram.com/skillify.ca/"}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src="/images/landingPage/ig.png" className="w-8" />
-              </a>{" "}
-            </div>
-            <div className="">
-              <a
-                href={"https://www.tiktok.com/@skillify.ca"}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  src="/images/landingPage/tiktok.png"
-                  className="w-8 rounded"
-                />
-              </a>{" "}
-            </div>
           </div>
         </div>
       </div>
@@ -121,17 +95,11 @@ export default function LandingNavbarV2({
             />
           </Link>
           <div className="flex gap-4">
-            <Link href={"/rotatedArray"} legacyBehavior target="_blank">
+            <Link href={"/studentPortal"} legacyBehavior target="_blank">
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Algorithms</p>
+                <p>Log In</p>
               </div>
             </Link>
-            <a href={"/games/tag/index.html"} target="_blank" rel="noreferrer">
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Tag Game</p>
-              </div>
-            </a>
-
             {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
               onSetCurrentCopy("tutoring");
             }}>

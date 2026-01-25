@@ -5,6 +5,7 @@ import {
   GlobeIcon,
   LightBulbIcon,
   LightningBoltIcon,
+  PuzzleIcon,
   StarIcon,
 } from "@heroicons/react/outline";
 import React from "react";
@@ -23,6 +24,12 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     link: "/studentPortal/challenges",
     icon: <StarIcon className="w-6 mr-4" />,
     isPremium: true,
+  },
+  {
+    name: "Games",
+    page: "games",
+    link: "/studentPortal/games",
+    icon: <PuzzleIcon className="w-6 mr-4" />,
   },
   {
     name: "Mock Interview Bot",

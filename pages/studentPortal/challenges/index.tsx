@@ -1,7 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import LandingNavbarV2 from "../../../components/landingPage/LandingNavbarV2";
-import { Theme } from "../../../redux/themeSlice";
 
 export default function Coding() {
   const lessons = [
@@ -18,6 +16,9 @@ export default function Coding() {
     { name: "Richest Customer Wealth", link: "richestCustomerWealth" },
     { name: "Word Pattern", link: "wordPattern" },
     { name: "Reverse Linked List", link: "reverseLinkedList" },
+    { name: "Rotated Array", link: "rotatedArray" },
+    { name: "Contains Duplicates", link: "containsDuplicates" },
+
   ];
   return (
     <div>
@@ -36,13 +37,5 @@ export default function Coding() {
   );
 }
 
-Coding.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbarV2 onSetCurrentCopy={() => {}} theme={Theme.DEFAULT} />
-      {page}
-    </div>
-  );
-};
 
 // Coding.premium = true;

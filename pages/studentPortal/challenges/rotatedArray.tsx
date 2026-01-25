@@ -7,16 +7,16 @@ import {
   Root,
   Trigger,
 } from "@radix-ui/react-dialog";
-import LandingNavbarV2 from "../components/landingPage/LandingNavbarV2";
-import { BinarySearchExample } from "../components/studentPortal/challenges/rotatedArray/BinarySearchExample";
-import { LinearSearchExample } from "../components/studentPortal/challenges/rotatedArray/LinearSearchExample";
-import { RandomSearchExample } from "../components/studentPortal/challenges/rotatedArray/RandomSearchExample";
+import LandingNavbarV2 from "../../../components/landingPage/LandingNavbarV2";
+import { BinarySearchExample } from "../../../components/studentPortal/challenges/rotatedArray/BinarySearchExample";
+import { LinearSearchExample } from "../../../components/studentPortal/challenges/rotatedArray/LinearSearchExample";
+import { RandomSearchExample } from "../../../components/studentPortal/challenges/rotatedArray/RandomSearchExample";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../components/ui/Collapsible";
-import { Theme } from "../redux/themeSlice";
+} from "../../../components/ui/Collapsible";
+import { Theme } from "../../../redux/themeSlice";
 
 const MONTHS = [
   "September",
