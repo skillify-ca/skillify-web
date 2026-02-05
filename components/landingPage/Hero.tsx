@@ -40,18 +40,6 @@ export default function Hero({ headerText, description, heroImageUrl }: HeroProp
           <div className="space-x-4">
             <motion.div layout transition={{ type: "spring", stiffness: 300, damping: 30 }}>
 
-              {/* <Link href={"/studentPortal"} legacyBehavior>
-                <button
-                  type="button"
-                  onClick={() =>
-                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-                  }
-                  className={`w-48 py-4 h-16 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
-                >
-                  <p className={`text-base"`}>Student Portal</p>
-                </button>
-              </Link> */}
-
               <Link href={"mailto:vithushan@skillify.ca"} legacyBehavior>
                 <button
                   type="button"

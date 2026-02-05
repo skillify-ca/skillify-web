@@ -146,7 +146,7 @@ const HomePage = () => {
       },
     ],
     description:
-      "Get personalized and flexible tutoring for K-12 subjects. Virtual and Toronto in-person options available.",
+      "Whether it's homework help or test prep, get unstuck with personalized tutoring from a real human tutor via Zoom or in-person in Toronto.",
     credentialsText: "",
     benefitsText: "Grow without limits",
     benefits: [
@@ -231,9 +231,9 @@ const currentCopy = useMemo(() => {
   return (
     <div>
       <SEO
-        title={"Skillify - Toronto's most personalized coding bootcamp"}
+        title={"Skillify - Online tutoring and coaching for K-12 and university students"}
         description={
-          "Toronto's best coding academy for online learning! We teach high demand skills to help you get hired in the tech industry."
+          "Online tutoring and coaching for K-12 and university students."
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />

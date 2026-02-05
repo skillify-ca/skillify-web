@@ -1,5 +1,6 @@
 import React from "react";
 import { BenefitData } from "./Benefits";
+import Credentials from "./Credentials";
 import Hero, { HighlightableText } from "./Hero";
 import WhoItsFor from "./WhoItsFor";
 
@@ -17,6 +18,7 @@ export default function LandingPage({
   headerText,
   description,
   copyType,
+  credentialsText,
 }: LandingPageCopy) {
   const heroImageUrl = "/images/landingPage/tutoring-hero.png";
 
@@ -25,7 +27,7 @@ export default function LandingPage({
       <div className="flex flex-col items-center w-full bg-gray-100">
         <Hero headerText={headerText} description={description} heroImageUrl={heroImageUrl} />
         <WhoItsFor copyType={copyType} />
-        {/* <Credentials headerText={credentialsText} /> */}
+        <Credentials headerText={credentialsText} />
         {/* <WhatYouGet /> */}
         {/* <TestimonialSect /> */}
         {/* <FAQ /> */}
