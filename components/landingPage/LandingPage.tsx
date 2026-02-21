@@ -2,6 +2,7 @@ import React from "react";
 import { BenefitData } from "./Benefits";
 import Credentials from "./Credentials";
 import Hero, { HighlightableText } from "./Hero";
+import TestimonialSect from "./TestimonialSect";
 import WhoItsFor from "./WhoItsFor";
 
 export type LandingPageCopy = {
@@ -29,7 +30,7 @@ export default function LandingPage({
         <WhoItsFor copyType={copyType} />
         <Credentials headerText={credentialsText} />
         {/* <WhatYouGet /> */}
-        {/* <TestimonialSect /> */}
+        <TestimonialSect />
         {/* <FAQ /> */}
         {/* <SubscribeBanner /> */}
       </div>

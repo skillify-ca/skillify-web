@@ -32,7 +32,7 @@ const Testimonial = ({
     <div
       className={`flex flex-col h-full p-4 bg-white border-t-8 shadow-xl w-full sm:w-96 rounded-xl ${getBorderColour()}`}
     >
-      <p className="sm:h-48">{text}</p>
+      <p className="sm:h-40">{text}</p>
       <div className="flex py-3">
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />

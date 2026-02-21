@@ -37,13 +37,25 @@ const LifeSkillsCopy = [
   "Personalized coaching matters — I need guidance that fits my life.",
 ];
 
+const pythonSQLCourseCopy = [
+  "I want to work with data but don't know where to start.",
+  "I've tried learning to code before, but nothing ever stuck.",
+  "Life is expensive and I need in-demand skills to increase my income.",
+  "Job descriptions keep asking for Python and SQL but I don't have either.",
+  "I don't feel prepared for the changing job market when it comes to tech, data, and AI.",
+  "I'm stuck in a role that doesn't use my potential.",
+  "I'm using AI tools at work but I don't understand how it works under the hood.",
+  "I want to customize data for myAI tools and get better results.",
+  "I want to finally feel confident working with data.",  
+]
+
   let listItemsMap: { [key: string]: string[] } = {
     tutoring: K12Copy,
     coaching: CareerCoachingCopy,
     lifeCoaching: LifeSkillsCopy,
   };
 
-  const listItems = listItemsMap[copyType];
+  const listItems = pythonSQLCourseCopy;
 
 
   return (

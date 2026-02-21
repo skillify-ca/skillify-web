@@ -3,11 +3,40 @@ import React from "react";
 import { Theme } from "../../redux/themeSlice";
 
 type LandingNavbarProps = {
-  onSetCurrentCopy: (copy: "tutoring" | "coaching" | "lifeCoaching") => void;
   theme?: Theme;
 };
-export default function LandingNavbarV2({
-  onSetCurrentCopy,
+
+const NavbarOptions = () => {
+  return (
+    <>
+      {/* <Link href={"/tutoring"} legacyBehavior target="_blank">
+        <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+        <p>K-12 Tutoring</p>
+        </div>
+      </Link> */}
+      {/* <Link href={"/studentPortal"} legacyBehavior target="_blank">
+        <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+          <p>Log In</p>
+        </div>
+      </Link> */}
+
+
+      {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+                onSetCurrentCopy("coaching");
+              }}>
+                <p>Career Coaching</p>
+              </div> */}
+
+      {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
+              onSetCurrentCopy("lifeCoaching");
+            }}>
+              <p>Life Skills</p>
+            </div> */}
+    </>
+  );
+};
+
+export default function LandingNavbarV2({  
   theme = Theme.DEFAULT,
 }: LandingNavbarProps) {
   const [active, setActive] = React.useState(false);
@@ -45,33 +74,11 @@ export default function LandingNavbarV2({
         </div>
 
         <div
-          className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${
-            active ? "h-[7rem]" : "h-0"
-          } duration-500 ease-in-out md:hidden`}
+          className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${active ? "h-[7rem]" : "h-0"
+            } duration-500 ease-in-out md:hidden`}
         >
           <div className="flex-col md:hidden gap-4">
-          <Link href={"/studentPortal"} legacyBehavior target="_blank">
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Log In</p>
-              </div>
-            </Link>            
-            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
-              onSetCurrentCopy("tutoring");
-            }}>
-              <p>K-12 Tutoring</p>
-            </div> */}
-
-            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
-                onSetCurrentCopy("coaching");
-              }}>
-                <p>Career Coaching</p>
-              </div> */}
-
-            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
-              onSetCurrentCopy("lifeCoaching");
-            }}>
-              <p>Life Skills</p>
-            </div> */}
+            <NavbarOptions />
           </div>
           <div className="hidden items-center gap-4 p-4">
             <div className="">
@@ -95,28 +102,7 @@ export default function LandingNavbarV2({
             />
           </Link>
           <div className="flex gap-4">
-            <Link href={"/studentPortal"} legacyBehavior target="_blank">
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Log In</p>
-              </div>
-            </Link>
-            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
-              onSetCurrentCopy("tutoring");
-            }}>
-              <p>K-12 Tutoring</p>
-            </div> */}
-
-            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
-                onSetCurrentCopy("coaching");
-              }}>
-                <p>Career Coaching</p>
-              </div> */}
-
-            {/* <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200" onClick={() => {
-              onSetCurrentCopy("lifeCoaching");
-            }}>
-              <p>Life Skills</p>
-            </div> */}
+            <NavbarOptions />
           </div>
           <div className="hidden items-center gap-4 p-4">
             <div className="">

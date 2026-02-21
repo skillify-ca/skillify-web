@@ -176,39 +176,61 @@ const HomePage = () => {
       "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelmed.",
   };
 
+  const defaultCopy: LandingPageCopy = {
+      headerText: [   
+        { text: "Python and SQL for Beginners", highlight: false },        
+      ],
+      
+      description: "Confidently learn to code and analyze data with Python and SQL. Master the basic concepts and build your own projects.",
+      
+      credentialsText: "Our program is built by former CEMC medalists and Waterloo students who scored 80+ on Euclid and placed nationally on CCC. We've helped students improve their scores by an average of 18 points.",
+      
+      benefitsText: "Transform your contest performance and strengthen your Waterloo application in just 8 weeks:",
+      
+      benefits: [
+        {
+          title: "Contest-Specific Problem Patterns",
+          descripton: "Learn the 12 question types that appear on 80% of Euclid exams—not generic math review"
+        },
+        {
+          title: "Live Expert Coaching",
+          descripton: "Weekly sessions with Waterloo Math/CS students who've mastered these contests"
+        },
+        {
+          title: "Strategic Score Maximization",
+          descripton: "Know when to skip, when to guess, and how to earn partial marks efficiently"
+        },
+        {
+          title: "10 Years of Past Papers",
+          descripton: "Work through actual CEMC contests with detailed solutions and common pitfalls"
+        },
+        {
+          title: "Admission Edge Package",
+          descripton: "Stand out in Waterloo's holistic review with scores that put you in the top 25%"
+        }
+      ],
+      
+      emailCaptureText: [
+        { text: "Ready to ", highlight: false },
+        { text: "Compete at Your Highest Level", highlight: true },
+        { text: "?", highlight: false }
+      ],
+      
+      emailCaptureDescription: "Limited spots for our Spring 2026 cohort. Euclid is April 9th—start preparing now with our free strategy guide and sample problem set.",
+      
+      copyType: "tutoring"
+    }
+
 const currentCopy = useMemo(() => {
   switch (copyType) {
     case "coaching":
       return coachingCopy;
     case "lifeCoaching":
-      return {
-        ...lifeCoachingCopy,
-        headerText: [
-          { text: "Teaching " },
-          { text: "young adults", highlight: true },
-          { text: "about " },
-          {
-            text: lifeCoachingAnimatedWords[animatedWordIndex],
-            highlight: true,
-            animated: true,
-          },
-        ],
-      };
-
+      return lifeCoachingCopy;
+    case "tutoring":
+      return defaultCopy;
     default:
-      return {
-        ...tutoringCopy,
-        headerText: [
-          { text: "Private Tutoring for" },
-          { text: "K-12 students", highlight: true },
-          { text: "in " },
-          {
-            text: k12animatedWords[animatedWordIndex],
-            highlight: true,
-            animated: true,
-          },
-        ],
-      };
+      return defaultCopy;
   }
 }, [copyType, animatedWordIndex]);
 
@@ -237,7 +259,7 @@ const currentCopy = useMemo(() => {
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
-      <LandingNavbarV2 onSetCurrentCopy={handleSetCurrentCopy} />
+      <LandingNavbarV2 />
       <LandingPage
         headerText={headerText}
         description={description}

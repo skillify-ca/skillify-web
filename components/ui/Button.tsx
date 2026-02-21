@@ -48,6 +48,9 @@ export const Button: React.FC<ButtonProps> = ({
     case "primary":
       backgroundStyles = "bg-brandPrimary hover:bg-pikachu-500";
       break;
+    case "orange":
+        backgroundStyles = "bg-orange-400 hover:bg-orange-500";
+        break;
     case "blue":
       backgroundStyles = "bg-blue-500 border-blue-900 hover:bg-blue-400";
       break;
