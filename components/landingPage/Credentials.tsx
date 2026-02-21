@@ -36,7 +36,7 @@ export default function Credentials({ headerText }: CredentialsProps) {
         className="object-contain h-48 rounded-full"
       />
       {/* linkedin icon */}
-      <a href="https://www.linkedin.com/in/vithushan/" target="_blank">
+      <a href="https://www.linkedin.com/in/vithushan/" target="_blank" rel="noreferrer" >
         <img
           src="/images/landingPage/linkedin.svg"
           className="object-contain h-8 mt-4 transition-all transform hover:scale-110"
