@@ -45,7 +45,7 @@ const pythonSQLCourseCopy = [
   "I don't feel prepared for the changing job market when it comes to tech, data, and AI.",
   "I'm stuck in a role that doesn't use my potential.",
   "I'm using AI tools at work but I don't understand how it works under the hood.",
-  "I want to customize data for myAI tools and get better results.",
+  "I want to customize data for my AI tools and get better results.",
   "I want to finally feel confident working with data.",  
 ]
 
