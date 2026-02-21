@@ -253,9 +253,9 @@ const currentCopy = useMemo(() => {
   return (
     <div>
       <SEO
-        title={"Skillify - Online tutoring and coaching for K-12 and university students"}
+        title={"Skillify - Online Python and SQL Course for Beginners"}
         description={
-          "Online tutoring and coaching for K-12 and university students."
+          "Online Python and SQL Course for Beginners. Learn to code and analyze data with Python and SQL. Master the basic concepts and build your own projects."
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
