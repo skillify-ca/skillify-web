@@ -22,6 +22,54 @@ export default function Hero({ headerText, description, heroImageUrl }: HeroProp
     setCurrentlySelectedOption(option);
   }
 
+  const generateDateRanges = (count = 4) => {
+    const ranges = [];
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+
+    const formatDate = (date: Date) =>
+      date.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+
+    const getEndOfFirstHalf = (y: number, m: number) => new Date(y, m, 14);
+    const getEndOfSecondHalf = (y: number, m: number) => new Date(y, m + 1, 0); // last day of month
+
+    // Figure out which "slot" we're in: before 1st, before 15th, or after 15th
+    const day = now.getDate();
+    let startFirst = day < 15; // true = next slot is the 15th, false = next slot is next month's 1st
+
+    if (day >= 1 && day < 15) {
+      // We're in the first half — start from the 15th of this month
+      startFirst = false;
+    } else {
+      // We're in the second half — start from the 1st of next month
+      month += 1;
+      if (month > 11) { month = 0; year += 1; }
+      startFirst = true;
+    }
+
+    for (let i = 0; i < count; i++) {
+      if (startFirst) {
+        const start = new Date(year, month, 1);
+        const end = getEndOfFirstHalf(year, month);
+        ranges.push(`${formatDate(start)} - ${formatDate(end)}`);
+        startFirst = false;
+      } else {
+        const start = new Date(year, month, 15);
+        const end = getEndOfSecondHalf(year, month);
+        ranges.push(`${formatDate(start)} - ${formatDate(end)}`);
+        startFirst = true;
+        month += 1;
+        if (month > 11) { month = 0; year += 1; }
+      }
+    }
+
+    return ranges;
+  };
+
+  // In your component:
+  const dateRanges = generateDateRanges(2);
+
   return (
     <div className="">
       <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -61,14 +109,17 @@ export default function Hero({ headerText, description, heroImageUrl }: HeroProp
                 </div>
                 <p className="text-sm text-gray-500">NEXT COURSE</p>
                 <div className="flex flex-col">
-                  <div className="flex space-x-2">
-                    <input type="radio" name="course" id="course1" onChange={() => handleSelectOption("March 10th - April 2nd")} />
-                    <label htmlFor="course1">March 10th - April 2nd</label>
-                  </div>
-                  <div className="flex space-x-2">
-                    <input type="radio" name="course" id="course2" onChange={() => handleSelectOption("April 7th - April 30th")} />
-                    <label htmlFor="course2">April 7th - April 30th</label>
-                  </div>
+                  {dateRanges.map((range, i) => (
+                    <div key={i} className="flex space-x-2">
+                      <input
+                        type="radio"
+                        name="course"
+                        id={`course${i + 1}`}
+                        onChange={() => handleSelectOption(range)}
+                      />
+                      <label htmlFor={`course${i + 1}`}>{range}</label>
+                    </div>
+                  ))}
                 </div>
 
                 <Link href={`mailto:vithushan19@gmail.com?subject=Enroll in Python and SQL for Beginners&body=I want to enroll in Python and SQL for Beginners. I'm interested in the course with dates: ${currentlySelectedOption}`} legacyBehavior>
