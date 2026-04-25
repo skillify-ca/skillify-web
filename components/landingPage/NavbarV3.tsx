@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const PAGES = [
   {
@@ -24,26 +24,88 @@ const PAGES = [
 ]
 
 export default function NavbarV3({ currentPage }: { currentPage: string }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const unselectedStyle = "hover:text-charmander transition-colors"
   const selectedStyle = "text-charmander font-bold"
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  }
+
   return (
-    <div className="w-full bg-white border-b-2">
-      <div className="hidden w-full md:flex md:flex-col">
-        <div className="grid items-center justify-between w-full grid-cols-1 px-4 bg-white border-b-2 md:flex place-items-center text-murkrow">
+    <div className="w-full bg-white border-b-2 relative">
+      {/* Desktop Navigation */}
+      <div className="hidden md:block">
+        <div className="flex items-center justify-between w-full px-4 bg-white border-b-2 text-murkrow">
           <a href="/">
-            <img src="/images/logo.svg" className="mt-4 cursor-pointer md:mt-0 md:p-4 w-28 sm:w-40" alt="Skillify" />
+            <img src="/images/logo.svg" className="my-4 cursor-pointer w-40" alt="Skillify" />
           </a>
           <div className="flex gap-6 text-sm font-medium text-gray-600">
             {
-              PAGES.map(page => <a href={"/" + page.id} className={`${currentPage === page.id ? selectedStyle : unselectedStyle}`}>{page.title}</a>)
+              PAGES.map(page => (
+                <a
+                  key={page.id}
+                  href={"/" + page.id}
+                  className={`${currentPage === page.id ? selectedStyle : unselectedStyle}`}
+                >
+                  {page.title}
+                </a>
+              ))
             }
           </div>
           <a
             href="mailto:vithushan19@gmail.com?subject=Book a session"
-            className="hidden md:block bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors"
+            className="bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors"
           >
             Book a session
           </a>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className="md:hidden">
+        <div className="flex items-center justify-between px-4 py-3 bg-white border-b-2">
+          <a href="/">
+            <img src="/images/logo.svg" className="w-32 cursor-pointer" alt="Skillify" />
+          </a>
+
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="p-2 rounded-md hover:bg-gray-100 focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <div className="space-y-1.5">
+              <span className={`block w-6 h-0.5 bg-gray-600 transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block w-6 h-0.5 bg-gray-600 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block w-6 h-0.5 bg-gray-600 transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        <div className={`overflow-hidden transition-all duration-300 ease-in-out bg-white border-b-2 ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="flex flex-col px-4 py-3 space-y-3">
+            {
+              PAGES.map(page => (
+                <a
+                  key={page.id}
+                  href={"/" + page.id}
+                  className={`py-2 text-sm font-medium ${currentPage === page.id ? selectedStyle : unselectedStyle}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {page.title}
+                </a>
+              ))
+            }
+            <a
+              href="mailto:vithushan19@gmail.com?subject=Book a session"
+              className="block bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors text-center mt-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Book a session
+            </a>
+          </div>
         </div>
       </div>
     </div>
