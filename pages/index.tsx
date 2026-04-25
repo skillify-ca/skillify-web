@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import SEO from "../components/SEO";
-import LandingNavbarV2 from "../components/landingPage/LandingNavbarV2";
 import LandingPage, {
   LandingPageCopy,
 } from "../components/landingPage/LandingPage";
+import NavbarV3 from "../components/landingPage/NavbarV3";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -259,7 +259,7 @@ const currentCopy = useMemo(() => {
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
-      <LandingNavbarV2 />
+      <NavbarV3 currentPage="" />
       <LandingPage
         headerText={headerText}
         description={description}

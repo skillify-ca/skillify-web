@@ -1,9 +1,11 @@
 import React from "react";
+import AudienceSelectSection from "./AudienceSelectSection";
 import { BenefitData } from "./Benefits";
+import BrandHero from "./BrandHero";
 import Credentials from "./Credentials";
-import Hero, { HighlightableText } from "./Hero";
+import { HighlightableText } from "./Hero";
 import TestimonialSect from "./TestimonialSect";
-import WhoItsFor from "./WhoItsFor";
+import TrustBar from "./TrustBar";
 
 export type LandingPageCopy = {
   headerText: HighlightableText[];
@@ -26,9 +28,12 @@ export default function LandingPage({
   return (
     <div>
       <div className="flex flex-col items-center w-full bg-gray-100">
-        <Hero headerText={headerText} description={description} heroImageUrl={heroImageUrl} />
-        <WhoItsFor copyType={copyType} />
-        <Credentials headerText={credentialsText} />
+        {/* <Hero headerText={headerText} description={description} heroImageUrl={heroImageUrl} /> */}
+        <BrandHero />
+        <AudienceSelectSection />
+        <TrustBar />
+        {/* <WhoItsFor copyType={copyType} /> */}
+        <Credentials/>
         {/* <WhatYouGet /> */}
         <TestimonialSect />
         {/* <FAQ /> */}
