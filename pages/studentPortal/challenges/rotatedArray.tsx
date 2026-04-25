@@ -7,7 +7,7 @@ import {
   Root,
   Trigger,
 } from "@radix-ui/react-dialog";
-import LandingNavbarV2 from "../../../components/landingPage/LandingNavbarV2";
+import NavbarV3 from "../../../components/landingPage/NavbarV3";
 import { BinarySearchExample } from "../../../components/studentPortal/challenges/rotatedArray/BinarySearchExample";
 import { LinearSearchExample } from "../../../components/studentPortal/challenges/rotatedArray/LinearSearchExample";
 import { RandomSearchExample } from "../../../components/studentPortal/challenges/rotatedArray/RandomSearchExample";
@@ -16,7 +16,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../../components/ui/Collapsible";
-import { Theme } from "../../../redux/themeSlice";
 
 const MONTHS = [
   "September",
@@ -478,7 +477,7 @@ function ManageStudentsModal({
 RotatedArray.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
-      <LandingNavbarV2 onSetCurrentCopy={() => {}} theme={Theme.DEFAULT} />
+      <NavbarV3 currentPage=""/>
       {page}
     </div>
   );
