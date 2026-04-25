@@ -5,17 +5,17 @@ import WhoItsFor from "../components/landingPage/WhoItsFor";
 const SERVICES = [
   {
     step: "01",
-    title: "One-on-One K-8 Tutoring",
+    title: "One-on-One Tutoring For Elementary School",
     price: "$75 / hr",
     outcome: "Your child finally gets it. And knows they can.",
     description:
       "Sessions are built around your child's actual coursework and how they learn. We slow down where it matters, skip what they already know, and build the kind of understanding that lasts beyond the next test.",
     border: "border-charmander",
-    tag: "For students in grades 1 to 12",
+    tag: "For students in grades 1 to 8",
   },
   {
     step: "02",
-    title: "One-on-One Grades 9 to 12 Tutoring",
+    title: "One-on-One Tutoring For Secondary School",
     price: "$100 / hr",
     outcome: "The courses that decide your university options. Let's make them count.",
     description:
@@ -168,7 +168,7 @@ export default function K12Page() {
 
       {/* TESTIMONIALS */}
       <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">
-        <p className="text-3xl font-semibold text-center text-white">What students say</p>
+        <p className="text-3xl font-semibold text-center text-white">What parents say</p>
         <p className="text-center text-gray-400 mt-1 mb-8">
           Real results from real people who started exactly where your child is now.
         </p>

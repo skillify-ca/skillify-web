@@ -1,4 +1,5 @@
 import React from "react";
+import Credentials from "../components/landingPage/Credentials";
 import NavbarV3 from "../components/landingPage/NavbarV3";
 import WhoItsFor from "../components/landingPage/WhoItsFor";
 
@@ -283,6 +284,8 @@ export default function SchoolsPage() {
                     this actually matter in real life?"
                 </p>
             </div>
+
+            <Credentials />
 
             {/* FINAL CTA */}
             <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">

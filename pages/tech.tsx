@@ -1,4 +1,5 @@
 import React from "react";
+import Credentials from "../components/landingPage/Credentials";
 import NavbarV3 from "../components/landingPage/NavbarV3";
 import WhoItsFor from "../components/landingPage/WhoItsFor";
 
@@ -185,6 +186,21 @@ export default function TechPage() {
         </div>
       </div>
 
+      {/* ROI NOTE */}
+      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-200">
+        <div className="max-w-2xl text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">A bad tech decision costs more than a good one</h2>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Most small business owners overpay for tools they don't need, build things
+            that don't scale, or get locked into developers they can't replace. One
+            advisory session at{" "}
+            <span className="font-bold text-gray-900">$100</span> can save you from
+            a decision that costs ten times that to undo. Getting the right person
+            involved early is almost always the cheaper path.
+          </p>
+        </div>
+      </div>
+
       {/* TESTIMONIALS */}
       <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">
         <p className="text-3xl font-semibold text-center text-white">What founders say</p>
@@ -222,20 +238,8 @@ export default function TechPage() {
         </div>
       </div>
 
-      {/* ROI NOTE */}
-      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-200">
-        <div className="max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">A bad tech decision costs more than a good one</h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Most small business owners overpay for tools they don't need, build things
-            that don't scale, or get locked into developers they can't replace. One
-            advisory session at{" "}
-            <span className="font-bold text-gray-900">$100</span> can save you from
-            a decision that costs ten times that to undo. Getting the right person
-            involved early is almost always the cheaper path.
-          </p>
-        </div>
-      </div>
+
+      <Credentials />
 
       {/* FINAL CTA */}
       <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">

@@ -1,8 +1,20 @@
 import React from "react";
+import Credentials from "../components/landingPage/Credentials";
 import NavbarV3 from "../components/landingPage/NavbarV3";
 import WhoItsFor from "../components/landingPage/WhoItsFor";
 
 const SERVICES = [
+  {
+    step: "01",
+    title: "Digital Skills Training",
+    price: "$100 / hr",
+    outcome: "Mastery of in-demand skills",
+    description:
+      "Learn the basics of Python and SQL to work with code, data and AI efficiently. Understand how coding works and how to use popular AI tools.",
+    for: ["graduating", "hunting"],
+    border: "border-charmander",
+    tag: "For job seekers",
+  },
   {
     step: "02",
     title: "Resume Workshop",
@@ -17,7 +29,7 @@ const SERVICES = [
   {
     step: "03",
     title: "Interview Prep & Coaching",
-    price: "$75 / hr",
+    price: "$100 / hr",
     outcome: "Walk in confident. Not just prepared.",
     description:
       "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
@@ -28,7 +40,7 @@ const SERVICES = [
   {
     step: "04",
     title: "Salary Negotiation",
-    price: "$100 / hr",
+    price: "$150 / hr",
     outcome: "One conversation. Potentially thousands more per year.",
     description:
       "Most people accept the first number they're given. We'll figure out your market value, build your case, and rehearse the exact conversation so you can ask for what you're worth without second-guessing yourself.",
@@ -94,7 +106,7 @@ export default function StudentsPage() {
             </h1>
 
             <p className="my-4 text-base text-gray-500 sm:text-lg md:text-xl max-w-xl">
-                Ace your techincal and behavioural interviews, then land your first offer. Skillify gives you the coaching and prep to succeed at every stage.
+                Learn valuable skills, ace your techincal and behavioural interviews, then land a job offer. Skillify gives you the coaching and prep to succeed at every stage.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
@@ -196,6 +208,23 @@ export default function StudentsPage() {
         )}
       </div>
 
+
+      {/* ── ROI PRICING NOTE ── */}
+      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-300">
+        <div className="max-w-2xl text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Human-centered coaching</h2>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            One salary negotiation session at{" "}
+            <span className="font-bold text-gray-900">$150</span> could recover thousands
+            in your first year. One interview prep session at{" "}
+            <span className="font-bold text-gray-900">$100</span> could be the difference
+            between an offer and another rejection. The cost of not being prepared is
+            almost always higher.
+          </p>
+        </div>
+      </div>
+
+
       {/* ── TESTIMONIALS ── */}
       <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">
         <p className="text-3xl font-semibold text-center text-white">Results from real students</p>
@@ -234,20 +263,7 @@ export default function StudentsPage() {
         </div>
       </div>
 
-      {/* ── ROI PRICING NOTE ── */}
-      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-200">
-        <div className="max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Invest in humans not just AI</h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            One salary negotiation session at{" "}
-            <span className="font-bold text-gray-900">$100</span> could recover thousands
-            in your first year. One interview prep session at{" "}
-            <span className="font-bold text-gray-900">$50</span> could be the difference
-            between an offer and another rejection. The cost of not being prepared is
-            almost always higher.
-          </p>
-        </div>
-      </div>
+      <Credentials />
 
       {/* ── FINAL CTA ── */}
       <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">

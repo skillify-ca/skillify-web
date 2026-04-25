@@ -35,6 +35,7 @@ const WhoItsForCopy: Record<string, string[]> = {
   career: [
     "You're struggling with a university math or CS course",
     "You've been applying for months with no callbacks",
+    "You're using AI in your job search but not getting results",
     "You have an interview coming up and feel underprepared",
     "You got an offer but don't know if the number is fair",
     "You want real feedback from someone who's been in the industry"
@@ -82,7 +83,7 @@ const WhoItsNotForCopy: Record<string, string[]> = {
     "You're looking for a full certification or degree program",
     "You want a long-term ongoing mentor relationship",
     "You need help outside of math, coding, or career prep",
-    "You're not willing to put in work between sessions"
+    "You're not willing to put in work between sessions",
   ],
   tech: [
     "You're a developer looking for a coding partner or peer review.",
