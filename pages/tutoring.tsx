@@ -9,7 +9,8 @@ const SERVICES = [
     price: "$75 / hr",
     outcome: "Your child finally gets it. And knows they can.",
     description:
-      "Sessions are built around your child's actual coursework and how they learn. We slow down where it matters, skip what they already know, and build the kind of understanding that lasts beyond the next test.",
+      "Sessions are built around your child's actual coursework and how they learn. We slow down where it matters, skip what they already know, and build the kind of understanding that lasts beyond the next test. Delivered in-person in downtown Toronto or virtually using Zoom.",
+    note: "I can tutor siblings in different grades at the same time for the same hourly rate.",
     border: "border-charmander",
     tag: "For students in grades 1 to 8",
   },
@@ -19,7 +20,8 @@ const SERVICES = [
     price: "$100 / hr",
     outcome: "The courses that decide your university options. Let's make them count.",
     description:
-      "High school is where the stakes get real. We work through the exact units giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure.",
+      "High school is where the stakes get real. We work through the exact units giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure. Delivered in-person in downtown Toronto or virtually using Zoom.",
+    note: "I can tutor siblings in different grades at the same time for the same hourly rate.",
     border: "border-rattata",
     tag: "For students in grades 9 to 12",
   },
@@ -65,7 +67,7 @@ export default function K12Page() {
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
               Your child is capable.{" "}
               <span className="text-charmander">
-                Let's unlock their potential.
+                Unlock their potential.
               </span>
             </h1>
 
@@ -151,6 +153,7 @@ export default function K12Page() {
                   "{service.outcome}"
                 </p>
                 <p className="text-sm text-gray-500 flex-1">{service.description}</p>
+                <p className="text-sm text-gray-500 flex-1 font-bold mt-2">Note: {service.note}</p>
 
                 <a
                   href={`mailto:vithushan19@gmail.com?subject=Book: ${service.title}`}

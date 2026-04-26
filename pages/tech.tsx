@@ -7,10 +7,10 @@ const SERVICES = [
   {
     step: "01",
     title: "Technology Advisor",
-    price: "$100 / hr",
+    price: "$500 / hr",
     outcome: "Make the right tech decisions before they get expensive.",
     description:
-      "Which tools should you use? Should you build or buy? Is your current setup going to fall apart as you grow? These are the questions that cost small business owners the most when they get them wrong. We work through your situation and give you a clear direction.",
+      "Which tools should you use? Should you build or buy? Is your current setup going to fall apart as you grow? These are the questions that cost businesses and investors the most when they get them wrong. We will work through your situation together and you will leave with a clear direction.",
     tag: "For founders making technology decisions",
     border: "border-charmander",
   },
@@ -20,7 +20,7 @@ const SERVICES = [
     price: "$150 / hr",
     outcome: "A real product, built by someone who has done it at scale.",
     description:
-      "You have the idea. You just need someone to build it. We scope the work together, build it properly, and make sure you understand how it works when we are done. No jargon, no surprises, no being held hostage to a developer you can't replace.",
+      "You have the idea. You just need someone to build it. We scope the work together, build it properly, and make sure you understand how it works when we are done.",
     border: "border-rattata",
     tag: "For founders who need a digital product",
   },
@@ -30,7 +30,7 @@ const SERVICES = [
     price: "$150 / hr",
     outcome: "Stop being blocked by broken code you didn't write.",
     description:
-      "You built something with AI tools and got pretty far. Now it's broken, half-finished, or just not doing what you need it to do. We dig in, figure out what's wrong, and get it working so you can get back to running your business.",
+      "You built something with AI tools and got pretty far. Now it's broken, half-finished, or just not doing what you need it to do. I will dig in, figure out what's wrong, and get it working so you can get back to running your business.",
     border: "border-pikachu-500",
     tag: "For founders with a broken or stuck app",
   },
@@ -41,7 +41,7 @@ const TESTIMONIALS = [
     quote:
       "Vithushan helped train one of my employees to maintain my website. We went from being completely dependent on outside help to handling it ourselves.",
     name: "Rahul M",
-    school: "Startup Founder",
+    school: "Founder",
     outcome: "Employee empowerment",
     img: "",
     border: "border-charmander",
@@ -50,7 +50,7 @@ const TESTIMONIALS = [
     quote:
       "Vithushan gave me invaluable advice on how to set up the technical strategy for my company. I finally felt like I knew what I was doing and why.",
     name: "Bhavin P",
-    school: "Small Business Owner",
+    school: "Founder",
     outcome: "Clear technical strategy from day one",
     img: "",
     border: "border-rattata",
@@ -59,7 +59,7 @@ const TESTIMONIALS = [
     quote:
       "Vithushan built a health-tech app for me and taught me how to make updates to it. My startup wouldn't have a digital product without his support.",
     name: "Sarangan S",
-    school: "Health-Tech Founder",
+    school: "Founder",
     outcome: "Shipped a real product",
     img: "",
     border: "border-pikachu-500",
@@ -191,7 +191,7 @@ export default function TechPage() {
         <div className="max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">A bad tech decision costs more than a good one</h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Most small business owners overpay for tools they don't need, build things
+            Most businesses overpay for tools they don't need, build things
             that don't scale, or get locked into developers they can't replace. One
             advisory session at{" "}
             <span className="font-bold text-gray-900">$100</span> can save you from
@@ -205,7 +205,7 @@ export default function TechPage() {
       <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">
         <p className="text-3xl font-semibold text-center text-white">What founders say</p>
         <p className="text-center text-gray-400 mt-1 mb-8">
-          Business owners who were exactly where you are now.
+          Businesses that were exactly where you are now.
         </p>
 
         <div className="flex flex-wrap justify-center gap-8">

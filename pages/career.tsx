@@ -7,10 +7,10 @@ const SERVICES = [
   {
     step: "01",
     title: "Digital Skills Training",
-    price: "$100 / hr",
+    price: "$1200",
     outcome: "Mastery of in-demand skills",
     description:
-      "Learn the basics of Python and SQL to work with code, data and AI efficiently. Understand how coding works and how to use popular AI tools.",
+      "A six week online program to learn the basics of Python and SQL. You will learn to work with data, code and AI efficiently. Includes 1-on-1 and small-group coaching sessions. You will leave with multiple projects for your portfolio.",
     for: ["graduating", "hunting"],
     border: "border-charmander",
     tag: "For job seekers",
@@ -29,7 +29,7 @@ const SERVICES = [
   {
     step: "03",
     title: "Interview Prep & Coaching",
-    price: "$100 / hr",
+    price: "$50 / hr",
     outcome: "Walk in confident. Not just prepared.",
     description:
       "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
@@ -40,7 +40,7 @@ const SERVICES = [
   {
     step: "04",
     title: "Salary Negotiation",
-    price: "$150 / hr",
+    price: "$100 / hr",
     outcome: "One conversation. Potentially thousands more per year.",
     description:
       "Most people accept the first number they're given. We'll figure out your market value, build your case, and rehearse the exact conversation so you can ask for what you're worth without second-guessing yourself.",
@@ -215,9 +215,9 @@ export default function StudentsPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Human-centered coaching</h2>
           <p className="text-gray-600 text-lg leading-relaxed">
             One salary negotiation session at{" "}
-            <span className="font-bold text-gray-900">$150</span> could recover thousands
+            <span className="font-bold text-gray-900">$100</span> could recover thousands
             in your first year. One interview prep session at{" "}
-            <span className="font-bold text-gray-900">$100</span> could be the difference
+            <span className="font-bold text-gray-900">$50</span> could be the difference
             between an offer and another rejection. The cost of not being prepared is
             almost always higher.
           </p>
