@@ -211,7 +211,7 @@ export default function K12Page() {
         <div className="max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">The earlier you invest, the more it compounds</h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            A shaky foundation in grade 7 math becomes a failing grade in grade 10
+            A shaky foundation in grade 7 in a subject becomes a failing grade in grade 10
             functions. One session a week at{" "}
             <span className="font-bold text-gray-900">$75 - $100</span> builds the kind of
             understanding that carries your child through high school, university
