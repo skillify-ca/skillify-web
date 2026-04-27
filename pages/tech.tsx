@@ -193,8 +193,7 @@ export default function TechPage() {
           <p className="text-gray-600 text-lg leading-relaxed">
             Most businesses overpay for tools they don't need, build things
             that don't scale, or get locked into developers they can't replace. One
-            advisory session at{" "}
-            <span className="font-bold text-gray-900">$100</span> can save you from
+            advisory session can save you from
             a decision that costs ten times that to undo. Getting the right person
             involved early is almost always the cheaper path.
           </p>
