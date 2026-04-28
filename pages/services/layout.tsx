@@ -86,7 +86,7 @@ function getHeroContent(currentPage) {
     const subHeadline = "Coding Workshops · AI Education and Ethics · School Board Advisory"
     const titleDefault = "Bring a software engineer"
     const titleHighlight = "into your class."
-    const description = "Curriculum-aligned coding and technology workshops for grades 3 to 12, facilitated by an engineer who has shipped real products used by millions of people. Available onsite or online across the GTA."
+    const description = "Curriculum-aligned coding and technology workshops for grades 3 to 12, facilitated by an expert software engineer. Available onsite or online across the GTA."
     const buttonPrimaryText = "See workshop options"
     const buttonSecondaryText = "Get in touch"
     const primaryColour = "charmander"
