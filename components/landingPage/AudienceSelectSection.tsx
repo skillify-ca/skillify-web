@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AudienceSelectSection() {
     return (
-        <div id="who-are-you" className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow">
+        <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow">
 
             {/* Section header */}
             <p className="text-3xl font-bold text-center text-white">Who are you here for?</p>

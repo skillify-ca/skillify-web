@@ -178,14 +178,20 @@ module.exports = {
      * bg-pink-600
      * bg-blue-600
      * bg-purple-400
+     * bg-purple-800
      * bg-pink-400
      * bg-blue-400
      * hover:bg-purple-400
+     * hover:bg-purple-800
      * hover:bg-pink-400
      * hover:bg-blue-400
      * bg-green-200
      * bg-blue-200
      * bg-purple-200
+     * bg-purple-400
+     * bg-purple-500
+     * bg-purple-600
+     * bg-purple-800
      * bg-green-500
      * bg-blue-500
      * bg-purple-500
@@ -233,7 +239,7 @@ module.exports = {
       "bg-purple-500",
       "bg-purple-600",
       "bg-purple-700",
-      "bg-purple-600",
+      "bg-purple-800",
       "border-purple-900",
       "hover:bg-purple-400",
       "text-purple-600",
@@ -264,6 +270,7 @@ module.exports = {
       "ring-blue-500",
       "ring-green-500",
       "ring-purple-500",
+      "hover:bg-purple-800",
     ],
     blocklist: [/^debug-/],
     keyframes: true,

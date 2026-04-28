@@ -91,7 +91,7 @@ export default function StudentsPage() {
       <WhoItsFor copyType={"career"} />
 
       {/* ── SERVICES ── */}
-      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-12 bg-slate-100">
+      <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-12 bg-slate-100">
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
           Your path, step by step
         </h2>
