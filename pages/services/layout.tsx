@@ -161,7 +161,7 @@ function HeroText({ currentPage, visible }: { currentPage: string, visible: bool
 
 
   return (
-    <div className="p-8 lg:p-16 flex flex-col justify-center md:text-center lg:text-left min-h-[500px]">
+    <div className="flex flex-col justify-center md:text-center lg:text-left min-h-[500px]">
 
       <p style={fadeStyle(visible, 0)} className={`text-sm uppercase tracking-widest font-semibold mb-4 text-${content.primaryColour}`}>
         {content.subHeadline}
