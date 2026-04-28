@@ -241,6 +241,7 @@ module.exports = {
       "bg-yellow-300",
       "bg-yellow-400",
       "bg-yellow-700",
+      "bg-yellow-800",
       "border-yellow-900",
       "hover:bg-yellow-400",
       "hover:text-textSecondary",

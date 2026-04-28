@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SEO from "../components/SEO";
 import LandingPage from "../components/landingPage/LandingPage";
-import NavbarV3 from "../components/landingPage/NavbarV3";
+import ServicesLayout from "./services/layout";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -54,7 +54,6 @@ const HomePage = () => {
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
-      <NavbarV3 currentPage="" />
       <LandingPage />
       <div
         className={`sticky bottom-0 z-50 ${showNavBar ? "opacity-100" : "opacity-0 h-0"
@@ -69,5 +68,5 @@ const HomePage = () => {
 export default HomePage;
 
 HomePage.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <ServicesLayout>{page}</ServicesLayout>;
 };

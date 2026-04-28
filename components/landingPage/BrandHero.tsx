@@ -5,46 +5,7 @@ export default function BrandHero() {
         <div className="w-full bg-gray-100">
             <div className="grid grid-cols-1 sm:grid-cols-2">
 
-                {/* Left column */}
-                <div className="p-8 lg:p-16 flex flex-col justify-center md:text-center lg:text-left">
-
-                    {/* Eyebrow */}
-                    <p className="text-sm uppercase tracking-widest text-charmander font-semibold mb-4">
-                        Coaching · Tutoring · Tech Advising
-                    </p>
-
-                    {/* Headline */}
-                    <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                        The gap between where you are and{" "}
-                        <span className="text-charmander">where you want to be.</span>
-                    </h1>
-
-                    {/* Subheadline */}
-                    <p className="my-4 text-base text-gray-500 sm:text-lg md:text-xl max-w-xl">
-                        You've been figuring it out alone for too long. Learn in-demand skills from someone who's already been where you're trying to go.
-                    </p>
-
-                    {/* CTAs */}
-                    <div className="flex flex-col sm:flex-row gap-3 mt-2">
-                        <a
-                            href="#who-are-you"
-                            className="max-w-full bg-gradient-to-b px-6 font-bold border-b-4 rounded-lg py-3
-                  bg-orange-400 hover:bg-orange-500 border-orange-600
-                  active:border-b-2 cursor-pointer text-white text-center"
-                        >
-                            Find your path
-                        </a>
-
-                        <a
-                            href="mailto:vithushan19@gmail.com"
-                            className="max-w-full px-6 font-bold border-b-4 border-gray-300 rounded-lg py-3
-                  bg-white hover:bg-gray-50
-                  active:border-b-2 cursor-pointer text-gray-700 text-center"
-                        >
-                            Book a free intro call
-                        </a>
-                    </div>
-
+                <div>
                     {/* Guarantee note */}
                     <div className="flex items-start gap-2 mt-6 max-w-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-charmander shrink-0 mt-0.5">

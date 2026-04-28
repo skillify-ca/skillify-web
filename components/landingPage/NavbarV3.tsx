@@ -2,10 +2,6 @@ import React, { useState } from "react";
 
 const PAGES = [
   {
-    id: "",
-    title: "Home"
-  },
-  {
     id: "tutoring",
     title: "K-12 Tutoring"
   },
@@ -32,6 +28,17 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
+  function getNavbarLinkStyle(pageId) {
+    if (pageId == '' && currentPage === undefined) {
+      return selectedStyle
+    } 
+
+    if (pageId === currentPage) {
+      return selectedStyle
+    }
+    return unselectedStyle
+  }
+
   return (
     <div className="w-full bg-white border-b-2 relative">
       {/* Desktop Navigation */}
@@ -45,8 +52,8 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
               PAGES.map(page => (
                 <a
                   key={page.id}
-                  href={"/" + page.id}
-                  className={`${currentPage === page.id ? selectedStyle : unselectedStyle}`}
+                  href={page.id ? "/services/" + page.id : "/"}
+                  className={`${getNavbarLinkStyle(page.id)}`}
                 >
                   {page.title}
                 </a>
@@ -90,7 +97,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
               PAGES.map(page => (
                 <a
                   key={page.id}
-                  href={"/" + page.id}
+                  href={page.id ? "/services/" + page.id : "/"}
                   className={`py-2 text-sm font-medium ${currentPage === page.id ? selectedStyle : unselectedStyle}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
