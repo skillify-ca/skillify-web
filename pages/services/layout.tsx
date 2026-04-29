@@ -42,8 +42,8 @@ function getHeroContent(currentPage) {
     const buttonPrimaryText = "See tutoring options"
     const buttonSecondaryText = "Free 15-min intro call"
     const primaryColour = "charmander"
-    const primaryColourHover = "orange-500"
-    const primaryColourBorder = "orange-500"
+    const primaryColourHover = "hover:bg-orange-500"
+    const primaryColourBorder = "border-orange-800"
 
     return {
       subHeadline,
@@ -66,8 +66,8 @@ function getHeroContent(currentPage) {
     const buttonPrimaryText = "See what we can build"
     const buttonSecondaryText = "Free 15-min intro call"
     const primaryColour = "charmander"
-    const primaryColourHover = "orange-500"
-    const primaryColourBorder = "orange-500"
+    const primaryColourHover = "hover:bg-orange-500"
+    const primaryColourBorder = "border-orange-800"
 
     return {
       subHeadline,
@@ -90,8 +90,8 @@ function getHeroContent(currentPage) {
     const buttonPrimaryText = "See workshop options"
     const buttonSecondaryText = "Get in touch"
     const primaryColour = "charmander"
-    const primaryColourHover = "orange-500"
-    const primaryColourBorder = "orange-500"
+    const primaryColourHover = "hover:bg-orange-500"
+    const primaryColourBorder = "border-orange-800"
 
     return {
       subHeadline,
@@ -100,8 +100,8 @@ function getHeroContent(currentPage) {
       description,
       buttonPrimaryText,
       buttonSecondaryText,
-      primaryColour,      
-      primaryColourHover, 
+      primaryColour,
+      primaryColourHover,
       primaryColourBorder
     }
   }
@@ -115,8 +115,8 @@ function getHeroContent(currentPage) {
     const buttonPrimaryText = "Find your path"
     const buttonSecondaryText = "Free 15-min intro call"
     const primaryColour = "charmander"
-    const primaryColourHover = "orange-500"
-    const primaryColourBorder = "orange-800"
+    const primaryColourHover = "hover:bg-orange-500"
+    const primaryColourBorder = "border-orange-800"
 
     return {
       subHeadline,
@@ -139,8 +139,8 @@ function getHeroContent(currentPage) {
   const buttonPrimaryText = "Find your path"
   const buttonSecondaryText = "Free 15-min intro call"
   const primaryColour = "charmander"
-  const primaryColourHover = "orange-500"
-    const primaryColourBorder = "orange-800"
+  const primaryColourHover = "hover:bg-orange-500"
+  const primaryColourBorder = "border-orange-800"
 
   return {
     subHeadline,
@@ -180,7 +180,7 @@ function HeroText({ currentPage, visible }: { currentPage: string, visible: bool
         <a
           href="#stage"
           className={`max-w-full bg-linear-to-b px-6 font-bold border-b-4 rounded-lg py-3
-          bg-${content.primaryColour} hover:bg-${content.primaryColourHover} border-${content.primaryColourBorder}
+          bg-${content.primaryColour} ${content.primaryColourHover} ${content.primaryColourBorder}
           active:border-b-2 cursor-pointer text-white text-center`}
         >
           {content.buttonPrimaryText}
@@ -244,16 +244,15 @@ export function Hero({ currentPage }: { currentPage: string }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 w-full">
         <div className="p-8 lg:p-16 flex flex-col justify-center md:text-center lg:text-left">
 
-          {/* Never unmounts - just changes opacity */}
-          <div
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(8px)',
-              transition: 'opacity 0.2s ease, transform 0.2s ease'
-            }}
+          <motion.div
+            key={currentPage}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <HeroText currentPage={currentPage} visible={visible} />
-          </div>
+          </motion.div>
         </div>
 
         <div>
