@@ -59,14 +59,14 @@ export default function SaveableTextInput({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="text-gray-600">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-2xl bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-2xl shadow-xl p-8">
+    <div className="w-full max-w-2xl bg-linear-to-br from-blue-50 to-indigo-100 p-4 rounded-2xl shadow-xl p-8">
 
       <div className="mb-6">
 
@@ -82,7 +82,7 @@ export default function SaveableTextInput({
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={placeholder}
-          className="w-full h-64 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+          className="w-full h-64 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition-all resize-none"
         />
       </div>
     </div>

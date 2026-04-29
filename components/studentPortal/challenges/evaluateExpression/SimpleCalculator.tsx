@@ -39,7 +39,7 @@ const SimpleCalculator = ({
             </div>
           </div>
         ) : (
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+          <div className="bg-linear-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
             <div className="flex items-center justify-center gap-3 mb-6">
               {/* Value 1 */}
               <div className="flex flex-col items-center">
@@ -102,15 +102,15 @@ const SimpleCalculator = ({
         {/* Legend */}
         <div className="flex flex-wrap gap-3 text-xs justify-center">
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-blue-500 rounded"></div>
+            <div className="w-3 h-3 bg-blue-500 rounded-sm"></div>
             <span className="text-gray-600">Values</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-orange-500 rounded"></div>
+            <div className="w-3 h-3 bg-orange-500 rounded-sm"></div>
             <span className="text-gray-600">Operator</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-green-500 rounded"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
             <span className="text-gray-600">Result</span>
           </div>
         </div>

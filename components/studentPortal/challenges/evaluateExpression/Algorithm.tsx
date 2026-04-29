@@ -76,7 +76,7 @@ const Algorithm = ({ state }: AlgorithmProps) => {
           {/* Number handling */}
           <SubStep isActive={isNumber()}>
             <span className="inline-flex items-center gap-2">
-              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-mono">NUMBER</span>
+              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-sm text-xs font-mono">NUMBER</span>
               Push onto value stack
             </span>
           </SubStep>
@@ -84,7 +84,7 @@ const Algorithm = ({ state }: AlgorithmProps) => {
           {/* Open parenthesis handling */}
           <SubStep isActive={isOpenParenthesis()}>
             <span className="inline-flex items-center gap-2">
-              <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-mono">(</span>
+              <span className="bg-green-100 text-green-700 px-2 py-1 rounded-sm text-xs font-mono">(</span>
               Push onto operator stack
             </span>
           </SubStep>
@@ -92,7 +92,7 @@ const Algorithm = ({ state }: AlgorithmProps) => {
           {/* Close parenthesis handling */}
           <SubStep isActive={isCloseParenthesis()}>
             <span className="inline-flex items-center gap-2">
-              <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-mono">)</span>
+              <span className="bg-green-100 text-green-700 px-2 py-1 rounded-sm text-xs font-mono">)</span>
               Pop operators until finding '('
             </span>
           </SubStep>
@@ -100,7 +100,7 @@ const Algorithm = ({ state }: AlgorithmProps) => {
           {/* Operator handling */}
           <SubStep isActive={isOperator()}>
             <span className="inline-flex items-center gap-2">
-              <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-mono">OP</span>
+              <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-sm text-xs font-mono">OP</span>
               Handle operator precedence
             </span>
           </SubStep>
@@ -141,7 +141,7 @@ const Algorithm = ({ state }: AlgorithmProps) => {
       {state.simpleCalculatorState && (
         <div className="border-2 border-blue-300 rounded-lg p-4 bg-blue-50">
           <h3 className="font-semibold text-blue-700 mb-2">Current Operation:</h3>
-          <div className="bg-white rounded p-3 font-mono text-center text-lg">
+          <div className="bg-white rounded-sm p-3 font-mono text-center text-lg">
             {state.simpleCalculatorState.value2} {state.simpleCalculatorState.operator} {state.simpleCalculatorState.value1} = {state.simpleCalculatorState.answer}
           </div>
         </div>
@@ -152,11 +152,11 @@ const Algorithm = ({ state }: AlgorithmProps) => {
         <h4 className="font-semibold text-gray-700 mb-2">Legend:</h4>
         <div className="flex flex-wrap gap-4 text-xs">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-blue-500 rounded"></div>
+            <div className="w-3 h-3 bg-blue-500 rounded-sm"></div>
             <span>Active Step</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-gray-400 rounded"></div>
+            <div className="w-3 h-3 bg-gray-400 rounded-sm"></div>
             <span>Inactive Step</span>
           </div>
         </div>

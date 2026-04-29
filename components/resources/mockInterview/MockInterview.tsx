@@ -40,7 +40,7 @@ const FullScreenComponent = () => {
     <div>
       {currentStage !== 0 && currentStage !== numberOfStages - 1 && (
         <button
-          className="fixed bottom-4 left-4 px-4 py-2 bg-gray-500 text-white rounded"
+          className="fixed bottom-4 left-4 px-4 py-2 bg-gray-500 text-white rounded-sm"
           onClick={handleBack}
         >
           Back

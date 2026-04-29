@@ -79,7 +79,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
           {/* Hamburger Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="p-2 rounded-md hover:bg-gray-100 focus:outline-none"
+            className="p-2 rounded-md hover:bg-gray-100 focus:outline-hidden"
             aria-label="Toggle menu"
           >
             <div className="space-y-1.5">

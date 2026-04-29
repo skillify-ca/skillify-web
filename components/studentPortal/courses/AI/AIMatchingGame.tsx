@@ -197,7 +197,7 @@ const AIMatchingGame = () => {
         <h2 className="text-2xl font-bold text-center">Flash Cards</h2>
         <button
           onClick={handleRefresh}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          className="bg-blue-500 text-white px-4 py-2 rounded-sm hover:bg-blue-600 transition"
         >
           Refresh
         </button>
@@ -207,23 +207,23 @@ const AIMatchingGame = () => {
         {visibleCards.map((card, idx) => (
           <div
             key={idx}
-            className="relative w-72 h-80 [perspective:1000px] cursor-pointer"
+            className="relative w-72 h-80 perspective-[1000px] cursor-pointer"
             onClick={() => handleFlip(idx)}
           >
             <div
-              className={`relative w-full h-full border border-gray-800 rounded-lg transition-transform duration-700 [transform-style:preserve-3d] ${
-                flipped[idx] ? "[transform:rotateY(180deg)]" : ""
+              className={`relative w-full h-full border border-gray-800 rounded-lg transition-transform duration-700 transform-3d ${
+                flipped[idx] ? "transform-[rotateY(180deg)]" : ""
               }`}
             >
               {/* Front */}
-              <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex items-center justify-center [backface-visibility:hidden]">
+              <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-6 flex items-center justify-center backface-hidden">
                 <h2 className="text-xl text-gray-900 text-center">
                   {card.front}
                 </h2>
               </div>
 
               {/* Back */}
-              <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-4 flex flex-col items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+              <div className="absolute w-full h-full bg-white shadow-md rounded-lg p-4 flex flex-col items-center justify-center transform-[rotateY(180deg)] backface-hidden">
                 <span className="text-xl text-gray-900 text-center font-semibold">
                   {card.front}
                 </span>

@@ -49,7 +49,7 @@ const StartQuiz = ({
             placeholder="Enter your name"
             value={userInput.name}
             onChange={handleInputChange}
-            className="w-4/5 p-2 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
+            className="w-4/5 p-2 ml-8 border border-gray-500 rounded-lg shadow-sm appearance-none"
           ></input>
           <h3 className="ml-8">Where should we send your results?</h3>{" "}
           <input
@@ -58,7 +58,7 @@ const StartQuiz = ({
             placeholder="Enter your email"
             value={userInput.email}
             onChange={handleInputChange}
-            className="w-4/5 p-2 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
+            className="w-4/5 p-2 ml-8 border border-gray-500 rounded-lg shadow-sm appearance-none"
           ></input>
           {showEmailError && (
             <p className="ml-8 text-red-500">Invalid email address</p>

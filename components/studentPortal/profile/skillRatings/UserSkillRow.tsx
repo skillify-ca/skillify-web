@@ -30,7 +30,7 @@ export default function UserSkillRow({
   };
 
   return (
-    <div className="grid justify-center w-full grid-cols-1 px-4 my-4 text-center shadow place-items-center bg-backgroundPrimary sm:grid-cols-6 rounded-xl">
+    <div className="grid justify-center w-full grid-cols-1 px-4 my-4 text-center shadow-sm place-items-center bg-backgroundPrimary sm:grid-cols-6 rounded-xl">
       <div className="flex items-center justify-center p-4 text-5xl text-center rounded-full ">
         {renderEmojiByRating(userSkillRating.studentRating)}
       </div>

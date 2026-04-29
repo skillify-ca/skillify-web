@@ -28,7 +28,7 @@ export default function UserProfileSection({
           <div>
             <div className="w-32 h-32 overflow-hidden">
               <img
-                className="z-0 object-cover w-full h-full rounded-full shadow border-brandPrimary"
+                className="z-0 object-cover w-full h-full rounded-full shadow-sm border-brandPrimary"
                 src={
                   userProfileData.profileImage ??
                   "/images/profile/user-avatar.png"

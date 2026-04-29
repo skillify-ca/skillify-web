@@ -47,7 +47,7 @@ export default function LandingNavbar({
 
         <div
           className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${
-            active ? "h-[24rem]" : "h-0"
+            active ? "h-96" : "h-0"
           } duration-500 ease-in-out md:hidden`}
         >
           <div className="hidden gap-4">
@@ -101,7 +101,7 @@ export default function LandingNavbar({
               >
                 <img
                   src="/images/landingPage/tiktok.png"
-                  className="w-8 rounded"
+                  className="w-8 rounded-sm"
                 />
               </a>{" "}
             </div>
@@ -167,7 +167,7 @@ export default function LandingNavbar({
               >
                 <img
                   src="/images/landingPage/tiktok.png"
-                  className="w-8 rounded"
+                  className="w-8 rounded-sm"
                 />
               </a>{" "}
             </div>

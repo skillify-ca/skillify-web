@@ -16,7 +16,7 @@ function HeroHome({ title, description }) {
               data-aos="zoom-y-out"
             >
               Learn{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-300">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-blue-300">
                 {title}
               </span>
             </h1>
@@ -102,7 +102,7 @@ function HeroHome({ title, description }) {
                 aria-controls="modal"
               >
                 <svg
-                  className="flex-shrink-0 w-6 h-6 text-gray-400 fill-current group-hover:text-blue-600"
+                  className="shrink-0 w-6 h-6 text-gray-400 fill-current group-hover:text-blue-600"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >

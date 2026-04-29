@@ -22,7 +22,7 @@ export default function ProjectsSection({
             return (
               <div
                 key={i}
-                className="flex flex-col items-center gap-4 p-4 m-4 shadow bg-backgroundPrimary rounded-xl"
+                className="flex flex-col items-center gap-4 p-4 m-4 shadow-sm bg-backgroundPrimary rounded-xl"
               >
                 <p className="font-bold">{it.name}</p>
                 <img
@@ -48,7 +48,7 @@ export default function ProjectsSection({
       )}
       {/* this should be displayed only if the user is on their own profile page */}
       <Link href={"/profile/sideProjectHub/addProject"} legacyBehavior>
-        <div className="absolute flex items-center justify-center w-8 h-8 text-3xl text-center text-white rounded-full shadow cursor-pointer top-1 right-1 bg-brandPrimary hover:bg-pikachu-500">
+        <div className="absolute flex items-center justify-center w-8 h-8 text-3xl text-center text-white rounded-full shadow-sm cursor-pointer top-1 right-1 bg-brandPrimary hover:bg-pikachu-500">
           +
         </div>
       </Link>

@@ -68,7 +68,7 @@ const ContactForms = (props) => {
                 value={bootcamperInput}
                 onChange={(e) => setBootcamperInput(e.target.value)}
                 autoComplete="off"
-                className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+                className={`text-left p-2 border rounded-md shadow-md focus:outline-hidden focus:ring-indigo-500 text-md lg:text-md`}
                 placeholder="Email"
               />
               <Button

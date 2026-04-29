@@ -409,7 +409,7 @@ export function BinarySearchExample({
       {/* Extra Information Section */}
       <div>
         <p className="font-bold mb-2">Extra Information</p>
-        <div className="bg-gray-100 p-3 rounded space-y-1 text-sm">
+        <div className="bg-gray-100 p-3 rounded-sm space-y-1 text-sm">
           {oldestStudent && (
             <p>
               The oldest student in the class is: <strong>{oldestStudent.name}</strong> ({oldestStudent.birthMonth})
@@ -452,7 +452,7 @@ export function BinarySearchExample({
                     {isTarget && <span>🎯</span>}
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs bg-blue-100 px-2 py-1 rounded">
+                    <span className="text-xs bg-blue-100 px-2 py-1 rounded-sm">
                       {formatAgeRank(student.ageRank, state.students.length)}
                     </span>
                     {isRevealed && (

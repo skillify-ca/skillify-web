@@ -39,7 +39,7 @@ const CustomCode = ({ children, className, ...props }: any) => {
   
   if (isInline) {
     return (
-      <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono" {...props}>
+      <code className="bg-gray-100 px-1 py-0.5 rounded-sm text-sm font-mono" {...props}>
         {children}
       </code>
     );
@@ -176,7 +176,7 @@ export const ResourceList = ({ resources }: ResourceListProps) => {
           <img
             src={resource.image}
             alt={resource.title}
-            className="w-full h-32 object-contain mb-4 rounded"
+            className="w-full h-32 object-contain mb-4 rounded-sm"
           />
           <h3 className="text-lg font-semibold mb-2">{resource.title}</h3>
           <p className="text-gray-600 text-sm mb-4">{resource.description}</p>

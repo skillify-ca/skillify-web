@@ -17,7 +17,7 @@ const BlogCard = ({ date, title, image, description, link, color }) => {
   return (
     (<Link href={link} legacyBehavior>
       <div
-        className={`flex flex-col h-80 group border-t-8 hover:bg-backgroundHover transform transition-all text-textPrimary bg-backgroundPrimary shadow cursor-pointer overflow-hidden ${getBorderColour()}`}
+        className={`flex flex-col h-80 group border-t-8 hover:bg-backgroundHover transform transition-all text-textPrimary bg-backgroundPrimary shadow-sm cursor-pointer overflow-hidden ${getBorderColour()}`}
       >
         <img
           src={image}

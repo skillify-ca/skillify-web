@@ -45,7 +45,7 @@ export default function GiveFeedback() {
                 Your browser does not support the video tag.
               </video>
               <button
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                className="px-4 py-2 bg-red-500 text-white rounded-sm hover:bg-red-600"
                 onClick={handleClearVideo}
               >
                 Clear Video
@@ -54,7 +54,7 @@ export default function GiveFeedback() {
           ) : (
             <div>
               <label
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
+                className="px-4 py-2 bg-blue-500 text-white rounded-sm hover:bg-blue-600 cursor-pointer"
                 htmlFor="video-upload"
               >
                 Upload Video
@@ -69,7 +69,7 @@ export default function GiveFeedback() {
             </div>
           )}
           <button
-            className="fixed right-28 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className="fixed right-28 px-4 py-2 bg-green-500 text-white rounded-sm hover:bg-green-600"
             onClick={handleNextStage}
           >
             Submit Feedback

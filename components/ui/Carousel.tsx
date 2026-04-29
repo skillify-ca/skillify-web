@@ -68,7 +68,7 @@ export default function Carousel({ items }: { items: { text: string; image: stri
             {/* Navigation Buttons - Hidden on very small screens, visible on sm+ */}
             <button
                 onClick={prevSlide}
-                className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 bg-white rounded-full p-2 lg:p-3 shadow-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 items-center justify-center"
+                className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 bg-white rounded-full p-2 lg:p-3 shadow-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 items-center justify-center"
                 aria-label="Previous slide"
             >
                 <ChevronLeft />
@@ -76,7 +76,7 @@ export default function Carousel({ items }: { items: { text: string; image: stri
 
             <button
                 onClick={nextSlide}
-                className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 bg-white rounded-full p-2 lg:p-3 shadow-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 items-center justify-center"
+                className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 bg-white rounded-full p-2 lg:p-3 shadow-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 items-center justify-center"
                 aria-label="Next slide"
             >
                 <ChevronRight />
@@ -86,7 +86,7 @@ export default function Carousel({ items }: { items: { text: string; image: stri
             <div className="flex sm:hidden justify-between mt-4 gap-4">
                 <button
                     onClick={prevSlide}
-                    className="flex-1 bg-white rounded-lg p-3 shadow-md hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
+                    className="flex-1 bg-white rounded-lg p-3 shadow-md hover:bg-gray-100 transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
                     aria-label="Previous slide"
                 >
                     <ChevronLeft />
@@ -95,7 +95,7 @@ export default function Carousel({ items }: { items: { text: string; image: stri
 
                 <button
                     onClick={nextSlide}
-                    className="flex-1 bg-white rounded-lg p-3 shadow-md hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
+                    className="flex-1 bg-white rounded-lg p-3 shadow-md hover:bg-gray-100 transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
                     aria-label="Next slide"
                 >
                     <span className="mr-2 text-sm font-medium text-gray-700">Next</span>
@@ -109,7 +109,7 @@ export default function Carousel({ items }: { items: { text: string; image: stri
                     <button
                         key={index}
                         onClick={() => goToSlide(index)}
-                        className={`h-2 sm:h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${index === currentIndex
+                        className={`h-2 sm:h-3 rounded-full transition-all duration-300 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${index === currentIndex
                             ? 'bg-blue-600 w-6 sm:w-8'
                             : 'w-2 sm:w-3 bg-gray-300 hover:bg-gray-400'
                             }`}

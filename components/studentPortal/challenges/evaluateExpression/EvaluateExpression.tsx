@@ -56,7 +56,7 @@ const EvaluateExpression = ({
           <div className="mb-6">
             <div className="relative">
               <input
-                className="w-full p-4 text-xl border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none bg-gray-50 text-center font-mono pr-32"
+                className="w-full p-4 text-xl border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-hidden bg-gray-50 text-center font-mono pr-32"
                 value={state.inputExpression}
                 onChange={(e) => onInputChangeRequested(e.target.value)}
                 placeholder="Enter expression (e.g., 3+2*2)"
@@ -189,7 +189,7 @@ const History = ({ stateHistory }) => {
       ) : (
         <div className="space-y-3">
           {/* Summary Stats */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-600">{stateHistory.length}</div>
@@ -281,19 +281,19 @@ const History = ({ stateHistory }) => {
             <div className="text-xs text-gray-600 font-semibold mb-2">Step Types:</div>
             <div className="flex flex-wrap gap-2">
               <div className="flex items-center gap-1">
-                <span className="w-2 h-2 bg-blue-500 rounded"></span>
+                <span className="w-2 h-2 bg-blue-500 rounded-sm"></span>
                 <span>Value</span>
               </div>
               <div className="flex items-center gap-1">
-                <span className="w-2 h-2 bg-green-500 rounded"></span>
+                <span className="w-2 h-2 bg-green-500 rounded-sm"></span>
                 <span>Operator</span>
               </div>
               <div className="flex items-center gap-1">
-                <span className="w-2 h-2 bg-orange-500 rounded"></span>
+                <span className="w-2 h-2 bg-orange-500 rounded-sm"></span>
                 <span>Pop</span>
               </div>
               <div className="flex items-center gap-1">
-                <span className="w-2 h-2 bg-purple-500 rounded"></span>
+                <span className="w-2 h-2 bg-purple-500 rounded-sm"></span>
                 <span>Calculate</span>
               </div>
             </div>
@@ -358,7 +358,7 @@ const Interactive = ({ state }) => {
                   return (
                     <span
                       key={index}
-                      className={`${bgColor} ${textColor} px-1 py-0.5 rounded transition-colors duration-200`}
+                      className={`${bgColor} ${textColor} px-1 py-0.5 rounded-sm transition-colors duration-200`}
                     >
                       {char === ' ' ? '\u00A0' : char}
                     </span>
@@ -374,15 +374,15 @@ const Interactive = ({ state }) => {
             {/* Legend */}
             <div className="mt-3 flex flex-wrap gap-3 text-xs">
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-yellow-400 rounded"></div>
+                <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
                 <span className="text-gray-600">Current</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-gray-200 rounded"></div>
+                <div className="w-3 h-3 bg-gray-200 rounded-sm"></div>
                 <span className="text-gray-600">Processed</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-gray-100 rounded border border-gray-300"></div>
+                <div className="w-3 h-3 bg-gray-100 rounded-sm border border-gray-300"></div>
                 <span className="text-gray-600">Upcoming</span>
               </div>
             </div>
@@ -392,7 +392,7 @@ const Interactive = ({ state }) => {
           <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
             <p className="text-sm font-semibold text-gray-600 mb-1">Current Character Detail:</p>
             <div className="flex items-center gap-3">
-              <div className="bg-yellow-500 text-gray-900 px-3 py-2 rounded font-mono text-xl font-bold">
+              <div className="bg-yellow-500 text-gray-900 px-3 py-2 rounded-sm font-mono text-xl font-bold">
                 {state.inputExpression && state.currentIndex < state.inputExpression.length
                   ? state.inputExpression.substring(state.currentIndex, state.currentIndex + 1)
                   : "∅"}

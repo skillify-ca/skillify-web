@@ -20,13 +20,13 @@ const Intake = ({ onNextClick }: IntakeProps) => {
           <input
             type="text"
             name="name"
-            className="shadow appearance-none border border-gray-500 rounded-lg px-6"
+            className="shadow-sm appearance-none border border-gray-500 rounded-lg px-6"
           ></input>
           <h3>Email Address</h3>{" "}
           <input
             type="email"
             name="email"
-            className="shadow appearance-none border border-gray-500 rounded-lg px-6"
+            className="shadow-sm appearance-none border border-gray-500 rounded-lg px-6"
           ></input>
         </div>
         <Button

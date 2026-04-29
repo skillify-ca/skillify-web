@@ -16,7 +16,7 @@ export default function Navbar({
         <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
           {/* <!-- Mobile menu button--> */}
           <button
-            className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-white"
             aria-expanded="false"
             onClick={handleClick}
           >
@@ -67,7 +67,7 @@ export default function Navbar({
         </div>
         <div className="flex items-center justify-center flex-1 lg:items-stretch lg:justify-center">
           <Link href="/" legacyBehavior>
-            <div className="flex items-center flex-shrink-0">
+            <div className="flex items-center shrink-0">
               <img
                 className="block w-auto h-8 lg:hidden"
                 src="/images/logo.svg"

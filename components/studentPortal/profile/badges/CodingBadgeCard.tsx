@@ -21,10 +21,10 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
     <Root>
       <Trigger asChild>
         {
-          <div className="flex items-center gap-4 p-4 shadow cursor-pointer bg-backgroundPrimary rounded-xl">
+          <div className="flex items-center gap-4 p-4 shadow-sm cursor-pointer bg-backgroundPrimary rounded-xl">
             <img
               src={badge.coding_badge.image}
-              className="w-16 h-16 transition-all border rounded-full shadow lg:w-24 lg:h-24 hover:scale-110 hover:shadow-lg"
+              className="w-16 h-16 transition-all border rounded-full shadow-sm lg:w-24 lg:h-24 hover:scale-110 hover:shadow-lg"
             />
             <p>{badge.coding_badge.title}</p>
           </div>
@@ -66,7 +66,7 @@ export function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
       {badge.coding_badge.image ? (
         <img
           src={badge.coding_badge.image}
-          className="w-64 h-64 mx-auto border shadow"
+          className="w-64 h-64 mx-auto border shadow-sm"
         />
       ) : (
         <div className="w-36 h-36 bg-slate-400" />

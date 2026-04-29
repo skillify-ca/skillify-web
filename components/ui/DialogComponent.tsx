@@ -43,7 +43,7 @@ const DialogComponent: React.FC<DialogComponentProps> = ({
     <Root defaultOpen={!trigger}>
       {trigger && triggerTitle ? (
         <Trigger asChild>
-          <button className="hover:bg-gray-200 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-gray-200 focus:outline-none">
+          <button className="hover:bg-gray-200 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-gray-200 focus:outline-hidden">
             {triggerTitle}
           </button>
         </Trigger>
@@ -56,7 +56,7 @@ const DialogComponent: React.FC<DialogComponentProps> = ({
             className={`fixed flex flex-col space-y-4 items-center justify-center ${size} px-3 py-32 mx-auto text-center transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg md:max-w-3xl lg:max-w-4xl sm:rounded-3xl left-1/2 top-1/2`}
           >
             <Close asChild>
-              <button className="absolute flex items-center justify-center w-6 h-6 text-gray-100 duration-500 bg-gray-900 bg-opacity-50 rounded-md outline-none cursor-pointer top-3 right-3 hover:bg-opacity-100">
+              <button className="absolute flex items-center justify-center w-6 h-6 text-gray-100 duration-500 bg-gray-900 bg-opacity-50 rounded-md outline-hidden cursor-pointer top-3 right-3 hover:bg-opacity-100">
                 <XIcon />
               </button>
             </Close>
