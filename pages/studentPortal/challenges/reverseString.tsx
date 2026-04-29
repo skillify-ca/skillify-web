@@ -47,7 +47,7 @@ export default function ReverseString(props) {
   const [tail, setTail] = useState(s.length - 1);
   const getCharColour = (index) => {
     if (index === head && index === tail)
-      return "bg-gradient-to-b from-green-300 to-yellow-300";
+      return "bg-linear-to-b from-green-300 to-yellow-300";
     if (index === head) return "bg-green-300";
     if (index === tail) return "bg-yellow-300";
     return "bg-blue-300";

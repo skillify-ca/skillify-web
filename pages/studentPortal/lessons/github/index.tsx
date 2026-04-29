@@ -5,7 +5,7 @@ export default function index() {
   return (
     <div className="grid grid-cols-1 px-10 pt-6">
       <h1 className="font-bold text-4xl ">Deploying a Website using Vercel</h1>
-      <div className="flex flex-row justify-between border-2 border-black rounded shadow-lg gap-4 mt-4">
+      <div className="flex flex-row justify-between border-2 border-black rounded-sm shadow-lg gap-4 mt-4">
         <div className="flex flex-row">
           <div className="flex items-center p-4 bg-white">
             <img

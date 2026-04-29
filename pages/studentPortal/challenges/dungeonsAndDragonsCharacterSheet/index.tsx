@@ -199,7 +199,7 @@ function DungeonsAndDragonsCharacterSheet() {
           Current Level: Level {currentLevel}
         </h2>
 
-        <div className="h-64 p-4 overflow-y-auto rounded shadow bg-backgroundSecondary">
+        <div className="h-64 p-4 overflow-y-auto rounded-sm shadow-sm bg-backgroundSecondary">
           {levelDescriptions[currentLevel - 1][currentLevel]}
         </div>
       </div>

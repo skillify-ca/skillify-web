@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "../ui/Button";
 
 type HeroProps = {
@@ -100,11 +100,11 @@ export default function Hero({ headerText, description, heroImageUrl }: HeroProp
                 <div className="flex justify-between items-center">
                   <p className="text-2xl font-bold">$1700</p>
                   <div className="flex">
-                    <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" />
-                    <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" />
-                    <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" />
-                    <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" />
-                    <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" />
+                    <img src="/images/landingPage/star.svg" className="w-4 h-4 " />
+                    <img src="/images/landingPage/star.svg" className="w-4 h-4 " />
+                    <img src="/images/landingPage/star.svg" className="w-4 h-4 " />
+                    <img src="/images/landingPage/star.svg" className="w-4 h-4 " />
+                    <img src="/images/landingPage/star.svg" className="w-4 h-4 " />
                   </div>
                 </div>
                 <p className="text-sm text-gray-500">NEXT COURSE</p>

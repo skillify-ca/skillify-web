@@ -68,11 +68,11 @@ export default function EvaluateExpressionPage(props) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header with Learning Objectives */}
-      <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white">
+      <div className="bg-linear-to-r from-slate-700 to-slate-800 text-white">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-center mb-8">Evaluate Expression</h1>
           
-          <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+          <div className="bg-white/5 backdrop-blur-xs rounded-lg p-6 border border-white/10">
             <h2 className="text-2xl font-bold mb-4 flex items-center">
               <span className="mr-2">🎯</span> Learning Objectives
             </h2>

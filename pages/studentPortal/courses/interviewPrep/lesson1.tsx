@@ -53,7 +53,7 @@ const Lesson1Content = () => {
           success. Here are some reasons why interview preparation is essential:`}
           </p>
 
-          {/* <div className="p-4 my-6 border border-black rounded section-box"> */}
+          {/* <div className="p-4 my-6 border border-black rounded-sm section-box"> */}
           <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
             <h2 className="mb-4 text-xl font-bold">1. Confidence Boost</h2>
 

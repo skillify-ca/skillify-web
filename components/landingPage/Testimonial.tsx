@@ -1,4 +1,3 @@
-import React from "react";
 
 export interface TestimonialProps {
   text: string;
@@ -34,11 +33,11 @@ const Testimonial = ({
     >
       <p className="sm:h-40">{text}</p>
       <div className="flex py-3">
-        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
-        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
-        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
-        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
-        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
+        <img src="/images/landingPage/star.svg" className="" />
+        <img src="/images/landingPage/star.svg" className="" />
+        <img src="/images/landingPage/star.svg" className="" />
+        <img src="/images/landingPage/star.svg" className="" />
+        <img src="/images/landingPage/star.svg" className="" />
       </div>
       <div className="grid grid-cols-6 py-3">
         <img src={img} alt="student" className="rounded-full" />

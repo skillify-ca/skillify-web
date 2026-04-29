@@ -85,10 +85,10 @@ export default function Goals(props) {
         {goalsSections.map((section) => {
           return (
             <div
-              className="p-4 mb-8 rounded bg-backgroundSecondary"
+              className="p-4 mb-8 rounded-sm bg-backgroundSecondary"
               key={section.sectionName}
             >
-              <h6 className="p-2 text-center shadow text-brandPrimary bg-backgroundPrimary w-28 rounded-xl">
+              <h6 className="p-2 text-center shadow-sm text-brandPrimary bg-backgroundPrimary w-28 rounded-xl">
                 {section.sectionName}
               </h6>
 

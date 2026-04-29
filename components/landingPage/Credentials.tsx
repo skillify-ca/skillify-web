@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function Credentials() {
   const images = [
@@ -85,11 +84,11 @@ function TrustBar() {
 
               {/* Right: social proof signal */}
               <div className="flex items-center gap-1">
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4 hue-rotate-45" alt="" />
+                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
                   <p className="text-sm text-gray-500 ml-2 whitespace-nowrap">5.0 across all courses</p>
               </div>
 

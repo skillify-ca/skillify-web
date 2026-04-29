@@ -179,7 +179,7 @@ function HeroText({ currentPage, visible }: { currentPage: string, visible: bool
       <div style={fadeStyle(visible, 150)} className="flex flex-col sm:flex-row gap-3 mt-2">
         <a
           href="#stage"
-          className={`max-w-full bg-gradient-to-b px-6 font-bold border-b-4 rounded-lg py-3
+          className={`max-w-full bg-linear-to-b px-6 font-bold border-b-4 rounded-lg py-3
           bg-${content.primaryColour} hover:bg-${content.primaryColourHover} border-${content.primaryColourBorder}
           active:border-b-2 cursor-pointer text-white text-center`}
         >

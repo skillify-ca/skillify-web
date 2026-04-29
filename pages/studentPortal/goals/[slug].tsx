@@ -118,7 +118,7 @@ const EditGoalsPage = () => {
             </div>
             <textarea
               className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
-              placeholder={"write an actionable goal outline"}
+              placeholder={"write an actionable goal outline-solid"}
               value={editedGoalValues.goalNotes}
               disabled={!editGoalNotes}
               onChange={(e) => {

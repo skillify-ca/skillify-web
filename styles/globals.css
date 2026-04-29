@@ -1,51 +1,70 @@
-@tailwind base;
-@tailwind components;
+@import 'tailwindcss';
 
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/Poppins/Poppins-Regular.ttf");
-}
+@config '../tailwind.config.js';
 
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/Poppins/Poppins-Bold.ttf");
-}
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-.theme-default {
-  --color-text-primary: rgb(0, 0, 0);
-  --color-background-primary: rgb(255, 255, 255);
-  --color-background-hover: rgb(254 252 232);
-  --color-background-secondary: rgb(226 232 240);
-  --color-brand-primary: rgb(241, 135, 1);
-  --color-input-text-primary: rgb(17 24 39);
-}
-
-.theme-dracula {
-  --color-text-primary: rgb(255, 255, 255);
-  --color-background-primary: rgb(17 24 39);
-  --color-background-hover: rgb(30 41 59);
-  --color-background-secondary: rgb(30 41 59);
-  --color-brand-primary: rgb(241, 135, 1);
-  --color-input-text-primary: rgb(17 24 39);
-}
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
-.animate-slide-up {
-  animation: slide-up 0.8s ease-in-out;
-}
+@layer components {
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Poppins/Poppins-Regular.ttf');
+  }
 
-@tailwind utilities;
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/Poppins/Poppins-Bold.ttf');
+  }
+
+  .theme-default {
+    --color-text-primary: rgb(0, 0, 0);
+    --color-background-primary: rgb(255, 255, 255);
+    --color-background-hover: rgb(254 252 232);
+    --color-background-secondary: rgb(226 232 240);
+    --color-brand-primary: rgb(241, 135, 1);
+    --color-input-text-primary: rgb(17 24 39);
+  }
+
+  .theme-dracula {
+    --color-text-primary: rgb(255, 255, 255);
+    --color-background-primary: rgb(17 24 39);
+    --color-background-hover: rgb(30 41 59);
+    --color-background-secondary: rgb(30 41 59);
+    --color-brand-primary: rgb(241, 135, 1);
+    --color-input-text-primary: rgb(17 24 39);
+  }
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-in-out;
+  }
+}

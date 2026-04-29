@@ -84,7 +84,7 @@ const HashSetShelf = ({ seenGifts, currentGift, duplicateFound }: {
   const seenArray = Array.from(seenGifts);
   
   return (
-    <div className="bg-gradient-to-b from-amber-50 to-amber-100 rounded-lg p-6 border-2 border-amber-300 min-h-[200px]">
+    <div className="bg-linear-to-b from-amber-50 to-amber-100 rounded-lg p-6 border-2 border-amber-300 min-h-[200px]">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-2xl">📚</span>
         <h4 className="text-lg font-bold text-gray-800">Gift Registry (Hash Set)</h4>
@@ -228,12 +228,12 @@ const DuplicateGiftsLesson = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-8">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-purple-50 to-blue-50 p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-purple-200">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-2">
+            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-purple-600 to-pink-600 mb-2">
               🎂 Liiyaani's Birthday Gift Tracker
             </h1>
             <p className="text-gray-600 text-lg">
@@ -253,7 +253,7 @@ const DuplicateGiftsLesson = () => {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none text-center font-mono text-lg"
+                className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-hidden text-center font-mono text-lg"
                 placeholder="e.g., 1,2,3,2,4"
               />
               <Button label="🎲 Random" onClick={handleRandomList} variant="warning" size="medium" />
@@ -278,7 +278,7 @@ const DuplicateGiftsLesson = () => {
         </div>
 
         {/* Story Panel */}
-        <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl shadow-lg p-6 border-2 border-purple-300">
+        <div className="bg-linear-to-r from-pink-100 to-purple-100 rounded-xl shadow-lg p-6 border-2 border-purple-300">
           <div className="flex items-center gap-4">
             <div className="text-6xl">👧🏾</div>
             <div className="flex-1">
@@ -308,19 +308,19 @@ const DuplicateGiftsLesson = () => {
                 
                 <div className="flex gap-3 text-xs justify-center">
                   <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-yellow-400 rounded"></div>
+                    <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
                     <span>Current</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-gray-200 rounded"></div>
+                    <div className="w-3 h-3 bg-gray-200 rounded-sm"></div>
                     <span>Checked</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-gray-100 rounded border border-gray-300"></div>
+                    <div className="w-3 h-3 bg-gray-100 rounded-sm border border-gray-300"></div>
                     <span>Pending</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-red-100 rounded border border-red-500"></div>
+                    <div className="w-3 h-3 bg-red-100 rounded-sm border border-red-500"></div>
                     <span>Duplicate</span>
                   </div>
                 </div>
@@ -370,7 +370,7 @@ const DuplicateGiftsLesson = () => {
                 <p className="text-sm text-gray-700 mb-2">
                   Compare each gift with all previous gifts
                 </p>
-                <div className="bg-white rounded p-3 font-mono text-sm">
+                <div className="bg-white rounded-sm p-3 font-mono text-sm">
                   <div>Time: O(n²)</div>
                   <div>Space: O(1)</div>
                   {currentState.giftList.length > 0 && (
@@ -388,7 +388,7 @@ const DuplicateGiftsLesson = () => {
                 <p className="text-sm text-gray-700 mb-2">
                   Check registry once per gift
                 </p>
-                <div className="bg-white rounded p-3 font-mono text-sm">
+                <div className="bg-white rounded-sm p-3 font-mono text-sm">
                   <div>Time: O(n)</div>
                   <div>Space: O(n)</div>
                   {currentState.giftList.length > 0 && (

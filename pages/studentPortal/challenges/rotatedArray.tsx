@@ -65,7 +65,7 @@ export default function RotatedArray() {
     <div className="p-6 max-w-xl mx-auto space-y-6">
       <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">Rotated Sorted Array</h1>
 
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200 mb-8">
+      <div className="bg-linear-to-r from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200 mb-8">
         <h3 className="text-xl font-bold text-green-900 mb-4 flex items-center">
           <span className="mr-2">🎯</span> Learning Objectives
         </h3>
@@ -172,24 +172,24 @@ export default function RotatedArray() {
         <BinarySearchExample studentList={studentList} />
       </CollapsibleSection>
 
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+      <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
         <h3 className="text-xl font-bold text-blue-900 mb-4 flex items-center">
           <span className="mr-2">💭</span> Reflection Questions
         </h3>
         <div className="space-y-4">
-          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+          <div className="bg-white rounded-md p-4 shadow-xs border border-blue-100">
             <p className="font-medium text-gray-900 mb-1">1. Efficiency Comparison</p>
             <p className="text-gray-700">Which approach felt the most efficient? Why?</p>
           </div>
-          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+          <div className="bg-white rounded-md p-4 shadow-xs border border-blue-100">
             <p className="font-medium text-gray-900 mb-1">2. Algorithm Impact</p>
             <p className="text-gray-700">If you had the age rankings for Approach 1 or 2, would that have changed the efficiency of those algorithms?</p>
           </div>
-          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+          <div className="bg-white rounded-md p-4 shadow-xs border border-blue-100">
             <p className="font-medium text-gray-900 mb-1">3. Pivot Point Analysis</p>
             <p className="text-gray-700">Do any of the algorithms need to change if the school year started in August or October? In general, does it matter where the pivot point in a rotated sorted array is?</p>
           </div>
-          <div className="bg-white rounded-md p-4 shadow-sm border border-blue-100">
+          <div className="bg-white rounded-md p-4 shadow-xs border border-blue-100">
             <p className="font-medium text-gray-900 mb-1">4. Edge Case Handling</p>
             <p className="text-gray-700">Did you ever run into a month with no student birthdays? How did you decide what to do next?</p>
           </div>
@@ -372,7 +372,7 @@ function ManageStudentsModal({
                 onChange={(e) => setNewStudentName(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleAddStudent()}
                 placeholder="Enter student name"
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
               />
               <button
                 onClick={handleAddStudent}

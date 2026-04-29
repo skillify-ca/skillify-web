@@ -44,7 +44,7 @@ export const getTailwindColourStylingLessonData = () => {
 
     {
       component: "description",
-      text: "Change the bg-blue-500 class to bg-gradient-to-r from-blue-300 to-blue-800 and notice what happens to the background colour. Change the colour of the author tag, on line 16, to green-500. Change the colour of three other different tags on the page, so the page is has five distinct background colours.",
+      text: "Change the bg-blue-500 class to bg-linear-to-r from-blue-300 to-blue-800 and notice what happens to the background colour. Change the colour of the author tag, on line 16, to green-500. Change the colour of three other different tags on the page, so the page is has five distinct background colours.",
     },
 
     {

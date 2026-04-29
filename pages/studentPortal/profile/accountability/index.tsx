@@ -165,7 +165,7 @@ const AccountabilityDashboard: React.FC = () => {
       <div className="mb-4">
         <label className="block mb-2">Task Description:</label>
         <textarea
-          className="block w-full p-2 border border-gray-300 rounded"
+          className="block w-full p-2 border border-gray-300 rounded-sm"
           rows={4}
           value={description}
           onChange={(e) => handleChange("description", e.target.value)}

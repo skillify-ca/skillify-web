@@ -67,7 +67,7 @@ function Calculator() {
         {numberStack.map((it, index) => (
           <div
             key={index}
-            className="flex items-center justify-center w-16 h-16 p-2 text-lg bg-gray-200 border-2 rounded"
+            className="flex items-center justify-center w-16 h-16 p-2 text-lg bg-gray-200 border-2 rounded-sm"
           >
             {it}
           </div>
@@ -79,7 +79,7 @@ function Calculator() {
         {operatorStack.map((it, index) => (
           <div
             key={index}
-            className="flex items-center justify-center w-16 h-16 p-2 text-lg bg-gray-200 border-2 rounded"
+            className="flex items-center justify-center w-16 h-16 p-2 text-lg bg-gray-200 border-2 rounded-sm"
           >
             {it}
           </div>

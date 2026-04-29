@@ -55,7 +55,7 @@ ProfileGateway.getLayout = function getLayout(page: any) {
       <div className="flex flex-col min-h-screen theme-default">
         <LandingNavbar />
 
-        <main className="flex-grow w-full mx-auto max-w-7xl">{page}</main>
+        <main className="grow w-full mx-auto max-w-7xl">{page}</main>
       </div>
     </div>
   );

@@ -129,7 +129,7 @@ export default function StudentsPage() {
 
                 <a
                   href={`mailto:vithushan19@gmail.com?subject=Book: ${service.title}`}
-                  className="mt-4 self-start bg-gradient-to-b px-5 py-2 font-bold border-b-4 rounded-lg
+                  className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
                     bg-orange-400 hover:bg-orange-500 border-orange-600
                     active:border-b-2 cursor-pointer text-white text-sm"
                 >
@@ -186,7 +186,7 @@ export default function StudentsPage() {
 
               <div className="flex py-3">
                 {[...Array(5)].map((_, i) => (
-                  <img key={i} src="/images/landingPage/star.svg" className="hue-rotate-45 w-4 h-4" alt="star" />
+                  <img key={i} src="/images/landingPage/star.svg" className=" w-4 h-4" alt="star" />
                 ))}
               </div>
 
@@ -215,7 +215,7 @@ export default function StudentsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="mailto:vithushan19@gmail.com?subject=Book a session"
-            className="bg-gradient-to-b px-8 font-bold border-b-4 rounded-lg py-3
+            className="bg-linear-to-b px-8 font-bold border-b-4 rounded-lg py-3
               bg-orange-400 hover:bg-orange-500 border-orange-600
               active:border-b-2 cursor-pointer text-white text-center"
           >
