@@ -34,7 +34,7 @@ const SERVICES = [
     description:
       "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
     for: ["graduating", "hunting"],
-    border: "border-pikachu-500",
+    border: "border-pikachu",
     tag: "For job seekers",
   },
   {
@@ -67,7 +67,7 @@ const TESTIMONIALS = [
     school: "York University — Mechanical Engineering",
     outcome: "Hired as a Software Engineer",
     img: "/images/landingPage/mayu.png",
-    border: "border-pikachu-500",
+    border: "border-pikachu",
   },
   {
     quote:

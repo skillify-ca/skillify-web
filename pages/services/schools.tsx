@@ -58,7 +58,7 @@ const SERVICES = [
         outcome: "A clear plan for how your school approaches technology.",
         description:
             "A working session for administrators and curriculum leads who are figuring out how to bring coding, AI, and technology into their schools in a way that is practical and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo — not a sales pitch for a platform.",
-        border: "border-pikachu-500",
+        border: "border-pikachu",
     },
 ];
 

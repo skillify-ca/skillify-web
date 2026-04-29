@@ -146,7 +146,7 @@ export default function AjevanSuccessStory() {
         <Link href={"/plans"} legacyBehavior>
           <button
             type="button"
-            className="py-3 bg-charmander hover:bg-pikachu-500 text-white px-8 font-bold rounded-lg cursor-pointer"
+            className="py-3 bg-charmander hover:bg-pikachu text-white px-8 font-bold rounded-lg cursor-pointer"
           >
             <p className={`text-base"`}>Apply Now</p>
           </button>

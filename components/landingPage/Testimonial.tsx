@@ -1,3 +1,4 @@
+import React from "react";
 
 export interface TestimonialProps {
   text: string;
@@ -22,7 +23,7 @@ const Testimonial = ({
     } else if (color === 1) {
       return "border-rattata";
     } else if (color === 2) {
-      return "border-pikachu-500";
+      return "border-pikachu";
     } else if (color === 3) {
       return "border-murkrow";
     }

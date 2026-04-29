@@ -1,6 +1,5 @@
-import React from "react";
 import Link from "next/link";
-import CountdownTimer from "./CountdownTimer";
+import React from "react";
 
 export default function LandingFooter(props) {
   return (
@@ -16,7 +15,7 @@ export default function LandingFooter(props) {
             onClick={(e) =>
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
             }
-            className={`py-3 bg-linear-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
+            className={`py-3 bg-linear-to-b bg-charmander hover:bg-pikachu text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
             {...props}
           >
             <p className={`text-base"`}>Apply Now</p>

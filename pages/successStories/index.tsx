@@ -39,7 +39,7 @@ export default function SuccessStories() {
         <Link href={"/plans"} legacyBehavior>
           <button
             type="button"
-            className="px-8 py-3 font-bold text-white rounded-lg cursor-pointer bg-charmander hover:bg-pikachu-500"
+            className="px-8 py-3 font-bold text-white rounded-lg cursor-pointer bg-charmander hover:bg-pikachu"
           >
             <p className={`text-base"`}>Apply Now</p>
           </button>

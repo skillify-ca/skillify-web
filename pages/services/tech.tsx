@@ -31,7 +31,7 @@ const SERVICES = [
     outcome: "Stop being blocked by broken code you didn't write.",
     description:
       "You built something with AI tools and got pretty far. Now it's broken, half-finished, or just not doing what you need it to do. I will dig in, figure out what's wrong, and get it working so you can get back to running your business.",
-    border: "border-pikachu-500",
+    border: "border-pikachu",
     tag: "For founders with a broken or stuck app",
   },
 ];
@@ -62,7 +62,7 @@ const TESTIMONIALS = [
     school: "Founder",
     outcome: "Shipped a real product",
     img: "",
-    border: "border-pikachu-500",
+    border: "border-pikachu",
   },
 ];
 

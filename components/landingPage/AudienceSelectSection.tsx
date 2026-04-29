@@ -34,13 +34,13 @@ export default function AudienceSelectSection() {
                 </a>
 
                 {/* Professionals / Builders */}
-                <a href="/services/tech" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu-500 hover:scale-105 transition-transform cursor-pointer no-underline">
+                <a href="/services/tech" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu hover:scale-105 transition-transform cursor-pointer no-underline">
                     <p className="text-3xl mb-3">💻</p>
                     <p className="text-xl font-bold text-gray-900">For Professionals & Builders</p>
                     <p className="text-gray-500 text-sm mt-2 flex-1">
                         Fix your app, build something new, or get a trusted tech advisor in your corner. Ask questions and get results.
                     </p>
-                    <p className="font-semibold text-sm mt-4 text-pikachu-500">See tech services →</p>
+                    <p className="font-semibold text-sm mt-4 text-pikachu">See tech services →</p>
                 </a>
 
                 {/* Schools / Admins */}

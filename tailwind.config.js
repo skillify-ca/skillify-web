@@ -32,10 +32,7 @@ module.exports = {
         inputTextPrimary: "var(--color-input-text-primary)",
         charmander: "#F18701",
         rattata: "#7678ED",
-        pikachu: {
-          200: "#F7B80150",
-          500: "#F7B801",
-        },
+        pikachu: "#F7B801",
         murkrow: "#18124D",
         bulbasaur: {
           200: "#F0FFE9",
@@ -160,9 +157,5 @@ module.exports = {
     keyframes: true,
     fontFace: true,
   },
-  plugins: [
-    // require("tailwindcss-hero-patterns"),
-    // require("@tailwindcss/aspect-ratio"),
-    // require("@tailwindcss/line-clamp"),
-  ],
+  plugins: [],
 };
