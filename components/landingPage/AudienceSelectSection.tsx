@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function AudienceSelectSection() {
     return (
@@ -58,8 +57,8 @@ export default function AudienceSelectSection() {
             {/* Fallback CTA */}
             <p className="text-gray-400 text-sm mt-10">
                 Not sure where to start?{" "}
-                <a href="mailto:vithushan19@gmail.com" className="text-charmander underline">
-                    Book a free 15-minute intro call.
+                <a href="https://calendly.com/vithushan19/intro" className="text-charmander underline">
+                    Book a free 30-minute intro call.
                 </a>
             </p>
 

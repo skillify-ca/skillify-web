@@ -1,4 +1,3 @@
-import React from "react";
 import Credentials from "../../components/landingPage/Credentials";
 import WhoItsFor from "../../components/landingPage/WhoItsFor";
 import ServicesLayout from "./layout";
@@ -7,7 +6,7 @@ const SERVICES = [
   {
     step: "01",
     title: "Technology Advisor",
-    price: "$500 / hr",
+    price: "$250 / hr",
     outcome: "Make the right tech decisions before they get expensive.",
     description:
       "Which tools should you use? Should you build or buy? Is your current setup going to fall apart as you grow? These are the questions that cost businesses and investors the most when they get them wrong. We will work through your situation together and you will leave with a clear direction.",
@@ -22,7 +21,7 @@ const SERVICES = [
     description:
       "You have the idea. You just need someone to build it. We scope the work together, build it properly, and make sure you understand how it works when we are done.",
     border: "border-rattata",
-    tag: "For founders who need a digital product",
+    tag: "For founders and creators who need a digital product",
   },
   {
     step: "03",
@@ -32,7 +31,7 @@ const SERVICES = [
     description:
       "You built something with AI tools and got pretty far. Now it's broken, half-finished, or just not doing what you need it to do. I will dig in, figure out what's wrong, and get it working so you can get back to running your business.",
     border: "border-pikachu",
-    tag: "For founders with a broken or stuck app",
+    tag: "For founders and creators with a broken app",
   },
 ];
 
@@ -194,12 +193,12 @@ export default function TechPage() {
             Book your first session
           </a>
           <a
-            href="mailto:vithushan19@gmail.com?subject=Free intro call for tech services"
+            href="https://calendly.com/vithushan19/intro"
             className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
               bg-transparent hover:bg-gray-800 active:border-b-2
               cursor-pointer text-white text-center border-2"
           >
-            Free 15-min intro call
+            Free 30-min intro call
           </a>
         </div>
 

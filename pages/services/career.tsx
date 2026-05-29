@@ -1,4 +1,3 @@
-import React from "react";
 import Credentials from "../../components/landingPage/Credentials";
 import WhoItsFor from "../../components/landingPage/WhoItsFor";
 import ServicesLayout from "./layout";
@@ -222,12 +221,12 @@ export default function StudentsPage() {
             Book your first session
           </a>
           <a
-            href="mailto:vithushan19@gmail.com?subject=Free intro call"
+            href="https://calendly.com/vithushan19/intro"
             className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
               bg-transparent hover:bg-gray-800 active:border-b-2
               cursor-pointer text-white text-center border-2"
           >
-            Free 15-min intro call
+            Free 30-min intro call
           </a>
         </div>
 
