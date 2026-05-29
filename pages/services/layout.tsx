@@ -186,7 +186,9 @@ function HeroText({ currentPage, visible }: { currentPage: string, visible: bool
           {content.buttonPrimaryText}
         </a>
         <a
-          href="mailto:vithushan19@gmail.com?subject=Free intro call"
+        target='_blank'
+      
+          href="https://calendly.com/vithushan19/intro"
           className="max-w-full px-6 font-bold border-b-4 border-gray-300 rounded-lg py-3
           bg-white hover:bg-gray-50 active:border-b-2 cursor-pointer text-gray-700 text-center"
         >

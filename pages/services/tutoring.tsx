@@ -1,3 +1,4 @@
+import React from "react";
 import WhoItsFor from "../../components/landingPage/WhoItsFor";
 import ServicesLayout from "./layout";
 
