@@ -48,9 +48,9 @@ const HomePage = () => {
   return (
     <div>
       <SEO
-        title={"Skillify - Online Python and SQL Course for Beginners"}
+        title={"Skillify - Online Courses and Tech Services for Everyone"}
         description={
-          "Online Python and SQL Course for Beginners. Learn to code and analyze data with Python and SQL. Master the basic concepts and build your own projects."
+          "Skillify offers online courses and tech services for everyone. Whether you're a student looking for tutoring, a professional seeking coaching, or looking to build an app, Skillify has you covered with expert guidance and support."
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
