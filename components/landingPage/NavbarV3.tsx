@@ -16,6 +16,10 @@ const PAGES = [
   {
     id: "schools",
     title: "School Workshops"
+  },
+  {
+    id: "app-directory",
+    title: "App Directory"
   }
 ]
 
