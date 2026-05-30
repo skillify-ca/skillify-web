@@ -83,7 +83,7 @@ const HomePage = () => {
 
         {/* Apps Grid */}
         {mockApps.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             {mockApps.map(app => (
               <AppCard key={app.id} app={app} />
             ))}
@@ -103,8 +103,8 @@ const HomePage = () => {
           </div>
         )}
       </div>
-      <div className="text-center py-8 bg-gray-100">
-        Have a business idea for an app and need help bringing it to life? <a href="mailto:support@skillify.ca" className="text-blue-600 hover:text-blue-800">Contact us</a> for expert guidance and support.
+      <div className="text-center py-8 bg-gray-100 sticky bottom-0">
+        Have a business idea? Need help bringing an app to life? <a href="mailto:support@skillify.ca" className="text-blue-600 hover:text-blue-800">Contact us</a> for expert guidance and support.
       </div>
     </div>
   );
