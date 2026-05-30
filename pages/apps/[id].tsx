@@ -3,76 +3,14 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import SEO from "../../components/SEO";
 import NavbarV3 from "../../components/landingPage/NavbarV3";
+import { mockApps } from "../api/app-directory";
 
 const AppDetailsPage = () => {
     const router = useRouter();
     const { id } = router.query;
     const [app, setApp] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    // Mock data - replace with actual API call
-    const mockApps = [
-        {
-            id: 1,
-            name: "Retirement Calculator",
-            description: "Calculate your retirement savings and plan for the future",
-            category: "finance",
-            image: "/app-directory/retirement-calculator.gif",
-            url: "https://retirement-calculator-lilac.vercel.app/",
-            rating: 4.4,
-            creator: "vithushan",
-            lastUpdated: "2023-12-15",
-            features: [
-                "Age-based retirement planning",
-                "Savings goal calculation",
-                "Inflation adjustment",
-                "Tax implications analysis"
-            ],
-            reviews: [
-           
-            ]
-        },
-        {
-            id: 2,
-            name: "Bakhoro Card Game",
-            description: "A 4-player card game where players compete to play runs of cards and score points",
-            category: "entertainment",
-            image: "/app-directory/cards.gif",
-            rating: 4.1,
-            creator: "vithushan",
-            lastUpdated: "2023-11-20",
-            features: [
-                "4-player multiplayer support",
-                "Real-time gameplay",
-                "Score tracking system",
-                "Mobile-friendly interface"
-            ],
-            reviews: [
-          
-            ]
-        },
-        {
-            id: 3,
-            name: "Grooveshare",
-            description: "Discover and share your favorite music with friends. Create playlists, follow other users, and explore new tunes together.",
-            category: "entertainment",
-            image: "/app-directory/grooveshare.gif",
-            url: "https://grooveshare.vercel.app/",
-            rating: 3.9,
-            creator: "curtis",
-            lastUpdated: "2023-12-10",
-            features: [
-                "Music discovery engine",
-                "Playlist creation tools",
-                "Social sharing features",
-                "Friend connection system"
-            ],
-            comments: [
-                
-            ]
-        }
-    ];
+    const [error, setError] = useState(null);    
 
     useEffect(() => {
         if (id) {
@@ -80,7 +18,8 @@ const AppDetailsPage = () => {
                 try {
                     setLoading(true);
                     // Find app by ID in mock data
-                    const foundApp = mockApps.find(app => app.id === parseInt(id));
+                    const parsedId = typeof id === "string" ? parseInt(id) : null;
+                    const foundApp = mockApps.find(app => app.id === parsedId);
 
                     if (foundApp) {
                         setApp(foundApp);
@@ -191,6 +130,12 @@ const AppDetailsPage = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 {/* Back Button */}
                 <div className="mb-6">
+                    <button
+                        onClick={() => router.back()}
+                        className="text-blue-600 hover:text-blue-800 text-sm font-medium cursor-pointer"
+                    >
+                        &larr; Back to Directory
+                    </button>
                 </div>
 
                 {/* Main Content */}

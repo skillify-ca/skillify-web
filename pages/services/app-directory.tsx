@@ -2,55 +2,18 @@ import React, { useEffect, useState } from "react";
 import AppCard from "../../components/app-directory/AppCard";
 import NavbarV3 from "../../components/landingPage/NavbarV3";
 import SEO from "../../components/SEO";
+import { mockApps } from "../api/app-directory";
 
 const HomePage = () => {
   const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Mock data - replace with actual API call
-  const mockApps = [
-    {
-      id: 1,
-      name: "Retirement Calculator",
-      description: "Calculate your retirement savings and plan for the future",
-      category: "finance",
-      image: "/app-directory/retirement-calculator.gif",
-      url: "https://retirement-calculator-lilac.vercel.app/",
-      rating: 4.4,      
-      creator: "vithushan"
-    },
-    {
-      id: 2,
-      name: "Bakhoro Card Game",
-      description: "A 4-player card game where players compete to play runs of cards and score points",
-      category: "entertainment",
-      image: "/app-directory/cards.gif",
-      rating: 4.1,
-      creator: "vithushan"
-    },
-    {
-      id: 3,
-      name: "Grooveshare",
-      description: "Discover and share your favorite music with friends. Create playlists, follow other users, and explore new tunes together.",
-      category: "entertainment",
-      image: "/app-directory/grooveshare.gif",
-      url: "https://grooveshare.vercel.app/",
-      rating: 3.9,
-      creator: "curtis"
-    }
-  ];
-
   useEffect(() => {
     // Simulate API call
     const fetchApps = async () => {
       try {
         setLoading(true);
-        // Replace with actual API call:
-        // const response = await fetch('/api/apps');
-        // const data = await response.json();
-        
-        // For now, use mock data
         setApps(mockApps);
         setLoading(false);
       } catch (err) {
@@ -114,7 +77,7 @@ const HomePage = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">App Directory</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover amazing app ideas designed by creators using Skillify. These apps are in progress and actively being developed, so check back often for updates and new releases!
+            Discover amazing app ideas designed by creators using Skillify. These apps are in progress and actively being developed by community members.
           </p>
         </div>
 
@@ -141,7 +104,7 @@ const HomePage = () => {
         )}
       </div>
       <div className="text-center py-8 bg-gray-100">
-        Need help building your own app? <a href="mailto:support@skillify.ca" className="text-blue-600 hover:text-blue-800">Contact us</a> for expert guidance and support.
+        Have a business idea for an app and need help bringing it to life? <a href="mailto:support@skillify.ca" className="text-blue-600 hover:text-blue-800">Contact us</a> for expert guidance and support.
       </div>
     </div>
   );
