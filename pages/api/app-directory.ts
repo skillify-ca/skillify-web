@@ -1,5 +1,5 @@
 type UserApp = {
-    id: number;
+    id: number | string;
     name: string;
     description: string;
     category: string;
@@ -31,6 +31,25 @@ export const mockApps: UserApp[] = [
         ],
         reviews: [
 
+        ]
+    },
+    {
+        id: 5,
+        name: "Trip Journal",
+        description: "An interactive map documenting your travels with photos, notes, and location tags",
+        category: "travel",
+        image: "/app-directory/journal.gif",
+        url: "https://v0-interactive-travel-blog-nine.vercel.app/",
+        rating: 4.5,
+        creator: "vithushan",
+        lastUpdated: "2025-10-30",
+        features: [
+            "Interactive map with location markers",
+            "Photo and note attachments for each location",
+            "Travel timeline view",
+            "Shareable travel journal links"
+        ],
+        reviews: [
         ]
     },
     {
