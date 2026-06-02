@@ -55,7 +55,7 @@ const SERVICES = [
         duration: "Flexible",
         capacity: "Small group advisory",
         format: "Onsite or Online",
-        outcome: "A clear plan for how teach coding at your school.",
+        outcome: "A clear plan for how to teach coding at your school.",
         description:
             "A working session for teachers who are figuring out how to bring coding, AI, and technology into their schools in a way that is practical and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo.",
         border: "border-pikachu",
