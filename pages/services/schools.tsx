@@ -50,14 +50,14 @@ const SERVICES = [
     },
     {
         step: "03",
-        title: "Technology Strategy for School Boards",
-        grades: "For administrators and curriculum leads",
+        title: "Technology Strategy for Teachers",
+        grades: "For teachers who need to teach coding",
         duration: "Flexible",
         capacity: "Small group advisory",
         format: "Onsite or Online",
-        outcome: "A clear plan for how your school approaches technology.",
+        outcome: "A clear plan for how teach coding at your school.",
         description:
-            "A working session for administrators and curriculum leads who are figuring out how to bring coding, AI, and technology into their schools in a way that is practical and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo — not a sales pitch for a platform.",
+            "A working session for teachers who are figuring out how to bring coding, AI, and technology into their schools in a way that is practical and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo.",
         border: "border-pikachu",
     },
 ];
