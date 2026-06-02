@@ -171,9 +171,9 @@ export default function SchoolsPage() {
 
             {/* TESTIMONIALS */}
             <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">
-                <p className="text-3xl font-semibold text-center text-white">What founders say</p>
+                <p className="text-3xl font-semibold text-center text-white">What participants say</p>
                 <p className="text-center text-gray-400 mt-1 mb-8">
-                    Business owners who were exactly where you are now.
+                    Workshop participants who were exactly where you are now.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-8">
