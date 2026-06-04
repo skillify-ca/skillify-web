@@ -50,14 +50,14 @@ const SERVICES = [
     },
     {
         step: "03",
-        title: "Technology Strategy for School Boards",
-        grades: "For administrators and curriculum leads",
+        title: "Technology Strategy for Teachers",
+        grades: "For teachers who need to teach coding",
         duration: "Flexible",
         capacity: "Small group advisory",
         format: "Onsite or Online",
-        outcome: "A clear plan for how your school approaches technology.",
+        outcome: "A clear plan for how to teach coding at your school.",
         description:
-            "A working session for administrators and curriculum leads who are figuring out how to bring coding, AI, and technology into their schools in a way that is practical and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo — not a sales pitch for a platform.",
+            "A working session for teachers who are figuring out how to bring coding, AI, and technology into their schools in a way that is practical and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo.",
         border: "border-pikachu",
     },
 ];
@@ -171,9 +171,9 @@ export default function SchoolsPage() {
 
             {/* TESTIMONIALS */}
             <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">
-                <p className="text-3xl font-semibold text-center text-white">What founders say</p>
+                <p className="text-3xl font-semibold text-center text-white">What participants say</p>
                 <p className="text-center text-gray-400 mt-1 mb-8">
-                    Business owners who were exactly where you are now.
+                    Workshop participants who were exactly where you are now.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-8">
