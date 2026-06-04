@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// TODO - convert to supabase
 export const FETCH_LAST_SEEN_MODAL = gql`
 query fetchLastSeenModal($userId: String = "") {
     freemium_users(where: {userId: {_eq: $userId}}) {
