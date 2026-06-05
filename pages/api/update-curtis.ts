@@ -2,6 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { updateCurtisTestData } from '../../graphql/studentPortal/curtis/fetchCurtisTestData';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'OPTIONS') {
+    res.status(200).json({});
+    return;
+  }
   if (req.method === 'POST') {
     try {
       updateCurtisTestData(req.body)
@@ -21,6 +25,4 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     res.status(405).json({ error: `Method ${req.method} not allowed` });
   }
 }
-
-
 
