@@ -29,7 +29,7 @@ const SERVICES = [
   {
     step: "03",
     title: "Interview Prep & Coaching",
-    price: "$50 / hr",
+    price: "$100 / hr",
     outcome: "Walk in confident. Not just prepared.",
     description:
       "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
