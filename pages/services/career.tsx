@@ -40,7 +40,7 @@ const SERVICES = [
   {
     step: "04",
     title: "Salary Negotiation",
-    price: "$100 / hr",
+    price: "$50 / hr",
     outcome: "One conversation. Potentially thousands more per year.",
     description:
       "Most people accept the first number they're given. We'll figure out your market value, build your case, and rehearse the exact conversation so you can ask for what you're worth without second-guessing yourself.",

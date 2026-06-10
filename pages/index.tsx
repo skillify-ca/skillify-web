@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SEO from "../components/SEO";
-import LandingPage from "../components/landingPage/LandingPage";
 import ServicesLayout from "./services/layout";
+import SchoolsPage from "./services/schools";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -54,7 +54,7 @@ const HomePage = () => {
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
-      <LandingPage />
+      <SchoolsPage />
       <div
         className={`sticky bottom-0 z-50 ${showNavBar ? "opacity-100" : "opacity-0 h-0"
           } overflow-hidden shadow-lg border-t-2 transform transition-all`}

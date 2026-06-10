@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AudienceSelectSection() {
     return (
-        <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow">
+        <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-blue-950">
 
             {/* Section header */}
             <p className="text-3xl font-bold text-center text-white">Who are you here for?</p>
@@ -11,7 +11,47 @@ export default function AudienceSelectSection() {
             </p>
 
             {/* Audience door cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-4xl">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-6xl">
+
+                {/* Schools / Teachers */}
+                <a href="/services/teachers" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
+                    <p className="text-3xl mb-3">🏫</p>
+                    <p className="text-xl font-bold text-gray-900">For K-12 Teachers</p>
+                    <p className="text-gray-500 text-sm mt-2 flex-1">
+                        Free expert coaching to help you plan and teach your next coding class. Build confidence with the material so you can teach it to your students with passion.
+                    </p>
+                    <p className="font-semibold text-sm mt-4 text-charmander">See teacher services →</p>
+                </a>
+                <a href="/services/schools" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu hover:scale-105 transition-transform cursor-pointer no-underline">
+                    <p className="text-3xl mb-3">🏫</p>
+                    <p className="text-xl font-bold text-gray-900">For School Boards</p>
+                    <p className="text-gray-500 text-sm mt-2 flex-1">
+                        Bring hands-on coding workshops directly to your students. Curriculum-aligned and engaging.
+                    </p>
+                    <p className="font-semibold text-sm mt-4 text-pikachu">See school workshops →</p>
+                </a>
+
+                {/* University / Job Seekers */}
+                <a href="/services/career" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-rattata hover:scale-105 transition-transform cursor-pointer no-underline">
+                    <p className="text-3xl mb-3">🎓</p>
+                    <p className="text-xl font-bold text-gray-900">For New Grads & Job Seekers</p>
+                    <p className="text-gray-500 text-sm mt-2 flex-1">
+                        From job applications to landing your first offer: resume help, interview prep, and salary coaching.
+                    </p>
+                    <p className="font-semibold text-sm mt-4 text-rattata">See career services →</p>
+                </a>
+
+                {/* Professionals / Builders */}
+                <a href="/services/tech" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-murkrow hover:scale-105 transition-transform cursor-pointer no-underline">
+                    <p className="text-3xl mb-3">💻</p>
+                    <p className="text-xl font-bold text-gray-900">For Professionals & Builders</p>
+                    <p className="text-gray-500 text-sm mt-2 flex-1">
+                        Fix your app, build something new, or get a trusted tech advisor in your corner. Ask questions and get results.
+                    </p>
+                    <p className="font-semibold text-sm mt-4 text-murkrow">See tech services →</p>
+                </a>
+
+
 
                 {/* K-12 / Parents */}
                 <a href="/services/tutoring" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
@@ -20,37 +60,7 @@ export default function AudienceSelectSection() {
                     <p className="text-gray-500 text-sm mt-2 flex-1">
                         Help your child build real confidence in math, science, and coding with an instructor who makes it click.
                     </p>
-                    <p className="text-charmander font-semibold text-sm mt-4">See K-12 tutoring →</p>
-                </a>
-
-                {/* University / Job Seekers */}
-                <a href="/services/career" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-rattata hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">🎓</p>
-                    <p className="text-xl font-bold text-gray-900">For Students & Job Seekers</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        From job applications to landing your first offer: resume help, interview prep, and salary coaching.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-rattata">See career services →</p>
-                </a>
-
-                {/* Professionals / Builders */}
-                <a href="/services/tech" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">💻</p>
-                    <p className="text-xl font-bold text-gray-900">For Professionals & Builders</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Fix your app, build something new, or get a trusted tech advisor in your corner. Ask questions and get results.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-pikachu">See tech services →</p>
-                </a>
-
-                {/* Schools / Admins */}
-                <a href="/services/schools" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-murkrow hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">🏫</p>
-                    <p className="text-xl font-bold text-gray-900">For Schools & Administrators</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Bring hands-on coding and technology workshops directly to your students. Curriculum-aligned and engaging.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-murkrow">See school programs →</p>
+                    <p className="text-charmander font-semibold text-sm mt-4">See tutoring services →</p>
                 </a>
 
             </div>

@@ -26,41 +26,38 @@ const TESTIMONIALS = [
 const SERVICES = [
     {
         step: "01",
-        title: "Coding Workshop for K-12 Students",
+        title: "Coaching for K-12 Teachers",
         grades: "Grades 3 to 12",
-        duration: "60 minutes",
-        price: "$150",
-        capacity: "Up to 30 students",
-        format: "In-person across the GTA or Online",
-        outcome: "Students leave knowing they can build something real.",
+        duration: "30-60 minute coaching sessions",
+        capacity: "1:1 or small group advisory",
+        format: "Onsite or Online",
+        outcome: "Teachers leave knowing they can teach a curriculum-aligned and engaging lesson.",
         description:
-            "A hands-on, beginner-friendly coding session that introduces students to programming through activities they actually enjoy. No prior experience needed from students or teachers. Everything is prepared and facilitated by Vithushan so your class just shows up and participates. Example projects include building a website, a chatbot, or a simple game. Curriculum-aligned for math, science, and technology courses.",
+            "",
         border: "border-charmander",
     },
     {
         step: "02",
-        title: "Intro to Ethical and Sustainable AI",
-        grades: "Grades 9 to 12",
-        price: "$150",
+        title: "Intro to AI and Technology Workshop",
+        grades: "Grades 6 to 12",
         duration: "60 to 90 minutes",
         capacity: "Up to 30 students",
-        format: "In-person across the GTA or Online",
+        format: "Onsite or Online",
         outcome: "Students understand what AI actually is and how it works.",
         description:
-            "An engaging session that demystifies artificial intelligence for students who use it but have never looked under the hood. We cover how AI learns, where it gets things wrong, and what it means for the careers they are heading toward. We also dive into the environmental and social impacts of AI. Curriculum-aligned for math, science, and technology courses.",
+            "An engaging session that demystifies artificial intelligence for students who use it every day but have never looked under the hood. We cover how AI learns, where it gets things wrong, and what it means for the careers they are heading toward. Curriculum-aligned for science and technology courses.",
         border: "border-rattata",
     },
     {
         step: "03",
         title: "Technology Strategy for Teachers",
         grades: "For teachers who need to teach coding",
-        price: "FREE",
         duration: "Flexible",
-        capacity: "1:1 and small group advisory",
-        format: "In-person across the GTA or Online",
-        outcome: "A clear plan for how to teach coding to your students.",
+        capacity: "Small group advisory",
+        format: "Onsite or Online",
+        outcome: "A clear plan for how to teach coding at your school.",
         description:
-            "A working session for teachers who are figuring out how to bring coding, AI, and technology into their lessons in a way that is practical, engaging and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo.",
+            "A working session for teachers who are figuring out how to bring coding, AI, and technology into their schools in a way that is practical and sustainable. Built on real experience shipping products at Spotify, Meta, and Duolingo.",
         border: "border-pikachu",
     },
 ];
@@ -88,12 +85,12 @@ export default function SchoolsPage() {
                 </div>
             </div>
 
-            <WhoItsFor copyType={"schools"} />
+            <WhoItsFor copyType={"teachers"} />
 
             {/* SERVICES */}
             <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-12 bg-slate-100">
                 <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
-                    Workshop options
+                    Coaching options
                 </h2>
                 <p className="text-gray-500 text-center mb-10 max-w-lg">
                     Each session is prepared and facilitated by Vithushan. Your teachers
@@ -118,7 +115,6 @@ export default function SchoolsPage() {
                                         </span>
                                         <h3 className="text-xl font-bold text-gray-900 mt-1">{service.title}</h3>
                                     </div>
-                                    <span className="text-lg font-bold text-charmander shrink-0">{service.price}</span>
                                 </div>
 
                                 {/* Workshop specs */}
@@ -144,7 +140,7 @@ export default function SchoolsPage() {
                     bg-orange-400 hover:bg-orange-500 border-orange-600
                     active:border-b-2 cursor-pointer text-white text-sm"
                                 >
-                                    Learn More
+                                    Inquire about this workshop
                                 </a>
                             </div>
                         </div>
@@ -159,9 +155,9 @@ export default function SchoolsPage() {
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 w-full max-w-4xl">
                     {[
-                        { n: "01", title: "Get in touch and learn more", body: "Send an email with your grade level, preferred dates, and whether you need in-person or online." },
-                        { n: "02", title: "We confirm the details", body: "Vithushan will confirm the session format and any curriculum requirements." },
-                        { n: "03", title: "No prep needed from you", body: "All facilitation is handled by Vithushan. Students will each require a laptop or computer. " },
+                        { n: "01", title: "Get in touch", body: "Send an email with your grade level, preferred dates, and whether you need onsite or online." },
+                        { n: "02", title: "We confirm the details", body: "Vithushan will respond within 24 hours to confirm the session format and any curriculum requirements." },
+                        { n: "03", title: "No prep needed from you", body: "All materials and facilitation are handled. Your job is to show up with your students." },
                         { n: "04", title: "Your students build something", body: "Every session ends with students having made something real they can show their families." },
                     ].map((step) => (
                         <div key={step.n} className="flex flex-col bg-slate-800 rounded-xl p-6">

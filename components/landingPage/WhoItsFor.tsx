@@ -5,7 +5,7 @@ import React from "react";
 const WhoItsForCopy: Record<string, string[]> = {
   tutoring: [
     "I want my child to perform well on a Waterloo Math or Coding contest to get into university.",
-    "Homework time is stressful for our whole family.",    
+    "Homework time is stressful for our whole family.",
     "I worry my child isn't building a strong foundation for the future.",
     "I want my child to feel confident and capable at school.",
     "My child is falling behind and needs extra support in school.",
@@ -55,6 +55,16 @@ const WhoItsForCopy: Record<string, string[]> = {
     "You're looking for curriculum-aligned workshops that require zero prep from your teachers.",
     "You want students to learn from someone who's actually built products used by millions.",
     "You need an engaging guest speaker who can hold the attention of 30 students.",
+  ],
+  teachers: [
+    "I want to teach coding but I don't know where to start.",
+    "I'm expected to cover coding and AI concepts and I have no background in it.",
+    "My students keep asking questions I can't answer.",
+    "I've tried following online tutorials but they don't fit my classroom.",
+    "I don't have time to learn everything before I have to teach it.",
+    "I need someone to look at my lesson plan and tell me if I'm doing it right.",
+    "I want to feel confident teaching technology instead of staying one chapter ahead of my students.",
+    "I need practical help with my actual next class.",
   ]
 };
 
@@ -97,6 +107,11 @@ const WhoItsNotForCopy: Record<string, string[]> = {
     "You want a pre-recorded video series instead of a live facilitator.",
     "You're not willing to provide basic classroom supervision during the session.",
     "You need a multi-month coding bootcamp integrated into your daily schedule."
+  ],
+  teachers: [
+    "You're not a math or coding teacher.",
+    "You're already confident teaching coding and technology concepts.",
+    "You prefer learning from e-learning modules or an AI tutor instead of a real person.",
   ]
 };
 
@@ -105,7 +120,7 @@ const WhoItsNotForCopy: Record<string, string[]> = {
 export default function WhoItsFor({
   copyType,
 }: {
-  copyType: "tutoring" | "coaching" | "lifeCoaching" | "career" | "tech" | "schools";
+  copyType: "tutoring" | "coaching" | "lifeCoaching" | "career" | "tech" | "schools" | "teachers";
 }) {
   const forItems = WhoItsForCopy[copyType];
   const notForItems = WhoItsNotForCopy[copyType];
@@ -116,11 +131,11 @@ export default function WhoItsFor({
         Is Skillify right for you?
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-7xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-7xl">
 
         {/* ── WHO IT'S FOR ── */}
         <div className="flex flex-col p-8 bg-slate-200 rounded-xl">
-          <p className="font-bold text-gray-900 text-lg mb-4">✅ This is for you if...</p>
+          <p className="font-bold text-gray-900 text-lg mb-4">✅ You're a good fit if this sounds like you...</p>
           {forItems.map((item) => (
             <div
               key={item}

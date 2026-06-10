@@ -1,26 +1,31 @@
 import React, { useState } from "react";
 
 const PAGES = [
-  {
-    id: "tutoring",
-    title: "K-12 Tutoring"
-  },
-  {
-    id: "career",
-    title: "Career Coaching"
-  },
-  {
-    id: "tech",
-    title: "Tech Services"
-  },
-  {
-    id: "schools",
-    title: "School Workshops"
-  },
-  {
-    id: "app-directory",
-    title: "App Directory"
-  }
+
+  //   {
+  //   id: "schools",
+  //   title: "School Workshops"
+  // },
+  // {
+  //   id: "career",
+  //   title: "Career Coaching"
+  // },
+  // {
+  //   id: "tech",
+  //   title: "Tech Services"
+  // },
+  //   {
+  //   id: "tutoring",
+  //   title: "K-12 Tutoring"
+  // },
+  //   {
+  //   id: "teachers",
+  //   title: "K-12 Teachers"
+  // },
+  // {
+  //   id: "app-directory",
+  //   title: "App Directory"
+  // }
 ]
 
 export default function NavbarV3({ currentPage }: { currentPage: string }) {
@@ -33,6 +38,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
   }
 
   function getNavbarLinkStyle(pageId) {
+    console.log("Current page:", currentPage, "Checking against:", pageId);
     if (pageId == '' && currentPage === undefined) {
       return selectedStyle
     } 
@@ -65,10 +71,10 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
             }
           </div>
           <a
-            href="mailto:vithushan19@gmail.com?subject=Book a session"
+            href="mailto:vithushan19@gmail.com?subject=Learn More About School Workshops"
             className="bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors"
           >
-            Book a session
+            Learn More
           </a>
         </div>
       </div>
@@ -110,11 +116,11 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
               ))
             }
             <a
-              href="mailto:vithushan19@gmail.com?subject=Book a session"
+              href="mailto:vithushan19@gmail.com?subject=Learn More About School Workshops"
               className="block bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors text-center mt-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Book a session
+              Learn More
             </a>
           </div>
         </div>
