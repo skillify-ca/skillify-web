@@ -39,7 +39,7 @@ const SERVICES = [
     },
     {
         step: "02",
-        title: "Intro to Ethical and Sustainable AI",
+        title: "The Costs and Benefits of  AI",
         grades: "Grades 9 to 12",
         price: "$150",
         duration: "60 to 90 minutes",
@@ -47,7 +47,7 @@ const SERVICES = [
         format: "In-person across the GTA or Online",
         outcome: "Students understand what AI actually is and how it works.",
         description:
-            "An engaging session that demystifies artificial intelligence for students who use it but have never looked under the hood. We cover how AI learns, where it gets things wrong, and what it means for the careers they are heading toward. We also dive into the environmental and social impacts of AI. Curriculum-aligned for math, science, and technology courses.",
+            "An engaging session that demystifies artificial intelligence for students who use it but have never looked under the hood. We cover how AI learns, where it gets things wrong, and what it means for the careers they are heading toward. We also dive into the environmental and social impacts of AI. Students will learn about the controversy surrounding data centers and the impact on our cognitive capacity. Curriculum-aligned for math, science, and technology courses.",
         border: "border-rattata",
     },
     {
