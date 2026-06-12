@@ -131,7 +131,31 @@ function getHeroContent(currentPage) {
     }
   }
 
-  if (currentPage == "generic") {
+  if (currentPage === "schools") {
+    const subHeadline = "Coding Workshops · AI Education and Ethics · School Board Advisory"
+    const titleDefault = "Bring a software engineer"
+    const titleHighlight = "into your class."
+    const description = "Curriculum-aligned coding and technology workshops for grades 3 to 12, facilitated by an expert software engineer. Available in-person across the GTA or online."
+    const buttonPrimaryText = "See workshop options"
+    const buttonSecondaryText = "Get in touch"
+    const primaryColour = "charmander"
+    const primaryColourHover = "hover:bg-orange-500"
+    const primaryColourBorder = "border-orange-800"
+
+    return {
+      subHeadline,
+      titleDefault,
+      titleHighlight,
+      description,
+      buttonPrimaryText,
+      buttonSecondaryText,
+      primaryColour,
+      primaryColourHover,
+      primaryColourBorder
+    }
+  }
+
+  if (currentPage == "generic" || currentPage === undefined) {
     const subHeadline = "Coaching · Tutoring · Tech Advising"
     const titleDefault = "Close your skill gaps."
     const titleHighlight = "Achieve your goals."
@@ -155,29 +179,6 @@ function getHeroContent(currentPage) {
     }
   }
 
-    if (currentPage === "schools" || currentPage === undefined) {
-    const subHeadline = "Coding Workshops · AI Education and Ethics · School Board Advisory"
-    const titleDefault = "Bring a software engineer"
-    const titleHighlight = "into your class."
-    const description = "Curriculum-aligned coding and technology workshops for grades 3 to 12, facilitated by an expert software engineer. Available in-person across the GTA or online."
-    const buttonPrimaryText = "See workshop options"
-    const buttonSecondaryText = "Get in touch"
-    const primaryColour = "charmander"
-    const primaryColourHover = "hover:bg-orange-500"
-    const primaryColourBorder = "border-orange-800"
-
-    return {
-      subHeadline,
-      titleDefault,
-      titleHighlight,
-      description,
-      buttonPrimaryText,
-      buttonSecondaryText,
-      primaryColour,
-      primaryColourHover,
-      primaryColourBorder
-    }
-  }
 }
 
 function HeroText({ currentPage, visible }: { currentPage: string, visible: boolean }) {

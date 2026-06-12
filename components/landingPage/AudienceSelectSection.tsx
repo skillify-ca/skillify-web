@@ -11,17 +11,17 @@ export default function AudienceSelectSection() {
             </p>
 
             {/* Audience door cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-6xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-4xl">
 
                 {/* Schools / Teachers */}
-                <a href="/services/teachers" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
+                {/* <a href="/services/teachers" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
                     <p className="text-3xl mb-3">🏫</p>
                     <p className="text-xl font-bold text-gray-900">For K-12 Teachers</p>
                     <p className="text-gray-500 text-sm mt-2 flex-1">
                         Free expert coaching to help you plan and teach your next coding class. Build confidence with the material so you can teach it to your students with passion.
                     </p>
                     <p className="font-semibold text-sm mt-4 text-charmander">See teacher services →</p>
-                </a>
+                </a> */}
                 <a href="/services/schools" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu hover:scale-105 transition-transform cursor-pointer no-underline">
                     <p className="text-3xl mb-3">🏫</p>
                     <p className="text-xl font-bold text-gray-900">For School Boards</p>

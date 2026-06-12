@@ -4,5 +4,6 @@ export const serviceConfig = {
   "/services/tech": { name: "tech", color: "#8B5CF6" }, // purple
   "/services/schools": { name: "schools", color: "#EF4444" }, // red
   "/services/app-directory": { name: "app-directory", color: "#F59E0B" }, // amber
-  "/services/teachers": { name: "teachers", color: "#F97316" } // orange
+  "/services/teachers": { name: "teachers", color: "#F97316" }, // orange
+  "/services/game-library": { name: "game-library", color: "#F97316" } // orange
 };

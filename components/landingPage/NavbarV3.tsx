@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 
 const PAGES = [
-
-  //   {
-  //   id: "schools",
-  //   title: "School Workshops"
-  // },
-  // {
-  //   id: "career",
-  //   title: "Career Coaching"
-  // },
-  // {
-  //   id: "tech",
-  //   title: "Tech Services"
-  // },
-  //   {
-  //   id: "tutoring",
-  //   title: "K-12 Tutoring"
-  // },
+    {
+    id: "schools",
+    title: "School Workshops"
+  },
+  {
+    id: "career",
+    title: "Career Coaching"
+  },
+  {
+    id: "tech",
+    title: "Tech Services"
+  },
+    {
+    id: "tutoring",
+    title: "K-12 Tutoring"
+  },
   //   {
   //   id: "teachers",
   //   title: "K-12 Teachers"
   // },
-  // {
-  //   id: "app-directory",
-  //   title: "App Directory"
-  // }
+  {
+    id: "app-directory",
+    title: "App Directory"
+  }
 ]
 
 export default function NavbarV3({ currentPage }: { currentPage: string }) {
