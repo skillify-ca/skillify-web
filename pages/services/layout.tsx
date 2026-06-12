@@ -54,7 +54,8 @@ function getHeroContent(currentPage) {
       buttonSecondaryText,
       primaryColour,
       primaryColourHover,
-      primaryColourBorder
+      primaryColourBorder,
+      showGuarantee: true
     }
   }
 
@@ -78,7 +79,9 @@ function getHeroContent(currentPage) {
       buttonSecondaryText,
       primaryColour,
       primaryColourHover,
-      primaryColourBorder
+      primaryColourBorder,
+      showGuarantee: true
+
     }
   }
 
@@ -102,12 +105,13 @@ function getHeroContent(currentPage) {
       buttonSecondaryText,
       primaryColour,
       primaryColourHover,
-      primaryColourBorder
+      primaryColourBorder,
+      showGuarantee: true
+
     }
   }
 
   if (currentPage == "career") {
-
     const subHeadline = "Career Coaching · Interview Prep · Salary Negotiation"
     const titleDefault = "You're qualified. Make sure"
     const titleHighlight = "everyone can see it."
@@ -127,7 +131,8 @@ function getHeroContent(currentPage) {
       buttonSecondaryText,
       primaryColour,
       primaryColourHover,
-      primaryColourBorder
+      primaryColourBorder,
+      showGuarantee: true
     }
   }
 
@@ -151,7 +156,33 @@ function getHeroContent(currentPage) {
       buttonSecondaryText,
       primaryColour,
       primaryColourHover,
-      primaryColourBorder
+      primaryColourBorder,
+      showGuarantee: true
+    }
+  }
+
+    if (currentPage === "game-library") {
+    const subHeadline = "Curriculum-aligned · Interactive Lessons · Mini-Games"
+    const titleDefault = "Consistent"
+    const titleHighlight = "learning resources"
+    const description = "Curriculum-aligned engagin and free resources for grades 3 to 12, developed by an expert software engineer from Duolingo. Designed with safety and well-being in mind, and available online for students across Ontario."
+    const buttonPrimaryText = ""
+    const buttonSecondaryText = ""
+    const primaryColour = "charmander"
+    const primaryColourHover = "hover:bg-orange-500"
+    const primaryColourBorder = "border-orange-800"
+
+    return {
+      subHeadline,
+      titleDefault,
+      titleHighlight,
+      description,
+      buttonPrimaryText,
+      buttonSecondaryText,
+      primaryColour,
+      primaryColourHover,
+      primaryColourBorder,
+      showGuarantee: false
     }
   }
 
@@ -175,7 +206,8 @@ function getHeroContent(currentPage) {
       buttonSecondaryText,
       primaryColour,
       primaryColourHover,
-      primaryColourBorder
+      primaryColourBorder,
+      showGuarantee: true
     }
   }
 
@@ -202,7 +234,7 @@ function HeroText({ currentPage, visible }: { currentPage: string, visible: bool
         {content.description}
       </p>
 
-      <div style={fadeStyle(visible, 150)} className="flex flex-col sm:flex-row gap-3 mt-2">
+     {(content.buttonPrimaryText || content.buttonSecondaryText) &&  <div style={fadeStyle(visible, 150)} className="flex flex-col sm:flex-row gap-3 mt-2">
         <a
           href="#stage"
           className={`max-w-full bg-linear-to-b px-6 font-bold border-b-4 rounded-lg py-3
@@ -220,9 +252,9 @@ function HeroText({ currentPage, visible }: { currentPage: string, visible: bool
         >
           {content.buttonSecondaryText}
         </a>
-      </div>
+      </div>}
 
-      <div style={fadeStyle(visible, 200)} className="flex items-start gap-2 mt-6 max-w-sm">
+      {content.showGuarantee && <div style={fadeStyle(visible, 200)} className="flex items-start gap-2 mt-6 max-w-sm">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={`w-5 h-5 shrink-0 mt-0.5 text-${content.primaryColour}`}>
           <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
         </svg>
@@ -231,7 +263,7 @@ function HeroText({ currentPage, visible }: { currentPage: string, visible: bool
           <span className="font-semibold text-gray-700">Skillify Guarantee</span>
           {" "}- full refund within the first two weeks.
         </p>
-      </div>
+      </div>}
 
     </div>
   )

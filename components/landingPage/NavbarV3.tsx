@@ -17,13 +17,13 @@ const PAGES = [
     id: "tutoring",
     title: "K-12 Tutoring"
   },
-  //   {
-  //   id: "teachers",
-  //   title: "K-12 Teachers"
-  // },
   {
     id: "app-directory",
     title: "App Directory"
+  },
+  {
+    id: "game-library",
+    title: "Game Library"
   }
 ]
 
