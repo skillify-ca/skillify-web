@@ -34,7 +34,7 @@ const SERVICES = [
         format: "In-person across the GTA or Online",
         outcome: "Students leave knowing they can build something real.",
         description:
-            "A hands-on, beginner-friendly coding session that introduces students to programming through activities they actually enjoy. No prior experience needed from students or teachers. Everything is prepared and facilitated by Vithushan so your class just shows up and participates. Example projects include building a website, a chatbot, or a simple game. Curriculum-aligned for math, science, and technology courses.",
+            "A hands-on, beginner-friendly coding session that introduces students to programming by building mini-games. No prior experience needed from students or teachers. The curriculum is prepared and facilitated by Vithushan. Your class just shows up and participates using their own chromebooks. Curriculum-aligned for math, science, and technology courses.",
         border: "border-charmander",
     },
     {
