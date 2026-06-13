@@ -165,7 +165,7 @@ function getHeroContent(currentPage) {
     const subHeadline = "Curriculum-aligned · Interactive Lessons · Mini-Games"
     const titleDefault = "Consistent"
     const titleHighlight = "learning resources"
-    const description = "Curriculum-aligned engagin and free resources for grades 3 to 12, developed by an expert software engineer from Duolingo. Designed with safety and well-being in mind, and available online for students across Ontario."
+    const description = "Curriculum-aligned engaging and free resources for grades 3 to 12, developed by an expert software engineer from Duolingo. Designed with safety and well-being in mind, and available online for students across Ontario."
     const buttonPrimaryText = ""
     const buttonSecondaryText = ""
     const primaryColour = "charmander"
