@@ -70,7 +70,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
             }
           </div>
           <a
-            href="mailto:vithushan19@gmail.com?subject=Learn More About School Workshops"
+            href="mailto:vithushan19@gmail.com?subject=Learn More"
             className="bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors"
           >
             Learn More
@@ -115,7 +115,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
               ))
             }
             <a
-              href="mailto:vithushan19@gmail.com?subject=Learn More About School Workshops"
+              href="mailto:vithushan19@gmail.com?subject=Learn More"
               className="block bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors text-center mt-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >

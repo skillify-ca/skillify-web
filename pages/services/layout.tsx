@@ -113,10 +113,10 @@ function getHeroContent(currentPage) {
 
   if (currentPage == "career") {
     const subHeadline = "Career Coaching · Interview Prep · Salary Negotiation"
-    const titleDefault = "You're qualified. Make sure"
-    const titleHighlight = "everyone can see it."
-    const description = "Learn valuable skills, ace your techincal and behavioural interviews, then land a job offer. Skillify gives you the coaching and prep to succeed at every stage."
-    const buttonPrimaryText = "Find your path"
+    const titleDefault = "Canadian Software Engineers: Land a Remote US Role and"
+    const titleHighlight = "2x Your Salary"
+    const description = "Learn valuable skills, ace your techincal and behavioural interviews, then land your dream job offer. Skillify gives you the coaching and prep to achieve your career goals."
+    const buttonPrimaryText = "How we help"
     const buttonSecondaryText = "Free 30-min intro call"
     const primaryColour = "charmander"
     const primaryColourHover = "hover:bg-orange-500"
