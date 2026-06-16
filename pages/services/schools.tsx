@@ -26,15 +26,15 @@ const TESTIMONIALS = [
 const SERVICES = [
     {
         step: "01",
-        title: "Coding Workshop for K-12 Students",
+        title: "Game Development Workshop for K-12 Students",
         grades: "Grades 3 to 12",
         duration: "60 minutes",
         price: "$150",
         capacity: "Up to 30 students",
         format: "In-person across the GTA or Online",
-        outcome: "Students leave knowing they can build something real.",
+        outcome: "Students leave knowing they can build something real and fun.",
         description:
-            "A hands-on, beginner-friendly coding session that introduces students to programming by building mini-games. No prior experience needed from students or teachers. The curriculum is prepared and facilitated by Vithushan. Your class just shows up and participates using their own chromebooks. Curriculum-aligned for math, science, and technology courses.",
+            "A hands-on, beginner-friendly coding session that introduces students to programming by building mini-games. No prior experience needed from students or teachers. The workshop is prepared and facilitated by Vithushan. Your class just shows up and participates using their own chromebooks or computers. Curriculum-aligned for math, science, and technology courses.",
         border: "border-charmander",
     },
     {
