@@ -62,8 +62,8 @@ function getHeroContent(currentPage) {
   if (currentPage === "tech") {
     const subHeadline = "App Development · Tech Strategy · Advisory"
     const titleDefault = "Technical advice"
-    const titleHighlight = "for business founders."
-    const description = " Whether your tech is buggy and slow, or you're building something new, having a real engineer in your corner will save you time and money."
+    const titleHighlight = "for business owners."
+    const description = " Whether you're building something new or your tech is buggy and slow, having a real engineer in your corner will save you time and money."
     const buttonPrimaryText = "See what we can build"
     const buttonSecondaryText = "Free 30-min intro call"
     const primaryColour = "charmander"

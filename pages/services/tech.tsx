@@ -109,12 +109,12 @@ export default function TechPage() {
                 <p className="text-sm text-gray-500 flex-1">{service.description}</p>
 
                 <a
-                  href={`mailto:vithushan19@gmail.com?subject=Book: ${service.title}`}
+                  href={`mailto:vithushan19@gmail.com?subject=Learn More: ${service.title}`}
                   className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
                     bg-orange-400 hover:bg-orange-500 border-orange-600
                     active:border-b-2 cursor-pointer text-white text-sm"
                 >
-                  Book this session
+                  Learn More
                 </a>
               </div>
             </div>
