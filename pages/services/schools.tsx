@@ -39,7 +39,7 @@ const SERVICES = [
     },
     {
         step: "02",
-        title: "The Costs and Benefits of  AI",
+        title: "The Benefits and Costs of using AI",
         grades: "Grades 9 to 12",
         price: "$150",
         duration: "60 to 90 minutes",
