@@ -17,10 +17,10 @@ const PAGES = [
     id: "tutoring",
     title: "K-12 Tutoring"
   },
-  {
-    id: "app-directory",
-    title: "App Directory"
-  },
+  // {
+  //   id: "app-directory",
+  //   title: "App Directory"
+  // },
   {
     id: "game-library",
     title: "Game Library"
