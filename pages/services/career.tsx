@@ -48,6 +48,17 @@ const SERVICES = [
     border: "border-murkrow",
     tag: "For job seekers",
   },
+  {
+    step: "05",
+    title: "Build Your Own X",
+    price: "",
+    outcome: "Build a useful project for your portfolio, with expert guidance.",
+    description:
+      "Build your own streaming service, social media platform, or AI tool — with expert guidance every step of the way. You'll finish with a real project for your portfolio, and the skills to build whatever you want next.",
+    for: ["graduating", "hunting"],
+    border: "border-charmander",
+    tag: "For job seekers",
+  },
 ];
 
 const TESTIMONIALS = [
@@ -96,7 +107,7 @@ export default function StudentsPage() {
           Your path, step by step
         </h2>
         <p className="text-gray-500 text-center mb-10 max-w-lg">
-          These services follow the natural sequence from job application to offer letter.          
+          From application to offer letter — each session builds on the last.
         </p>
 
         <div className="flex flex-col gap-6 w-full max-w-3xl">
