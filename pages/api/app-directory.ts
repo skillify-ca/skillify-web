@@ -4,8 +4,8 @@ type UserApp = {
     description: string;
     category: string;
     image: string;
-    url: string;
-    rating: number;
+    url?: string;
+    rating?: number;
     creator: string;
     lastUpdated: string;
     features: string[];
@@ -15,12 +15,10 @@ type UserApp = {
 export const mockApps: UserApp[] = [
     {
         id: 1,
-        name: "Retirement Calculator",
-        description: "Calculate your retirement savings and plan for the future",
+        name: "Financial Calculator",
+        description: "Build your own financial planning tool to calculate loan payments, investment growth, or retirement savings based on your custom inputs.",
         category: "finance",
         image: "/app-directory/retirement-calculator.gif",
-        url: "https://retirement-calculator-lilac.vercel.app/",
-        rating: 4.4,
         creator: "vithushan",
         lastUpdated: "2026-02-15",
         features: [
@@ -54,12 +52,10 @@ export const mockApps: UserApp[] = [
     // },
     {
         id: 2,
-        name: "Bakhoro Card Game",
-        description: "A 4-player card game where players compete to play runs of cards and score points",
+        name: "Multiplayer Card Game",
+        description: "Build a real-time multiplayer card game where you can join rooms, play against friends, and track your scores.",
         category: "entertainment",
         image: "/app-directory/cards.gif",
-        url: "https://bakhoro-cardgame.vercel.app/",
-        rating: 4.1,
         creator: "vithushan",
         lastUpdated: "2026-05-20",
         features: [
@@ -74,12 +70,10 @@ export const mockApps: UserApp[] = [
     },
     {
         id: 3,
-        name: "Grooveshare",
-        description: "Discover and share your favorite music with friends. Create playlists, follow other users, and explore new tunes together.",
+        name: "Streaming App",
+        description: "Create a music streaming app that allows users to discover new songs, create playlists, and share their favorite tracks with friends. Implement features like personalized recommendations and social sharing.",
         category: "entertainment",
         image: "/app-directory/grooveshare.gif",
-        url: "https://grooveshare.vercel.app/",
-        rating: 3.9,
         creator: "curtis",
         lastUpdated: "2025-12-10",
         features: [
@@ -93,12 +87,10 @@ export const mockApps: UserApp[] = [
     },
     {
         id: 4,
-        name: "Basketball Stat Tracker",
-        description: "Track your basketball game stats and analyze your performance over time. Log points, rebounds, assists, and more to see how you improve.",
-        category: "sports",
-        image: "https://www.cardillsports.com/_next/image?url=%2Fassets%2Flogo.jpg&w=256&q=75",
-        url: "https://cardillsports.com/",
-        rating: 4.2,
+        name: "Personal Tracker",
+        description: "Track your personal goals and analyze your progress over time. Log achievements, set milestones, and visualize your growth. This app can be used for fitness goals, learning new skills, or any personal development journey.",
+        category: "lifestyle",
+        image: "/app-directory/book.png",
         creator: "jason",
         lastUpdated: "2025-12-05",
         features: [

@@ -75,15 +75,15 @@ const HomePage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">App Directory</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">App Challenges</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover amazing app ideas designed by creators using Skillify. These apps are in progress and actively being developed by community members.
+            Learn to build and publish your own app with Skillify. Get expert guidance, technical support, and a platform to showcase your work. Explore our collection of challenges designed to help you develop your skills and create amazing apps.
           </p>
         </div>
 
         {/* Apps Grid */}
         {mockApps.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             {mockApps.map(app => (
               <AppCard key={app.id} app={app} />
             ))}
