@@ -18,13 +18,13 @@ const PAGES = [
     title: "K-12 Tutoring"
   },
   {
-    id: "app-directory",
-    title: "App Directory"
+    id: "app-challenges",
+    title: "App Challenges"
   },
-  {
-    id: "game-library",
-    title: "Game Library"
-  }
+  // {
+  //   id: "game-library",
+  //   title: "Game Library"
+  // }
 ]
 
 export default function NavbarV3({ currentPage }: { currentPage: string }) {

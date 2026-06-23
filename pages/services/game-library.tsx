@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SEO from "../../components/SEO";
-import { mockApps } from "../api/app-directory";
 import ServicesLayout from "./layout";
 
 const HomePage = () => {
-  const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,7 +11,6 @@ const HomePage = () => {
     const fetchApps = async () => {
       try {
         setLoading(true);
-        setApps(mockApps);
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch apps");
@@ -29,7 +26,7 @@ const HomePage = () => {
     return (
       <div>
         <SEO
-          title={"Skillify - App Directory"}
+          title={"Skillify - Game Library"}
           description={
             "Build and publish your own app with Skillify. Get expert guidance, technical support, and a platform to showcase your work."
           }
@@ -46,7 +43,7 @@ const HomePage = () => {
     return (
       <div>
         <SEO
-          title={"Skillify - App Directory"}
+          title={"Skillify - Game Library"}
           description={
             "Build and publish your own app with Skillify. Get expert guidance, technical support, and a platform to showcase your work."
           }
@@ -64,7 +61,7 @@ const HomePage = () => {
   return (
     <div>
       <SEO
-        title={"Skillify - App Directory"}
+        title={"Skillify - App Challenges"}
         description={
           "Build and publish your own app with Skillify. Get expert guidance, technical support, and a platform to showcase your work."
         }

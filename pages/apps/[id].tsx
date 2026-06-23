@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import SEO from "../../components/SEO";
 import NavbarV3 from "../../components/landingPage/NavbarV3";
-import { mockApps } from "../api/app-directory";
+import { mockApps } from "../api/app-challenges";
 
 const AppDetailsPage = () => {
     const router = useRouter();
