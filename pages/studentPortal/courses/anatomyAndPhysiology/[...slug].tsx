@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
-// import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
+import React from "react";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { getLessonForAnatomyAndPhysiologyCourse } from "../../../api/studentPortal/courses/anatomyAndPhysiology";
-import { ResponseData } from "../../../api/studentPortal/courses/javascript/introduction-coding-basics";
+import { ResponseData } from "../../../api/studentPortal/courses/types";
 
 const LessonComponent = dynamic(
   () => import("../../../../components/studentPortal/lessons/LessonComponent"),
