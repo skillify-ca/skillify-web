@@ -25,6 +25,7 @@ export type SidebarPage =
   | "css"
   | "javascript"
   | "games"
+  | "anatomyAndPhysiology"
   
 export interface SidebarState {
   activePage: SidebarPage;

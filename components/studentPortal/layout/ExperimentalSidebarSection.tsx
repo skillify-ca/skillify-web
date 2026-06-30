@@ -8,7 +8,6 @@ import {
   PuzzleIcon,
   StarIcon,
 } from "@heroicons/react/outline";
-import React from "react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -78,6 +77,13 @@ const experimentalSidebarItems: PaidSidebarItemProps[] = [
     name: "Crypto and Web3",
     link: "/studentPortal/courses/crypto",
     page: "crypto",
+    icon: <CashIcon className="w-6 h-6 mr-4" />,
+    isPremium: true,
+  },
+    {
+    name: "Anatomy and Physiology",
+    link: "/studentPortal/courses/anatomyAndPhysiology",
+    page: "anatomyAndPhysiology",
     icon: <CashIcon className="w-6 h-6 mr-4" />,
     isPremium: true,
   },
