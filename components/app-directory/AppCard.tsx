@@ -35,7 +35,9 @@ const AppCard = ({ app }) => {
                         <p className="text-gray-600 text-sm my-2 line-clamp-2">
                             {app.description}
                         </p>
+                        <a href ={"mailto:vithushan19@gmail.com"} className="text-blue-600 hover:underline text-sm">
                         <Button label="Build Your Own" size="long" backgroundColor="orange" />
+                        </a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 
-export default function Credentials() {
+export default function Credentials({title} : {title: string}) {
   const images = [
     "/images/about/spotify.png",
     "/images/about/meta.png",
@@ -22,7 +22,7 @@ export default function Credentials() {
     <TrustBar />    
     <div className="flex flex-col items-center justify-center w-full p-8 bg-slate-200 sm:p-16">
       <p className="mb-4 text-3xl font-bold text-center">
-        Your Instructor
+        Your {title || "Instructor"}
       </p>
       <p className="max-w-xl mb-6 text-center text-gray-600">
         Vithushan Namasivayasivam is a software engineer and educator who has shipped 

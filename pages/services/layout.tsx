@@ -62,7 +62,7 @@ function getHeroContent(currentPage) {
   if (currentPage === "tech") {
     const subHeadline = "App Development · Tech Strategy · Advisory"
     const titleDefault = "Technical advice"
-    const titleHighlight = "for business owners."
+    const titleHighlight = "for business owners"
     const description = " Whether you're building something new or your tech is buggy and slow, having a real engineer in your corner will save you time and money."
     const buttonPrimaryText = "See what we can build"
     const buttonSecondaryText = "Free 30-min intro call"
@@ -113,8 +113,8 @@ function getHeroContent(currentPage) {
 
   if (currentPage == "career") {
     const subHeadline = "Career Coaching · Interview Prep · Salary Negotiation"
-    const titleDefault = "Canadian Software Engineers: Land a Remote US Role and"
-    const titleHighlight = "2x Your Salary"
+    const titleDefault = "Helping professionals upskill and"
+    const titleHighlight = "advance their careers"
     const description = "Learn valuable skills, ace your techincal and behavioural interviews, then land your dream job offer. Skillify gives you the coaching and prep to achieve your career goals."
     const buttonPrimaryText = "How we help"
     const buttonSecondaryText = "Free 30-min intro call"

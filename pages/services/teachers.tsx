@@ -221,7 +221,7 @@ export default function SchoolsPage() {
                 </p>
             </div>
 
-            <Credentials />
+            <Credentials title="Facilitator" />
 
             {/* FINAL CTA */}
             <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">

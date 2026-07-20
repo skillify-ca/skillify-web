@@ -7,7 +7,7 @@ const SERVICES = [
   {
     step: "01",
     title: "Digital Skills Training",
-    price: "",
+    price: "$1200 / 6 weeks",
     outcome: "Mastery of in-demand skills",
     description:
       "A six week online program to learn the basics of Python and SQL. You will learn to work with data, code and AI efficiently. Includes 1-on-1 and small-group coaching sessions. You will leave with multiple projects for your portfolio.",
@@ -15,46 +15,46 @@ const SERVICES = [
     border: "border-charmander",
     tag: "For job seekers",
   },
-  {
+   {
     step: "02",
-    title: "Resume Workshop",
-    price: "",
-    outcome: "A resume that actually gets opened.",
+    title: "Build Your Own X",
+    price: "$1200 / 6 weeks",
+    outcome: "Build a useful project for your portfolio, with expert guidance.",
     description:
-      "Most resumes are ignored in under 10 seconds. We'll rewrite yours to lead with impact, speak to what hiring managers actually look for, and pass the ATS filters standing between you and an interview.",
+      "Build your own streaming service, social media platform, or AI tool — with expert guidance every step of the way. You'll finish with a real project for your portfolio, and the skills to build whatever you want next.",
     for: ["graduating", "hunting"],
     border: "border-rattata",
     tag: "For job seekers",
   },
   {
     step: "03",
-    title: "Interview Prep & Coaching",
-    price: "",
-    outcome: "Walk in confident. Not just prepared.",
+    title: "Resume Workshop",
+    price: "$100 / session",
+    outcome: "A resume that actually gets opened.",
     description:
-      "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
+      "Most resumes are ignored in under 10 seconds. We'll rewrite yours to lead with impact, speak to what hiring managers actually look for, and pass the ATS filters standing between you and an interview.",
     for: ["graduating", "hunting"],
     border: "border-pikachu",
     tag: "For job seekers",
   },
   {
     step: "04",
-    title: "Salary Negotiation",
-    price: "",
-    outcome: "One conversation. Potentially thousands more per year.",
+    title: "Interview Prep & Coaching",
+    price: "$100 / session",
+    outcome: "Walk in confident. Not just prepared.",
     description:
-      "Most people accept the first number they're given. We'll figure out your market value, build your case, and rehearse the exact conversation so you can ask for what you're worth without second-guessing yourself.",
+      "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
     for: ["graduating", "hunting"],
     border: "border-murkrow",
     tag: "For job seekers",
   },
   {
     step: "05",
-    title: "Build Your Own X",
-    price: "",
-    outcome: "Build a useful project for your portfolio, with expert guidance.",
+    title: "Salary Negotiation",
+    price: "FREE",
+    outcome: "One conversation. Potentially thousands more per year.",
     description:
-      "Build your own streaming service, social media platform, or AI tool — with expert guidance every step of the way. You'll finish with a real project for your portfolio, and the skills to build whatever you want next.",
+      "Most people accept the first number they're given. We'll figure out your market value, build your case, and rehearse the exact conversation so you can ask for what you're worth without second-guessing yourself.",
     for: ["graduating", "hunting"],
     border: "border-charmander",
     tag: "For job seekers",
@@ -107,7 +107,7 @@ export default function StudentsPage() {
           Your path, step by step
         </h2>
         <p className="text-gray-500 text-center mb-10 max-w-lg">
-          From application to offer letter — each session builds on the last.
+          From job application to offer letter
         </p>
 
         <div className="flex flex-col gap-6 w-full max-w-3xl">
@@ -211,7 +211,7 @@ export default function StudentsPage() {
         </div>
       </div>
 
-      <Credentials />
+      <Credentials title="Coach"/>
 
       {/* ── FINAL CTA ── */}
       <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">

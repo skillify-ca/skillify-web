@@ -174,7 +174,7 @@ export default function TechPage() {
       </div>
 
 
-      <Credentials />
+      <Credentials title="Advisor" />
 
       {/* FINAL CTA */}
       <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">

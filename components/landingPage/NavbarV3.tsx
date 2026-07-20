@@ -9,14 +9,15 @@ const PAGES = [
     id: "career",
     title: "Career Coaching"
   },
+   {
+    id: "tutoring",
+    title: "K-12 Tutoring"
+  },
   {
     id: "tech",
     title: "Tech Services"
   },
-    {
-    id: "tutoring",
-    title: "K-12 Tutoring"
-  },
+   
   {
     id: "app-challenges",
     title: "App Challenges"

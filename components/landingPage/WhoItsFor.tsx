@@ -33,19 +33,14 @@ const WhoItsForCopy: Record<string, string[]> = {
     "Personalized coaching matters — I need guidance that fits my life.",
   ],
   career: [
-    "You're struggling with a university math or CS course",
-    "You've been applying for months with no callbacks",
-    "You're using AI in your job search but not getting results",
-    "You have an interview coming up and feel underprepared",
-    "You got an offer but don't know if the number is fair",
-    "You want real feedback from someone who's been in the industry"
+    "You've been applying to jobs for months and you're not hearing back",
+    "You have a job interview coming up and feel underprepared",
+    "You got a job offer but you don't know if the compensation is fair",
   ],
   tech: [
     "I have an app that is broken and I have no idea how to fix it.",
     "I need a website or app built but I don't know where to start.",
-    "I'm paying a developer and I have no way to tell if I'm getting a fair deal.",
     "I built something with AI tools and now it's a mess I can't maintain.",
-    "I need someone to explain my own tech stack to me in plain English.",
     "I want to make smart technology decisions before they get expensive to undo.",
     "I'm a founder who needs a technical person in my corner without hiring full time.",
   ],
@@ -91,9 +86,8 @@ const WhoItsNotForCopy: Record<string, string[]> = {
   ],
   career: [
     "You're looking for a full certification or degree program",
-    "You want a long-term ongoing mentor relationship",
-    "You need help outside of math, coding, or career prep",
-    "You're not willing to put in work between sessions",
+    "You prefer to learn with an AI tutor instead of a real person",
+    
   ],
   tech: [
     "You're a developer looking for a coding partner or peer review.",
@@ -102,11 +96,9 @@ const WhoItsNotForCopy: Record<string, string[]> = {
     "You're not willing to be involved in decisions about your own product.",
   ],
   schools: [
-    "You're looking for a full-time coding teacher or long-term classroom replacement.",
-    "You expect teachers to handle technical setup or curriculum planning before the workshop.",
+    "You're looking for a full-time coding teacher.",
     "You want a pre-recorded video series instead of a live facilitator.",
-    "You're not willing to provide basic classroom supervision during the session.",
-    "You need a multi-month coding bootcamp integrated into your daily schedule."
+    "You're not able to provide classroom supervision during the session.",
   ],
   teachers: [
     "You're not a math or coding teacher.",

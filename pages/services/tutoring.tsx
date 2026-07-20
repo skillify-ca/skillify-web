@@ -1,16 +1,17 @@
 import React from "react";
+import Credentials from "../../components/landingPage/Credentials";
 import WhoItsFor from "../../components/landingPage/WhoItsFor";
 import ServicesLayout from "./layout";
 
 const SERVICES = [
   {
     step: "01",
-    title: "One-on-One Tutoring For Elementary School",
+    title: "One-on-One Elementary School Tutoring",
     price: "$75 / hr",
     outcome: "Your child finally gets it. And knows they can.",
     description:
       "Sessions are built around your child's actual coursework and how they learn. We slow down where it matters, skip what they already know, and build the kind of understanding that lasts beyond the next test. Delivered in-person in downtown Toronto or virtually using Zoom.",
-    note: "I can tutor siblings in different grades at the same time for the same hourly rate.",
+    note: "Add additional students to the same session for $25 per student per hour.",
     border: "border-charmander",
     tag: "For students in grades 1 to 8",
   },
@@ -21,7 +22,7 @@ const SERVICES = [
     outcome: "The courses that decide your university options. Let's make them count.",
     description:
       "High school is where the stakes get real. We work through the exact units giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure. Delivered in-person in downtown Toronto or virtually using Zoom.",
-    note: "I can tutor siblings in different grades at the same time for the same hourly rate.",
+    note: "Add additional students to the same session for $25 per student per hour.",
     border: "border-rattata",
     tag: "For students in grades 9 to 12",
   },
@@ -105,6 +106,8 @@ export default function K12Page() {
           ))}
         </div>
       </div>
+
+      <Credentials title="Tutor" />
 
       {/* TESTIMONIALS */}
       <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">

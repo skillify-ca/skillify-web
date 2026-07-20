@@ -10,7 +10,7 @@ export default function LandingPage() {
         {/* <Hero headerText={headerText} description={description} heroImageUrl={heroImageUrl} /> */}
         <AudienceSelectSection />
         {/* <WhoItsFor copyType={copyType} /> */}
-        <Credentials/>
+        <Credentials title="Instructor"/>
         {/* <WhatYouGet /> */}
         <TestimonialSect />
         {/* <FAQ /> */}
