@@ -18,7 +18,7 @@ export const mockApps: UserApp[] = [
         name: "Streaming App",
         description: "Build your own version of Spotify. Learn how playlists, recommendations, and social features get wired together under the hood.",
         category: "entertainment",
-        image: "/app-challenges/grooveshare.gif",
+        image: "/app-challenges/streaming.png",
         creator: "curtis",
         lastUpdated: "2025-12-10",
         features: [
@@ -32,9 +32,9 @@ export const mockApps: UserApp[] = [
     {
         id: 2,
         name: "Multiplayer Card Game",
-        description: "Real-time, multiplayer, works with your friends. Build a card game that you can play with your friends online. Whether it's a classic like Poker or a new game you invent, this project will teach you about real-time communication, game state management, and multiplayer interactions.",
+        description: "Build an online card game that you can play with your friends. Whether it's a classic like Poker or a new game that you invent, this project will teach you about real-time communication, game state management, and multiplayer interactions.",
         category: "entertainment",
-        image: "/app-challenges/cards.gif",
+        image: "/app-challenges/cards.png",
         creator: "vithushan",
         lastUpdated: "2026-05-20",
         features: [
@@ -48,8 +48,8 @@ export const mockApps: UserApp[] = [
 
     {
         id: 4,
-        name: "Personal Tracker",
-        description: "The best portfolio project is one you'd actually use. Build a tracker for your own goals — fitness, learning, habits — and ship something that means something to you.",
+        name: "Personal Goal Tracker",
+        description: "Build a personalized goal tracker for yourself and your friends. Previous students have built custom trackers for fitness, learning and habits.",
         category: "lifestyle",
         image: "/app-challenges/book.png",
         creator: "jason",
@@ -65,9 +65,9 @@ export const mockApps: UserApp[] = [
         {
         id: 5,
         name: "Trip Journal",
-        description: "An interactive map documenting your travels with photos, notes, and location tags",
+        description: "Build an interactive map documenting your travels with photos, notes, and location tags.",
         category: "travel",
-        image: "/app-challenges/journal.gif",
+        image: "/app-challenges/map.png",
         creator: "vithushan",
         lastUpdated: "2025-10-30",
         features: [
@@ -81,9 +81,9 @@ export const mockApps: UserApp[] = [
         {
         id: 1,
         name: "Financial Calculator",
-        description: "Build the tool that answers any financial questions you have about different scenarios. Whether it's retirement planning, investment growth, or loan comparisons, this app will help you make informed financial decisions.",
+        description: "Build a tool to model various financial scenarios. Whether it's retirement planning, investment growth, or loan comparisons, this app will help you make informed financial decisions.",
         category: "finance",
-        image: "/app-challenges/retirement-calculator.gif",
+        image: "/app-challenges/calculator.png",
         creator: "vithushan",
         lastUpdated: "2026-02-15",
         features: [

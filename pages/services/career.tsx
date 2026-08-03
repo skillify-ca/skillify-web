@@ -6,7 +6,7 @@ import ServicesLayout from "./layout";
 const SERVICES = [
   {
     step: "01",
-    title: "Digital Skills Training",
+    title: "Learn to Code",
     price: "$1200 / 6 weeks",
     outcome: "Mastery of in-demand skills",
     description:

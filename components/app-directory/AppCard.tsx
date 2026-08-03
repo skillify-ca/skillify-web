@@ -1,6 +1,6 @@
 // components/appDirectory/AppCard.jsx
+
 import React from "react";
-import { Button } from "../ui/Button";
 
 const AppCard = ({ app }) => {
     return (
@@ -32,12 +32,10 @@ const AppCard = ({ app }) => {
                             </p>
                         </div>
                         {/* <p className="text-sm text-gray-500">by {app.creator}</p>                             */}
-                        <p className="text-gray-600 text-sm my-2 line-clamp-2">
+                        <p className="text-gray-600 text-sm my-2 line-clamp-4">
                             {app.description}
                         </p>
-                        <a href ={"mailto:vithushan19@gmail.com"} className="text-blue-600 hover:underline text-sm">
-                        <Button label="Build Your Own" size="long" backgroundColor="orange" />
-                        </a>
+                   
                     </div>
                 </div>
             </div>

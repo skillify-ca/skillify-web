@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const PAGES = [
-    {
+  {
     id: "schools",
     title: "School Workshops"
   },
@@ -9,7 +9,7 @@ const PAGES = [
     id: "career",
     title: "Career Coaching"
   },
-   {
+  {
     id: "tutoring",
     title: "K-12 Tutoring"
   },
@@ -17,10 +17,13 @@ const PAGES = [
     id: "tech",
     title: "Tech Services"
   },
-   
   {
     id: "app-challenges",
     title: "App Challenges"
+  },
+  {
+    id: "scholarships",
+    title: "Scholarships"
   },
   // {
   //   id: "game-library",
@@ -41,7 +44,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
     console.log("Current page:", currentPage, "Checking against:", pageId);
     if (pageId == '' && currentPage === undefined) {
       return selectedStyle
-    } 
+    }
 
     if (pageId === currentPage) {
       return selectedStyle

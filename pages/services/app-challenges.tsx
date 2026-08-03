@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AppCard from "../../components/app-directory/AppCard";
 import NavbarV3 from "../../components/landingPage/NavbarV3";
 import SEO from "../../components/SEO";
+import { Button } from "../../components/ui/Button";
 import { mockApps } from "../api/app-challenges";
 
 const HomePage = () => {
@@ -71,6 +72,9 @@ const HomePage = () => {
             Each project is designed to teach you real skills — and leave you with
             something worth showing off.
           </p>
+          <a href={"https://calendly.com/vithushan19/intro"} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-sm mt-4 inline-block">
+            <Button label="Build Your Own" size="long" backgroundColor="orange" />
+          </a>
         </div>
 
         {/* Apps Grid */}
@@ -98,7 +102,7 @@ const HomePage = () => {
       {/* Bottom CTA */}
       <div className="text-center py-8 bg-gray-100 sticky bottom-0">
         Got an idea you want to build? We'll help you scope it, design it, and ship it.{" "}
-        <a href="mailto:support@skillify.ca" className="text-blue-600 hover:text-blue-800 font-semibold">
+        <a href="https://calendly.com/vithushan19/intro" className="text-blue-600 hover:text-blue-800 font-semibold">
           Let's talk →
         </a>
       </div>
