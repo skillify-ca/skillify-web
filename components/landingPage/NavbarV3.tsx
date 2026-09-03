@@ -74,10 +74,10 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
             }
           </div>
           <a
-            href="mailto:vithushan19@gmail.com?subject=Learn More"
+            href="https://calendly.com/vithushan19/intro"
             className="bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors"
           >
-            Learn More
+            Book a Call
           </a>
         </div>
       </div>
@@ -119,11 +119,11 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
               ))
             }
             <a
-              href="mailto:vithushan19@gmail.com?subject=Learn More"
+              href="https://calendly.com/vithushan19/intro"
               className="block bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors text-center mt-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Learn More
+              Book a Call
             </a>
           </div>
         </div>
