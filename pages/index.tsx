@@ -1,72 +1,259 @@
 import React, { useEffect, useState } from "react";
-import LandingPage from "../components/landingPage/LandingPage";
-import SEO from "../components/SEO";
+import Credentials from "../components/landingPage/Credentials";
+import WhoItsFor from "../components/landingPage/WhoItsFor";
 import ServicesLayout from "./services/layout";
 
-const HomePage = () => {
-  const [showNavBar, setShowNavBar] = useState(false);
-  const k12animatedWords = ["Math", "Coding", "English", "Science"];
-  const coachingAnimatedWords = ["getting interviews", "landing job offers", "negotiating salaries"];
-  const lifeCoachingAnimatedWords = ["Mental Health and Addiction", "Personal Finance and Entrepreneurship", "Leadership and Communication", "Civic Engagement"];
-  const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
+const SERVICES = [
+  {
+    step: "01",
+    title: "Learn to Code",
+    price: "$1200 / 6 weeks",
+    outcome: "Mastery of in-demand skills",
+    description:
+      "A six week online program to learn the basics of Python and SQL. You will learn to work with data, code and AI efficiently. Includes 1-on-1 and small-group coaching sessions. You will leave with multiple projects for your portfolio.",
+    for: ["graduating", "hunting"],
+    border: "border-charmander",
+    tag: "For job seekers",
+  },
+   {
+    step: "02",
+    title: "Build Your Own X",
+    price: "$1200 / 6 weeks",
+    outcome: "Build a useful project for your portfolio, with expert guidance.",
+    description:
+      "Build your own streaming service, social media platform, or AI tool — with expert guidance every step of the way. You'll finish with a real project for your portfolio, and the skills to build whatever you want next.",
+    for: ["graduating", "hunting"],
+    border: "border-rattata",
+    tag: "For job seekers",
+  },
+  {
+    step: "03",
+    title: "Resume Workshop",
+    price: "$100 / session",
+    outcome: "A resume that actually gets opened.",
+    description:
+      "Most resumes are ignored in under 10 seconds. We'll rewrite yours to lead with impact, speak to what hiring managers actually look for, and pass the ATS filters standing between you and an interview.",
+    for: ["graduating", "hunting"],
+    border: "border-pikachu",
+    tag: "For job seekers",
+  },
+  {
+    step: "04",
+    title: "Interview Prep & Coaching",
+    price: "$100 / session",
+    outcome: "Walk in confident. Not just prepared.",
+    description:
+      "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
+    for: ["graduating", "hunting"],
+    border: "border-murkrow",
+    tag: "For job seekers",
+  },
+  {
+    step: "05",
+    title: "Salary Negotiation",
+    price: "FREE",
+    outcome: "One conversation. Potentially thousands more per year.",
+    description:
+      "Most people accept the first number they're given. We'll figure out your market value, build your case, and rehearse the exact conversation so you can ask for what you're worth without second-guessing yourself.",
+    for: ["graduating", "hunting"],
+    border: "border-charmander",
+    tag: "For job seekers",
+  },
+];
 
-  const [copyType, setCopyType] = useState<
-    "tutoring" | "coaching" | "lifeCoaching"
-  >("tutoring");
+const TESTIMONIALS = [
+  {
+    quote:
+      "Vithushan helped me develop my technical skills in Typescript, Kotlin, Python and SQL. Developing these skills helped me land a new job!",
+    name: "Lakshman H",
+    school: "University of Waterloo — Actuarial Science",
+    outcome: "Landed a new job",
+    img: "/images/landingPage/lakshman.jpg",
+    border: "border-rattata",
+  },
+  {
+    quote:
+      "Skillify was an excellent experience! Vithushan helped me reskill and learn modern coding frameworks that got me hired as a software engineer.",
+    name: "Mayu G",
+    school: "York University — Mechanical Engineering",
+    outcome: "Hired as a Software Engineer",
+    img: "/images/landingPage/mayu.png",
+    border: "border-pikachu",
+  },
+  {
+    quote:
+      "This course gave me a better understanding of coding and data analysis which helped me land a better job as a product manager!",
+    name: "Brian L",
+    school: "McMaster University — Chemical Engineering",
+    outcome: "Promoted to Product Manager",
+    img: "/images/landingPage/brian.jpg",
+    border: "border-charmander",
+  },
+];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const animatedWords =
-        copyType === "coaching"
-          ? coachingAnimatedWords
-          : copyType === "lifeCoaching"
-            ? lifeCoachingAnimatedWords
-            : k12animatedWords;
-      setAnimatedWordIndex((prevIndex) => (prevIndex + 1) % animatedWords.length);
-    }, 2000); // Change word every 2 seconds
+export default function StudentsPage() {
 
-    return () => clearInterval(interval);
-  }, [copyType]);
-
-  useEffect(() => {
-    setAnimatedWordIndex(0);
-  }, [copyType]);
-
-  useEffect(() => {
-    const onScroll = (e) => {
-      if (e.target.documentElement.scrollTop > 400) {
-        setShowNavBar(true);
-      } else {
-        setShowNavBar(false);
-      }
-    };
-    window.addEventListener("scroll", onScroll);
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const visibleServices = SERVICES.filter((s) => s.for.includes("hunting"));
 
   return (
-    <div>
-      <SEO
-        title={"Skillify - Online Courses and Tech Services for Everyone"}
-        description={
-          "Skillify offers online courses and tech services for everyone. Whether you're a student looking for tutoring, a professional seeking coaching, or looking to build an app, Skillify has you covered with expert guidance and support."
-        }
-        image={"https://www.skillify.ca/images/logo.svg"}
-      />
-      <LandingPage />
-      <div
-        className={`sticky bottom-0 z-50 ${showNavBar ? "opacity-100" : "opacity-0 h-0"
-          } overflow-hidden shadow-lg border-t-2 transform transition-all`}
-      >
-        {/* <LandingFooter /> */}
+    <div className="w-full bg-white">
+
+      <WhoItsFor copyType={"career"} />
+
+      {/* ── SERVICES ── */}
+      <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-12 bg-slate-100">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
+          Your path, step by step
+        </h2>
+        <p className="text-gray-500 text-center mb-10 max-w-lg">
+          From job application to offer letter
+        </p>
+
+        <div className="flex flex-col gap-6 w-full max-w-3xl">
+          {visibleServices.map((service) => (
+            <div
+              key={service.step}
+              className={`flex flex-col sm:flex-row bg-white border-t-8 shadow-xl rounded-xl overflow-hidden ${service.border}`}
+            >
+              {/* Step number */}
+              <div className="flex items-center justify-center bg-gray-50 p-6 sm:p-8 sm:w-24 shrink-0">
+                <span className="text-3xl font-extrabold text-gray-200">{service.step}</span>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                  <div>
+                    <span className="text-xs uppercase tracking-widest text-gray-400 font-semibold">
+                      {service.tag}
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900 mt-1">{service.title}</h3>
+                  </div>
+                  <span className="text-lg font-bold text-charmander shrink-0">{service.price}</span>
+                </div>
+
+                <p className="text-sm font-semibold text-gray-700 mb-2 italic">
+                  "{service.outcome}"
+                </p>
+                <p className="text-sm text-gray-500 flex-1">{service.description}</p>
+
+                <a
+                  href={`mailto:vithushan19@gmail.com?subject=Book: ${service.title}`}
+                  className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
+                    bg-orange-400 hover:bg-orange-500 border-orange-600
+                    active:border-b-2 cursor-pointer text-white text-sm"
+                >
+                  Book this session
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {visibleServices.length === 0 && (
+          <p className="text-gray-400 text-center mt-4">
+            Select your stage above to see relevant services.
+          </p>
+        )}
       </div>
+
+
+      {/* ── ROI PRICING NOTE ── */}
+      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-300">
+        <div className="max-w-2xl text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Human-centered coaching</h2>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            One salary negotiation session could recover thousands
+            in your first year. One interview prep session at could be the difference
+            between an offer and another rejection. The cost of not being prepared is
+            almost always higher.
+          </p>
+        </div>
+      </div>
+
+
+      {/* ── TESTIMONIALS ── */}
+      <div className="flex flex-col justify-center p-4 bg-murkrow sm:p-8">
+        <p className="text-3xl font-semibold text-center text-white">Results from real students</p>
+        <p className="text-center text-gray-400 mt-1 mb-8">
+          People who were exactly where you are now.
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-8">
+          {TESTIMONIALS.map((t) => (
+            <div
+              key={t.name}
+              className={`flex flex-col h-full p-4 bg-white border-t-8 shadow-xl w-full sm:w-96 rounded-xl ${t.border}`}
+            >
+              {/* Outcome pulled out as a label */}
+              <span className="text-xs uppercase tracking-widest font-bold text-charmander mb-3">
+                🏆 {t.outcome}
+              </span>
+
+              <p className="sm:h-24 text-gray-700">{t.quote}</p>
+
+              <div className="flex py-3">
+                {[...Array(5)].map((_, i) => (
+                  <img key={i} src="/images/landingPage/star.svg" className=" w-4 h-4" alt="star" />
+                ))}
+              </div>
+
+              <div className="grid grid-cols-6 py-3">
+                <img src={t.img} alt={t.name} className="rounded-full w-10 h-10 object-cover" />
+                <div className="flex flex-col justify-center col-span-5 ml-4">
+                  <p className="text-lg font-bold">{t.name}</p>
+                  <p className="text-xs text-gray-500">{t.school}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Credentials title="Coach"/>
+
+      {/* ── FINAL CTA ── */}
+      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">
+        <h2 className="text-3xl font-bold text-white mb-3">Ready to move forward?</h2>
+        <p className="text-gray-400 max-w-md mb-8">
+          Book your first session and get started. Not sure which one you need?
+          Start with a free intro call.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a
+            href="mailto:vithushan19@gmail.com?subject=Book a session"
+            className="bg-linear-to-b px-8 font-bold border-b-4 rounded-lg py-3
+              bg-orange-400 hover:bg-orange-500 border-orange-600
+              active:border-b-2 cursor-pointer text-white text-center"
+          >
+            Book your first session
+          </a>
+          <a
+            href="https://calendly.com/vithushan19/intro"
+            className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
+              bg-transparent hover:bg-gray-800 active:border-b-2
+              cursor-pointer text-white text-center border-2"
+          >
+            Free 30-min intro call
+          </a>
+        </div>
+
+        <div className="flex items-center gap-2 mt-8">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-charmander shrink-0">
+            <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+          </svg>
+          <p className="text-sm text-gray-400">
+            <span className="font-semibold text-white">Skillify Guarantee</span>
+            {" "}- full refund within the first two weeks. No questions asked.
+          </p>
+        </div>
+      </div>
+
     </div>
   );
-};
+}
 
-export default HomePage;
-
-HomePage.getLayout = function getLayout(page) {
+StudentsPage.getLayout = function getLayout(page) {
   return <ServicesLayout>{page}</ServicesLayout>;
 };

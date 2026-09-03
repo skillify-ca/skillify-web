@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 
 const PAGES = [
-  {
-    id: "schools",
-    title: "School Workshops"
-  },
-  {
-    id: "career",
-    title: "Career Coaching"
-  },
-  {
-    id: "tutoring",
-    title: "K-12 Tutoring"
-  },
-  {
-    id: "tech",
-    title: "Tech Services"
-  },
-  {
-    id: "app-challenges",
-    title: "App Challenges"
-  },
-  {
-    id: "scholarships",
-    title: "Scholarships"
-  },
+  // {
+  //   id: "schools",
+  //   title: "School Workshops"
+  // },
+  // {
+  //   id: "career",
+  //   title: "Career Coaching"
+  // },
+  // {
+  //   id: "tutoring",
+  //   title: "K-12 Tutoring"
+  // },
+  // {
+  //   id: "tech",
+  //   title: "Tech Services"
+  // },
+  // {
+  //   id: "app-challenges",
+  //   title: "App Challenges"
+  // },
+  // {
+  //   id: "scholarships",
+  //   title: "Scholarships"
+  // },
   // {
   //   id: "game-library",
   //   title: "Game Library"
