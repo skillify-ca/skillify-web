@@ -215,7 +215,7 @@ export default function SchoolsPage() {
                     Large STEM programs run the same workshop in every school. Skillify
                     sessions are adapted to your grade, your curriculum unit, and the
                     actual questions your students ask on the day. Your class gets
-                    someone who has shipped real products at Spotify, Meta, and Duolingo
+                    someone who has built real products at Spotify, Meta, and Duolingo
                     and can answer the question every student eventually asks: "but does
                     this actually matter in real life?"
                 </p>

@@ -67,7 +67,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
               PAGES.map(page => (
                 <a
                   key={page.id}
-                  href={page.id ? "/services/" + page.id : "/"}
+                  href={page.id ? page.id : "/"}
                   className={`${getNavbarLinkStyle(page.id)}`}
                 >
                   {page.title}

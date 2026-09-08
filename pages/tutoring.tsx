@@ -1,8 +1,8 @@
 import React from "react";
-import Credentials from "../../components/landingPage/Credentials";
-import { TutoringHero } from "../../components/landingPage/Hero";
-import NavbarV3 from "../../components/landingPage/NavbarV3";
-import WhoItsFor from "../../components/landingPage/WhoItsFor";
+import Credentials from "../components/landingPage/Credentials";
+import { TutoringHero } from "../components/landingPage/Hero";
+import NavbarV3 from "../components/landingPage/NavbarV3";
+import WhoItsFor from "../components/landingPage/WhoItsFor";
 
 const SERVICES = [
   {

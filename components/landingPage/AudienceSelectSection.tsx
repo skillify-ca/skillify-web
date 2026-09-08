@@ -1,5 +1,40 @@
 import React from "react";
 
+const SERVICES = [
+    {
+        "url": "/tech",
+        "icon": "💻",
+        "title": "For Professionals & Builders",
+        "description": "Fix your app, build something new, or get a trusted tech advisor in your corner. Ask questions and get results.",
+        "colour": "charmander",
+        "learnMore": "See tech services →"
+    },
+    {
+        "url": "/career",
+        "icon": "🎓",
+        "title": "For New Grads & Job Seekers",
+        "description": "From job applications to landing your first offer: resume help, interview prep, and salary coaching.",
+        "colour": "rattata",
+        "learnMore": "See career services →"
+    },
+    {
+        "url": "/tutoring",
+        "icon": "👨‍👩‍👧",
+        "title": "For Parents & K-12 Students",
+        "description": "Help your child build real confidence in math, science, and coding with an instructor who makes it click.",
+        "colour": "gray-700",
+        "learnMore": "See tutoring services →"
+    },
+    {
+        "url": "/schools",
+        "icon": "🏫",
+        "title": "For School Boards",
+        "description": "Bring hands-on coding workshops directly to your students. Curriculum-aligned and engaging.",
+        "colour": "pikachu",
+        "learnMore": "See school workshops →"
+    }
+]
+
 export default function AudienceSelectSection() {
     return (
         <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-blue-950">
@@ -13,58 +48,18 @@ export default function AudienceSelectSection() {
             {/* Audience door cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-4xl">
 
-                {/* Schools / Teachers */}
-                {/* <a href="/services/teachers" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">🏫</p>
-                    <p className="text-xl font-bold text-gray-900">For K-12 Teachers</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Free expert coaching to help you plan and teach your next coding class. Build confidence with the material so you can teach it to your students with passion.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-charmander">See teacher services →</p>
-                </a> */}
-
-
-                {/* Professionals / Builders */}
-                <a href="/services/tech" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">💻</p>
-                    <p className="text-xl font-bold text-gray-900">For Professionals & Builders</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Fix your app, build something new, or get a trusted tech advisor in your corner. Ask questions and get results.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-charmander">See tech services →</p>
-                </a>
-
-                {/* University / Job Seekers */}
-                <a href="/services/career" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-rattata hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">🎓</p>
-                    <p className="text-xl font-bold text-gray-900">For New Grads & Job Seekers</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        From job applications to landing your first offer: resume help, interview prep, and salary coaching.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-rattata">See career services →</p>
-                </a>
-
-
-
-                {/* K-12 / Parents */}
-                <a href="/services/tutoring" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-gray-700 hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">👨‍👩‍👧</p>
-                    <p className="text-xl font-bold text-gray-900">For Parents & K-12 Students</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Help your child build real confidence in math, science, and coding with an instructor who makes it click.
-                    </p>
-                    <p className="text-gray-700 font-semibold text-sm mt-4">See tutoring services →</p>
-                </a>
-
-                <a href="/services/schools" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">🏫</p>
-                    <p className="text-xl font-bold text-gray-900">For School Boards</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Bring hands-on coding workshops directly to your students. Curriculum-aligned and engaging.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-pikachu">See school workshops →</p>
-                </a>
-
+                {SERVICES.map((service) => (
+                    <a
+                        key={service.url}
+                        href={service.url}
+                        className={`flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-${service.colour} hover:scale-105 transition-transform cursor-pointer no-underline`}
+                    >
+                        <p className="text-3xl mb-3">{service.icon}</p>
+                        <p className="text-xl font-bold text-gray-900">{service.title}</p>
+                        <p className="text-gray-500 text-sm mt-2 flex-1">{service.description}</p>
+                        <p className={`font-semibold text-sm mt-4 text-${service.colour}`}>{service.learnMore}</p>
+                    </a>
+                ))}
             </div>
 
             {/* Fallback CTA */}

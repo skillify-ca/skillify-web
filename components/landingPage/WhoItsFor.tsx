@@ -4,12 +4,12 @@ import React from "react";
 
 const WhoItsForCopy: Record<string, string[]> = {
   tutoring: [
-    "I want my child to perform well on a Waterloo Math or Coding contest to get into university.",
     "Homework time is stressful for our whole family.",
     "I worry my child isn't building a strong foundation for the future.",
     "I want my child to feel confident and capable at school.",
     "My child is falling behind and needs extra support in school.",
     "Classroom sizes are too big and don't fit how my child learns.",
+    "I want my child to perform well on a Waterloo Math or Coding contest to get into university.",
   ],
   coaching: [
     "I'm not sure what career path I should take based on my skills.",

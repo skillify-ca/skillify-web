@@ -26,7 +26,7 @@ export default function Credentials({title} : {title: string}) {
         Your {title || "Instructor"}
       </p>
       <p className="max-w-xl mb-6 text-center text-gray-600">
-        Vithushan Namasivayasivam is a software engineer and educator who has shipped 
+        Vithushan Namasivayasivam is a software engineer and educator who has built 
         real products used by millions of people.
       </p>
       <img
@@ -41,7 +41,7 @@ export default function Credentials({title} : {title: string}) {
         />
       </a>
       <p className="mt-8 mb-4 text-sm font-semibold tracking-widest text-center text-gray-400 uppercase">
-        {title === "Tutor" ? "Previously worked at" : "Previously shipped products at"}
+        Previously worked at
       </p>
       <div className="grid justify-center w-full grid-cols-2 max-w-7xl sm:flex sm:flex-wrap ">
         {images.map((image) => (

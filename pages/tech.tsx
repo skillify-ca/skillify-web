@@ -1,7 +1,7 @@
 import React from "react";
-import Credentials from "../../components/landingPage/Credentials";
-import WhoItsFor from "../../components/landingPage/WhoItsFor";
-import ServicesLayout from "./layout";
+import Credentials from "../components/landingPage/Credentials";
+import WhoItsFor from "../components/landingPage/WhoItsFor";
+import ServicesLayout from "./services/layout";
 
 const SERVICES = [
   {
@@ -42,7 +42,7 @@ const TESTIMONIALS = [
       "Vithushan helped train one of my employees to maintain my website. We went from being completely dependent on outside help to handling it ourselves.",
     name: "Rahul M",
     school: "Founder",
-    outcome: "Employee empowerment",
+    outcome: "Employee upskilling",
     img: "",
     border: "border-charmander",
   },
@@ -60,7 +60,7 @@ const TESTIMONIALS = [
       "Vithushan built a health-tech app for me and taught me how to make updates to it. My startup wouldn't have a digital product without his support.",
     name: "Sarangan S",
     school: "Founder",
-    outcome: "Shipped a real product",
+    outcome: "Built a mobile app for my startup",
     img: "",
     border: "border-pikachu",
   },

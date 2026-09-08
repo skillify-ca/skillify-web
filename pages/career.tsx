@@ -1,7 +1,7 @@
 import React from "react";
-import Credentials from "../../components/landingPage/Credentials";
-import WhoItsFor from "../../components/landingPage/WhoItsFor";
-import ServicesLayout from "./layout";
+import Credentials from "../components/landingPage/Credentials";
+import WhoItsFor from "../components/landingPage/WhoItsFor";
+import ServicesLayout from "./services/layout";
 
 const SERVICES = [
   {
