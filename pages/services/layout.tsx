@@ -61,9 +61,9 @@ function getHeroContent(currentPage) {
 
   if (currentPage === "tech") {
     const subHeadline = "App Development · Tech Strategy · Advisory"
-    const titleDefault = "Technical advice"
+    const titleDefault = "Fractional CTO services"
     const titleHighlight = "for non-technical founders"
-    const description = " Whether you're building something new or your tech is buggy and slow, having a real engineer in your corner will save you time and money."
+    const description = " Whether you're building something new or your tech is buggy and slow, having a fractional CTO in your corner will save you time and money."
     const buttonPrimaryText = "See what we can build"
     const buttonSecondaryText = "Free 30-min intro call"
     const primaryColour = "charmander"

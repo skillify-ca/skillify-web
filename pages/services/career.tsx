@@ -7,7 +7,7 @@ const SERVICES = [
   {
     step: "01",
     title: "Learn to Code",
-    price: "$1200 / 6 weeks",
+    price: "$1200 / 8 weeks",
     outcome: "Mastery of in-demand skills",
     description:
       "A six week online program to learn the basics of Python and SQL. You will learn to work with data, code and AI efficiently. Includes 1-on-1 and small-group coaching sessions. You will leave with multiple projects for your portfolio.",
@@ -18,7 +18,7 @@ const SERVICES = [
    {
     step: "02",
     title: "Build Your Own X",
-    price: "$1200 / 6 weeks",
+    price: "$1200 / 8 weeks",
     outcome: "Build a useful project for your portfolio, with expert guidance.",
     description:
       "Build your own streaming service, social media platform, or AI tool — with expert guidance every step of the way. You'll finish with a real project for your portfolio, and the skills to build whatever you want next.",
@@ -138,14 +138,6 @@ export default function StudentsPage() {
                 </p>
                 <p className="text-sm text-gray-500 flex-1">{service.description}</p>
 
-                <a
-                  href={`mailto:vithushan19@gmail.com?subject=Book: ${service.title}`}
-                  className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
-                    bg-orange-400 hover:bg-orange-500 border-orange-600
-                    active:border-b-2 cursor-pointer text-white text-sm"
-                >
-                  Book this session
-                </a>
               </div>
             </div>
           ))}
@@ -218,7 +210,7 @@ export default function StudentsPage() {
         <h2 className="text-3xl font-bold text-white mb-3">Ready to move forward?</h2>
         <p className="text-gray-400 max-w-md mb-8">
           Book your first session and get started. Not sure which one you need?
-          Start with a free intro call.
+          Start with a free career strategy call.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
@@ -228,15 +220,7 @@ export default function StudentsPage() {
               bg-orange-400 hover:bg-orange-500 border-orange-600
               active:border-b-2 cursor-pointer text-white text-center"
           >
-            Book your first session
-          </a>
-          <a
-            href="https://calendly.com/vithushan19/intro"
-            className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
-              bg-transparent hover:bg-gray-800 active:border-b-2
-              cursor-pointer text-white text-center border-2"
-          >
-            Free 30-min intro call
+            Book a meeting
           </a>
         </div>
 
@@ -251,6 +235,13 @@ export default function StudentsPage() {
         </div>
       </div>
 
+     {/* Bottom CTA */}
+      <div className="text-center py-8 bg-gray-100 sticky bottom-0">
+        Ready to take your career to the next level? {" "}
+        <a href="https://calendly.com/vithushan19/intro" target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-800 font-semibold">
+          Let's talk →
+        </a>
+      </div>
     </div>
   );
 }

@@ -92,15 +92,6 @@ export default function K12Page() {
                 </p>
                 <p className="text-sm text-gray-500 flex-1">{service.description}</p>
                 <p className="text-sm text-gray-500 flex-1 font-bold mt-2">Note: {service.note}</p>
-
-                <a
-                  href={`mailto:vithushan19@gmail.com?subject=Book: ${service.title}`}
-                  className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
-                    bg-orange-400 hover:bg-orange-500 border-orange-600
-                    active:border-b-2 cursor-pointer text-white text-sm"
-                >
-                  Book this session
-                </a>
               </div>
             </div>
           ))}
@@ -112,7 +103,7 @@ export default function K12Page() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Scholarships</h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-4">
             Skillify is committed to supporting students in Toronto's underserved neighborhoods like Malvern and Regent Park through comprehensive academic support.
-            Proof of address is required to apply. 
+            Proof of address is required to apply.
           </p>
           <p className="text-gray-600 text-lg leading-relaxed">
             If you are a student in Malvern or Regent Park, please reach out to us for more information about our full scholarships for tutoring.
@@ -212,6 +203,13 @@ export default function K12Page() {
         </div>
       </div>
 
+      {/* Bottom CTA */}
+      <div className="text-center py-8 bg-gray-100 sticky bottom-0">
+        Live in Malvern or Regent Park? We offer full scholarships for K-12 tutoring. {" "}
+        <a href="https://calendly.com/vithushan19/intro" target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-800 font-semibold">
+          Learn More →
+        </a>
+      </div>
     </div>
   );
 }

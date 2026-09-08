@@ -10,7 +10,7 @@ const SERVICES = [
     price: "$250 / hr",
     outcome: "Make the right tech decisions before they get expensive.",
     description:
-      "Which tools should you use? Should you build or buy? Is your current setup going to fall apart as you grow? These are the questions that cost businesses and investors the most when they get them wrong. We will work through your situation together and you will leave with a clear direction.",
+      "Which tools should you use? Should you build or buy? Is your current setup going to fall apart as you grow? These are the questions that cost businesses and investors the most when they get them wrong. I will work through your situation together and you will leave with a clear direction.",
     tag: "For founders making technology decisions",
     border: "border-charmander",
   },
@@ -20,7 +20,7 @@ const SERVICES = [
     price: "$150 / hr",
     outcome: "A real product, built by someone who has done it at scale.",
     description:
-      "You have the idea. You just need someone to build it. We scope the work together, build it properly, and make sure you understand how it works when we are done.",
+      "You have the idea. You just need someone to build it. I will help you scope the work, build it properly, and make sure you understand how it works when we are done.",
     border: "border-rattata",
     tag: "For founders and creators who need a digital product",
   },
@@ -108,14 +108,6 @@ export default function TechPage() {
                 </p>
                 <p className="text-sm text-gray-500 flex-1">{service.description}</p>
 
-                <a
-                  href={`mailto:vithushan19@gmail.com?subject=Learn More: ${service.title}`}
-                  className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
-                    bg-orange-400 hover:bg-orange-500 border-orange-600
-                    active:border-b-2 cursor-pointer text-white text-sm"
-                >
-                  Learn More
-                </a>
               </div>
             </div>
           ))}
@@ -128,7 +120,7 @@ export default function TechPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">A Fractional CTO In Your Corner</h2>
           <p className="text-gray-600 text-lg leading-relaxed">
             Make the right technical decisions and lay a strong foundation for your business to scale.
-            Bad technical advice can lead to wasted time, money, and even lost customers. I've helped non-technical founders in various industries turn their ideas into successful digital products including real estate, edtech, crypto and e-commerce.
+            Bad technical advice can lead to wasted time, money, and even lost customers. I've helped non-technical founders turn their ideas into successful digital products in various industries including real estate, edtech, crypto and e-commerce.
           </p>
         </div>
       </div>
@@ -183,32 +175,17 @@ export default function TechPage() {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <a
-            href="mailto:vithushan19@gmail.com?subject=Book a tech session"
+            href="https://calendly.com/vithushan19/intro"
+            target="_blank"
+            referrerPolicy="no-referrer"
             className="bg-linear-to-b px-8 font-bold border-b-4 rounded-lg py-3
               bg-orange-400 hover:bg-orange-500 border-orange-600
               active:border-b-2 cursor-pointer text-white text-center"
           >
-            Book your first session
-          </a>
-          <a
-            href="https://calendly.com/vithushan19/intro"
-            className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
-              bg-transparent hover:bg-gray-800 active:border-b-2
-              cursor-pointer text-white text-center border-2"
-          >
             Free 30-min intro call
           </a>
-        </div>
+          </div>
 
-        <div className="flex items-center gap-2 mt-8">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-charmander shrink-0">
-            <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
-          </svg>
-          <p className="text-sm text-gray-400">
-            <span className="font-semibold text-white">Skillify Guarantee</span>
-            {" "}- full refund within the first two weeks. No questions asked.
-          </p>
-        </div>
       </div>
 
       {/* Bottom CTA */}

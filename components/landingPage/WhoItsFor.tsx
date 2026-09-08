@@ -90,8 +90,8 @@ const WhoItsNotForCopy: Record<string, string[]> = {
     
   ],
   tech: [
-    "You're a developer looking for a coding partner or peer review.",
-    "You want someone to build your app and disappear — we make sure you understand what was built.",
+    "You want to hire someone to work on your app full-time",
+    "You want to give up equity in your company to get a technical co-founder",
     "You need enterprise-level infrastructure or a large engineering team.",
     "You're not willing to be involved in decisions about your own product.",
   ],

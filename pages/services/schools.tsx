@@ -137,15 +137,6 @@ export default function SchoolsPage() {
                                     "{service.outcome}"
                                 </p>
                                 <p className="text-sm text-gray-500 flex-1">{service.description}</p>
-
-                                <a
-                                    href={`mailto:vithushan19@gmail.com?subject=Workshop inquiry: ${service.title}`}
-                                    className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
-                    bg-orange-400 hover:bg-orange-500 border-orange-600
-                    active:border-b-2 cursor-pointer text-white text-sm"
-                                >
-                                    Learn More
-                                </a>
                             </div>
                         </div>
                     ))}
@@ -250,16 +241,9 @@ export default function SchoolsPage() {
               bg-transparent hover:bg-gray-800 active:border-b-2
               cursor-pointer text-white text-center border-2"
                     >
-                        Ask a question first
+                        Ask a question
                     </a>
                 </div>
-
-                <p className="text-gray-500 text-sm mt-8 max-w-sm">
-                    For school board inquiries or multi-school programs, email directly at{" "}
-                    <a href="mailto:vithushan19@gmail.com" className="text-charmander underline">
-                        vithushan19@gmail.com
-                    </a>
-                </p>
             </div>
 
         </div>
