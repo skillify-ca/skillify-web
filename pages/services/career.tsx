@@ -28,22 +28,22 @@ const SERVICES = [
   },
   {
     step: "03",
-    title: "Resume Workshop",
-    price: "$100 / session",
-    outcome: "A resume that actually gets opened.",
-    description:
-      "Most resumes are ignored in under 10 seconds. We'll rewrite yours to lead with impact, speak to what hiring managers actually look for, and pass the ATS filters standing between you and an interview.",
-    for: ["graduating", "hunting"],
-    border: "border-pikachu",
-    tag: "For job seekers",
-  },
-  {
-    step: "04",
     title: "Interview Prep & Coaching",
     price: "$100 / session",
     outcome: "Walk in confident. Not just prepared.",
     description:
       "Mock interviews, real feedback, and the frameworks that top candidates use. We cover behavioural questions, technical screens, and the parts nobody tells you — like how to handle silence.",
+    for: ["graduating", "hunting"],
+    border: "border-pikachu",
+    tag: "For job seekers",
+  },
+    {
+    step: "03",
+    title: "Resume Workshop",
+    price: "FREE",
+    outcome: "A resume that actually gets opened.",
+    description:
+      "Most resumes are ignored in under 10 seconds. We'll rewrite yours to lead with impact, speak to what hiring managers actually look for, and pass the ATS filters standing between you and an interview.",
     for: ["graduating", "hunting"],
     border: "border-murkrow",
     tag: "For job seekers",
