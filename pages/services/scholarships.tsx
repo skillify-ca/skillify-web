@@ -31,7 +31,7 @@ const HomePage = () => {
           <p className="text-gray-600 max-w-2xl mx-auto mt-4">
             Proof of address is required to apply. If you are a student or young adult in Regent Park, please reach out to us for more information about our scholarships for tutoring and career coaching.
           </p>
-          <a href={"mailto:vithushan19@gmail.com?subject=Scholarship%20Inquiry"} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-sm mt-4 inline-block">
+          <a href={"mailto:vithushan@skillify.ca?subject=Scholarship%20Inquiry"} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-sm mt-4 inline-block">
             <Button label="Learn More" size="long" backgroundColor="orange" />
           </a>
         </div>

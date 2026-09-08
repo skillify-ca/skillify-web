@@ -186,7 +186,7 @@ export default function K12Page() {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <a
-            href="mailto:vithushan19@gmail.com?subject=Book a K-12 tutoring session"
+            href="mailto:vithushan@skillify.ca?subject=Book a K-12 tutoring session"
             className="bg-linear-to-b px-8 font-bold border-b-4 rounded-lg py-3
               bg-orange-400 hover:bg-orange-500 border-orange-600
               active:border-b-2 cursor-pointer text-white text-center"

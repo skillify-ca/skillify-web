@@ -228,7 +228,7 @@ export default function SchoolsPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                     <a
-                        href="mailto:vithushan19@gmail.com?subject=School workshop inquiry"
+                        href="mailto:vithushan@skillify.ca?subject=School workshop inquiry"
                         className="bg-linear-to-b px-8 font-bold border-b-4 rounded-lg py-3
               bg-orange-400 hover:bg-orange-500 border-orange-600
               active:border-b-2 cursor-pointer text-white text-center"
@@ -236,7 +236,7 @@ export default function SchoolsPage() {
                         Book a workshop
                     </a>
                     <a
-                        href="mailto:vithushan19@gmail.com?subject=School workshop question"
+                        href="mailto:vithushan@skillify.ca?subject=School workshop question"
                         className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
               bg-transparent hover:bg-gray-800 active:border-b-2
               cursor-pointer text-white text-center border-2"

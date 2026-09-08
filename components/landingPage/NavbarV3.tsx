@@ -78,7 +78,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
 
           {currentPage === "tutoring" ? (
             <a
-              href="mailto:vithushan19@gmail.com"
+              href="mailto:vithushan@skillify.ca"
               className="bg-orange-400 hover:bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg transition-colors"
             >
               Contact Us

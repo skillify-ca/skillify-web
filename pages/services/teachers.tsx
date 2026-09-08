@@ -135,7 +135,7 @@ export default function SchoolsPage() {
                                 <p className="text-sm text-gray-500 flex-1">{service.description}</p>
 
                                 <a
-                                    href={`mailto:vithushan19@gmail.com?subject=Workshop inquiry: ${service.title}`}
+                                    href={`mailto:vithushan@skillify.ca?subject=Workshop inquiry: ${service.title}`}
                                     className="mt-4 self-start bg-linear-to-b px-5 py-2 font-bold border-b-4 rounded-lg
                     bg-orange-400 hover:bg-orange-500 border-orange-600
                     active:border-b-2 cursor-pointer text-white text-sm"
@@ -233,7 +233,7 @@ export default function SchoolsPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                     <a
-                        href="mailto:vithushan19@gmail.com?subject=School workshop inquiry"
+                        href="mailto:vithushan@skillify.ca?subject=School workshop inquiry"
                         className="bg-linear-to-b px-8 font-bold border-b-4 rounded-lg py-3
               bg-orange-400 hover:bg-orange-500 border-orange-600
               active:border-b-2 cursor-pointer text-white text-center"
@@ -241,7 +241,7 @@ export default function SchoolsPage() {
                         Book a workshop
                     </a>
                     <a
-                        href="mailto:vithushan19@gmail.com?subject=School workshop question"
+                        href="mailto:vithushan@skillify.ca?subject=School workshop question"
                         className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
               bg-transparent hover:bg-gray-800 active:border-b-2
               cursor-pointer text-white text-center border-2"
@@ -252,8 +252,8 @@ export default function SchoolsPage() {
 
                 <p className="text-gray-500 text-sm mt-8 max-w-sm">
                     For school board inquiries or multi-school programs, email directly at{" "}
-                    <a href="mailto:vithushan19@gmail.com" className="text-charmander underline">
-                        vithushan19@gmail.com
+                    <a href="mailto:vithushan@skillify.ca" className="text-charmander underline">
+                        vithushan@skillify.ca
                     </a>
                 </p>
             </div>
