@@ -41,7 +41,7 @@ export default function Credentials({title} : {title: string}) {
         />
       </a>
       <p className="mt-8 mb-4 text-sm font-semibold tracking-widest text-center text-gray-400 uppercase">
-        Previously shipped products at
+        {title === "Tutor" ? "Previously worked at" : "Previously shipped products at"}
       </p>
       <div className="grid justify-center w-full grid-cols-2 max-w-7xl sm:flex sm:flex-wrap ">
         {images.map((image) => (

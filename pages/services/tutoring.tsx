@@ -1,29 +1,18 @@
 import React from "react";
 import Credentials from "../../components/landingPage/Credentials";
+import { TutoringHero } from "../../components/landingPage/Hero";
+import NavbarV3 from "../../components/landingPage/NavbarV3";
 import WhoItsFor from "../../components/landingPage/WhoItsFor";
-import ServicesLayout from "./layout";
 
 const SERVICES = [
   {
-    step: "01",
-    title: "One-on-One Elementary School Tutoring",
-    price: "$75 / hr",
-    outcome: "Your child finally gets it. And knows they can.",
-    description:
-      "Sessions are built around your child's actual coursework and how they learn. We slow down where it matters, skip what they already know, and build the kind of understanding that lasts beyond the next test. Delivered in-person in downtown Toronto or virtually using Zoom.",
-    note: "Add additional students to the same session for $25 per student per hour.",
-    border: "border-charmander",
-    tag: "For students in grades 1 to 8",
-  },
-  {
-    step: "02",
-    title: "One-on-One Tutoring For Secondary School",
-    price: "$100 / hr",
+    title: "Private Tutoring",
+    price: "$85 / hr",
     outcome: "The courses that decide your university options. Let's make them count.",
     description:
       "High school is where the stakes get real. We work through the exact units giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure. Delivered in-person in downtown Toronto or virtually using Zoom.",
     note: "Add additional students to the same session for $25 per student per hour.",
-    border: "border-rattata",
+    border: "border-charmander",
     tag: "For students in grades 9 to 12",
   },
 ];
@@ -33,7 +22,7 @@ const TESTIMONIALS = [
     quote:
       "Vithushan helped my kids feel confident preparing for school tests. He was flexible in tutoring both of my kids together at an afforadable rate.",
     name: "Nisha R",
-    school: "Parent of a 5th and 7th grader",
+    school: "Parent of a 6th and 8th grader",
     outcome: "Overcame math anxiety",
     img: "",
     border: "border-charmander",
@@ -50,66 +39,102 @@ const TESTIMONIALS = [
 
 ];
 
+const COURSES = [
+  {
+    "grade": "Grade 9",
+    "courses": [
+      { "title": "Math", "code": "MFM1W" },
+      { "title": "Science", "code": "SNC1W" }
+    ]
+  },
+  {
+    "grade": "Grade 10",
+    "courses": [
+      { "title": "Math", "code": "MPM2D" },
+      { "title": "Science", "code": "SNC2D" }
+    ]
+  },
+  {
+    "grade": "Grade 11",
+    "courses": [
+      { "title": "Functions", "code": "MCF3M" },
+      { "title": "Physics", "code": "SPH3U" }
+    ]
+  },
+  {
+    "grade": "Grade 12",
+    "courses": [
+      { "title": "Advanced Functions", "code": "MHF4U" },
+      { "title": "Calculus & Vectors", "code": "MCV4U" },
+      { "title": "AP Calculus", "code": "" },
+      { "title": "Data Management", "code": "MDM4U" },
+      { "title": "Physics", "code": "SPH4U" }
+    ]
+  }
+]
+
 export default function K12Page() {
   return (
     <div className="w-full bg-white">
-
-      <WhoItsFor copyType={"tutoring"} />
+      <NavbarV3 currentPage="tutoring" />
+      <TutoringHero />
 
       {/* SERVICES */}
-      <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-12 bg-slate-100">
+      <div id="stage" className="flex flex-col items-center justify-center w-full p-8 sm:p-12 bg-slate-200">
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
-          What we work on together
+          What we offer
         </h2>
-        <p className="text-gray-500 text-center mb-10 max-w-lg">
-          All sessions are one-on-one and built around your child's actual
-          school material. No generic curriculum. No wasted time.
+        <p className="text-gray-500 text-center text-xl mb-10 max-w-xl">
+          All sessions are one-on-one and built around your child's
+          school material or university Math contests
         </p>
 
         <div className="flex flex-col gap-6 w-full max-w-3xl">
           {SERVICES.map((service) => (
             <div
-              key={service.step}
+              key={service.title}
               className={`flex flex-col sm:flex-row bg-white border-t-8 shadow-xl rounded-xl overflow-hidden ${service.border}`}
             >
-              <div className="flex items-center justify-center bg-gray-50 p-6 sm:p-8 sm:w-24 shrink-0">
-                <span className="text-3xl font-extrabold text-gray-200">{service.step}</span>
-              </div>
-
               <div className="p-6 flex flex-col flex-1">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                   <div>
                     <span className="text-xs uppercase tracking-widest text-gray-400 font-semibold">
                       {service.tag}
                     </span>
                     <h3 className="text-xl font-bold text-gray-900 mt-1">{service.title}</h3>
                   </div>
-                  <span className="text-lg font-bold text-charmander shrink-0">{service.price}</span>
+                  <span className="text-3xl font-bold text-charmander shrink-0">{service.price}</span>
                 </div>
-
-                <p className="text-sm font-semibold text-gray-700 mb-2 italic">
-                  "{service.outcome}"
-                </p>
-                <p className="text-sm text-gray-500 flex-1">{service.description}</p>
-                <p className="text-sm text-gray-500 flex-1 font-bold mt-2">Note: {service.note}</p>
+                <p className="text-md text-gray-500 flex-1 font-bold mt-2">Note: {service.note}</p>
               </div>
             </div>
           ))}
         </div>
+
+        <h2 className="text-3xl font-bold text-gray-900 text-center mt-10 mb-6">
+          Supported Courses
+        </h2>
+
+        <div className="flex flex-col items-start justify-center gap-2 mt-2 px-4 rounded-lg w-full max-w-4xl">
+          {
+            COURSES.map((course) => (
+              <div key={course.grade} className="flex flex-col w-full mb-4 rounded-lg text-xl bg-white p-4 shadow-md">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{course.grade}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {course.courses.map((c) => (
+                    <span key={c.code} className="px-4 py-2 bg-slate-300 rounded-full text-gray-700 font-semibold">
+                      {c.title} {c.code.length > 0 ? `(${c.code})` : ""}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-8 bg-slate-200">
-        <div className="max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Scholarships</h2>
-          <p className="text-gray-600 text-lg leading-relaxed mb-4">
-            Skillify is committed to supporting students in Toronto's underserved neighborhoods like Malvern and Regent Park through comprehensive academic support.
-            Proof of address is required to apply.
-          </p>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            If you are a student in Malvern or Regent Park, please reach out to us for more information about our full scholarships for tutoring.
-          </p>
-        </div>
-      </div>
+      <WhoItsFor copyType={"tutoring"} />
 
 
       <Credentials title="Tutor" />
@@ -151,26 +176,12 @@ export default function K12Page() {
         </div>
       </div>
 
-      {/* ROI NOTE */}
-      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-200">
-        <div className="max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">The earlier you invest, the more it compounds</h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            A shaky foundation in grade 7 in a subject becomes a failing grade in grade 10
-            functions. One session a week at{" "}
-            <span className="font-bold text-gray-900">$75 - $100</span> builds the kind of
-            understanding that carries your child through high school, university
-            applications, and beyond.
-          </p>
-        </div>
-      </div>
-
       {/* FINAL CTA */}
       <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-murkrow text-center">
         <h2 className="text-3xl font-bold text-white mb-3">Ready to get your child on track?</h2>
         <p className="text-gray-400 max-w-md mb-8">
           Book a first session and see the difference. Not sure where to start?
-          A free intro call helps us figure out exactly what your child needs.
+          Send me an email and we can discuss exactly what your child needs.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
@@ -180,15 +191,7 @@ export default function K12Page() {
               bg-orange-400 hover:bg-orange-500 border-orange-600
               active:border-b-2 cursor-pointer text-white text-center"
           >
-            Book your first session
-          </a>
-          <a
-            href="https://calendly.com/vithushan19/intro"
-            className="px-8 font-bold border-b-4 border-gray-600 rounded-lg py-3
-              bg-transparent hover:bg-gray-800 active:border-b-2
-              cursor-pointer text-white text-center border-2"
-          >
-            Free 30-min intro call
+            Contact Us
           </a>
         </div>
 
@@ -202,18 +205,10 @@ export default function K12Page() {
           </p>
         </div>
       </div>
-
-      {/* Bottom CTA */}
-      <div className="text-center py-8 bg-gray-100 sticky bottom-0">
-        Live in Malvern or Regent Park? We offer full scholarships for K-12 tutoring. {" "}
-        <a href="https://calendly.com/vithushan19/intro" target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-800 font-semibold">
-          Learn More →
-        </a>
-      </div>
     </div>
   );
 }
 
 K12Page.getLayout = function getLayout(page) {
-  return <ServicesLayout>{page}</ServicesLayout>;
+  return <div>{page}</div>;
 };

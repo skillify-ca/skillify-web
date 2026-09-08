@@ -2,6 +2,8 @@ import React from "react";
 
 // ── WHO IT'S FOR ──────────────────────────────────────────────────────────────
 
+import React from "react";
+
 const WhoItsForCopy: Record<string, string[]> = {
   tutoring: [
     "I want my child to perform well on a Waterloo Math or Coding contest to get into university.",
@@ -67,10 +69,10 @@ const WhoItsForCopy: Record<string, string[]> = {
 
 const WhoItsNotForCopy: Record<string, string[]> = {
   tutoring: [
-    "You're looking for a quick fix the night before an exam.",
-    "You want someone to just do the homework for your child.",
-    "Your child isn't willing to put in effort between sessions.",
-    "You're looking for a full school replacement or homeschool program.",
+    // "You're looking for a quick fix the night before an exam.",
+    // "You want someone to just do the homework for your child.",
+    // "Your child isn't willing to put in effort between sessions.",
+    // "You're looking for a full school replacement or homeschool program.",
   ],
   coaching: [
     "You want someone to hand you a job — coaching requires your effort too.",
@@ -87,7 +89,7 @@ const WhoItsNotForCopy: Record<string, string[]> = {
   career: [
     "You're looking for a full certification or degree program",
     "You prefer to learn with an AI tutor instead of a real person",
-    
+
   ],
   tech: [
     "You want to hire someone to work on your app full-time",
@@ -126,7 +128,7 @@ export default function WhoItsFor({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-7xl">
 
         {/* ── WHO IT'S FOR ── */}
-        <div className="flex flex-col p-8 bg-slate-200 rounded-xl">
+        <div className="flex flex-col p-8 bg-slate-200 rounded-xl col-span-2">
           <p className="font-bold text-gray-900 text-lg mb-4">✅ You're a good fit if this sounds like you...</p>
           {forItems.map((item) => (
             <div
@@ -153,7 +155,7 @@ export default function WhoItsFor({
         </div>
 
         {/* ── WHO IT'S NOT FOR ── */}
-        <div className="flex flex-col p-8 bg-slate-700 rounded-xl">
+        {false && <div className="flex flex-col p-8 bg-slate-700 rounded-xl">
           <p className="font-bold text-gray-300 text-lg mb-4">🚫 This is probably not for you if...</p>
           {notForItems.map((item) => (
             <div
@@ -177,7 +179,7 @@ export default function WhoItsFor({
               <p className="w-full p-4 text-lg text-gray-300">{item}</p>
             </div>
           ))}
-        </div>
+        </div>}
 
       </div>
     </div>
