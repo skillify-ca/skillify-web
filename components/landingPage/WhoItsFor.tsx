@@ -85,7 +85,6 @@ const WhoItsNotForCopy: Record<string, string[]> = {
     "You need highly specialized financial or legal advice.",
   ],
   career: [
-    "Your technical skills are already advanced to expert level",
     "You're looking for a full certification or degree program",
     "You prefer to learn with an AI tutor instead of a real person",
     

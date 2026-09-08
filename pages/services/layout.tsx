@@ -115,7 +115,7 @@ function getHeroContent(currentPage) {
     const subHeadline = "Career Coaching · Interview Prep · Salary Negotiation"
     const titleDefault = "Helping professionals upskill and"
     const titleHighlight = "advance their careers"
-    const description = "Learn in-demand technical skills, ace your interviews, then land your dream job offer. Skillify gives you the personalized coaching and accountability to achieve your career goals."
+    const description = "Learn valuable skills, ace your techincal and behavioural interviews, then land your dream job offer. Skillify gives you the coaching and prep to achieve your career goals."
     const buttonPrimaryText = "How we help"
     const buttonSecondaryText = "Free 30-min intro call"
     const primaryColour = "charmander"
