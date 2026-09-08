@@ -1,5 +1,3 @@
-import React from "react";
-
 // ── WHO IT'S FOR ──────────────────────────────────────────────────────────────
 
 import React from "react";
