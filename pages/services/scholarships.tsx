@@ -38,14 +38,6 @@ const HomePage = () => {
       </div>
 
       <Credentials title="Tutor" />
-
-      {/* Bottom CTA */}
-      <div className="text-center py-8 bg-gray-100 sticky bottom-0">
-        Got an idea you want to build? We'll help you scope it, design it, and ship it.{" "}
-        <a href="mailto:support@skillify.ca" className="text-blue-600 hover:text-blue-800 font-semibold">
-          Let's talk →
-        </a>
-      </div>
     </div>
   );
 };

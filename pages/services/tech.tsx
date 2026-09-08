@@ -125,13 +125,10 @@ export default function TechPage() {
       {/* ROI NOTE */}
       <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-200">
         <div className="max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">A bad tech decision costs more than a good one</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">A Fractional CTO In Your Corner</h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Most businesses overpay for tools they don't need, build things
-            that don't scale, or get locked into developers they can't replace. One
-            advisory session can save you from
-            a decision that costs ten times that to undo. Getting the right person
-            involved early is almost always the cheaper path.
+            Make the right technical decisions and lay a strong foundation for your business to scale.
+            Bad technical advice can lead to wasted time, money, and even lost customers. I've helped non-technical founders in various industries turn their ideas into successful digital products including real estate, edtech, crypto and e-commerce.
           </p>
         </div>
       </div>
@@ -212,6 +209,14 @@ export default function TechPage() {
             {" "}- full refund within the first two weeks. No questions asked.
           </p>
         </div>
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="text-center py-8 bg-gray-100 sticky bottom-0">
+        Got an idea you want to build? We'll help you scope it, design it, and ship it.{" "}
+        <a href="https://calendly.com/vithushan19/intro" target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-800 font-semibold">
+          Let's talk →
+        </a>
       </div>
 
     </div>

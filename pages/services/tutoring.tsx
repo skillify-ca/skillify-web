@@ -52,7 +52,7 @@ const TESTIMONIALS = [
 
 export default function K12Page() {
   return (
-    <div className="w-full bg-white">      
+    <div className="w-full bg-white">
 
       <WhoItsFor copyType={"tutoring"} />
 
@@ -106,6 +106,20 @@ export default function K12Page() {
           ))}
         </div>
       </div>
+
+      <div className="flex flex-col items-center justify-center w-full p-8 sm:p-8 bg-slate-200">
+        <div className="max-w-2xl text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Scholarships</h2>
+          <p className="text-gray-600 text-lg leading-relaxed mb-4">
+            Skillify is committed to supporting students in Toronto's underserved neighborhoods like Malvern and Regent Park through comprehensive academic support.
+            Proof of address is required to apply. 
+          </p>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            If you are a student in Malvern or Regent Park, please reach out to us for more information about our full scholarships for tutoring.
+          </p>
+        </div>
+      </div>
+
 
       <Credentials title="Tutor" />
 

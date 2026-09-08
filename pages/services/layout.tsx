@@ -62,7 +62,7 @@ function getHeroContent(currentPage) {
   if (currentPage === "tech") {
     const subHeadline = "App Development · Tech Strategy · Advisory"
     const titleDefault = "Technical advice"
-    const titleHighlight = "for business owners"
+    const titleHighlight = "for non-technical founders"
     const description = " Whether you're building something new or your tech is buggy and slow, having a real engineer in your corner will save you time and money."
     const buttonPrimaryText = "See what we can build"
     const buttonSecondaryText = "Free 30-min intro call"
@@ -138,7 +138,7 @@ function getHeroContent(currentPage) {
 
   if (currentPage === "schools") {
     const subHeadline = "Coding Workshops · AI Education and Ethics · School Board Advisory"
-    const titleDefault = "Bring a software engineer"
+    const titleDefault = "Bring a technology expert"
     const titleHighlight = "into your class."
     const description = "Curriculum-aligned coding and technology workshops for grades 3 to 12, facilitated by an expert software engineer. Available in-person across the GTA or online."
     const buttonPrimaryText = "See workshop options"

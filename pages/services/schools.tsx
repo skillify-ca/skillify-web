@@ -213,7 +213,7 @@ export default function SchoolsPage() {
             {/* WHY SKILLIFY vs A LARGE PROGRAM */}
             <div className="flex flex-col items-center justify-center w-full p-8 sm:p-16 bg-slate-200">
                 <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
-                    Why a real engineer?
+                    Why a Technology Expert?
                 </h2>
                 <p className="text-gray-500 text-center max-w-2xl mt-2 text-lg leading-relaxed">
                     Large STEM programs run the same workshop in every school. Skillify

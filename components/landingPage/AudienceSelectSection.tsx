@@ -22,13 +22,16 @@ export default function AudienceSelectSection() {
                     </p>
                     <p className="font-semibold text-sm mt-4 text-charmander">See teacher services →</p>
                 </a> */}
-                <a href="/services/schools" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">🏫</p>
-                    <p className="text-xl font-bold text-gray-900">For School Boards</p>
+
+
+                {/* Professionals / Builders */}
+                <a href="/services/tech" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
+                    <p className="text-3xl mb-3">💻</p>
+                    <p className="text-xl font-bold text-gray-900">For Professionals & Builders</p>
                     <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Bring hands-on coding workshops directly to your students. Curriculum-aligned and engaging.
+                        Fix your app, build something new, or get a trusted tech advisor in your corner. Ask questions and get results.
                     </p>
-                    <p className="font-semibold text-sm mt-4 text-pikachu">See school workshops →</p>
+                    <p className="font-semibold text-sm mt-4 text-charmander">See tech services →</p>
                 </a>
 
                 {/* University / Job Seekers */}
@@ -41,26 +44,25 @@ export default function AudienceSelectSection() {
                     <p className="font-semibold text-sm mt-4 text-rattata">See career services →</p>
                 </a>
 
-                {/* Professionals / Builders */}
-                <a href="/services/tech" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-murkrow hover:scale-105 transition-transform cursor-pointer no-underline">
-                    <p className="text-3xl mb-3">💻</p>
-                    <p className="text-xl font-bold text-gray-900">For Professionals & Builders</p>
-                    <p className="text-gray-500 text-sm mt-2 flex-1">
-                        Fix your app, build something new, or get a trusted tech advisor in your corner. Ask questions and get results.
-                    </p>
-                    <p className="font-semibold text-sm mt-4 text-murkrow">See tech services →</p>
-                </a>
-
 
 
                 {/* K-12 / Parents */}
-                <a href="/services/tutoring" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-charmander hover:scale-105 transition-transform cursor-pointer no-underline">
+                <a href="/services/tutoring" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-gray-700 hover:scale-105 transition-transform cursor-pointer no-underline">
                     <p className="text-3xl mb-3">👨‍👩‍👧</p>
                     <p className="text-xl font-bold text-gray-900">For Parents & K-12 Students</p>
                     <p className="text-gray-500 text-sm mt-2 flex-1">
                         Help your child build real confidence in math, science, and coding with an instructor who makes it click.
                     </p>
-                    <p className="text-charmander font-semibold text-sm mt-4">See tutoring services →</p>
+                    <p className="text-gray-700 font-semibold text-sm mt-4">See tutoring services →</p>
+                </a>
+
+                <a href="/services/schools" className="flex flex-col h-full p-6 bg-white border-t-8 shadow-xl rounded-xl border-pikachu hover:scale-105 transition-transform cursor-pointer no-underline">
+                    <p className="text-3xl mb-3">🏫</p>
+                    <p className="text-xl font-bold text-gray-900">For School Boards</p>
+                    <p className="text-gray-500 text-sm mt-2 flex-1">
+                        Bring hands-on coding workshops directly to your students. Curriculum-aligned and engaging.
+                    </p>
+                    <p className="font-semibold text-sm mt-4 text-pikachu">See school workshops →</p>
                 </a>
 
             </div>
