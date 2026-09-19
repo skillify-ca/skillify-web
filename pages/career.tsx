@@ -38,7 +38,7 @@ const SERVICES = [
     tag: "For job seekers",
   },
     {
-    step: "03",
+    step: "04",
     title: "Resume Workshop",
     price: "FREE",
     outcome: "A resume that actually gets opened.",
