@@ -7,6 +7,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { Provider as ReduxProvider } from "react-redux";
+import { Analytics } from "@vercel/analytics/next";
 import MDXProvider from "../components/blog/MDXProvider";
 import Layout from "../components/studentPortal/layout/Layout";
 import { AuthProvider, useAuth } from "../lib/authContext";
@@ -132,6 +133,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
           </AuthProvider>
         </ReduxProvider>
       </DndProvider>
+      <Analytics />
     </SessionProvider>
   );
 }

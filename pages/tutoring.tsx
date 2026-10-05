@@ -7,7 +7,7 @@ import WhoItsFor from "../components/landingPage/WhoItsFor";
 const SERVICES = [
   {
     title: "Private Tutoring",
-    price: "$85 / hr",
+    price: "$95 / hr",
     outcome: "The courses that decide your university options. Let's make them count.",
     description:
       "High school is where the stakes get real. We work through the exact units giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure. Delivered in-person in downtown Toronto or virtually using Zoom.",

@@ -33,6 +33,8 @@ const WhoItsForCopy: Record<string, string[]> = {
     "Personalized coaching matters — I need guidance that fits my life.",
   ],
   career: [
+    "You want to learn the basics of coding",
+    "You have an idea for an app or website and want to build it yourself",
     "You've been applying to jobs for months and you're not hearing back",
     "You have a job interview coming up and feel underprepared",
     "You got a job offer but you don't know if the compensation is fair",
