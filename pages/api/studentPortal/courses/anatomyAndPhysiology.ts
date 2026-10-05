@@ -35,13 +35,32 @@ export const anatomyAndPhysiologyUnits: Unit[] = [
                 description: "Overview of Organic Compounds",
                 link: "organic-compounds",
             },
+
         ],
     },
+    {
+        title: "The Cellular Level of Organization",
+        nodes: [
+            {
+                title: "Lesson 1",
+                type: "lesson",
+                description: "Parts of a Cell",
+                link: "parts-of-a-cell",
+            },
+            {
+                title: "Lesson 2",
+                type: "lesson",
+                description: "Protein Synthesis",
+                link: "protein-synthesis",
+            },
+        ]
+    }
+
 ];
 
 export function getLessonForAnatomyAndPhysiologyCourse(lessonId: string) {
     // if (lessonId === "introduction") {
-        return getIntroMatterOrganizationLesson();
+    return getIntroMatterOrganizationLesson();
     // } else if (lessonId === "chemical-bonds") {
     //     return getChemicalBondsLesson();
     // } else if (lessonId === "chemical-reactions") {
@@ -52,20 +71,20 @@ export function getLessonForAnatomyAndPhysiologyCourse(lessonId: string) {
 }
 
 function getIntroMatterOrganizationLesson() {
-  const lessonComponents: LessonComponentData[] = [
-    {
-      component: "title",
-      text: "Introduction to Anatomy and Physiology",
-    },
-    {
-      component: "description",
-      text: `Anatomy is the science of the different structures in the body and the relationships between them. Physiology is the science of functions in the body.`,
-    },
+    const lessonComponents: LessonComponentData[] = [
         {
-      component: "description",
-      text: `There are six levels of studying the body in anatomy. There are 11 systems of the human body.`,
-    },
-  ];
+            component: "title",
+            text: "Introduction to Anatomy and Physiology",
+        },
+        {
+            component: "description",
+            text: `Anatomy is the science of the different structures in the body and the relationships between them. Physiology is the science of functions in the body.`,
+        },
+        {
+            component: "description",
+            text: `There are six levels of studying the body in anatomy. There are 11 systems of the human body.`,
+        },
+    ];
 
-  return {lessonComponents, nextSlug: ""}
+    return { lessonComponents, nextSlug: "" }
 }
