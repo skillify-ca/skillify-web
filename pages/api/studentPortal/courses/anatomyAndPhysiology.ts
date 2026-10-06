@@ -44,8 +44,8 @@ export const anatomyAndPhysiologyUnits: Unit[] = [
             {
                 title: "Lesson 1",
                 type: "lesson",
-                description: "Parts of a Cell",
-                link: "parts-of-a-cell",
+                description: "Anatomy and Physiology Interact Textbook",
+                link: "textbook",
             },
             {
                 title: "Lesson 2",

@@ -143,6 +143,37 @@ export const CELLULAR: PageData[] = [
     stub("proteasomes", "Proteasomes"),
     stub("mitochondria", "Mitochondria"),
     stub("nucleus", "Nucleus"),
+    stub("cytosol", "Cytosol"),
+
     stub("protein_synthesis", "Protein Synthesis"),
     stub("cell_division", "Cell Division"),
+
+    {
+        type: "directory",
+        title: "Membrane Transport",
+        id: "membrane_transport",
+        children: [
+            "simple_diffusion",
+            "faciliated_diffusion",
+            "osmosis",
+            "primary_active_transport",
+            "secondary_active_transport",
+            "receptor_mediated_endocytosis",
+            "phagocytosis",
+            "bulk_phase_endocytosis",
+            "exocytosis",
+            "transcytosis",
+        ]
+    },
+    stub("simple_diffusion", "Simple Diffusion", ["passive", "diffusion"]),
+    stub("faciliated_diffusion", "Faciliated Diffusion", ["passive", "diffusion"]),
+    stub("osmosis", "Osmosis", ["passive"]),
+    stub("primary_active_transport", "Primary Active Transport", ["active"]),
+    stub("secondary_active_transport", "Secondary Active Transport",["active"]),
+    stub("receptor_mediated_endocytosis", "Receptor-mediated endocytosis", ["active", "endocytosis", "vesicles"]),
+    stub("phagocytosis", "Phagocytosis", ["active", "endocytosis", "vesicles"]),
+    stub("bulk_phase_endocytosis", "Bulk-phase Endocytosis", ["active", "endocytosis", "vesicles"]),
+    stub("exocytosis", "Exocytosis", ["active", "vesicles"]),
+    stub("transcytosis", "Transcytosis", ["active", "vesicles"]),
+
 ]
