@@ -1,4 +1,3 @@
-import React from "react";
 import Credentials from "../components/landingPage/Credentials";
 import { TutoringHero } from "../components/landingPage/Hero";
 import NavbarV3 from "../components/landingPage/NavbarV3";
@@ -7,7 +6,7 @@ import WhoItsFor from "../components/landingPage/WhoItsFor";
 const SERVICES = [
   {
     title: "Private Tutoring",
-    price: "$95 / hr",
+    price: "$85 / hr",
     outcome: "The courses that decide your university options. Let's make them count.",
     description:
       "High school is where the stakes get real. We work through the exact units giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure. Delivered in-person in downtown Toronto or virtually using Zoom.",
