@@ -108,7 +108,7 @@ function Tree({ nodes, selected, onSelect, expanded, onToggle, depth = 0, parent
 
         const handleLabelClick = () => {
           if (node.id) onSelect(node.id);
-          if (hasChildren && (!node.id || !isOpen)) onToggle(key);
+          if (hasChildren) onToggle(key);
         };
 
         return (
