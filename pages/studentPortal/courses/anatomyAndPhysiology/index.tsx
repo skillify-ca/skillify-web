@@ -59,10 +59,15 @@ const TREE: TreeNode[] = [
   ]),
   group("Cellular Level of Organization", [
     group("Structures", [
-    fromPage("plasma_membrane"),
-    fromPage("organelles"),
-    fromPage("cytosol"),
-    fromPage("nucleus"),
+      fromPage("plasma_membrane"),
+      fromPage("organelles"),
+      fromPage("cytosol"),
+      group("Cytoskeleton", [
+        fromPage("microfilaments"),
+        fromPage("intermediate_filaments"),
+        fromPage("microtubules"),
+      ]),
+      fromPage("nucleus"),
     ]),
     group("Processes", [
       fromPage("membrane_transport"),

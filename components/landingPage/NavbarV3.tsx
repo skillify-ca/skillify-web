@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const PAGES = [
   {
@@ -120,7 +120,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
               PAGES.map(page => (
                 <a
                   key={page.id}
-                  href={page.id ? "/services/" + page.id : "/"}
+                  href={page.id ? page.id : "/"}
                   className={`py-2 text-sm font-medium ${currentPage === page.id ? selectedStyle : unselectedStyle}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

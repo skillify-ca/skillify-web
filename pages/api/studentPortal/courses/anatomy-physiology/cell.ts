@@ -144,7 +144,68 @@ export const CELLULAR: PageData[] = [
     stub("mitochondria", "Mitochondria"),
     stub("nucleus", "Nucleus"),
     stub("cytosol", "Cytosol"),
-
+    stub("cytoskeleton", "Cytoskeleton"),
+    {
+        type: "detail",
+        id: "microfilaments",
+        title: "Microfilaments",
+        sections: [
+            {
+                title: "Location",
+                items: [
+                    "Assembled in the centromere",
+                ]
+            },
+            {
+                title: "Components",
+                items: [
+                    "actin and myosin proteins",
+                ]
+            },
+            {
+                title: "Functions",
+                items: [
+                    "muscle contraction",
+                    "cell division",
+                    "cell locomotion - migration of white blood cells to fight infections", 
+                    "cell locomotion - embryonic cells during development", 
+                    "cell locomotion - skin cells during wound healing",
+                    "anchor the cytoskeleton to integral proteins in the plasma membrane",
+                    "provides structural support for microvilli",
+                    "provides basic strength and structure for a cell"
+                ]
+            }
+        ]
+    },
+    stub("intermediate_filaments", "Intermediate Filaments"),
+    {
+        type: "detail",
+        id: "microtubules",
+        title: "Microtubules",
+        sections: [
+            {
+                title: "Location",
+                items: [
+                    "Assembled in the centromere",
+                ]
+            },
+            {
+                title: "Components",
+                items: [
+                    "tubulin protein",
+                ]
+            },
+            {
+                title: "Functions",
+                items: [
+                    "help determine cell shape",
+                    "movement of secretory vesicles",
+                    "movement of chromsomes during cell division",
+                    "movement of cilia and flagella"
+                ]
+            }
+        ]
+    },
     stub("protein_synthesis", "Protein Synthesis"),
     stub("cell_division", "Cell Division"),
 
@@ -169,7 +230,7 @@ export const CELLULAR: PageData[] = [
     stub("faciliated_diffusion", "Faciliated Diffusion", ["passive", "diffusion"]),
     stub("osmosis", "Osmosis", ["passive"]),
     stub("primary_active_transport", "Primary Active Transport", ["active"]),
-    stub("secondary_active_transport", "Secondary Active Transport",["active"]),
+    stub("secondary_active_transport", "Secondary Active Transport", ["active"]),
     stub("receptor_mediated_endocytosis", "Receptor-mediated endocytosis", ["active", "endocytosis", "vesicles"]),
     stub("phagocytosis", "Phagocytosis", ["active", "endocytosis", "vesicles"]),
     stub("bulk_phase_endocytosis", "Bulk-phase Endocytosis", ["active", "endocytosis", "vesicles"]),
