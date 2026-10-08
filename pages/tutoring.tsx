@@ -19,7 +19,7 @@ const SERVICES = [
 const TESTIMONIALS = [
   {
     quote:
-      "Vithushan helped my kids feel confident preparing for school tests. He was flexible in tutoring both of my kids together at an afforadable rate.",
+      "Vithushan helped my kids feel confident preparing for school tests. He was flexible in tutoring both of my kids together in different grades.",
     name: "Nisha R",
     school: "Parent of a 6th and 8th grader",
     outcome: "Overcame math anxiety",
