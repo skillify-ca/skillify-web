@@ -1,10 +1,9 @@
-import React from "react";
 
 export default function Credentials({title} : {title: string}) {
   const images = [
-    "/images/about/spotify.png",
-    "/images/about/meta.png",
     "/images/about/duolingo.png",
+    "/images/about/meta.png",
+    "/images/about/spotify.png",
     // "/images/about/shopify.png",
     // "/images/about/nvidia.png",
     "/images/about/samsung.jpg",
