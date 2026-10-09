@@ -170,9 +170,83 @@ export const EPITHELIAL: PageData[] = [
     tags: ["unicellular"]
   },
   stub("salivary_glands", "Salivary Glands", ["multicellular", "merocrine"]),
-  stub("sebaceous_glands", "Sebaceous (Oil) Glands", ["multicellular", "simple", "branched acinar", "holocrine",]),
-  stub("sweat_glands", "Sweat Glands", ["multicellular", "simple", "coiled tubular"]),
-  stub("ceruminous_glands", "Ceruminous Glands", ["multicellular"]),
+  {
+    type: "directory",
+    id: "sweat_glands",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Human_skin_structure.svg/960px-Human_skin_structure.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    title: "Sweat Glands",
+    children: [
+      "eccrine_sweat_glands", "apocrine_sweat_glands"
+    ]
+  },
+  {
+    type: "detail",
+    id: "eccrine_sweat_glands",
+    title: "Eccrine Sweat Glands",
+    image: "https://upload.wikimedia.org/wikipedia/commons/8/81/Gray940_-_sweat_gland.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    sections: [
+      {
+        title: "Functions",
+        items: [
+          "Regulation of body temperature",
+          "Waste removal",
+          "Stimulated during emotional stress",
+        ]
+      }
+    ],
+    tags: ["simple", "coiled tubular"]
+  },
+    {
+    type: "detail",
+    id: "apocrine_sweat_glands",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Apocrine_et_eccrine.jpg/960px-Apocrine_et_eccrine.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    title: "Apocrine Sweat Glands",
+    sections: [
+      {
+        title: "Functions",
+        items: [
+          "Stimulated during emotional stress",
+          "Stimulated during sexual excitement",
+        ]
+      }
+    ],
+    tags: ["simple", "coiled tubular"]
+  },
+  {
+    type: "detail",
+    id: "sebaceous_glands",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Hair_follicle-en.svg/960px-Hair_follicle-en.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    title: "Oil Glands",
+    tags: ["multicellular", "simple", "branched acinar", "holocrine",],
+    sections: [
+      {
+        title: "Functions",
+        items: [
+          "Prevent hair from drying out",
+          "Prevent water loss from skin",
+          "Keep skin soft",
+          "Inhibit growth of bacteria"
+        ]
+      }
+    ]
+  },
+    {
+    type: "detail",
+    id: "ceruminous_glands",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Ear-anatomy-text-small-en.svg/960px-Ear-anatomy-text-small-en.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    title: "Ceruminous Glands",
+    tags: ["multicellular"],
+    sections: [
+      {
+        title: "Functions",
+        items: [
+          "Impede entrance of foreign bodies and insects into external ear canal",
+          "Waterproofs ear canal",
+          "Prevent microbes from entering cells",
+        ]
+      }
+    ]
+  },
   stub("mammary_glands", "Mammary Glands", ["multicellular", "compound", "acinar", "apocrine"]),
   stub("large_intestine_glands", "Large Intestine Glands", ["multicellular", "simple", "tubular"]),
   stub("gastric_glands", "Gastric Glands", ["multicellular", "simple", "branched tubular"]),

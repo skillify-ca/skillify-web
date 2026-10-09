@@ -1,14 +1,16 @@
 import { cn } from "cn";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, LockIcon } from "lucide-react";
 
 // Adjust these paths to wherever registry.ts and types.ts live in your project
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { shuffle } from "lodash";
+import { Button } from "../../../../components/ui/Button";
 import { getPage, normalizeId } from "../../../api/studentPortal/courses/anatomy-physiology/registry";
 import { tagClass, tagDescription } from "../../../api/studentPortal/courses/anatomy-physiology/tagColors";
-import type { DetailPage, DirectoryPage, PageData } from "../../../api/studentPortal/courses/anatomy-physiology/types";
+import type { CategorizeGamePage, CategoryProperty, DetailPage, DirectoryPage, PageData } from "../../../api/studentPortal/courses/anatomy-physiology/types";
 
 /* -------------------------------------------------------------------------- */
 /* Sidebar tree (derived from the page registry)                              */
@@ -36,15 +38,14 @@ const group = (label: string, children: TreeNode[]): TreeNode => ({ label, child
 const TREE: TreeNode[] = [
   group("Body Systems", [
     group("Integumentary", [
-      fromPage("hair"),
       group("Skin", [
         fromPage("epidermis"),
         fromPage("dermis"),
         fromPage("hypodermis"),
-        fromPage("lamellated_corpuscles"),
+        fromPage("skin_glands"),
+        fromPage("thick_vs_thin"),
       ]),
-      fromPage("oil"),
-      fromPage("sweat_glands"),
+      fromPage("hair"),
       fromPage("nails"),
       fromPage("sensory_receptors"),
     ]),
@@ -75,7 +76,15 @@ const TREE: TreeNode[] = [
       fromPage("cell_division"),
     ])
   ]),
-  group("Specialized Cells", [fromPage("synoviocytes")]),
+  group("Specialized Cells", [
+    fromPage("synoviocytes"),
+    fromPage("keratinocytes"),
+    fromPage("melanocytes"),
+    fromPage("langerhans"),
+    fromPage("merkel"),
+
+  ]
+  ),
   group("Specialized Body Fluids", [fromPage("synovial_fluid"), fromPage("mucus")]),
 ];
 
@@ -166,9 +175,9 @@ function Tree({ nodes, selected, onSelect, expanded, onToggle, depth = 0, parent
 /* -------------------------------------------------------------------------- */
 
 const LessonPage = () => {
-  const [selected, setSelected] = useState("membrane_transport");
+  const [selected, setSelected] = useState("thick_vs_thin");
   const [expanded, setExpanded] = useState<Set<string>>(
-    () => new Set(["/Cellular Level of Organization", "/Cellular Level of Organization/Processes", "/Cellular Level of Organization/Processes/Membrane Transport"])
+    () => new Set(["/Body Systems", "/Body Systems/Integumentary", "/Body Systems/Integumentary/Skin"])
   );
 
   const toggle = (key: string) =>
@@ -230,22 +239,28 @@ function PageView({ page, onNavigate }: { page: PageData; onNavigate: (id: strin
       return <BaseCard page={page} onTermClick={onNavigate} />;
     case "directory":
       return <DirectoryCard page={page} onNavigate={onNavigate} />;
+    case "categorize":
+      return <CategoryGamePage page={page} />
   }
 }
 
 const SectionHeader = ({ title }: { title: string }) => {
-  const icon =
-    title === "Structure" ? "🧱"
-      : title === "Layers" ? "🧱"
-        : title === "Functions" ? "⚙️"
-          : title === "Characteristics" ? "⚙️"
-            : title === "Surfaces" ? "🧭"
-              : title === "Types" ? "📋"
-                : title === "Location" ? "📍"
-                  : title === "Questions" ? "❓" : "";
+  const icons: Record<string, string> = {
+    Structure: "🧱",
+    Layers: "🧱",
+    Functions: "⚙️",
+    Characteristics: "⚙️",
+    Surfaces: "🧭",
+    Types: "📋",
+    Location: "📍",
+    Questions: "❓",
+  };
 
   return (
-    <p className="mt-4 text-xl font-bold">{icon} {title}</p>
+    <h2 className="mb-3 text-xl font-bold">
+      {icons[title] && `${icons[title]} `}
+      {title}
+    </h2>
   );
 };
 
@@ -281,40 +296,115 @@ function renderRichText(text: string, onTermClick?: (id: string) => void): React
   return parts;
 }
 
+const LockedNotice = ({ message }: { message?: string }) => (
+  <div className="flex flex-col items-center gap-3 rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-6 py-12 text-center">
+    <div className="rounded-full bg-slate-200 p-4">
+      <LockIcon className="h-8 w-8 text-slate-500" />
+    </div>
+    <h3 className="text-lg font-semibold text-slate-700">This page is locked</h3>
+    <p className="max-w-sm text-sm text-slate-500">
+      {message ?? "Reach out to unlock this content."}
+    </p>
+  </div>
+);
+
 const BaseCard = ({
   page,
   onTermClick,
 }: {
   page: DetailPage;
   onTermClick?: (id: string) => void;
-}) => (
-  <div className="flow-root">
-    <h2 className="font-bold text-4xl mb-4">{page.title}</h2>
-    <p className="mb-4">{page.description}</p>
-    {page.image && (
-      <img
-        src={page.image}
-        alt={page.title}
-        width={300}
-        height={300}
-        className="mb-4 sm:float-right"
-      />
-    )}
-    {page.sections?.map((section, index) => (
-      <div key={index}>
-        <SectionHeader title={section.title} />
-        <ul className="list list-disc list-inside">
-          {section.items.map((item, itemIndex) => (
-            <li key={itemIndex}>{renderRichText(item, onTermClick)}</li>
-          ))}
-        </ul>
+}) => {
+
+  const locked = true
+
+  if (locked) {
+    return (<article className="mx-auto max-w-4xl">
+      {/* Title and introduction */}
+
+      <header className="mb-6">
+        <div className="flex flex-col items-center justify-center">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-3xl font-bold tracking-tight">
+              {page.title}
+            </h2>
+          </div>
+          {page.image && (
+            <img
+              src={page.image}
+              alt={page.title}
+              className="h-28 w-28 shrink-0 rounded-lg object-cover border-2 sm:h-64 sm:w-64"
+            />
+          )}
+          {page.description && (
+            <p className="mt-3 text-base leading-7 text-slate-600">
+              {page.description}
+            </p>
+          )}
+        </div>
+      </header>
+
+      {/* Locked Screen */}
+      <LockedNotice />
+
+    </article>
+    )
+  }
+
+  return (
+    <article className="mx-auto max-w-4xl">
+      {/* Title and introduction */}
+
+      <header className="mb-6">
+        <div className="flex flex-col items-center justify-center">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-3xl font-bold tracking-tight">
+              {page.title}
+            </h2>
+          </div>
+          {page.image && (
+            <img
+              src={page.image}
+              alt={page.title}
+              className="h-28 w-28 shrink-0 rounded-lg object-cover border-2 sm:h-64 sm:w-64"
+            />
+          )}
+          {page.description && (
+            <p className="mt-3 text-base leading-7 text-slate-600">
+              {page.description}
+            </p>
+          )}
+        </div>
+      </header>
+
+
+      {/* Information sections */}
+      <div className="clear-both space-y-8">
+
+        {page.sections?.map((section, index) => (
+          <section key={section.title || index}>
+            <div className="mb-3 border-b border-slate-200 text-lg font-semibold">
+              <SectionHeader title={section.title} />
+            </div>
+
+
+            <ul className="space-y-2 pl-5 text-[15px] leading-7 marker:text-slate-400 list-disc">
+              {section.items.map((item, itemIndex) => (
+                <li key={itemIndex}>
+                  {renderRichText(item, onTermClick)}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
       </div>
-    ))}
-  </div>
-);
+    </article>
+  )
+}
+
 const DirectoryCard = ({
   page,
-  onNavigate,
+  onNavigate
 }: {
   page: DirectoryPage;
   onNavigate: (id: string) => void;
@@ -335,7 +425,6 @@ const DirectoryCard = ({
       {page.children.map((childId) => {
         const child = getPage(childId);
         if (!child) return null;
-
         return (
           <Card
             key={childId}
@@ -392,6 +481,68 @@ const DirectoryCard = ({
       })}
     </div>
   </div>
-);
+)
+
+const CategoryGamePage = ({
+  page
+}: {
+  page: CategorizeGamePage
+}) => {
+
+  const [stage, setStage] = useState("game")
+
+  const [currentProperty, setCurrentProperty] = useState(0)
+  const [score, setScore] = useState(0)
+  const [properties, setProperties] = useState<CategoryProperty[]>([])
+
+  useEffect(() => {
+    const shuffled = shuffle(page.properties)
+    setProperties(shuffled)
+  }, [])
+
+  function onGuess(categoryGuess: string) {
+    if (properties[currentProperty].category === categoryGuess) {
+      setScore(score + 1)
+    }
+
+    const length = page.properties.length
+    if (currentProperty < length - 1) {
+      setCurrentProperty(currentProperty + 1)
+    } else {
+      setStage("game_over")
+    }
+  }
+
+  function onRestart() {
+    const shuffled = shuffle(page.properties)
+    setProperties(shuffled)
+    setScore(0)
+    setCurrentProperty(0)
+    setStage("game")
+  }
+
+  return <div>
+
+    <div className="flex flex-col items-center">
+
+      <h2 className="font-bold text-2xl">Current Score: {score} / {properties.length}</h2>
+
+      <p>TABLE 5.4 Comparison of Thin and Thick Skin. GOOD FOR REVIEW!!!</p>
+
+      {properties[currentProperty] && <div className="border rounded p-4 my-4 h-64 w-96 text-center flex items-center justify-center">
+        {properties[currentProperty].property}
+      </div>}
+      <div className="flex gap-4">
+        {stage == "game" ?
+          page.categories.map(it => <Button label={it.title} onClick={() => onGuess(it.id)} />)
+          : <Button label="Restart" onClick={onRestart} />}
+      </div>
+    </div>
+    <div>
+
+    </div>
+
+  </div>
+}
 
 export default LessonPage;

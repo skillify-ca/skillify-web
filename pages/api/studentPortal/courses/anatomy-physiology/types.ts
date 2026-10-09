@@ -11,5 +11,8 @@ type BasePage = {
 
 export type DetailPage = BasePage & { type: "detail"; sections?: Section[] };
 export type DirectoryPage = BasePage & { type: "directory"; children: string[] };
+export type CategorizeGamePage = BasePage & { type: "categorize", categories: Category[], properties: CategoryProperty[] };
 
-export type PageData = DetailPage | DirectoryPage;
+export type PageData = DetailPage | DirectoryPage | CategorizeGamePage
+export type CategoryProperty = {property: string, category: string}
+export type Category = {id: string, title: string}
