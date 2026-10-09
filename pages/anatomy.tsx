@@ -313,15 +313,22 @@ const MatchingGamePage = ({ page }: { page: MatchingGamePageData }) => {
   }
 
   return <div>
+    <p className="">Aim for 0 incorrect clicks to be exam-ready</p>
     <div className="flex justify-center mb-4 items-center gap-4">
-    <p className="font-bold">Incorrect Clicks: {incorrectClicks}</p>
+      <p className="font-bold">Incorrect Clicks: {incorrectClicks}</p>
       <Button className={"bg-orange-400 px-4 py-2 font-bold text-white rounded-lg"} onClick={onReset}>Reset</Button>
     </div>
+    <div className="flex gap-2 mb-4 justify-start">
+
+</div>
     <div className="flex gap-2">
       <div className="flex flex-col gap-2">
+        <p className="underline">{page.columnOne}</p>
+
         {columnOne.map(it => <MatchingCard isActive={activeSelection === it} isMatched={matchedTerms.includes(it)} term={it} onClick={() => onClick(it, 1)} />)}
       </div>
       <div className="flex flex-col gap-2">
+        <p className="underline">{page.columnTwo}</p>
 
         {columnTwo.map(it => <MatchingCard isActive={activeSelection === it} isMatched={matchedTerms.includes(it)} term={it} onClick={() => onClick(it, 2)} />)}
       </div>

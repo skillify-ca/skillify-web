@@ -70,7 +70,7 @@ export const ACTIVITIES: PageData[] = [
         "id": "cell_function_matching",
         "title": "Cell Functions",
         "type": "matching",
-        "columnOne": "Cell Structure",
+        "columnOne": "Cell Function",
         "columnTwo": "Function",
         "itemPairs": [
             [
@@ -184,11 +184,11 @@ export const ACTIVITIES: PageData[] = [
             ],
             [
                 "Stratified cuboidal",
-                "rare tissue and is found in the ducts of adult sweat and esophagel glands"
+                "found in the ducts of adult sweat and esophagel glands"
             ],
             [
                 "Stratified columnar",
-                "uncommon tissue has and lines part of the urethra and part of the conjunctiva of the eye"
+                "lines part of the urethra and part of the conjunctiva of the eye"
             ],
             [
                 "Transitional epithelium",
@@ -200,7 +200,7 @@ export const ACTIVITIES: PageData[] = [
         "id": "connective_tissue_matching",
         "title": "Connective Tissue",
         "type": "matching",
-        "columnOne": "Connective Tissue",
+        "columnOne": "Tissue",
         "columnTwo": "Example",
         "itemPairs": [
             [
