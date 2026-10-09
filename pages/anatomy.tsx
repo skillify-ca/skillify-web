@@ -178,7 +178,7 @@ function Tree({ nodes, selected, onSelect, expanded, onToggle, depth = 0, parent
 const LessonPage = () => {
   const [selected, setSelected] = useState("thick_vs_thin");
   const [expanded, setExpanded] = useState<Set<string>>(
-    () => new Set(["/Body Systems", "/Body Systems/Integumentary", "/Body Systems/Integumentary/Skin"])
+    () => new Set(["/Body Systems/Integumentary/Skin"])
   );
 
   const toggle = (key: string) =>
@@ -530,7 +530,7 @@ const CategoryGamePage = ({
 
       <p>TABLE 5.4 Comparison of Thin and Thick Skin. GOOD FOR REVIEW!!!</p>
 
-      {properties[currentProperty] && <div className="border rounded p-4 my-4 h-64 w-96 text-center flex items-center justify-center">
+      {properties[currentProperty] && <div className="border-2 rounded p-4 my-4 h-64 w-96 text-center flex items-center justify-center max-w-full">
         {properties[currentProperty].property}
       </div>}
       <div className="flex gap-4">
