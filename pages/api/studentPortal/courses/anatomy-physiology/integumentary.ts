@@ -108,32 +108,5 @@ export const INTEGUMENTARY: PageData[] = [
     },
     stub("nails", "Nails"),
     stub("sensory_receptors", "Sensory Receptors"),
-    {
-        id: "thick_vs_thin",
-        title: "Thick vs Thin",
-        type: "categorize",
-        categories: [{ id: "thick", title: "Thick Skin" }, { id: "thin", title: "Thin Skin" }],
-        properties: [
-            { property: "Distributed across all body parts except the palms, palmar surface of digits and soles", category: "thin" },
-            { property: "Distributed across the palms, palmar surface of digits and soles", category: "thick" },
-            { property: "Epidermal thickness of 0.1 - 0.15mm", category: "thin" },
-            { property: "Epidermal thickness of 0.65 - 4.5mm, mostly from a thicker stratum corneum", category: "thick" },
-            { property: "Lacks a stratum lucidum", category: "thin" },
-            { property: "Has a stratum lucidum", category: "thick" },
-            { property: "Has a thinner strata spinosum and corneum", category: "thin" },
-            { property: "Has a thicker strata spinosum and corneum", category: "thick" },
-            { property: "Lacks epidermal ridges", category: "thin" },
-            { property: "Has epidermal ridges", category: "thick" },
-            { property: "Poorly developed and fewer dermal papillae", category: "thin" },
-            { property: "Well-organized and numerous dermal papillae", category: "thick" },
-            { property: "Contains hair follicles and arrector pili muscles", category: "thin" },
-            { property: "Lacks hair follicles and arrector pili muscles", category: "thick" },
-            { property: "Contains sebaceous glands", category: "thin" },
-            { property: "Lacks sebasceous glands", category: "thick" },
-            { property: "Few sudoriferous glands", category: "thin" },
-            { property: "Numerous sudoriferous glands", category: "thick" },
-            { property: "Sparser sensory receptors", category: "thin" },
-            { property: "Denser sensory receptors", category: "thick" },
-        ]
-    }
+
 ]

@@ -11,7 +11,7 @@ import { shuffle } from "lodash";
 import NavbarV3 from "../components/landingPage/NavbarV3";
 import { getPage, normalizeId } from "./api/studentPortal/courses/anatomy-physiology/registry";
 import { tagClass, tagDescription } from "./api/studentPortal/courses/anatomy-physiology/tagColors";
-import { CategorizeGamePage, CategoryProperty, DetailPage, DirectoryPage, PageData } from "./api/studentPortal/courses/anatomy-physiology/types";
+import { CategorizeGamePage, CategoryProperty, DetailPage, DirectoryPage, MatchingGamePageData, PageData } from "./api/studentPortal/courses/anatomy-physiology/types";
 
 /* -------------------------------------------------------------------------- */
 /* Sidebar tree (derived from the page registry)                              */
@@ -44,7 +44,6 @@ const TREE: TreeNode[] = [
         fromPage("dermis"),
         fromPage("hypodermis"),
         fromPage("skin_glands"),
-        fromPage("thick_vs_thin"),
       ]),
       fromPage("hair"),
       fromPage("nails"),
@@ -87,6 +86,13 @@ const TREE: TreeNode[] = [
   ]
   ),
   group("Specialized Body Fluids", [fromPage("synovial_fluid"), fromPage("mucus")]),
+  group("Activities", [
+    fromPage("cell_structure_matching"),
+    fromPage("cell_function_matching"),
+    fromPage("surface_epithelial_matching"),
+    fromPage("connective_tissue_matching"),
+    fromPage("thick_vs_thin_skin"),
+  ])
 ];
 
 // Expand-keys of every ancestor of the node with this id (same key scheme as <Tree>)
@@ -176,9 +182,9 @@ function Tree({ nodes, selected, onSelect, expanded, onToggle, depth = 0, parent
 /* -------------------------------------------------------------------------- */
 
 const LessonPage = () => {
-  const [selected, setSelected] = useState("thick_vs_thin");
+  const [selected, setSelected] = useState("connective_tissue_matching");
   const [expanded, setExpanded] = useState<Set<string>>(
-    () => new Set(["/Body Systems/Integumentary/Skin"])
+    () => new Set(["/Activities"])
   );
 
   const toggle = (key: string) =>
@@ -220,7 +226,7 @@ const LessonPage = () => {
 
         <div id="content" className="p-4 bg-white rounded-lg shadow-md">
           {page ? (
-            <PageView page={page} onNavigate={navigate} />
+            <PageView key={selected} page={page} onNavigate={navigate} />
           ) : (
             <p className="text-slate-500">Nothing here yet.</p>
           )}
@@ -242,7 +248,89 @@ function PageView({ page, onNavigate }: { page: PageData; onNavigate: (id: strin
       return <DirectoryCard page={page} onNavigate={onNavigate} />;
     case "categorize":
       return <CategoryGamePage page={page} />
+    case "matching":
+      return <MatchingGamePage page={page} />
   }
+}
+
+const MatchingGamePage = ({ page }: { page: MatchingGamePageData }) => {
+  const [matchedTerms, setMatchedTerms] = useState([])
+  const [columnOne, setColumnOne] = useState<string[]>([])
+  const [columnTwo, setColumnTwo] = useState([])
+  const [activeSelection, setActiveSelection] = useState("")
+  const [activeColumn, setActiveColumn] = useState(0)
+  const [incorrectClicks, setIncorrectClicks] = useState(0)
+
+  useEffect(() => {
+    const colOne = shuffle(page.itemPairs.map(it => it[0]))
+    setColumnOne(colOne)
+    const colTwo = shuffle(page.itemPairs.map(it => it[1]))
+    setColumnTwo(colTwo)
+  }, [])
+
+  function onClick(term: string, column: number) {
+    if (activeSelection === "") {
+      setActiveSelection(term)
+      setActiveColumn(column)
+    } else {
+      // student is choosing a different in the same column
+      if (activeColumn === column) {
+        setActiveSelection(term)
+      } else {
+        // student is choosing a possible pairing match
+
+        const itemPair = page.itemPairs.find((v) => v[0] === activeSelection || v[1] === activeSelection)
+
+        if (activeColumn === 1) {
+          if (itemPair[1] === term) {
+            setMatchedTerms(prev => [...prev, term, activeSelection])
+          } else {
+            setIncorrectClicks(incorrectClicks + 1)
+          }
+        } else {
+          if (itemPair[0] === term) {
+            setMatchedTerms(prev => [...prev, term, activeSelection])
+          } else {
+            setIncorrectClicks(incorrectClicks + 1)
+          }
+        }
+        setActiveSelection("")
+        setActiveColumn(0)
+
+      }
+    }
+  }
+
+  function onReset() {
+    setActiveColumn(0)
+    setActiveSelection("")
+    setMatchedTerms([])
+    const colOne = shuffle(page.itemPairs.map(it => it[0]))
+    setColumnOne(colOne)
+    const colTwo = shuffle(page.itemPairs.map(it => it[1]))
+    setColumnTwo(colTwo)
+    setIncorrectClicks(0)
+  }
+
+  return <div>
+    <div className="flex justify-center mb-4 items-center gap-4">
+    <p className="font-bold">Incorrect Clicks: {incorrectClicks}</p>
+      <Button className={"bg-orange-400 px-4 py-2 font-bold text-white rounded-lg"} onClick={onReset}>Reset</Button>
+    </div>
+    <div className="flex gap-2">
+      <div className="flex flex-col gap-2">
+        {columnOne.map(it => <MatchingCard isActive={activeSelection === it} isMatched={matchedTerms.includes(it)} term={it} onClick={() => onClick(it, 1)} />)}
+      </div>
+      <div className="flex flex-col gap-2">
+
+        {columnTwo.map(it => <MatchingCard isActive={activeSelection === it} isMatched={matchedTerms.includes(it)} term={it} onClick={() => onClick(it, 2)} />)}
+      </div>
+    </div>
+  </div>
+}
+
+const MatchingCard = ({ term, isActive, isMatched, onClick }: { term: string, isActive: boolean, isMatched: boolean, onClick: () => void }) => {
+  return <div className={`p-2 border-2 rounded-lg shadow cursor-pointer ${isActive ? "bg-blue-100" : ""} ${isMatched ? "line-through" : ""}`} onClick={onClick}>{term}</div>
 }
 
 const SectionHeader = ({ title }: { title: string }) => {
@@ -536,7 +624,7 @@ const CategoryGamePage = ({
       <div className="flex gap-4">
         {stage == "game" ?
           page.categories.map(it => <Button className="bg-orange-400 px-4 py-2 text-white rounded-lg cursor-pointer font-bold shadow" onClick={() => onGuess(it.id)}>{it.title}</Button>)
-          : <Button  className="bg-blue-400 px-4 py-2 text-white rounded-lg cursor-pointer font-bold shadow" onClick={onRestart}>Restart</Button>}
+          : <Button className="bg-blue-400 px-4 py-2 text-white rounded-lg cursor-pointer font-bold shadow" onClick={onRestart}>Restart</Button>}
       </div>
     </div>
     <div>
@@ -550,7 +638,7 @@ export default LessonPage;
 
 LessonPage.getLayout = function getLayout(page) {
   return <div>
-        <NavbarV3 currentPage={"anatomy"} />
-        {page}
-      </div>
+    <NavbarV3 currentPage={"anatomy"} />
+    {page}
+  </div>
 };

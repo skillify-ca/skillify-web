@@ -1,3 +1,4 @@
+import { ACTIVITIES } from "./activities";
 import { CELLULAR } from "./cell";
 import { INTEGUMENTARY } from "./integumentary";
 import { CONNECTIVE } from "./tissue/connective-tissue";
@@ -17,6 +18,7 @@ const ALL: PageData[] = [
   ...JUNCTIONS,
   ...CONNECTIVE,
   ...MEMBRANES,
+  ...ACTIVITIES
 ];
 
 const BY_ID: Record<string, PageData> = {};

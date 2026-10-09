@@ -11,8 +11,11 @@ type BasePage = {
 
 export type DetailPage = BasePage & { type: "detail"; sections?: Section[] };
 export type DirectoryPage = BasePage & { type: "directory"; children: string[] };
-export type CategorizeGamePage = BasePage & { type: "categorize", categories: Category[], properties: CategoryProperty[] };
 
-export type PageData = DetailPage | DirectoryPage | CategorizeGamePage
+export type CategorizeGamePage = BasePage & { type: "categorize", categories: Category[], properties: CategoryProperty[] };
 export type CategoryProperty = {property: string, category: string}
 export type Category = {id: string, title: string}
+
+export type MatchingGamePageData = BasePage & { type: "matching", columnOne: string, columnTwo: string, itemPairs: string[][]}
+
+export type PageData = DetailPage | DirectoryPage | CategorizeGamePage | MatchingGamePageData
