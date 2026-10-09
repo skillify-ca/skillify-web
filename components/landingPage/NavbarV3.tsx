@@ -17,6 +17,10 @@ const PAGES = [
     id: "schools",
     title: "School Workshops"
   },
+    {
+    id: "anatomy",
+    title: "Anatomy Textbook"
+  },
 
 
   // {

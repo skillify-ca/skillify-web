@@ -8,10 +8,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@base-ui/react";
 import { shuffle } from "lodash";
-import NavbarV3 from "../../../../components/landingPage/NavbarV3";
-import { getPage, normalizeId } from "../../../api/studentPortal/courses/anatomy-physiology/registry";
-import { tagClass, tagDescription } from "../../../api/studentPortal/courses/anatomy-physiology/tagColors";
-import type { CategorizeGamePage, CategoryProperty, DetailPage, DirectoryPage, PageData } from "../../../api/studentPortal/courses/anatomy-physiology/types";
+import NavbarV3 from "../components/landingPage/NavbarV3";
+import { getPage, normalizeId } from "./api/studentPortal/courses/anatomy-physiology/registry";
+import { tagClass, tagDescription } from "./api/studentPortal/courses/anatomy-physiology/tagColors";
+import { CategorizeGamePage, CategoryProperty, DetailPage, DirectoryPage, PageData } from "./api/studentPortal/courses/anatomy-physiology/types";
 
 /* -------------------------------------------------------------------------- */
 /* Sidebar tree (derived from the page registry)                              */
