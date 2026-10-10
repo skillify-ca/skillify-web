@@ -78,6 +78,8 @@ const TREE: TreeNode[] = [
   ]),
   group("Specialized Cells", [
     fromPage("synoviocytes"),
+    fromPage("Chondrocytes"),
+    fromPage("Osteocytes"),
     fromPage("keratinocytes"),
     fromPage("melanocytes"),
     fromPage("langerhans"),
@@ -85,7 +87,13 @@ const TREE: TreeNode[] = [
 
   ]
   ),
-  group("Specialized Body Fluids", [fromPage("synovial_fluid"), fromPage("mucus")]),
+  group("Specialized Body Fluids", [
+    fromPage("synovial_fluid"), fromPage("mucus"),
+    fromPage("Blood Plasma"),
+    fromPage("Lymph"),
+    fromPage("Cerebrospinal Fluid"),
+  ]
+  ),
   group("Activities", [
     fromPage("cell_structure_matching"),
     fromPage("cell_function_matching"),
