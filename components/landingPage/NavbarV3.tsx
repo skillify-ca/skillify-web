@@ -1,23 +1,26 @@
 import { useState } from "react";
 
 const PAGES = [
-  {
-    id: "tech",
-    title: "Tech Services"
-  }, {
-    id: "career",
-    title: "Career Coaching"
-  },
 
   {
     id: "tutoring",
     title: "K-12 Tutoring"
   },
   {
+    id: "career",
+    title: "Career Coaching"
+  },
+
+
+  {
     id: "schools",
     title: "School Workshops"
   },
-    {
+  {
+    id: "tech",
+    title: "Tech Services"
+  },
+  {
     id: "anatomy",
     title: "Anatomy Textbook"
   },

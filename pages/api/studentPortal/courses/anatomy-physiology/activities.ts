@@ -264,5 +264,37 @@ export const ACTIVITIES: PageData[] = [
             { property: "Sparser sensory receptors", category: "thin" },
             { property: "Denser sensory receptors", category: "thick" },
         ]
-    }
+    },
+    {
+        id: "female_vs_male_pelvis",
+        title: "Female vs Male Pelvis",
+        type: "categorize",
+        categories: [{ id: "female", title: "Female Pelvis" }, { id: "male", title: "Male Pelvis" }],
+        properties: [
+            { property: "Lighter and thinner general structure", category: "female" },
+            { property: "Heavier and thicker general structure", category: "male" },
+            { property: "Shallow false pelvis", category: "female" },
+            { property: "Deep false pelvis", category: "male" },
+            { property: "Pelvic brim is wider and more oval", category: "female" },
+            { property: "Pelvic brim is narrow and heart-shaped", category: "male" },
+            { property: "Acetabulum is small and faces anteriorly", category: "female" },
+            { property: "Acetabulum is larger and faces laterally", category: "male" },
+            { property: "Oval obturator foramen", category: "female" },
+            { property: "Round obturator foramen", category: "male" },
+            { property: "Pubic arch greater than 90 degrees", category: "female" },
+            { property: "Pubic arch less than 90 degrees", category: "male" },
+            { property: "Iliac crest is less curved", category: "female" },
+            { property: "Iliac crest is more curved", category: "male" },
+            { property: "Ilium is less vertical", category: "female" },
+            { property: "Ilium is more vertical", category: "male" },
+            { property: "Greater sciatic notch is wide (almost 90 degrees)", category: "female" },
+            { property: "Greater sciatic notch is narrow (about 70 degrees)", category: "male" },
+            { property: "Sacrum is shorter, wider, and less curved anteriorly", category: "female" },
+            { property: "Sacrum is longer, narrower, and more curved anteriorly", category: "male" },
+            { property: "Wider pelvic outlet", category: "female" },
+            { property: "Narrower pelvic outlet", category: "male" },
+            { property: "Ischial tuberosities are shorter, farther apart, and project more medially", category: "female" },
+            { property: "Ischial tuberosities are longer, closer together, and project more laterally", category: "male" },
+        ]
+    },
 ]

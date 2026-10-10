@@ -125,10 +125,10 @@ export function TutoringHero() {
 
 function TutoringHeroText({ currentPage, visible }: { currentPage: string, visible: boolean }) {
 
-  const subHeadline = "Grade 9-12 Tutoring · Math · Coding · Science · English"
-  const titleDefault = "Math and Physics Tutoring"
+  const subHeadline = "Grade 6-12 Tutoring · Math · Coding · Science"
+  const titleDefault = "Math and Science Tutoring"
   const titleHighlight = "from a University of Waterloo Graduate"
-  const description = "10+ years of tutoring experience for Ontario secondary students"
+  const description = "10+ years of experience tutoring Ontario students"
   const buttonPrimaryText = "See tutoring options"
   const buttonSecondaryText = "Free 30-min intro call"
   const primaryColour = "charmander"

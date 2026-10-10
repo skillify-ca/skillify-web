@@ -5,14 +5,24 @@ import WhoItsFor from "../components/landingPage/WhoItsFor";
 
 const SERVICES = [
   {
-    title: "Private Tutoring",
-    price: "$85 / hr",
-    outcome: "The courses that decide your university options. Let's make them count.",
+    title: "Grades 6 to 8",
+    price: "$70 / hr",
+    outcome: "The courses that set your child's foundation for high school",
     description:
       "High school is where the stakes get real. We work through the exact units giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure. Delivered in-person in downtown Toronto or virtually using Zoom.",
     note: "Add additional students to the same session for $25 per student per hour.",
     border: "border-charmander",
-    tag: "For students in grades 9 to 12",
+    tag: "Private Tutoring",
+  },
+  {
+    title: "Grades 9 to 12",
+    price: "$85 / hr",
+    outcome: "The courses that decide your child's post-secondary options",
+    description:
+      "We work through the exact problems giving you trouble, fix gaps before they show up on your final exam, and build the kind of understanding that holds up under pressure. Delivered in-person in downtown Toronto or virtually using Zoom.",
+    note: "Add additional students to the same session for $25 per student per hour.",
+    border: "border-rattata",
+    tag: "Private Tutoring",
   },
 ];
 
@@ -35,10 +45,25 @@ const TESTIMONIALS = [
     img: "",
     border: "border-rattata",
   },
-
+  {
+    quote:
+      "Vithushan taught me how to build my own websites without prior coding knowledge. He made the whole learning experience fun and enjoyable.",
+    name: "Winthya V",
+    school: "Adult learner",
+    outcome: "Acquired in-demand skills",
+    img: "",
+    border: "border-pikachu"
+  }
 ];
 
 const COURSES = [
+  {
+    "grade": "Grade 6-8",
+    "courses": [
+      { "title": "Math", "code": "" },
+      { "title": "Science", "code": "" },
+    ]
+  },
   {
     "grade": "Grade 9",
     "courses": [
@@ -83,9 +108,8 @@ export default function K12Page() {
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
           What we offer
         </h2>
-        <p className="text-gray-500 text-center text-xl mb-10 max-w-xl">
-          All sessions are one-on-one and built around your child's
-          school material or university Math contests
+        <p className="text-gray-500 text-center text-xl mb-10 max-w-3xl">
+          All sessions are built around your child's school material or university Math contests. Tutoring can be one-on-one or in small groups.
         </p>
 
         <div className="flex flex-col gap-6 w-full max-w-3xl">

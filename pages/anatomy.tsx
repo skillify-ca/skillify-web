@@ -92,6 +92,7 @@ const TREE: TreeNode[] = [
     fromPage("surface_epithelial_matching"),
     fromPage("connective_tissue_matching"),
     fromPage("thick_vs_thin_skin"),
+    fromPage("female_vs_male_pelvis"),
   ])
 ];
 
@@ -182,7 +183,7 @@ function Tree({ nodes, selected, onSelect, expanded, onToggle, depth = 0, parent
 /* -------------------------------------------------------------------------- */
 
 const LessonPage = () => {
-  const [selected, setSelected] = useState("connective_tissue_matching");
+  const [selected, setSelected] = useState("female_vs_male_pelvis");
   const [expanded, setExpanded] = useState<Set<string>>(
     () => new Set(["/Activities"])
   );
@@ -312,16 +313,15 @@ const MatchingGamePage = ({ page }: { page: MatchingGamePageData }) => {
     setIncorrectClicks(0)
   }
 
-  return <div>
+  return <div className="flex flex-col items-center">
     <p className="">Aim for 0 incorrect clicks to be exam-ready</p>
     <div className="flex justify-center mb-4 items-center gap-4">
       <p className="font-bold">Incorrect Clicks: {incorrectClicks}</p>
       <Button className={"bg-orange-400 px-4 py-2 font-bold text-white rounded-lg"} onClick={onReset}>Reset</Button>
     </div>
     <div className="flex gap-2 mb-4 justify-start">
-
-</div>
-    <div className="flex gap-2">
+    </div>
+    <div className="flex gap-16 pb-4">
       <div className="flex flex-col gap-2">
         <p className="underline">{page.columnOne}</p>
 
@@ -622,8 +622,6 @@ const CategoryGamePage = ({
     <div className="flex flex-col items-center">
 
       <h2 className="font-bold text-2xl">Current Score: {score} / {properties.length}</h2>
-
-      <p>TABLE 5.4 Comparison of Thin and Thick Skin. GOOD FOR REVIEW!!!</p>
 
       {properties[currentProperty] && <div className="border-2 rounded p-4 my-4 h-64 w-96 text-center flex items-center justify-center max-w-full">
         {properties[currentProperty].property}
