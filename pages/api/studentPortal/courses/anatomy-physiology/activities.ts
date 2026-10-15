@@ -297,82 +297,145 @@ export const ACTIVITIES: PageData[] = [
             { property: "Ischial tuberosities are longer, closer together, and project more laterally", category: "male" },
         ]
     },
-      {
+    {
         id: "skeletal_vs_cardiac_vs_smooth_muscle",
         title: "Skeletal vs Cardiac vs Smooth muscle",
         type: "categorize",
         categories: [{ id: "skeletal", title: "Skeletal" }, { id: "cardiac", title: "Cardiac" }, { id: "smooth", title: "smooth" }],
         properties: [
-             // Microscopic appearance
-        { property: "Long cylindrical fiber with many peripherally located nuclei; unbranched; striated", category: "skeletal" },
-        { property: "Branched cylindrical fiber with one centrally located nucleus; intercalated discs join neighboring fibers; striated.", category: "cardiac" },
-        { property: "Fiber thickest in middle and tapered at each end, with one central nucleus; not striated", category: "smooth" },
+            // Microscopic appearance
+            { property: "Long cylindrical fiber with many peripherally located nuclei; unbranched; striated", category: "skeletal" },
+            { property: "Branched cylindrical fiber with one centrally located nucleus; intercalated discs join neighboring fibers; striated.", category: "cardiac" },
+            { property: "Fiber thickest in middle and tapered at each end, with one central nucleus; not striated", category: "smooth" },
 
-        // Location
-        { property: "Most commonly attached to bones by tendons", category: "skeletal" },
-        { property: "Found in the heart", category: "cardiac" },
-        { property: "Found in walls of hollow viscera, airways, blood vessels, iris and ciliary body of the eye, and arrector pili muscles", category: "smooth" },
+            // Location
+            { property: "Most commonly attached to bones by tendons", category: "skeletal" },
+            { property: "Found in the heart", category: "cardiac" },
+            { property: "Found in walls of hollow viscera, airways, blood vessels, iris and ciliary body of the eye, and arrector pili muscles", category: "smooth" },
 
-        // Fiber diameter
-        { property: "Very large fiber diameter (10-100 μm)", category: "skeletal" },
-        { property: "Large fiber diameter (10-20 μm)", category: "cardiac" },
-        { property: "Small fiber diameter (3-8 μm)", category: "smooth" },
+            // Fiber diameter
+            { property: "Very large fiber diameter (10-100 μm)", category: "skeletal" },
+            { property: "Large fiber diameter (10-20 μm)", category: "cardiac" },
+            { property: "Small fiber diameter (3-8 μm)", category: "smooth" },
 
-        // Fiber length
-        { property: "Very large fiber length (100 μm-30 cm)", category: "skeletal" },
-        { property: "Large fiber length (50-100 μm)", category: "cardiac" },
-        { property: "Intermediate fiber length (30-200 μm)", category: "smooth" },
+            // Fiber length
+            { property: "Very large fiber length (100 μm-30 cm)", category: "skeletal" },
+            { property: "Large fiber length (50-100 μm)", category: "cardiac" },
+            { property: "Intermediate fiber length (30-200 μm)", category: "smooth" },
 
-        // Connective tissue
-        { property: "Connective tissue: endomysium, perimysium, and epimysium", category: "skeletal" },
-        { property: "Connective tissue: endomysium and perimysium", category: "cardiac" },
-        { property: "Connective tissue: endomysium only", category: "smooth" },
+            // Connective tissue
+            { property: "Connective tissue: endomysium, perimysium, and epimysium", category: "skeletal" },
+            { property: "Connective tissue: endomysium and perimysium", category: "cardiac" },
+            { property: "Connective tissue: endomysium only", category: "smooth" },
 
-        // Sarcomeres
-        { property: "Contractile proteins are not organized into sarcomeres", category: "smooth" },
+            // Sarcomeres
+            { property: "Contractile proteins are not organized into sarcomeres", category: "smooth" },
 
-        // Sarcoplasmic reticulum
-        { property: "Abundant sarcoplasmic reticulum", category: "skeletal" },
-        { property: "Some sarcoplasmic reticulum", category: "cardiac" },
-        { property: "Very little sarcoplasmic reticulum", category: "smooth" },
+            // Sarcoplasmic reticulum
+            { property: "Abundant sarcoplasmic reticulum", category: "skeletal" },
+            { property: "Some sarcoplasmic reticulum", category: "cardiac" },
+            { property: "Very little sarcoplasmic reticulum", category: "smooth" },
 
-        // Transverse tubules
-        { property: "Transverse tubules aligned with each A-I band junction", category: "skeletal" },
-        { property: "Transverse tubules aligned with each Z disc", category: "cardiac" },
-        { property: "No transverse tubules", category: "smooth" },
+            // Transverse tubules
+            { property: "Transverse tubules aligned with each A-I band junction", category: "skeletal" },
+            { property: "Transverse tubules aligned with each Z disc", category: "cardiac" },
+            { property: "No transverse tubules", category: "smooth" },
 
-        // Junctions between fibers
-        { property: "No junctions between fibers", category: "skeletal" },
-        { property: "Intercalated discs contain gap junctions and desmosomes", category: "cardiac" },
-        { property: "Gap junctions in visceral type; none in multi-unit type", category: "smooth" },
+            // Junctions between fibers
+            { property: "No junctions between fibers", category: "skeletal" },
+            { property: "Intercalated discs contain gap junctions and desmosomes", category: "cardiac" },
+            { property: "Gap junctions in visceral type; none in multi-unit type", category: "smooth" },
 
-        // Autorhythmicity
-        { property: "Not autorhythmic", category: "skeletal" },
-        { property: "Autorhythmic", category: "cardiac" },
-        { property: "Autorhythmic only in visceral type", category: "smooth" },
+            // Autorhythmicity
+            { property: "Not autorhythmic", category: "skeletal" },
+            { property: "Autorhythmic", category: "cardiac" },
+            { property: "Autorhythmic only in visceral type", category: "smooth" },
 
-        // Source of Ca2+
-        { property: "Ca2+ for contraction comes only from the sarcoplasmic reticulum", category: "skeletal" },
+            // Source of Ca2+
+            { property: "Ca2+ for contraction comes only from the sarcoplasmic reticulum", category: "skeletal" },
 
-        // Regulator proteins
-        { property: "Calmodulin and myosin light chain kinase regulate contraction", category: "smooth" },
+            // Regulator proteins
+            { property: "Calmodulin and myosin light chain kinase regulate contraction", category: "smooth" },
 
-        // Speed of contraction
-        { property: "Fast contraction", category: "skeletal" },
-        { property: "Moderate speed of contraction", category: "cardiac" },
-        { property: "Slow contraction", category: "smooth" },
+            // Speed of contraction
+            { property: "Fast contraction", category: "skeletal" },
+            { property: "Moderate speed of contraction", category: "cardiac" },
+            { property: "Slow contraction", category: "smooth" },
 
-        // Nervous control
-        { property: "Voluntary control (somatic nervous system)", category: "skeletal" },
+            // Nervous control
+            { property: "Voluntary control (somatic nervous system)", category: "skeletal" },
 
-        // Contraction regulation
-        { property: "Contraction regulated only by acetylcholine from somatic motor neurons", category: "skeletal" },
-        { property: "Contraction regulated by local chemical changes and stretching, in addition to neurotransmitters and hormones", category: "smooth" },
+            // Contraction regulation
+            { property: "Contraction regulated only by acetylcholine from somatic motor neurons", category: "skeletal" },
+            { property: "Contraction regulated by local chemical changes and stretching, in addition to neurotransmitters and hormones", category: "smooth" },
 
-        // Regeneration
-        { property: "Limited regeneration via satellite cells", category: "skeletal" },
-        { property: "Limited regeneration under certain conditions", category: "cardiac" },
-        { property: "Considerable regeneration via pericytes", category: "smooth" },
-     ]
+            // Regeneration
+            { property: "Limited regeneration via satellite cells", category: "skeletal" },
+            { property: "Limited regeneration under certain conditions", category: "cardiac" },
+            { property: "Considerable regeneration via pericytes", category: "smooth" },
+        ]
+    },
+    {
+        id: "skeletal_muscle_fiber_types",
+        title: "Skeletal muscle fiber types",
+        type: "categorize",
+        categories: [{ id: "so", title: "Slow Oxidative" }, { id: "fog", title: "Fast Oxidative-Glycolytic" }, { id: "smooth", title: "smooth" }],
+        properties: [
+            // Myoglobin content
+            { property: "Small amount of myoglobin", category: "fg" },
+
+            // Mitochondria
+            { property: "Few mitochondria", category: "fg" },
+
+            // Capillaries
+            { property: "Few capillaries", category: "fg" },
+
+            // Color
+            { property: "Red color", category: "so" },
+            { property: "Red-pink color", category: "fog" },
+            { property: "White (pale) color", category: "fg" },
+
+            // Capacity for generating ATP and method used
+            { property: "High capacity for generating ATP, by aerobic respiration", category: "so" },
+            { property: "Intermediate capacity for generating ATP, by both aerobic respiration and anaerobic glycolysis", category: "fog" },
+            { property: "Low capacity for generating ATP, by anaerobic glycolysis", category: "fg" },
+
+            // Rate of ATP hydrolysis by myosin ATPase
+            { property: "Slow rate of ATP hydrolysis by myosin ATPase", category: "so" },
+
+            // Contraction velocity
+            { property: "Slow contraction velocity", category: "so" },
+
+            // Fatigue resistance
+            { property: "High fatigue resistance", category: "so" },
+            { property: "Intermediate fatigue resistance", category: "fog" },
+            { property: "Low fatigue resistance", category: "fg" },
+
+            // Creatine kinase
+            { property: "Lowest amount of creatine kinase", category: "so" },
+            { property: "Intermediate amount of creatine kinase", category: "fog" },
+            { property: "Highest amount of creatine kinase", category: "fg" },
+
+            // Glycogen stores
+            { property: "Low glycogen stores", category: "so" },
+            { property: "Intermediate glycogen stores", category: "fog" },
+            { property: "High glycogen stores", category: "fg" },
+
+            // Order of recruitment
+            { property: "Recruited first", category: "so" },
+            { property: "Recruited second", category: "fog" },
+            { property: "Recruited third", category: "fg" },
+
+            // Location where fibers are abundant
+            { property: "Abundant in postural muscles such as those of the neck", category: "so" },
+            { property: "Abundant in lower limb muscles", category: "fog" },
+            { property: "Abundant in extraocular muscles", category: "fg" },
+
+            // Primary functions
+            { property: "Maintaining posture and aerobic endurance activities", category: "so" },
+            { property: "Walking and sprinting", category: "fog" },
+            { property: "Rapid, intense movements of short duration", category: "fg" },
+
+        ]
     },
 ]
