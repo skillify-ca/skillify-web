@@ -43,12 +43,25 @@ const TREE: TreeNode[] = [
         fromPage("epidermis"),
         fromPage("dermis"),
         fromPage("hypodermis"),
-        fromPage("skin_glands"),
       ]),
+      fromPage("skin_glands"),
       fromPage("hair"),
       fromPage("nails"),
       fromPage("sensory_receptors"),
     ]),
+    group("Skeletal", [
+      group("Processes", [
+        group("Bone Formation", [
+          fromPage("Intermembranous Ossification"),
+          fromPage("Endochondral Ossification")
+        ]),
+        group("Bone Growth", [
+          fromPage("Growth in Length"),
+          fromPage("Growth in Thickenss")
+        ]),
+        fromPage("Bone Remodelling")
+      ])
+    ])
   ]),
   group("Tissue Level of Organization", [
     fromPage("cell_junctions"),
@@ -101,6 +114,7 @@ const TREE: TreeNode[] = [
     fromPage("connective_tissue_matching"),
     fromPage("thick_vs_thin_skin"),
     fromPage("female_vs_male_pelvis"),
+    fromPage("skeletal_vs_cardiac_vs_smooth_muscle"),
   ])
 ];
 
@@ -598,6 +612,7 @@ const CategoryGamePage = ({
   const [currentProperty, setCurrentProperty] = useState(0)
   const [score, setScore] = useState(0)
   const [properties, setProperties] = useState<CategoryProperty[]>([])
+  const [incorrectFacts, setIncorrectFacts] = useState<CategoryProperty[]>([])
 
   useEffect(() => {
     const shuffled = shuffle(page.properties)
@@ -607,6 +622,8 @@ const CategoryGamePage = ({
   function onGuess(categoryGuess: string) {
     if (properties[currentProperty].category === categoryGuess) {
       setScore(score + 1)
+    } else {
+      setIncorrectFacts(prev => [...prev, properties[currentProperty]])
     }
 
     const length = page.properties.length
@@ -623,6 +640,7 @@ const CategoryGamePage = ({
     setScore(0)
     setCurrentProperty(0)
     setStage("game")
+    setIncorrectFacts([])
   }
 
   return <div>
@@ -638,6 +656,12 @@ const CategoryGamePage = ({
         {stage == "game" ?
           page.categories.map(it => <Button className="bg-orange-400 px-4 py-2 text-white rounded-lg cursor-pointer font-bold shadow" onClick={() => onGuess(it.id)}>{it.title}</Button>)
           : <Button className="bg-blue-400 px-4 py-2 text-white rounded-lg cursor-pointer font-bold shadow" onClick={onRestart}>Restart</Button>}
+      </div>
+      <div className="border-2 max-w-3xl p-4 mt-4">
+        <p className="font-bold">Mistakes</p>
+        {incorrectFacts.map(fact => <div>
+          <p>{fact.property} -- {fact.category}</p>
+        </div>)}
       </div>
     </div>
     <div>
