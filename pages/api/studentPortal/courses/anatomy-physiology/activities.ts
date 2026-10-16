@@ -379,7 +379,7 @@ export const ACTIVITIES: PageData[] = [
         id: "skeletal_muscle_fiber_types",
         title: "Skeletal muscle fiber types",
         type: "categorize",
-        categories: [{ id: "so", title: "Slow Oxidative" }, { id: "fog", title: "Fast Oxidative-Glycolytic" }, { id: "smooth", title: "smooth" }],
+        categories: [{ id: "so", title: "Slow Oxidative" }, { id: "fog", title: "Fast Oxidative-Glycolytic" }, { id: "fg", title: "Fast Glycolic" }],
         properties: [
             // Myoglobin content
             { property: "Small amount of myoglobin", category: "fg" },

@@ -1,5 +1,5 @@
 
-export default function Credentials({title} : {title: string}) {
+export default function Credentials({ title }: { title: string }) {
   const images = [
     "/images/about/duolingo.png",
     "/images/about/meta.png",
@@ -19,81 +19,86 @@ export default function Credentials({title} : {title: string}) {
   ];
   return (
     <>
-    <TrustBar />    
-    <div className="flex flex-col items-center justify-center w-full p-8 bg-slate-200 sm:p-16">
-      <p className="mb-4 text-3xl font-bold text-center">
-        Your {title || "Instructor"}
-      </p>
-      <p className="max-w-xl mb-6 text-center text-gray-600">
-        Vithushan Namasivayasivam is a software engineer and educator who has built 
-        real products used by millions of people.
-      </p>
-      <img
-        src="/images/about/vithushan.jpeg"
-        className="object-contain h-48 rounded-full"
-      />
-      {/* linkedin icon */}
-      <a href="https://www.linkedin.com/in/vithushan/" target="_blank" rel="noreferrer" >
+      <TrustBar />
+      <div className="flex flex-col items-center justify-center w-full p-8 bg-slate-200 sm:p-16">
+        <p className="mb-4 text-3xl font-bold text-center">
+          Your {title || "Instructor"}
+        </p>
+        <p className="max-w-xl mb-6 text-center text-gray-600">
+          Vithushan Namasivayasivam is a software engineer and educator who has built
+          real products used by millions of people.
+        </p>
         <img
-          src="/images/landingPage/linkedin.svg"
-          className="object-contain h-8 mt-4 transition-all transform hover:scale-110"
+          src="/images/about/vithushan.jpeg"
+          className="object-contain h-48 rounded-full"
         />
-      </a>
-      <p className="mt-8 mb-4 text-sm font-semibold tracking-widest text-center text-gray-400 uppercase">
-        Previously worked at
-      </p>
-      <div className="grid justify-center w-full grid-cols-2 max-w-7xl sm:flex sm:flex-wrap ">
-        {images.map((image) => (
-          <div className="flex justify-center p-4 m-4 bg-white shadow-lg w-36">
-            <img
-              src={image}
-              className="object-contain h-24 transition-all transform hover:scale-110"
-            />
-          </div>
-        ))}
+        {/* linkedin icon */}
+        <a href="https://www.linkedin.com/in/vithushan/" target="_blank" rel="noreferrer" >
+          <img
+            src="/images/landingPage/linkedin.svg"
+            className="object-contain h-8 mt-4 transition-all transform hover:scale-110"
+          />
+        </a>
+        <p className="mt-8 mb-4 text-sm font-semibold tracking-widest text-center text-gray-400 uppercase">
+          Previously worked at
+        </p>
+        <div className="grid justify-center w-full grid-cols-2 max-w-7xl sm:flex sm:flex-wrap ">
+          {images.map((image) => (
+            <div className="flex justify-center p-4 m-4 bg-white shadow-lg w-36">
+              <img
+                src={image}
+                className="object-contain h-24 transition-all transform hover:scale-110"
+              />
+            </div>
+          ))}
+        </div>
+        {/* <p className="mt-16 text-3xl font-bold">{headerText}</p> */}
       </div>
-      {/* <p className="mt-16 text-3xl font-bold">{headerText}</p> */}
-    </div>
     </>
   );
 }
 
 function TrustBar() {
   return (
-      <div className="w-full bg-white border-b-2 border-t-2 py-6 px-4 sm:px-8">
+    <div className="w-full bg-white border-b-2 border-t-2 py-6 px-4 sm:px-8">
 
-          <div className="flex flex-col sm:flex-row items-center justify-between max-w-5xl mx-auto gap-6">
+      <div className="flex flex-col lg:flex-row items-center justify-between max-w-5xl mx-auto gap-6">
 
-              {/* Left: the stat that earns the most trust */}
-              <p className="text-sm text-gray-400 uppercase tracking-widest font-semibold whitespace-nowrap">
-                  Trusted by 100+ students
-              </p>
+        {/* Left: the stat that earns the most trust */}
+        <p className="text-sm text-gray-400 uppercase tracking-widest font-semibold whitespace-nowrap">
+          Trusted by 100+ students
+        </p>
 
-              {/* Divider — hidden on mobile */}
-              <div className="hidden sm:block w-px h-8 bg-gray-200" />
+        {/* Divider — hidden on mobile */}
+        <div className="hidden sm:block w-px h-8 bg-gray-200" />
+        <div className="sm:hidden h-px w-8 bg-gray-200" />
 
-              {/* Company logos */}
-              <div className="flex items-center gap-6 flex-wrap justify-center">
-              <p className="text-sm text-gray-400 uppercase tracking-widest font-semibold whitespace-nowrap">
-                  10 years of teaching experience
-              </p>
-              </div>
+        {/* Company logos */}
+        <div className="flex items-center gap-6 flex-wrap justify-center">
+          <p className="text-sm text-gray-400 uppercase tracking-widest font-semibold whitespace-nowrap">
+            10 years of teaching experience
+          </p>
+        </div>
 
-              {/* Divider */}
-              <div className="hidden sm:block w-px h-8 bg-gray-200" />
+        {/* Divider */}
+        <div className="hidden sm:block w-px h-8 bg-gray-200" />
+        <div className="sm:hidden h-px w-8 bg-gray-200" />
 
-              {/* Right: social proof signal */}
-              <div className="flex items-center gap-1">
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
-                  <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
-                  <p className="text-sm text-gray-500 ml-2 whitespace-nowrap">5.0 across all courses</p>
-              </div>
-
+        {/* Right: social proof signal */}
+        <div className="flex gap-1 items-center">
+          <div className="flex items-center gap-1">
+            <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+            <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+            <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+            <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
+            <img src="/images/landingPage/star.svg" className="w-4 h-4" alt="" />
           </div>
+          <p className="text-sm text-gray-500 ml-2 whitespace-nowrap">5.0 across all courses</p>
+        </div>
+
 
       </div>
+
+    </div>
   )
 }

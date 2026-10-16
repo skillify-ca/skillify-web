@@ -64,7 +64,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
   return (
     <div className="w-full bg-white border-b-2 relative">
       {/* Desktop Navigation */}
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <div className="flex items-center justify-between w-full px-4 bg-white border-b-2 text-murkrow">
           <a href="/">
             <img src="/images/logo.svg" className="my-4 cursor-pointer w-40" alt="Skillify" />
@@ -100,7 +100,7 @@ export default function NavbarV3({ currentPage }: { currentPage: string }) {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <div className="flex items-center justify-between px-4 py-3 bg-white border-b-2">
           <a href="/">
             <img src="/images/logo.svg" className="w-32 cursor-pointer" alt="Skillify" />

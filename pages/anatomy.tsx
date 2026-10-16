@@ -206,7 +206,7 @@ function Tree({ nodes, selected, onSelect, expanded, onToggle, depth = 0, parent
 /* -------------------------------------------------------------------------- */
 
 const LessonPage = () => {
-  const [selected, setSelected] = useState("female_vs_male_pelvis");
+  const [selected, setSelected] = useState("cell_structure_matching");
   const [expanded, setExpanded] = useState<Set<string>>(
     () => new Set(["/Activities"])
   );
@@ -277,90 +277,203 @@ function PageView({ page, onNavigate }: { page: PageData; onNavigate: (id: strin
   }
 }
 
+
+type Card = { id: number; text: string }
+type Selection = { id: number; column: 1 | 2 } | null
+
 const MatchingGamePage = ({ page }: { page: MatchingGamePageData }) => {
-  const [matchedTerms, setMatchedTerms] = useState([])
-  const [columnOne, setColumnOne] = useState<string[]>([])
-  const [columnTwo, setColumnTwo] = useState([])
-  const [activeSelection, setActiveSelection] = useState("")
-  const [activeColumn, setActiveColumn] = useState(0)
+  const [columnOne, setColumnOne] = useState<Card[]>([])
+  const [columnTwo, setColumnTwo] = useState<Card[]>([])
+  const [matchedIds, setMatchedIds] = useState<number[]>([])
+  const [selected, setSelected] = useState<Selection>(null)
+  const [wrongPair, setWrongPair] = useState<{ one: number; two: number } | null>(null)
   const [incorrectClicks, setIncorrectClicks] = useState(0)
 
+  const total = page.itemPairs.length
+  const isComplete = total > 0 && matchedIds.length === total
+  const progress = total > 0 ? (matchedIds.length / total) * 100 : 0
+
+  function setup() {
+    // Each card's id is the index of its pair, so a match is simply "same id"
+    setColumnOne(shuffle(page.itemPairs.map((it, id) => ({ id, text: it[0] }))))
+    setColumnTwo(shuffle(page.itemPairs.map((it, id) => ({ id, text: it[1] }))))
+  }
+
   useEffect(() => {
-    const colOne = shuffle(page.itemPairs.map(it => it[0]))
-    setColumnOne(colOne)
-    const colTwo = shuffle(page.itemPairs.map(it => it[1]))
-    setColumnTwo(colTwo)
+    setup()
   }, [])
 
-  function onClick(term: string, column: number) {
-    if (activeSelection === "") {
-      setActiveSelection(term)
-      setActiveColumn(column)
-    } else {
-      // student is choosing a different in the same column
-      if (activeColumn === column) {
-        setActiveSelection(term)
-      } else {
-        // student is choosing a possible pairing match
+  function onClick(card: Card, column: 1 | 2) {
+    if (wrongPair) return // ignore clicks during the wrong-answer flash
+    if (matchedIds.includes(card.id)) return
 
-        const itemPair = page.itemPairs.find((v) => v[0] === activeSelection || v[1] === activeSelection)
-
-        if (activeColumn === 1) {
-          if (itemPair[1] === term) {
-            setMatchedTerms(prev => [...prev, term, activeSelection])
-          } else {
-            setIncorrectClicks(incorrectClicks + 1)
-          }
-        } else {
-          if (itemPair[0] === term) {
-            setMatchedTerms(prev => [...prev, term, activeSelection])
-          } else {
-            setIncorrectClicks(incorrectClicks + 1)
-          }
-        }
-        setActiveSelection("")
-        setActiveColumn(0)
-
-      }
+    // Nothing selected yet
+    if (!selected) {
+      setSelected({ id: card.id, column })
+      return
     }
+
+    // Same column: deselect if same card, otherwise switch selection
+    if (selected.column === column) {
+      setSelected(selected.id === card.id ? null : { id: card.id, column })
+      return
+    }
+
+    // Different column: check for a match
+    if (selected.id === card.id) {
+      setMatchedIds(prev => [...prev, card.id])
+    } else {
+      setIncorrectClicks(n => n + 1)
+      setWrongPair({
+        one: column === 1 ? card.id : selected.id,
+        two: column === 2 ? card.id : selected.id,
+      })
+      setTimeout(() => setWrongPair(null), 500)
+    }
+    setSelected(null)
   }
 
   function onReset() {
-    setActiveColumn(0)
-    setActiveSelection("")
-    setMatchedTerms([])
-    const colOne = shuffle(page.itemPairs.map(it => it[0]))
-    setColumnOne(colOne)
-    const colTwo = shuffle(page.itemPairs.map(it => it[1]))
-    setColumnTwo(colTwo)
+    setup()
+    setMatchedIds([])
+    setSelected(null)
+    setWrongPair(null)
     setIncorrectClicks(0)
   }
 
-  return <div className="flex flex-col items-center">
-    <p className="">Aim for 0 incorrect clicks to be exam-ready</p>
-    <div className="flex justify-center mb-4 items-center gap-4">
-      <p className="font-bold">Incorrect Clicks: {incorrectClicks}</p>
-      <Button className={"bg-orange-400 px-4 py-2 font-bold text-white rounded-lg"} onClick={onReset}>Reset</Button>
-    </div>
-    <div className="flex gap-2 mb-4 justify-start">
-    </div>
-    <div className="flex gap-16 pb-4">
-      <div className="flex flex-col gap-2">
-        <p className="underline">{page.columnOne}</p>
+  function cardState(card: Card, column: 1 | 2): CardState {
+    if (matchedIds.includes(card.id)) return "matched"
+    if (wrongPair && (column === 1 ? wrongPair.one : wrongPair.two) === card.id) return "wrong"
+    if (selected && selected.id === card.id && selected.column === column) return "active"
+    return "default"
+  }
 
-        {columnOne.map(it => <MatchingCard isActive={activeSelection === it} isMatched={matchedTerms.includes(it)} term={it} onClick={() => onClick(it, 1)} />)}
+  return (
+    <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 py-8">
+      {/* Header */}
+      <div className="w-full">
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+          <span className="text-sm font-medium uppercase tracking-wide text-gray-500">
+            {matchedIds.length} of {total} matched
+          </span>
+          <div className="flex items-center gap-3">
+            <span
+              className={`rounded-full px-3 py-1 text-sm font-bold transition-colors ${
+                incorrectClicks === 0 ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+              }`}
+            >
+              Incorrect clicks: {incorrectClicks}
+            </span>
+            <Button
+              onClick={onReset}
+              className="cursor-pointer rounded-lg bg-orange-400 px-4 py-1.5 text-sm font-bold text-white shadow transition hover:-translate-y-0.5 hover:bg-orange-500 hover:shadow-md active:translate-y-0"
+            >
+              Reset
+            </Button>
+          </div>
+        </div>
+        <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+          <div
+            className="h-full rounded-full bg-orange-400 transition-all duration-500"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        {!isComplete && (
+          <p className="mt-2 text-center text-sm text-gray-500">
+            Aim for 0 incorrect clicks to be exam-ready
+          </p>
+        )}
       </div>
-      <div className="flex flex-col gap-2">
-        <p className="underline">{page.columnTwo}</p>
 
-        {columnTwo.map(it => <MatchingCard isActive={activeSelection === it} isMatched={matchedTerms.includes(it)} term={it} onClick={() => onClick(it, 2)} />)}
+      {/* Completion banner */}
+      {isComplete && (
+        <div className="flex w-full flex-col items-center gap-2 rounded-2xl border-2 border-gray-200 bg-white p-6 text-center shadow-lg">
+          <p className="text-5xl">{incorrectClicks === 0 ? "🎉" : incorrectClicks <= 3 ? "👏" : "💪"}</p>
+          <h2 className="text-2xl font-bold text-gray-800">
+            {incorrectClicks === 0
+              ? "Perfect! You're exam-ready."
+              : `Done with ${incorrectClicks} incorrect ${incorrectClicks === 1 ? "click" : "clicks"}`}
+          </h2>
+          <p className="text-gray-500">
+            {incorrectClicks === 0
+              ? "Flawless round."
+              : "Try again and aim for zero mistakes."}
+          </p>
+          <Button
+            onClick={onReset}
+            className="mt-2 cursor-pointer rounded-xl bg-blue-500 px-8 py-3 font-bold text-white shadow transition hover:-translate-y-0.5 hover:bg-blue-600 hover:shadow-md"
+          >
+            Play again
+          </Button>
+        </div>
+      )}
+
+      {/* Columns */}
+      <div className="grid w-full grid-cols-2 gap-4 sm:gap-8">
+        <div className="flex flex-col gap-3">
+          <h3 className="border-b-2 border-gray-200 pb-2 text-center text-sm font-bold uppercase tracking-wide text-gray-600">
+            {page.columnOne}
+          </h3>
+          {columnOne.map(card => (
+            <MatchingCard
+              key={card.id}
+              term={card.text}
+              state={cardState(card, 1)}
+              onClick={() => onClick(card, 1)}
+            />
+          ))}
+        </div>
+        <div className="flex flex-col gap-3">
+          <h3 className="border-b-2 border-gray-200 pb-2 text-center text-sm font-bold uppercase tracking-wide text-gray-600">
+            {page.columnTwo}
+          </h3>
+          {columnTwo.map(card => (
+            <MatchingCard
+              key={card.id}
+              term={card.text}
+              state={cardState(card, 2)}
+              onClick={() => onClick(card, 2)}
+            />
+          ))}
+        </div>
       </div>
     </div>
-  </div>
+  )
 }
 
-const MatchingCard = ({ term, isActive, isMatched, onClick }: { term: string, isActive: boolean, isMatched: boolean, onClick: () => void }) => {
-  return <div className={`p-2 border-2 rounded-lg shadow cursor-pointer ${isActive ? "bg-blue-100" : ""} ${isMatched ? "line-through" : ""}`} onClick={onClick}>{term}</div>
+type CardState = "default" | "active" | "matched" | "wrong"
+
+const cardStyles: Record<CardState, string> = {
+  default:
+    "border-gray-200 bg-white text-gray-800 shadow hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md cursor-pointer",
+  active:
+    "border-blue-400 bg-blue-50 text-blue-900 shadow-md ring-2 ring-blue-300 cursor-pointer",
+  matched:
+    "border-green-200 bg-green-50 text-green-700 opacity-60 cursor-default",
+  wrong:
+    "border-red-400 bg-red-50 text-red-800 ring-2 ring-red-300 animate-[shake_0.4s_ease-in-out]",
+}
+
+const MatchingCard = ({
+  term,
+  state,
+  onClick,
+}: {
+  term: string
+  state: CardState
+  onClick: () => void
+}) => {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={state === "matched"}
+      className={`flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-xl border-2 px-3 py-3 text-center text-sm font-medium transition-all duration-200 sm:text-base ${cardStyles[state]}`}
+    >
+      {state === "matched" && <span aria-hidden>✓</span>}
+      <span>{term}</span>
+    </button>
+  )
 }
 
 const SectionHeader = ({ title }: { title: string }) => {
@@ -602,74 +715,157 @@ const DirectoryCard = ({
   </div>
 )
 
-const CategoryGamePage = ({
-  page
-}: {
-  page: CategorizeGamePage
-}) => {
-
-  const [stage, setStage] = useState("game")
-
+const CategoryGamePage = ({ page }: { page: CategorizeGamePage }) => {
+  const [stage, setStage] = useState<"game" | "game_over">("game")
   const [currentProperty, setCurrentProperty] = useState(0)
   const [score, setScore] = useState(0)
   const [properties, setProperties] = useState<CategoryProperty[]>([])
   const [incorrectFacts, setIncorrectFacts] = useState<CategoryProperty[]>([])
+  const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(null)
 
   useEffect(() => {
-    const shuffled = shuffle(page.properties)
-    setProperties(shuffled)
+    setProperties(shuffle(page.properties))
   }, [])
 
+  const total = properties.length
+  const progress = total > 0 ? (currentProperty / total) * 100 : 0
+  const current = properties[currentProperty]
+
   function onGuess(categoryGuess: string) {
-    if (properties[currentProperty].category === categoryGuess) {
-      setScore(score + 1)
+    if (feedback) return // ignore clicks during the feedback flash
+
+    const isCorrect = current.category === categoryGuess
+    if (isCorrect) {
+      setScore(s => s + 1)
     } else {
-      setIncorrectFacts(prev => [...prev, properties[currentProperty]])
+      setIncorrectFacts(prev => [...prev, current])
     }
 
-    const length = page.properties.length
-    if (currentProperty < length - 1) {
-      setCurrentProperty(currentProperty + 1)
-    } else {
-      setStage("game_over")
-    }
+    setFeedback(isCorrect ? "correct" : "incorrect")
+
+    setTimeout(() => {
+      setFeedback(null)
+      if (currentProperty < page.properties.length - 1) {
+        setCurrentProperty(c => c + 1)
+      } else {
+        setStage("game_over")
+      }
+    }, 600)
   }
 
   function onRestart() {
-    const shuffled = shuffle(page.properties)
-    setProperties(shuffled)
+    setProperties(shuffle(page.properties))
     setScore(0)
     setCurrentProperty(0)
     setStage("game")
     setIncorrectFacts([])
+    setFeedback(null)
   }
 
-  return <div>
+  const cardRing =
+    feedback === "correct"
+      ? "ring-4 ring-green-400 border-green-300"
+      : feedback === "incorrect"
+      ? "ring-4 ring-red-400 border-red-300"
+      : "border-gray-200"
 
-    <div className="flex flex-col items-center">
+  const categoryTitle = (id: string) =>
+    page.categories.find(c => c.id === id)?.title ?? id
 
-      <h2 className="font-bold text-2xl">Current Score: {score} / {properties.length}</h2>
-
-      {properties[currentProperty] && <div className="border-2 rounded p-4 my-4 h-64 w-96 text-center flex items-center justify-center max-w-full">
-        {properties[currentProperty].property}
-      </div>}
-      <div className="flex gap-4">
-        {stage == "game" ?
-          page.categories.map(it => <Button className="bg-orange-400 px-4 py-2 text-white rounded-lg cursor-pointer font-bold shadow" onClick={() => onGuess(it.id)}>{it.title}</Button>)
-          : <Button className="bg-blue-400 px-4 py-2 text-white rounded-lg cursor-pointer font-bold shadow" onClick={onRestart}>Restart</Button>}
+  return (
+    <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 py-8">
+      {/* Header: score + progress */}
+      <div className="w-full">
+        <div className="mb-2 flex items-baseline justify-between">
+          <span className="text-sm font-medium uppercase tracking-wide text-gray-500">
+            {stage === "game" ? `Question ${Math.min(currentProperty + 1, total)} of ${total}` : "Finished"}
+          </span>
+          <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-bold text-orange-700">
+            Score: {score} / {total}
+          </span>
+        </div>
+        <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+          <div
+            className="h-full rounded-full bg-orange-400 transition-all duration-500"
+            style={{ width: `${stage === "game_over" ? 100 : progress}%` }}
+          />
+        </div>
       </div>
-      <div className="border-2 max-w-3xl p-4 mt-4">
-        <p className="font-bold">Mistakes</p>
-        {incorrectFacts.map(fact => <div>
-          <p>{fact.property} -- {fact.category}</p>
-        </div>)}
+
+      {/* Main card */}
+      {stage === "game" && current && (
+        <div
+          key={currentProperty}
+          className={`flex h-64 w-full max-w-xl animate-[fadeIn_0.3s_ease-out] items-center justify-center rounded-2xl border-2 bg-white p-8 text-center text-xl font-medium text-gray-800 shadow-lg transition-all duration-200 ${cardRing}`}
+        >
+          {current.property}
+        </div>
+      )}
+
+      {/* Game over summary */}
+      {stage === "game_over" && (
+        <div className="flex w-full max-w-xl flex-col items-center gap-2 rounded-2xl border-2 border-gray-200 bg-white p-8 text-center shadow-lg">
+          <p className="text-5xl">{score === total ? "🎉" : score >= total / 2 ? "👏" : "💪"}</p>
+          <h2 className="text-3xl font-bold text-gray-800">
+            {score} / {total}
+          </h2>
+          <p className="text-gray-500">
+            {score === total
+              ? "Perfect score!"
+              : score >= total / 2
+              ? "Nice work!"
+              : "Keep practicing, you'll get there!"}
+          </p>
+        </div>
+      )}
+
+      {/* Actions */}
+      <div className="flex w-full max-w-xl flex-wrap justify-center gap-3">
+        {stage === "game" ? (
+          page.categories.map(it => (
+            <Button
+              key={it.id}
+              disabled={!!feedback}
+              onClick={() => onGuess(it.id)}
+              className="flex-1 cursor-pointer rounded-xl bg-orange-400 px-6 py-3 font-bold text-white shadow transition hover:-translate-y-0.5 hover:bg-orange-500 hover:shadow-md active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {it.title}
+            </Button>
+          ))
+        ) : (
+          <Button
+            onClick={onRestart}
+            className="cursor-pointer rounded-xl bg-blue-500 px-8 py-3 font-bold text-white shadow transition hover:-translate-y-0.5 hover:bg-blue-600 hover:shadow-md"
+          >
+            Play again
+          </Button>
+        )}
       </div>
-    </div>
-    <div>
 
+      {/* Mistakes */}
+      {incorrectFacts.length > 0 && (
+        <div className="w-full rounded-2xl border border-red-100 bg-red-50 p-5">
+          <h3 className="mb-3 flex items-center gap-2 font-bold text-red-700">
+            <span>Mistakes</span>
+            <span className="rounded-full bg-red-200 px-2 py-0.5 text-xs">{incorrectFacts.length}</span>
+          </h3>
+          <ul className="space-y-2">
+            {incorrectFacts.map((fact, i) => (
+              <li
+                key={i}
+                className="flex items-center justify-between gap-4 rounded-lg bg-white px-4 py-2 text-sm shadow-sm"
+              >
+                <span className="text-gray-700">{fact.property}</span>
+                <span className="shrink-0 rounded-full bg-green-100 px-3 py-1 font-medium text-green-700">
+                  {categoryTitle(fact.category)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
-
-  </div>
+  )
 }
 
 export default LessonPage;
