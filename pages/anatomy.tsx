@@ -113,9 +113,12 @@ const TREE: TreeNode[] = [
     fromPage("surface_epithelial_matching"),
     fromPage("connective_tissue_matching"),
     fromPage("thick_vs_thin_skin"),
+    fromPage("epidermal_strata"),
+    fromPage("papillary_vs_reticular"),
     fromPage("female_vs_male_pelvis"),
     fromPage("skeletal_vs_cardiac_vs_smooth_muscle"),
     fromPage("skeletal_muscle_fiber_types"),
+    
   ])
 ];
 

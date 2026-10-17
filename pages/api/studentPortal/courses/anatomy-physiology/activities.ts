@@ -238,6 +238,53 @@ export const ACTIVITIES: PageData[] = [
         ]
     },
     {
+        id: "epidermal_strata",
+        title: "Epidermal Strata",
+        type: "categorize",
+        categories: [
+            { id: "basale", title: "Basale" },
+            { id: "spinosum", title: "Spinosum" },
+            { id: "granulosum", title: "Granulosum" },
+            { id: "lucidum", title: "Lucidum" },
+            { id: "corneum", title: "Corneum" }
+        ],
+        properties: [
+            { property: "deepest layer", category: "basale" },
+            { property: "composed of single row of cuboidal or columnar keratinocytes that contain scattered keratin intermediate filaments (tonofilaments)", category: "basale" },
+            { property: "stem cell undergo cell division to produce new keratinocytes", category: "basale" },
+            { property: "melanocytes and tactile epithelial cells associated with tactile discs are scattered among keratinocytes", category: "basale"},
+
+            { property: "eight to ten rows of many-sided keratinocytes with bundles of keratin intermediate filaments", category: "spinosum" },
+            { property: "contains projections of melanocytes and intraepidermal macrophages", category: "spinosum" },
+
+            { property: "three to five rows of flattened keratinocytes, in which organelles are beginning to degenerate", category: "granulosum" },
+            { property: "cells contain the protein keratohyalin (converts keratin intermediate filaments into keratin)", category: "granulosum"},
+            { property: "cells contain lamellar granules (release lipid-rich, water-repellent secretion) ", category: "granulosum"},
+
+            { property: "present only in skin of fingertips, palms and soles", category: "lucidum" },
+            { property: "consists of four to six rows of clear, flat, dead, keratinocytes with large amounts of keratin", category: "lucidum"},
+            
+            { property: "few to 50 or more rows of dead, flat keratinocytes that contain mostly keratin", category: "corneum"}
+        ]
+    },
+    {
+        id: "papillary_vs_reticular",
+        title: "Papillary vs Reticular",
+        type: "categorize",
+        categories: [{id: "papillary", title: "Papillary"}, {id: "reticular", title: "Reticular"}],
+        properties: [
+              { property: "superficial portion of dermis", category: "papillary" },
+            { property: "about one-fifth of the dermis", category: "papillary" },
+            { property: "consists of areolar connective tissue with thin collagen and fine elastic fibers", category: "papillary" },
+            { property: "contains dermal ridges that house blood capillaries, corpuscles of touch and free nerve endings", category: "papillary" },
+
+            { property: "deeper portion of dermis", category: "reticular" },
+            { property: "about four-fifth of the dermis", category: "reticular" },
+            { property: "consists of dense irregular connective tissue with bundles of thick collagen and some coarse elastic fibers", category: "reticular" },
+            { property: "spaces between fibers contain some adipose cells, hair follicles, nerves, sebaceous glands and sudoriferous glands", category: "reticular" },
+        ]
+    },
+    {
         id: "thick_vs_thin_skin",
         title: "Thick vs Thin",
         type: "categorize",
